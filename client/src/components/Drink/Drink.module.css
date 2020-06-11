@@ -1,0 +1,35 @@
+@value tokens: "../../styles/tokens.module.css";
+@value ultralight-color, light-color, font-base, gray-color, success-color from tokens;
+
+.drink {
+  border: none;
+  display: grid;
+  grid-template-columns: 1fr 5ch;
+}
+
+.item {
+  margin-right: 3rem;
+}
+
+.noButton {
+  background-color: transparent;
+  width: 100%;
+  border: none;
+  text-align: left;
+  margin: 0;
+  padding: 1rem;
+}
+
+.noButton:hover {
+  background-color: light-color;
+}
+
+.name {
+  font-size: font-base;
+  min-width: 5rem;
+}
+.price {
+  font-size: font-base;
+  text-align: right;
+  color: gray-color;
+}

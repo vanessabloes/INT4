@@ -1,0 +1,26 @@
+@value tokens: "../../styles/tokens.module.css";
+@value primary-color from tokens;
+
+.title {
+  composes: title from "../../styles/typo.module.css";
+}
+
+.home {
+  composes: titleMini from "../../styles/typo.module.css";
+}
+
+.header {
+  text-align: left;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.7rem;
+  background-color: primary-color;
+  background-image: url("/assets/img/grain.png"), url("/assets/img/pintjes.svg");
+  background-repeat: repeat, no-repeat;
+  background-position: 0 0, calc(100% - 2rem) 1.7rem;
+  background-size: 13rem;
+}
+.header h1 {
+  margin-bottom: 0;
+  max-width: 70%;
+}

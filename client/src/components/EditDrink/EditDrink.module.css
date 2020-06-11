@@ -1,0 +1,7 @@
+.form {
+  display: grid;
+  grid-template-areas:
+    "name name price"
+    "save cancel delete";
+  gap: 0.2rem;
+}

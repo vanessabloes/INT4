@@ -1,0 +1,10 @@
+@value primary-color: #FFCA88;
+@value dark-color: #444444;
+@value light-color: #fff5ea;
+@value ultralight-color: #fff;
+@value gray-color: #b2b2b2;
+@value gray-light-color: #e3e3e3;
+@value success-color:  #93fac5;
+@value this-is-bad-color: #e91e63;
+
+@value font-base: 1.8rem;

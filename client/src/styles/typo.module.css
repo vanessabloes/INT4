@@ -1,0 +1,24 @@
+@value tokens: "./tokens.module.css";
+@value font-base from tokens;
+
+.title {
+  font-family: Roboto, sans-serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.titleMini {
+  display: block;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin-bottom: 0.7rem;
+}
+.paragraphs {
+  font-size: font-base;
+  line-height: 1.3;
+  font-weight: 400;
+}
+.paragraphs p {
+  margin: 1.4rem 0;
+}

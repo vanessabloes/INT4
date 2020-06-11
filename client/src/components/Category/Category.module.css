@@ -1,0 +1,33 @@
+@value tokens: "../../styles/tokens.module.css";
+@value light-color from tokens;
+
+.category {
+  composes: card from "../../styles/layout.module.css";
+  position: relative;
+}
+
+.title {
+  composes: titleMini from "../../styles/typo.module.css";
+  padding: 1rem 0;
+}
+
+.title:hover {
+  background-color: light-color;
+}
+
+.add {
+  composes: addButton from "../../styles/uiControls.module.css";
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+}
+
+.form {
+  display: grid;
+  grid-template-areas:
+    "name name name"
+    "save cancel delete";
+  gap: 0.2rem;
+  margin-bottom: 2rem;
+}
