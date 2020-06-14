@@ -11,7 +11,9 @@ import AddStory from "./components/AddStory";
 
 
 const App = () => {
+  
   return (
+
     <main className={styles.layout}>
          <Switch>
             <Route path={ROUTES.myClan}>
