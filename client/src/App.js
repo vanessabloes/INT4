@@ -8,10 +8,11 @@ import StoryDetail from "./components/StoryDetail";
 import MyClan from "./components/MyClan";
 import AddJourney from "./components/AddJourney";
 import AddStory from "./components/AddStory";
+import { useStore } from "./hooks/index"
 
 
 const App = () => {
-  
+  const { journeyStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
   return (
 
     <main className={styles.layout}>

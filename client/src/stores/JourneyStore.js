@@ -1,7 +1,7 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
 //import JourneyModel from "../models/JourneyModel";
-console.log("ge")
+
 
 class JourneyStore {
   constructor(rootStore) {
