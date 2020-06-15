@@ -3,6 +3,7 @@ import JourneyStore from "./JourneyStore";
 import ClanMemberStore from "./ClanMemberStore";
 import RoleStore from "./RoleStore";
 import StoryStore from "./StoryStore";
+import UiStore from "./UiStore";
 
 configure({ enforceActions: `observed` });
 
@@ -12,6 +13,7 @@ class Store {
     this.journeyStore = new JourneyStore(this);
     this.roleStore = new RoleStore(this);
     this.storyStore = new StoryStore(this);
+    this.uiStore = new UiStore(this);
     //this.categoryStore = new CategoryStore(this);
     //this.drinkStore = new DrinkStore(this);
   }

@@ -3,7 +3,7 @@ import { decorate, observable, action } from "mobx";
 import RoleModel from "../models/RoleModel";
 
 
-class JourneyStore {
+class RoleStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.roles = [];
@@ -56,10 +56,10 @@ class JourneyStore {
   }
 }
 
-decorate(JourneyStore, {
+decorate(RoleStore, {
   roles: observable,
   addRole: action,
   updateRoleFromServer: action
 });
 
-export default JourneyStore;
+export default RoleStore;

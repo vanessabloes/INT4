@@ -10,12 +10,14 @@ class JourneyModel {
         this.store = store;
         this.stories = stories;
         this.wayfarers = [];
+        this.definedWords = [];
         this.updateFromJson(json);
         this.store.addJourney(this);
     }
 
     create = async () => this.store.createJourney(this.asJson);
 
+    update = async () => this.store.updateJourney(this.asJson);
     linkStory(story) {
         !this.stories.includes(story) && this.stories.push(story);
       }
@@ -26,6 +28,7 @@ class JourneyModel {
       
     updateFromJson({ name, wayfarers }){
         this.name = name;
+        
         //wayfarers.forEach(wayfarer => {
         //  console.log(wayfarer);
         //  wayfarer.linkJourney(this);
@@ -35,15 +38,24 @@ class JourneyModel {
 
     }
 
+   async addDefinedWord(definedWord){
+      await this.definedWords.push(definedWord);
+    }
+
     get asJson() {
         return {
           id: this.id,
           name: this.name,
+          stories: this.stories,
+          wayfarers: this.wayfarers,
+          definedWords: this.definedWords
         };
       }
 }
 
 decorate(JourneyModel, {
+  definedWords: observable,
+  addDefinedWord: action,
   wayfarers: observable,
   stories: observable,
   linkStory:action,
