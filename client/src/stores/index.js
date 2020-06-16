@@ -4,6 +4,8 @@ import ClanMemberStore from "./ClanMemberStore";
 import RoleStore from "./RoleStore";
 import StoryStore from "./StoryStore";
 import UiStore from "./UiStore";
+import DefinedWordStore from "./DefinedWordStore";
+import DefinedStoryWordStore from "./DefinedStoryWordStore";
 
 configure({ enforceActions: `observed` });
 
@@ -14,6 +16,9 @@ class Store {
     this.roleStore = new RoleStore(this);
     this.storyStore = new StoryStore(this);
     this.uiStore = new UiStore(this);
+
+    this.definedWordStore = new DefinedWordStore(this);
+    this.definedStoryWordStore = new DefinedStoryWordStore(this);
     //this.categoryStore = new CategoryStore(this);
     //this.drinkStore = new DrinkStore(this);
   }

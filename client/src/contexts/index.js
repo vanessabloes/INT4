@@ -9,7 +9,7 @@ import WayfarerModel from "../models/WayfarerModel";
 const store = new Store();
 window.store = store;
 store.roleStore.loadAllRoles();
-
+store.definedWordStore.loadAllDefinedWords();
 
 
 const c = new ClanMemberModel({id: 1, name: "Jos", store: store.clanMemberStore});
