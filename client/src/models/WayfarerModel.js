@@ -2,7 +2,7 @@ import { decorate, action, computed } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
-    constructor({ id, clanMemberId, journeyId, roleId, store, ...json }){
+    constructor({ id, clanMemberId, journeyId, roleId, clanId, store, ...json }){
           if (!store) {
             throw new Error("A wayfarer needs a store");
           }
@@ -11,6 +11,7 @@ class WayfarerModel {
     
   
           this.updateFromJson({
+            clanId,
             clanMemberId,
             journeyId,
             roleId
@@ -18,7 +19,7 @@ class WayfarerModel {
       
          // this.store.clanMemberStore.addWayfarer(this);
         }
-    
+     
         setJourney(journey){
           if(journey){
             this.journeyId = journey.id;
@@ -46,7 +47,7 @@ class WayfarerModel {
         delete = async () => this.store.deleteUser(this.asJson);
 
 
-       
+    
       
         get journey() {
           return this.store.journeyStore.resolveJourney(this.journeyId);
@@ -58,7 +59,8 @@ class WayfarerModel {
           return this.store.roleStore.resolveRole(this.roleId);
         }
 
-        updateFromJson({ journeyId, clanMemberId, roleId }){
+        updateFromJson({  journeyId, clanMemberId, roleId }){
+        
           this.setJourney(this.store.journeyStore.resolveJourney(journeyId));
           this.setClanMember(this.store.clanMemberStore.resolveClanMember(clanMemberId));
           this.setRole(this.store.roleStore.resolveRole(roleId));

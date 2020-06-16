@@ -6,17 +6,20 @@ import StoryStore from "./StoryStore";
 import UiStore from "./UiStore";
 import DefinedWordStore from "./DefinedWordStore";
 import DefinedStoryWordStore from "./DefinedStoryWordStore";
+import ClanStore from "./ClanStore";
 
 configure({ enforceActions: `observed` });
 
 class Store {
   constructor() {
+    this.clanStore = new ClanStore(this);
+
     this.clanMemberStore = new ClanMemberStore(this);
     this.journeyStore = new JourneyStore(this);
-    this.roleStore = new RoleStore(this);
     this.storyStore = new StoryStore(this);
     this.uiStore = new UiStore(this);
 
+    this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
     //this.categoryStore = new CategoryStore(this);
