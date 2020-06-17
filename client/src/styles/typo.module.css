@@ -1,5 +1,17 @@
 @value tokens: "./tokens.module.css";
-@value font-base from tokens;
+@value font-base, title-font from tokens;
+
+/* composes: page_title from "../../styles/typo.module.css"; */
+.page_title {
+  font-family: title-font;
+  font-size: 4.5rem;
+  /* text-transform: capitalize; */
+}
+
+
+
+
+
 
 .title {
   font-family: Roboto, sans-serif;

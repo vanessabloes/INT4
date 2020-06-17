@@ -1,0 +1,7 @@
+/* @value tokens: "../../../styles/tokens.module.css";
+@value title-font from tokens; */
+
+
+.title {
+  composes: page_title from "../../styles/typo.module.css"
+}
