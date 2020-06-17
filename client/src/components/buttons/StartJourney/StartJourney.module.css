@@ -16,6 +16,5 @@
 }
 
 .button {
-  font-size: 1.6rem;
-  font-weight: 800;
+  composes: button_title from "../../../styles/typo.module.css" 
 }

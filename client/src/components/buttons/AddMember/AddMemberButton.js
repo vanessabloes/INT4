@@ -7,10 +7,10 @@ import { ReactComponent as AddMember } from './btnAddMember.svg';
 
 const AddMemberButton = ({text, linkTo}) => {
   return (
-    <div className={styles}>
+    <div className={styles.buttonContainer}>
     <Link  to={linkTo}>
       <AddMember/>
-      <p>{text}</p>
+      <p className={styles.button_title}>{text}</p>
     </Link>
   </div>
   );

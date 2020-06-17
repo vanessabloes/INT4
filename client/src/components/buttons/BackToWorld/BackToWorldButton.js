@@ -11,7 +11,7 @@ const BackToWorldButton = ({linkTo}) => {
     <div className={styles.button}>
     <Link  to={ROUTES.home}>
       <BackToWorld/>
-      <p>Back to World</p>
+      <p className={styles.button_title}>Back to World</p>
     </Link>
   </div>
   );

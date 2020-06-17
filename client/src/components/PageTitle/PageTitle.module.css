@@ -1,7 +1,17 @@
 /* @value tokens: "../../../styles/tokens.module.css";
 @value title-font from tokens; */
 
+.page_Title_wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
 
 .title {
   composes: page_title from "../../styles/typo.module.css"
+
+}
+
+.subtext {
+  composes: subtext from "../../styles/typo.module.css"
 }

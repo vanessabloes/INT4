@@ -10,12 +10,7 @@ const StartJourneyButton = () => {
   return (
     <div className={styles.buttonContainer}>
     <Link className={styles.button} to={ROUTES.home}>
-
       <Button/>
-      {/* <img lassName={styles.button_logo}
-        src={button}
-        alt="Start new Journey"
-      /> */}
       Start new Journey
     </Link>
   </div>

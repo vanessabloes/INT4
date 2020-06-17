@@ -20,13 +20,18 @@ const AddJourney = () => {
 
 
 
-    <PageTitle title={"Test titel"}/>
-   {/* <AddMemberButton text={"Add"} linkTo={ROUTES.home}/>
-   <BackToWorldButton text={"dit is een test"} linkTo={ROUTES.home}/>
-   <ButtonAlgemeen text={"dit is een test"} linkTo={ROUTES.home}/>
-   <MyclanButton/>
-   <StartJourneyButton/> */}
-   </>
+    <PageTitle title={"Who joins the journey?"} subtext={"dit is een zin voor in de subtext veel plezier ermee"}/>
+
+
+
+
+  
+  <AddMemberButton text={"Add"} linkTo={ROUTES.home}/>
+  <BackToWorldButton text={"dit is een test"} linkTo={ROUTES.home}/>
+  <ButtonAlgemeen text={"dit is een test"} linkTo={ROUTES.home}/>
+  <MyclanButton/>
+  <StartJourneyButton/>
+  </>
   );
 };
 
