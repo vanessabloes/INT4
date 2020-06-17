@@ -1,0 +1,16 @@
+.buttonContainer {
+  background-image: url("./buttonStartJourneyBackground.svg");
+  background-repeat: cover;
+  width: 20.5rem;
+  height: 24rem;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  font-size: 1.6rem;
+  font-weight: 800;
+}
