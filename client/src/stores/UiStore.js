@@ -1,37 +1,33 @@
 import { observable, action, decorate, computed } from "mobx";
 class UiStore {
-  constructor(){
+  constructor(rootStore){
+   this.rootStore = rootStore;
    this.loggedIn = false;
    this.currentClan = undefined;
    this.currentJourney = undefined;
   }
 
-  login({username, password, dataStore}){
-    dataStore.users.forEach(user => {
-      if(user.name === username && user.password === password){
-        this.currentCommunity = user.community;
-        this.currentUser = user;
+  login(username, password){
+    this.rootStore.clanStore.clans.forEach(clan => {
+      if(clan.name === username && clan.password === password){
+        this.setCurrentClan(clan);
         this.loggedIn = true;
       }
   });
   }
-
-  
-
-
   logout(){
-    this.currentUser = undefined;
+    this.currentClan = undefined;
     this.loggedIn = false;
+  }
+  setCurrentClan(clan){
+    this.currentClan = clan;
   }
 
   setCurrentJourney(journey){
       this.currentJourney = journey;
   }
 
-  setCurrentCommunity(clan){
-    this.currentClan = clan;
-  }
-
+ 
 
 }
 

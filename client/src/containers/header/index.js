@@ -3,15 +3,15 @@ import React from "react";
 //import PropTypes from "prop-types";
 
 
-const Home = () => {
-
+const Header = () => {
   return (
-   <p>hello world</p>
+   <header>Hier komt de header</header>
+   
   );
 };
 
-Home.propTypes = {
+Header.propTypes = {
 
 };
 
-export default Home;
+export default Header;

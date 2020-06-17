@@ -9,11 +9,19 @@ class ClanMemberModel {
           }
 
           this.store = store;
-          this.journeys = [];
+       
+          //this.journeys = [];
           this.wayfarers = [];
           this.updateFromJson(json);
       
           this.store.addClanMember(this);
+        }
+
+        setClan(clan){
+          if(clan){
+            this.clanId = clan.id;
+            this.clan.linkClanMember(this);
+          }
         }
     
         linkJourney(journey){
@@ -29,7 +37,8 @@ class ClanMemberModel {
         delete = async () => this.store.deleteUser(this.asJson);
 
 
-        updateFromJson({ name, age , avatar }){
+        updateFromJson({ name, age , avatar, clanId }){
+          this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
           this.name = name;
           this.age = age;
           this.avatar = avatar;
@@ -37,7 +46,9 @@ class ClanMemberModel {
           //this.store.journeyStore.resolveJourney().linkClanMember(this)
 
         };
-      
+        get clan() {
+          return this.store.rootStore.clanStore.resolveClan(this.clanId);
+        }
 
         get asJson() {
             return {
