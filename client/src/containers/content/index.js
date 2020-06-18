@@ -38,6 +38,7 @@ const Content = () => {
        <Route path={ROUTES.home}>
            <Home />
        </Route>
+
  </Switch>
 </main>
    

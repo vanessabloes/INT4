@@ -11,6 +11,7 @@ import MyclanButton from "../../../components/buttons/MyClan/MyclanButton"
 import BackToWorldButton from "../../../components/buttons/BackToWorld/BackToWorldButton"
 import { ROUTES } from "../../../consts";
 
+
 const AddJourney = () => {
   return (
 
@@ -18,12 +19,9 @@ const AddJourney = () => {
    <p>AddJourney</p>
 
 
-
-
+    
+    
     <PageTitle title={"Who joins the journey?"} subtext={"dit is een zin voor in de subtext veel plezier ermee"}/>
-
-
-
 
   
   <AddMemberButton text={"Add"} linkTo={ROUTES.home}/>
