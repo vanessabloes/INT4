@@ -6,6 +6,13 @@ const ROUTES = {
     journeyDetail: { path: "/:id", to: "/" }, // to = de backlink naar parentpagina
     storyDetail: { path: "/:id/:story_id", to: "/:id" }, // to = de backlink naar parentpagina
   };
+
+  const STATES = {
+    HOME_STATE_OPENING_SCREEN: "Opening Screen",
+    HOME_STATE_FAMILY: "Opening Family",
+    HOME_STATE_SURREAL_WORLD: "/Opening Surreal World",
+    HOME_STATE_HOME: "home",
+    
+  };
   
-  export { ROUTES };
-  
+  export { ROUTES, STATES };

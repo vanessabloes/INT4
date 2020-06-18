@@ -3,15 +3,27 @@
 
 /* composes: page_title from "../../styles/typo.module.css"; */
 
-.page_title {
+.page_title { /*figma -> ui/page title*/
   font-family: title-font;
   font-size: 5rem;
   margin-bottom: 1.5rem;
 }
 
-.subtext { /*tekst onder een titel*/
+.subtext { /*figma -> ui/subtext (tekst onder een titel), zin in page title component*/
   font-size: 1.5rem;
   margin-bottom: 2rem;
+}
+
+.subtitle { /*figma -> ui/ondertitel*/
+  font-weight: 300;
+  font-style: italic;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.bodyCopy { /*figma -> ui/broodtekst*/
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
 }
 
 .button_title {
@@ -19,33 +31,4 @@
   font-weight: bold;
   font-size: 1.6rem;
   margin-top: 1rem;
-}
-
-
-
-
-
-
-
-
-.title {
-  font-family: Roboto, sans-serif;
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-.titleMini {
-  display: block;
-  text-transform: uppercase;
-  font-size: 1.3rem;
-  font-weight: 300;
-  margin-bottom: 0.7rem;
-}
-.paragraphs {
-  font-size: font-base;
-  line-height: 1.3;
-  font-weight: 400;
-}
-.paragraphs p {
-  margin: 1.4rem 0;
 }

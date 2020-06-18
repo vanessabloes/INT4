@@ -1,0 +1,12 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
+.title {
+  font-family: title-font;
+  font-size: 8rem;
+}
+
+.subtitle {
+    composes: subtitle from "../../styles/typo.module.css";
+}
+

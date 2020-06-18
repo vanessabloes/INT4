@@ -8,6 +8,8 @@ import DefinedWordStore from "./DefinedWordStore";
 import DefinedStoryWordStore from "./DefinedStoryWordStore";
 import ClanStore from "./ClanStore";
 import WayfarerStore from "./WayfarerStore";
+import LaunchFlowStore from "./LaunchFlowStore";
+
 
 configure({ enforceActions: `observed` });
 
@@ -27,6 +29,10 @@ class Store {
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
     //this.categoryStore = new CategoryStore(this);
     //this.drinkStore = new DrinkStore(this);
+
+
+    this.launchFlowStore = new LaunchFlowStore(this)
+    //pepijn: LaunchFlowStore -> om state van de launch shermen bijhouden
   }
 
 
