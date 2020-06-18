@@ -20,5 +20,3 @@ const TheePotFlow = ({text, onClick}) => {
 };
 
 export default TheePotFlow;
-
-

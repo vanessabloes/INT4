@@ -10,6 +10,7 @@ import ClanStore from "./ClanStore";
 import WayfarerStore from "./WayfarerStore";
 import WordStore from "./WordStore";
 import CoreStore from "./CoreStore";
+import LaunchFlowStore from "./LaunchFlowStore";
 
 configure({ enforceActions: `observed` });
 
@@ -29,6 +30,8 @@ class Store {
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
 
+
+    this.launchFlowStore = new LaunchFlowStore(this);
 
 
     this.wordStore = new WordStore(this);
