@@ -15,9 +15,6 @@ import {STATES} from "../../consts/index";
 const Home = () => {
   const { launchFlowStore } = useStore()
   
-  
-
-
   const [homeState, setState] = useState();
 
   return useObserver (() => {
@@ -35,12 +32,12 @@ const Home = () => {
     }
 
     return (
-      <>
-       {/* standaard home component */}
+      <div>
+      
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
         <StartJourneyButton/>
 
-      </>
+      </div>
     );
       
   });
