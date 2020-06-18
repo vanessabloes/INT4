@@ -5,6 +5,7 @@ import { ROUTES } from "../../consts";
 
 import PageTitle from "../../components/PageTitle/PageTitle"
 import NewStoryButton from "../../components/buttons/NewStory/NewStory"
+import Masklayout from "../../components/MaskLayout/index"
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 
@@ -13,7 +14,7 @@ const JourneyDetail = () => {
   return (
     <>
      <PageTitle title={"Journey 1"} subtext={"Start your storytelling with a bonfire"}/>
-      masker masker 2 masker 3
+      <Masklayout></Masklayout>
       <NewStoryButton text={"Start new Story"}/>
 
      

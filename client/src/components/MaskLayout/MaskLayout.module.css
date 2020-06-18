@@ -1,0 +1,16 @@
+.mask{
+    padding: 2rem;
+}
+.mask_name{
+
+}
+.container{
+    display: flex;
+    padding: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+.maskcontainer{
+    text-align: center;
+    padding-bottom: 3rem;
+}

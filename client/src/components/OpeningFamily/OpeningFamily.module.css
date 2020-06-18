@@ -3,8 +3,10 @@
 
 .opening_screen_wrapper {
   composes: opening_screen_wrapper from "../../styles/launch.module.css";
-  grid-template-columns: 21rem 20rem 20rem 21rem ;
+  grid-template-columns: 25% 25% 25% 25% ;
   grid-template-rows: 65rem 20rem 1fr ;
+  max-height: 100vh;
+  overflow-y: hidden;
 }
 .title_wrapper {
   display: flex;

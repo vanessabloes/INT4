@@ -15,9 +15,11 @@ const OpeningSurrealWorld = () => {
         <PageTitle title={"A Surreal world"} subtext={"Where everyone challenges you to tell and achieve things you've never done before"}/>
         <p className={styles.subtitle}>And uncover as clan</p> 
       </div>
-      <img className={styles.image_wolkTwo} src="assets/img/LAUNCH/WORLD/worldFROG.svg"alt="nog een gele wolk"/>
+      <img className={styles.image} src="assets/img/LAUNCH/WORLD/worldFROG.svg"alt="nog een gele wolk"/>
+      <div  className={styles.button}>
+        <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME)}/>
+      </div>
 
-      <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME)}/>
     </div>
   );
 };
