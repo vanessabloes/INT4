@@ -2,21 +2,18 @@ import React from "react";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 
-import PageTitle from "../../components/PageTitle/PageTitle"
 
-import AddMemberButton from "../../components/buttons/AddMember/AddMemberButton"
+
+
 import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow"
-import TheePotLink from "../../components/buttons/Algemeen/TheePotLink"
-import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton"
-import MyclanButton from "../../components/buttons/MyClan/MyclanButton"
-import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldButton"
-import { ROUTES } from "../../consts"
-import ClanMemberStore from "../../stores/ClanMemberStore";
+
+
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { v4 } from "uuid";
 import WayfarerModel from "../../models/WayfarerModel";
 import AddWayfarers from "../../components/AddWayfarers";
+import ChooseRoles from "../../components/ChooseRoles";
 
 
 
@@ -82,6 +79,7 @@ const AddJourney = () => {
   <p>Dit is de current clan name: {uiStore.currentClan ? uiStore.currentClan.name : "loading"}</p>
   <p>Dit is de current journey name:{uiStore.currentJourney ? uiStore.currentJourney.name : "loading"}</p>
 
+  
 
 <ul>
 Dit zijn alle clanMembers van de current clan: 
@@ -93,22 +91,16 @@ uiStore.currentClan.clanMembers.map(clanMember => (
 </ul>
 
     
-<div>
-      <img src="assets/img/PROGRESS/1of3.svg"/>
-        <p>Select wayfarers</p>
-        <p>Choose roles</p>
-        <p>Explore roles</p>
-    </div>
-    <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"}/>
-  <AddWayfarers/>
-  <img src="assets/img/PREPARING/sun_alles.svg"/>
 
-  <TheePotFlow text={"Choose roles"} onClick={changeState(2)}/>
+  if (condition) {
+    
+  }
+  <AddWayfarers/>
+  <ChooseRoles/>
   
-  <BackToWorldButton text={"dit is een test"} linkTo={ROUTES.home}/>
-  <TheePotLink text={"dit is een test"} linkTo={ROUTES.home}/>
-  <MyclanButton/>
-  <StartJourneyButton/>
+  <TheePotFlow text={"Choose roles"} onClick={changeState(2)}/>
+
+
   </>
   ));
 };
