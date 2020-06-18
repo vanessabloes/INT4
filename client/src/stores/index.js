@@ -28,16 +28,7 @@ class Store {
     this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
-<<<<<<< HEAD
-    //this.categoryStore = new CategoryStore(this);
-    //this.drinkStore = new DrinkStore(this);
 
-
-    this.launchFlowStore = new LaunchFlowStore(this)
-    //pepijn: LaunchFlowStore -> om state van de launch shermen bijhouden
-  }
-=======
->>>>>>> 3b3bf78977f75b31b315a67c6f2da2052707b91d
 
 
     this.wordStore = new WordStore(this);
