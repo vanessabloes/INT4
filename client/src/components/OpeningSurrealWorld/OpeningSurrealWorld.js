@@ -2,20 +2,24 @@ import React from "react";
 import styles from "./OpeningSurrealWorld.module.css"
 import PageTitle from "../PageTitle/PageTitle"
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow"
-
+import {STATES} from "../../consts/index"
+import { useStore } from "../../hooks";
 
 const OpeningSurrealWorld = () => {
+
+  const { launchFlowStore } = useStore()
+
   return (
-    <>
+    <div className={styles.opening_screen_wrapper}>
       <div className={styles.title_wrapper}>
         <PageTitle title={"A Surreal world"} subtext={"Where everyone challenges you to tell and achieve things you've never done before"}/>
         <p className={styles.subtitle}>And uncover as clan</p> 
       </div>
-      <TheePotFlow text={"Next"}/>
-    </>
+      <img className={styles.image_wolkTwo} src="assets/img/LAUNCH/WORLD/worldFROG.svg"alt="nog een gele wolk"/>
+
+      <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME)}/>
+    </div>
   );
 };
 
 export default OpeningSurrealWorld;
-
-

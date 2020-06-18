@@ -1,12 +1,52 @@
 @value tokens: "../../styles/tokens.module.css";
 @value title-font from tokens;
 
+.opening_screen_wrapper {
+  composes: opening_screen_wrapper from "../../styles/launch.module.css";
+}
+
+
+.title_wrapper {
+  place-self: center;
+  margin: 4rem auto;
+}
+
 .title {
   font-family: title-font;
   font-size: 8rem;
+  text-align: center;
 }
 
 .subtitle {
     composes: subtitle from "../../styles/typo.module.css";
 }
 
+.image_mask {
+  place-self: center;
+  height: 90rem;
+  grid-row: 2;
+  grid-column: 1;
+  z-index: 1;
+}
+
+.image_wolkOne {
+  place-self: end;
+  grid-row: 2;
+  grid-column: 1;
+  height: 4.5rem;
+  padding-right: 10rem;
+  z-index: 0;
+}
+
+.image_wolkTwo {
+  place-self: start;
+  grid-row: 2;
+  grid-column: 1;
+  height: 5rem;
+  padding-left: 5rem;
+  z-index: 0;
+}
+
+.button {
+  place-self: center;
+}

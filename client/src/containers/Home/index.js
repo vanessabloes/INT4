@@ -22,18 +22,17 @@ const Home = () => {
 
   return useObserver (() => {
 
-    if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {  
+    if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {// "Opening Screen"
       return <OpeningScreen onClick={setState}/> 
     }
     
-    if(launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {
+    if(launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
       return <OpeningFamily />
     }
 
-    if (launchFlowStore.homeState === STATES.HOME_STATE_SURREAL_WORLD) {
+    if (launchFlowStore.homeState === STATES.HOME_STATE_SURREAL_WORLD) {//"Opening Surreal World",
       return <OpeningSurrealWorld />;
     }
-
 
     return (
       <>

@@ -10,7 +10,7 @@ const ROUTES = {
   const STATES = {
     HOME_STATE_OPENING_SCREEN: "Opening Screen",
     HOME_STATE_FAMILY: "Opening Family",
-    HOME_STATE_SURREAL_WORLD: "/Opening Surreal World",
+    HOME_STATE_SURREAL_WORLD: "Opening Surreal World",
     HOME_STATE_HOME: "home",
     
   };

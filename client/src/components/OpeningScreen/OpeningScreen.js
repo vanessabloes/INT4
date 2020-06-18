@@ -1,20 +1,31 @@
 import React from "react";
 import styles from "./OpeningScreen.module.css"
-import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow"
+import TheePotFlow from "../buttons/Algemeen/TheePotFlow"
+import { useStore } from "../../hooks";
+import {STATES} from "../../consts/index"
+
 
 const OpeningScreen = () => {
+
+  const { launchFlowStore } = useStore()
+
   return (
-    <>
-      <div >
+    <div className={styles.opening_screen_wrapper}>
+      <div className={styles.title_wrapper}>
         <h1 className={styles.title}>Clandestine</h1>
         <p className={styles.subtitle}>Experience travelling with your family as never before</p>
       </div>
-        {/* <img src="assets/img/BOOT/boot1.svg"/> */}
-        <TheePotFlow/>
-    </> 
+      <img className={styles.image_mask} src="assets/img/BOOT/boot1.svg" alt="clandestine mask"/>
+      <img className={styles.image_wolkOne} src="assets/img/BOOT/wolkje1.svg" alt="een gele wolk"/>
+      <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg"alt="nog een gele wolk"/>
+      <div className={styles.button}>
+        <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/>
+      </div>
+    </div>
   );
 };
 
 export default OpeningScreen;
 
 
+//

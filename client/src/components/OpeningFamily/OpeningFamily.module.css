@@ -1,11 +1,19 @@
 @value tokens: "../../styles/tokens.module.css";
 @value title-font from tokens;
 
-
+.opening_screen_wrapper {
+  composes: opening_screen_wrapper from "../../styles/launch.module.css";
+  grid-template-columns: 21rem 20rem 20rem 21rem ;
+  grid-template-rows: 65rem 20rem 1fr ;
+}
 .title_wrapper {
   display: flex;
   flex-flow: column-reverse;
   align-items: center;
+  grid-row: 2;
+  grid-column: 2 /4;
+  place-self: start center;
+  text-align: center;
 }
 
 .title {
@@ -15,4 +23,42 @@
 
 .subtitle{
   composes: subtitle from "../../styles/typo.module.css";
+}
+
+.image_sun {
+  grid-row: 1;
+  grid-column: 1 /5;
+  place-self: center;
+
+}
+
+.button {
+  place-self: start center;
+  grid-row: 3;
+  grid-column: 2/4;
+}
+
+.image_maskOne {
+  grid-row: 2/4;
+  grid-column: 1;
+  place-self: start center;
+}
+
+.image_maskTwo {
+  grid-row: 3;
+  grid-column: 1 /3;
+  place-self: center center;
+}
+
+.image_maskThree {
+  grid-row: 3;
+  grid-column: 3/5;
+  place-self: end center;
+}
+
+.image_maskFour {
+  grid-row: 2/4;
+  grid-column: 4;
+  place-self: start center;
+  height: 60rem;
 }

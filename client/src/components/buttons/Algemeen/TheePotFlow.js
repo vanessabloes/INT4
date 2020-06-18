@@ -1,17 +1,21 @@
 import React from "react";
 import styles from "./TheePotLink.module.css"
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../../consts";
+
+
 
 import { ReactComponent as TheePot } from './btnTheePot.svg';
+import { useStore } from "../../../hooks";
 
 
-const TheePotFlow = ({text}) => {
+const TheePotFlow = ({text, onClick}) => {
+  const { launchFlowStore } = useStore()
+
+
   return (
-    <div className={styles}>
+    <div className={styles.button} onClick={onClick}>
       <TheePot/>
-      <p className={styles.button_title}>{text}</p>
-  </div>
+      <p className={styles.button_title}>{text}</p>    
+    </div>
   );
 };
 
