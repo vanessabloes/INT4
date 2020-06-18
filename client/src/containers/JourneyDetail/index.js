@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../../consts";
+import { ROUTES } from "../../consts";
 //import PropTypes from "prop-types";
 
 

@@ -3,9 +3,9 @@ import { useObserver } from "mobx-react-lite";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 
-import Loading from "../../../components/Loading";
-import Core from "../../../components/Core";
-import Challenge from "../../../components/Challenge";
+import Loading from "../../components/Loading";
+import Core from "../../components/Core";
+import Challenge from "../../components/Challenge";
 
 
 // conditional over alle drie de elementen:
