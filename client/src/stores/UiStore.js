@@ -1,11 +1,12 @@
 import { observable, action, decorate } from "mobx";
+import { STATES } from "../consts";
 class UiStore {
   constructor(rootStore){
    this.rootStore = rootStore;
    this.loggedIn = false;
    this.currentClan = undefined;
    this.currentJourney = undefined;
-   this.state = 1;
+   this.addJourneyState = STATES.ADDJOURNEY_STATE_ADDWAYFARERS;
   }
 
    login = (username, password) => {
@@ -34,8 +35,8 @@ class UiStore {
       console.log(journey);
   }
 
-  setState(state){
-    this.state = state;
+  setAddJourneyState(state){
+    this.addJourneyState = state;
   }
 
 }
@@ -47,7 +48,9 @@ decorate(UiStore, {
     setCurrentClan: action,
     loggedIn: observable,
     login: action,
-    logout: action
+    logout: action,
+    setAddJourneyState: action,
+    addJourneyState: observable
   
     
   });

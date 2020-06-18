@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 
@@ -14,8 +14,9 @@ import { v4 } from "uuid";
 import WayfarerModel from "../../models/WayfarerModel";
 import AddWayfarers from "../../components/AddWayfarers";
 import ChooseRoles from "../../components/ChooseRoles";
+import ExploreRoles from "../../components/ExploreRoles/ExploreRoles";
 
-
+import { STATES } from "../../consts";
 
 const AddJourney = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore, journeyStore, wayfarerStore } = useStore();
@@ -41,9 +42,21 @@ const AddJourney = () => {
   }
  
 
+  const [addWayfarerState, setState] = useState();
   
-  return useObserver (() => (
+  return useObserver (() => {
+    if (uiStore.addJourneyState === STATES.ADDJOURNEY_STATE_ADDWAYFARERS) {
+      return <AddWayfarers onClick={setState}/> 
+    }
+    
+    if(uiStore.addJourneyState === STATES.ADDJOURNEY_STATE_CHOOSEROLES) {
+      return <ChooseRoles />
+    }
 
+    if (uiStore.addJourneyState === STATES.ADDJOURNEY_STATE_EXPLOREROLES) {
+      return <ExploreRoles />;
+    }
+    return (
     <>
    <p>AddJourney</p>
 
@@ -92,17 +105,18 @@ uiStore.currentClan.clanMembers.map(clanMember => (
 
     
 
-  if (condition) {
-    
-  }
+
   <AddWayfarers/>
   <ChooseRoles/>
+  <ExploreRoles/>
   
   <TheePotFlow text={"Choose roles"} onClick={changeState(2)}/>
 
 
   </>
-  ));
+    );
+      
+  });
 };
 
 AddJourney.propTypes = {

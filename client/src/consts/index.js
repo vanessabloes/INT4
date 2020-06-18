@@ -12,7 +12,9 @@ const ROUTES = {
     HOME_STATE_FAMILY: "Opening Family",
     HOME_STATE_SURREAL_WORLD: "Opening Surreal World",
     HOME_STATE_HOME: "home",
-    
+    ADDJOURNEY_STATE_ADDWAYFARERS: "Add Wayfarers",
+    ADDJOURNEY_STATE_CHOOSEROLES: "Choose roles",
+    ADDJOURNEY_STATE_EXPLOREROLES: "Explore roles"
   };
   
   export { ROUTES, STATES };

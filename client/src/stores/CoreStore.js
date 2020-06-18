@@ -4,16 +4,24 @@ class CoreStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.state = "loading";
+        this.listening = false;
     }
 
     setState(state) {
         this.state = state;
     }
+
+    setListening(listening) {
+        this.listening = listening;
+    }
 }
 
 decorate(CoreStore, {
     state: observable,
-    setState: action
+    setState: action,
+    listening: observable,
+    setListening: action
 });
 
 export default CoreStore;
+
