@@ -17,15 +17,11 @@ class JourneyStore {
  //   jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
  // };
 
-  loadAllDefinedWords = async () => {
-  //  const jsonJourneys = await this.groupsService.getAll();
-     const jsonDefinedWords = [
-      {"content": "Elephant", "used":"false"},
-      {"content": "Knight", "used": "false"}
-  ];
-  this.definedWords = jsonDefinedWords;
+  loadAllJourneys = async () => {
+    const jsonJourneys = await this.journeysService.getAll();
 
-   // jsonDefinedWords.forEach(json => this.updateJourneyFromServer(json));
+    console.log(jsonJourneys)
+   jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
   }
 
   loadJourney = async (id) => {
@@ -82,7 +78,7 @@ class JourneyStore {
 
   resolveJourney = id => this.journeys.find(journey => journey.id === id);
 
-  addJourney = journey => {
+  addJourney(journey){
     this.journeys.push(journey);
   };
 }
@@ -90,7 +86,9 @@ class JourneyStore {
 decorate(JourneyStore, {
   journeys: observable,
   addJourney: action,
-  updateJourneyFromServer: action
+  updateJourneyFromServer: action,
+  resolveJourney: action,
+  loadAllJourneys: action
 });
 
 export default JourneyStore;

@@ -14,18 +14,33 @@ import { ROUTES } from "../../consts"
 import ClanMemberStore from "../../stores/ClanMemberStore";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
+import { v4 } from "uuid";
+import WayfarerModel from "../../models/WayfarerModel";
 
 
 
 const AddJourney = () => {
-  const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
-  console.log(clanMemberStore);
-  if(uiStore.currentClan){
-        console.log("current lcan")
-  }else{
-        console.log("no current clan")
-        uiStore.setCurrentClan(clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103"));
+  const { uiStore, roleStore, clanStore, clanMemberStore, journeyStore, wayfarerStore } = useStore();
+
+
+  const addWayfarer = (e) => {
+    e.preventDefault();
+
+    const w = new WayfarerModel({
+      id: v4(), 
+      clanMemberId: "8fbfb448-6823-46ca-ac66-8e1245610843",
+      journeyId: uiStore.currentJourney.id,
+      roleId: "1", 
+      store: wayfarerStore
+    });
+
+   //  w.create();
+  
   }
+
+ 
+
+  
   return useObserver (() => (
 
     <>
@@ -35,6 +50,13 @@ const AddJourney = () => {
           Dit zijn alle clans uit de db: 
           {clanStore.clans.map(clan  => (     
                 <li>{clan.name}</li>
+          ))}
+  </ul>
+
+  <ul >
+          Dit zijn alle journeys uit de db: 
+          {journeyStore.journeys.map(journey  => (     
+                <li>{journey.name}</li>
           ))}
   </ul>
  
@@ -50,16 +72,22 @@ const AddJourney = () => {
                 <li>Dit zijn alle clanMembers: {clanMember.name}</li>
           ))}
   </ul>
-
+<button onClick={addWayfarer}>Add wayfarer</button>
 
       
-  <p>Dit is de current clan name: {uiStore.currentClan.name}</p>
-  <ul>
-          Dit zijn alle clanmembers in de current clan: 
-          {uiStore.currentClan.clanMembers.map(clanMember => (     
-                <li> {clanMember.name}</li>
-          ))}
-  </ul>
+  <p>Dit is de current clan name: {uiStore.currentClan ? uiStore.currentClan.name : "loading"}</p>
+  <p>Dit is de current journey name:{uiStore.currentJourney ? uiStore.currentJourney.name : "loading"}</p>
+
+
+<ul>
+Dit zijn alle clanMembers van de current clan: 
+{uiStore.currentClan ? 
+uiStore.currentClan.clanMembers.map(clanMember => (     
+                <li>{clanMember.name}</li>
+          )) : "loading"}         
+
+</ul>
+
     
     
     <PageTitle title={"Who joins the journey?"} subtext={"dit is een zin voor in de subtext veel plezier ermee"}/>
