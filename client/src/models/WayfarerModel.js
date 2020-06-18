@@ -1,4 +1,4 @@
-import { decorate, action, computed } from "mobx";
+import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
@@ -8,7 +8,7 @@ class WayfarerModel {
             throw new Error("A wayfarer needs a store");
           }
           this.store = store;
-
+          console.log(journeyId)
     
   
           this.updateFromJson({
@@ -26,14 +26,14 @@ class WayfarerModel {
         setJourney(journey){
           if(journey){
             this.journeyId = journey.id;
-            this.journey.linkWayfarer(this);
+            journey.linkWayfarer(this);
           }
         }
 
         setClanMember(clanMember){
           if(clanMember){
             this.clanMemberId = clanMember.id;
-            this.clanMember.linkWayfarer(this);
+            clanMember.linkWayfarer(this);
           }
         }
         setRole(role){
@@ -62,14 +62,15 @@ class WayfarerModel {
           return this.store.rootStore.roleStore.resolveRole(this.roleId);
         }
 
-        updateFromJson({  journeyId, clanMemberId, roleId }){
-        
-          this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
+        updateFromJson({ journeyId, clanMemberId, roleId }){
           this.setClanMember(this.store.rootStore.clanMemberStore.resolveClanMember(clanMemberId));
+          this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
           this.setRole(this.store.rootStore.roleStore.resolveRole(roleId));
          // this.journeys = journeys;
           //this.store.journeyStore.resolveJourney().linkWayfarer(this)
-
+          console.log(this.clanMemberId);
+          console.log(this.journeyId);
+          console.log(this.roleId);
         };
 
         get asJson() {
@@ -77,7 +78,7 @@ class WayfarerModel {
               id: this.id,
               clanMemberId: this.clanMemberId,
               journeyId: this.journeyId,
-              roleId: this.role
+              roleId: this.roleId
             };
           }
 }
@@ -89,6 +90,9 @@ decorate(WayfarerModel, {
  journey: computed,
  clanMember: computed,
  role: computed,
+ roleId: observable,
+ clanMemberId: observable,
+ journeyId: observable,
  asJson: computed
 });
 

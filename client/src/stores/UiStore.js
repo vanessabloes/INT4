@@ -17,10 +17,10 @@ class UiStore {
     });
   }
 
-  setCurrentClan(clan){
+  setCurrentClan = async (clan) => {
     
     this.currentClan = clan;
-    console.log(this.currentClan.name);
+    await console.log(this.currentClan.name);
   }
 
   logout(){
@@ -30,6 +30,7 @@ class UiStore {
 
   setCurrentJourney(journey){
       this.currentJourney = journey;
+      console.log(journey);
   }
 
  

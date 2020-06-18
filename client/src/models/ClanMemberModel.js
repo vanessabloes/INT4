@@ -12,8 +12,9 @@ class ClanMemberModel {
        
           //this.journeys = [];
           this.wayfarers = [];
-          this.store.addClanMember(this);
+          
           this.updateFromJson(json);
+          this.store.addClanMember(this);
       
         }
 
@@ -26,9 +27,9 @@ class ClanMemberModel {
           }
         }
     
-        linkJourney(journey){
-          !this.journeys.includes(journey) && this.journeys.push(journey);
-        }
+       //linkJourney(journey){
+       //  !this.journeys.includes(journey) && this.journeys.push(journey);
+       //}
 
         linkWayfarer(wayfarer){
           !this.wayfarers.includes(wayfarer) && this.wayfarers.push(wayfarer);

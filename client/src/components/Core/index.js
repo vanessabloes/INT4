@@ -5,7 +5,15 @@ import Pitstops from "../Pitstops";
 import Power from "../Power";
 import Wordwheel from "../Wordwheel";
 
+import { useStore } from "../../hooks";
+import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
+import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
+import { ROUTES } from "../../consts";
+
 const Core = () => {
+
+    const { coreStore } = useStore();
+    console.log(coreStore.state);
 
     return useObserver(() => (
         <>
@@ -13,6 +21,13 @@ const Core = () => {
             <Pitstops />
             <Power />
             <Wordwheel />
+            <button
+                value="challenge"
+                onClick={e => coreStore.setState("challenge")}>
+                <TheePotFlow
+                    text="Find your way back" />
+            </button>
+            <TheePotLink text="Add Story" linkTo={ROUTES.path} />
         </>
     ));
 };

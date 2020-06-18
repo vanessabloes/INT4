@@ -15,30 +15,23 @@ configure({ enforceActions: `observed` });
 
 class Store {
   constructor() {
-    this.uiStore = new UiStore(this);
+ 
     this.clanStore = new ClanStore(this);
-
+    this.uiStore = new UiStore(this);
     this.clanMemberStore = new ClanMemberStore(this);
-    this.wayfarerStore = new WayfarerStore(this);
+   
     this.journeyStore = new JourneyStore(this);
+    this.wayfarerStore = new WayfarerStore(this);
     this.storyStore = new StoryStore(this);
 
 
     this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
-    //this.categoryStore = new CategoryStore(this);
-    //this.drinkStore = new DrinkStore(this);
+
 
     this.wordStore = new WordStore(this);
     this.coreStore = new CoreStore(this);
   }
-
-
-
-  loadAllData = async () => {
-    //await this.categoryStore.loadAllCategories();
-    //this.drinkStore.loadAllDrinks();
-  };
 }
 export default Store;

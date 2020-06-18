@@ -34,9 +34,7 @@ class WayfarerStore {
  // };
 
   createWayfarer = async wayfarer => {
-    console.log(wayfarer)
     const json = await this.wayfarersService.create(wayfarer);
-    console.log(json);
     this.updateWayfarerFromServer(json);
   };
 
@@ -57,19 +55,16 @@ class WayfarerStore {
   // };
 
   updateWayfarerFromServer(json) {
-
     let wayfarer = this.wayfarers.find(wayfarer => wayfarer.id === json.id);
-    console.log(wayfarer);
     if (!wayfarer) {
       wayfarer = new WayfarerModel({
         id: json.id,
-        name: json.name,
         clanMemberId: json.clanMemberId,
         journeyId: json.journeyId,
         roleId: json.roleId,
         store: this.rootStore.wayfarerStore
       });
-      console.log(wayfarer);
+
     }
     if (json.isDeleted) {
       this.wayfarers.remove(wayfarer);

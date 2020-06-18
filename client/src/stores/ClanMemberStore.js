@@ -79,9 +79,6 @@ class ClanMemberStore {
 
   resolveClanMember = id => this.clanMembers.find(clanMember => clanMember.id === id);
 
-  addClanMember(clanMember) {
-    this.clanMembers.push(clanMember);
-  };
 }
 
 decorate(ClanMemberStore, {
