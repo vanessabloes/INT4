@@ -15,3 +15,6 @@
 .subtext {
   composes: subtext from "../../styles/typo.module.css"
 }
+
+
+

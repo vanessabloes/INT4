@@ -61,9 +61,10 @@ class ClanStore {
         id: json.id,
         name: json.name,
         password: json.password,
-        store: this.rootStore.clanStore
+        store: this
       });
     }
+    console.log(clan)
     if (json.isDeleted) {
       this.clans.remove(clan);
     } else {
@@ -74,9 +75,7 @@ class ClanStore {
 
   resolveClan = id => this.clans.find(clan => clan.id === id);
 
-  addClan(clan){
-    this.clans.push(clan);
-  };
+
 }
 
 decorate(ClanStore, {
