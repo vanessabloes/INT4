@@ -12,13 +12,14 @@ class RoleStore {
 
 
   loadAllRoles = async () => {
-    //const jsonRoles = await this.groupsService.getAll();
-    const fakeJsonRoles = [
-        {"roleName":"Foodie", "roleDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
-      ]
-
-
-      fakeJsonRoles.forEach(json => this.updateRoleFromServer(json));
+    const jsonRoles = await this.rolesService.getAll();
+    console.log(jsonRoles);
+    //const fakeJsonRoles = [
+    //    {"roleName":"Foodie", "roleDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
+    //  ]
+//
+//
+      jsonRoles.forEach(json => this.updateRoleFromServer(json));
   };
 
   loadRole = async (id) => {
@@ -31,7 +32,7 @@ class RoleStore {
      let role = this.roles.find(role => role.id === json.id);
      if (!role) {
         role = new RoleModel({
-            id: 1, 
+            id: json.id, 
             roleName: json.roleName, 
             roleDescription: json.roleDescription, 
             powerName: json.powerName, 
@@ -41,17 +42,18 @@ class RoleStore {
         });
 
      }
-     //if (json.isDeleted) {
-     //  this.roles.remove(role);
-     //} else {
-     //  role.updateFromJson(json);
-     //}
-     return role;
+    // if (json.isDeleted) {
+    //   this.roles.remove(role);
+    // } else {
+    //   role.updateFromJson(json);
+    // }
+    // return role;
     }
 
   resolveRole = id => this.roles.find(role => role.id === id);
 
   addRole(role){
+    console.log(role)
       this.roles.push(role);
   }
 }

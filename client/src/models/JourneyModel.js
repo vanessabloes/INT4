@@ -2,11 +2,12 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class JourneyModel {
-    constructor({id, stories = [], store, ...json}){
+    constructor({id = v4(), stories = [], store, ...json}){
         if (!store) {
             throw new Error("A journey needs a store");
           }
         this.id = id;
+        this.image = undefined;
         this.store = store;
         this.stories = stories;
         this.wayfarers = [];
@@ -18,6 +19,7 @@ class JourneyModel {
     create = async () => this.store.createJourney(this.asJson);
 
     update = async () => this.store.updateJourney(this.asJson);
+    
     linkStory(story) {
         !this.stories.includes(story) && this.stories.push(story);
       }
@@ -26,8 +28,9 @@ class JourneyModel {
       !this.wayfarers.includes(wayfarer) && this.wayfarers.push(wayfarer);
     }
       
-    updateFromJson({ name, wayfarers }){
+    updateFromJson({ name, image, wayfarers }){
         this.name = name;
+        this.image = image;
         
         //wayfarers.forEach(wayfarer => {
         //  console.log(wayfarer);
@@ -46,9 +49,7 @@ class JourneyModel {
         return {
           id: this.id,
           name: this.name,
-          stories: this.stories,
-          wayfarers: this.wayfarers,
-          definedWords: this.definedWords
+          image: this.image
         };
       }
 }

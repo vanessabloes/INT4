@@ -8,7 +8,7 @@ class JourneyStore {
     this.rootStore = rootStore;
     this.journeys = [];
     //this.definedWords = [];
-    this.journeyService = new RestService("journeys");
+    this.journeysService = new RestService("journeys");
   }
 
 
@@ -40,8 +40,8 @@ class JourneyStore {
     return this.resolveJourney(id);
   };
 
-  createJourney = async group => {
-    const json = await this.groupsService.create(group);
+  createJourney = async journey => {
+    const json = await this.journeysService.create(journey);
     this.updateJourneyFromServer(json);
   };
 
@@ -62,10 +62,13 @@ class JourneyStore {
   // };
 
   updateJourneyFromServer(json) {
+    console.log(json)
    let journey = this.journeys.find(journey => journey.id === json.id);
    if (!journey) {
      journey = new JourneyModel({
        id: json.id,
+       name: json.name,
+       image: json.image,
        store: this.rootStore.journeyStore
      });
    }

@@ -2,7 +2,7 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class ClanModel {
-    constructor({ id, name, password, store, ...json }){
+    constructor({ id = v4(), name, password, store, ...json }){
            this.id = id;
           if (!store) {
             throw new Error("A clan needs a store");
@@ -21,12 +21,12 @@ class ClanModel {
           !this.clanMembers.includes(clanMember) && this.clanMembers.push(clanMember);
         }
 
-        create = async () => this.store.createUser(this.asJson);
+        create = async () => this.store.createClan(this.asJson);
         update = async () => this.store.updateUser(this.asJson);
         delete = async () => this.store.deleteUser(this.asJson);
 
 
-        updateFromJson({ }){
+        updateFromJson(){
           
          // this.journeys = journeys;
           //this.store.journeyStore.resolveJourney().linkClan(this)
@@ -38,6 +38,7 @@ class ClanModel {
             return {
               id: this.id,
               name: this.name,
+              password: this.password
            
             };
           }

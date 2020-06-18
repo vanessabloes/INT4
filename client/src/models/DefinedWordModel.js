@@ -1,7 +1,7 @@
 import { v4 } from "uuid";
-import { decorate, computed, observable } from "mobx";
+import { decorate, computed } from "mobx";
 class DefinedWordModel {
-    constructor({id, content, store}){
+    constructor({id = v4(), content, store}){
         this.id = id;
         this.content = content;
         this.store = store;
@@ -16,8 +16,7 @@ class DefinedWordModel {
     get asJson() {
         return {
           id: this.id,
-          content: this.content,
-          isReached: this.isReached,
+          content: this.content
         };
       }
 }

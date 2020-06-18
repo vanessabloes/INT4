@@ -14,9 +14,7 @@ class DefinedStoryWordStore {
   loadAllDefinedStoryWords = async () => {
     //const jsonDefinedStoryWords = await this.groupsService.getAll();
     const fakeJsonDefinedStoryWords = [
-        {"id": 1, content:"word1"},
-        {"id": 2, content: "word2"},
-        {"id": 3, content: "word3"}
+
       ]
 
 
