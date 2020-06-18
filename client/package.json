@@ -8,13 +8,13 @@
     "@testing-library/user-event": "^7.1.2",
     "mobx": "^5.15.4",
     "mobx-react-lite": "^2.0.0-alpha.5",
+    "pos": "^0.4.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",
     "uuid": "^3.4.0"
   },
-  
   "jest": {
     "collectCoverageFrom": [
       "src/(models|stores)/**.js",
