@@ -1,0 +1,9 @@
+.button {
+  width: 12rem;
+  text-align: center;
+
+}
+
+.button_title {
+  composes: button_title from "../../../styles/typo.module.css";
+}

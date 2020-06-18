@@ -1,0 +1,13 @@
+.buttonContainer {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 10rem;
+  height: 16rem;
+}
+
+.button_title {
+  composes: button_title from "../../../styles/typo.module.css";
+}

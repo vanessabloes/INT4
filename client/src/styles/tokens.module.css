@@ -1,10 +1,17 @@
-@value primary-color: #FFCA88;
-@value dark-color: #444444;
-@value light-color: #fff5ea;
-@value ultralight-color: #fff;
-@value gray-color: #b2b2b2;
-@value gray-light-color: #e3e3e3;
-@value success-color:  #93fac5;
-@value this-is-bad-color: #e91e63;
+@value primary-blue: #009FE3;
+@value primary-yellow: #FFDE00;
+@value primary-red: #E30613;
+@value highlight-orange: #FF8A00;
+@value background-color: #FFFBF1;
+@value ui-light-grey: #E5E3E3;
 
-@value font-base: 1.8rem;
+@value title-font: mullingar;
+/* de rest van typo -> helvetica, in de index.css body*/
+
+
+
+/* @font-face {
+  font-family: "mullingar";
+  src:  url("/assets/fonts/mullingar-lgkpw-webfont.woff") format("woff2"),
+        url("/assets/fonts/mullingar-lgkpw-webfont.woff") format("woff2")
+} */

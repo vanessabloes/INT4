@@ -1,5 +1,9 @@
+@value tokens: "../../../styles/tokens.module.css";
+@value colorRed, title-font from tokens;
+
+
 .buttonContainer {
-  background-image: url("./buttonStartJourneyBackground.svg");
+  background-image: url("./btnNewJourneyBackground.svg");
   background-repeat: cover;
   width: 20.5rem;
   height: 24rem;
@@ -8,9 +12,9 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  /* color:  colorRed */
 }
 
 .button {
-  font-size: 1.6rem;
-  font-weight: 800;
+  composes: button_title from "../../../styles/typo.module.css" 
 }
