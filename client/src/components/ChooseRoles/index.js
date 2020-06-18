@@ -3,6 +3,8 @@ import React from "react";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
+import { STATES } from "../../consts";
+import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 
 
 
@@ -12,8 +14,9 @@ const ChooseRoles = () => {
  
   return useObserver (() => (
     <>
-   <p>hello world</p>
+   <p>choose roles</p>
 
+   <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)}/>
 
   </>
 

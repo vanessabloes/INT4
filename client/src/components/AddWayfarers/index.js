@@ -2,13 +2,23 @@ import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import AddMemberButton from "../buttons/AddMember/AddMemberButton";
-import { ROUTES } from "../../consts";
+import { ROUTES, STATES } from "../../consts";
 import PageTitle from "../PageTitle/PageTitle";
 import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
 import  style  from "./AddWayfarer.module.css";
+import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 
 const AddWayfarers = () => {
 const { uiStore } = useStore();
+
+
+const dragEvent = () => {
+  console.log("dragged")
+}
+
+const drop = () => {
+  console.log("dropoed")
+}
   return useObserver(() => (
       <>
         <div> 
@@ -25,8 +35,11 @@ const { uiStore } = useStore();
     <ul>
     Dit zijn alle clanMembers van de current clan: 
     {uiStore.currentClan ? 
-    uiStore.currentClan.clanMembers.map(clanMember => (     
-                    <li>{clanMember.name}</li>
+    uiStore.currentClan.clanMembers.map(clanMember => ( 
+      <>    
+                    <li >{clanMember.name}</li>
+                    <img draggable="true" onDrag={dragEvent} src="assets/img/PROGRESS/1of3.svg"/>
+                    </>
               )) : "loading"}         
     
     </ul>
@@ -34,9 +47,10 @@ const { uiStore } = useStore();
     </div>
     <div className={style.container}>
   <img className={style.rotation} src="assets/img/PREPARING/behindsun_moving.svg"/>
-  <img className={style.static} src="assets/img/PREPARING/sun_static.svg"/>
+  <img onDrop={(e)=>drop(e)} className={style.static} src="assets/img/PREPARING/sun_static.svg"/>
   <img className={style.roles} src="assets/img/PREPARING/sun_rollen1.svg"/>
   </div> 
+  <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)}/>
 </>
   ));
 };
