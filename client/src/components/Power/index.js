@@ -4,7 +4,11 @@ import { useObserver } from "mobx-react-lite";
 const Power = () => {
 
     return useObserver(() => (
-        <p>power/role</p>
+        <>
+            <p>Name of player</p>
+            <button>Powerbutton</button>
+            <p>Role</p>
+        </>
     ));
 };
 
