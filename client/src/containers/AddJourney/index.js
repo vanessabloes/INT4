@@ -13,6 +13,10 @@ import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldB
 import { ROUTES } from "../../consts"
 import ClanMemberStore from "../../stores/ClanMemberStore";
 import { useStore } from "../../hooks";
+import { useObserver } from "mobx-react-lite";
+
+
+
 const AddJourney = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
   console.log(clanMemberStore);
@@ -22,7 +26,7 @@ const AddJourney = () => {
         console.log("no current clan")
         uiStore.setCurrentClan(clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103"));
   }
-  return (
+  return useObserver (() => (
 
     <>
    <p>AddJourney</p>
@@ -67,7 +71,7 @@ const AddJourney = () => {
   <MyclanButton/>
   <StartJourneyButton/>
   </>
-  );
+  ));
 };
 
 AddJourney.propTypes = {
