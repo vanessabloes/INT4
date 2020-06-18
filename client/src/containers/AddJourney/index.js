@@ -16,6 +16,7 @@ import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { v4 } from "uuid";
 import WayfarerModel from "../../models/WayfarerModel";
+import AddWayfarers from "../../components/AddWayfarers";
 
 
 
@@ -38,6 +39,9 @@ const AddJourney = () => {
   
   }
 
+  const changeState = stateCount => {
+    uiStore.setState(stateCount);
+  }
  
 
   
@@ -89,11 +93,18 @@ uiStore.currentClan.clanMembers.map(clanMember => (
 </ul>
 
     
-    
-    <PageTitle title={"Who joins the journey?"} subtext={"dit is een zin voor in de subtext veel plezier ermee"}/>
+<div>
+      <img src="assets/img/PROGRESS/1of3.svg"/>
+        <p>Select wayfarers</p>
+        <p>Choose roles</p>
+        <p>Explore roles</p>
+    </div>
+    <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"}/>
+  <AddWayfarers/>
+  <img src="assets/img/PREPARING/sun_alles.svg"/>
 
+  <TheePotFlow text={"Choose roles"} onClick={changeState(2)}/>
   
-  <AddMemberButton text={"Add"} linkTo={ROUTES.home}/>
   <BackToWorldButton text={"dit is een test"} linkTo={ROUTES.home}/>
   <TheePotLink text={"dit is een test"} linkTo={ROUTES.home}/>
   <MyclanButton/>

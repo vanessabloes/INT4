@@ -5,6 +5,7 @@ class UiStore {
    this.loggedIn = false;
    this.currentClan = undefined;
    this.currentJourney = undefined;
+   this.state = 1;
   }
 
    login = (username, password) => {
@@ -33,7 +34,9 @@ class UiStore {
       console.log(journey);
   }
 
- 
+  setState(state){
+    this.state = state;
+  }
 
 }
 
