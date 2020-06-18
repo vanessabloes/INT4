@@ -35,8 +35,18 @@
     z-index: -2;
     margin-right: 10rem;
 }
+.deur{
+    grid-area: 3 / 2 / 4 / 3;
+    z-index: 1;
+    
+}
+.loadingdiv{
+    margin-top: -10rem;
+}
 .loading
 {
+    margin-top: -30rem;
+    z-index: -1;
     grid-area: 3 / 2 / 4 / 3;
     -webkit-animation-name: spin;
     -webkit-animation-duration: 2000ms;
@@ -96,3 +106,23 @@
 {
     composes: visually-hidden from "../../styles/index.css"
 }
+.leftDoor
+{
+    margin-right: -0.4rem;
+    position: relative;
+    animation: deurL 5s infinite;
+}
+    @keyframes deurL {
+    from {right: 0px;}
+    to {right: 80px;}
+  }
+
+  .rightDoor
+{
+    position: relative;
+    animation: deurR 5s infinite;
+}
+@keyframes deurR {
+    from {left: 0px;}
+    to {left: 80px;}
+  }
