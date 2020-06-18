@@ -8,6 +8,8 @@ import DefinedWordStore from "./DefinedWordStore";
 import DefinedStoryWordStore from "./DefinedStoryWordStore";
 import ClanStore from "./ClanStore";
 import WayfarerStore from "./WayfarerStore";
+import WordStore from "./WordStore";
+import CoreStore from "./CoreStore";
 
 configure({ enforceActions: `observed` });
 
@@ -20,13 +22,16 @@ class Store {
     this.wayfarerStore = new WayfarerStore(this);
     this.journeyStore = new JourneyStore(this);
     this.storyStore = new StoryStore(this);
- 
+
 
     this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
     //this.categoryStore = new CategoryStore(this);
     //this.drinkStore = new DrinkStore(this);
+
+    this.wordStore = new WordStore(this);
+    this.coreStore = new CoreStore(this);
   }
 
 
