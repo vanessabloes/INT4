@@ -2,7 +2,8 @@ import { decorate, action, computed } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
-    constructor({ id, clanMemberId, journeyId, roleId, clanId, store, ...json }){
+    constructor({ id = v4(), clanMemberId, journeyId, roleId, store, ...json }){
+          this.id = id;
           if (!store) {
             throw new Error("A wayfarer needs a store");
           }
@@ -11,14 +12,16 @@ class WayfarerModel {
     
   
           this.updateFromJson({
-            clanId,
             clanMemberId,
             journeyId,
             roleId
           });
+          this.store.addWayfarer(this);
       
          // this.store.clanMemberStore.addWayfarer(this);
         }
+
+       
      
         setJourney(journey){
           if(journey){
@@ -42,7 +45,7 @@ class WayfarerModel {
         
 
 
-        create = async () => this.store.createUser(this.asJson);
+        create = async () => this.store.createWayfarer(this.asJson);
         update = async () => this.store.updateUser(this.asJson);
         delete = async () => this.store.deleteUser(this.asJson);
 
@@ -50,20 +53,20 @@ class WayfarerModel {
     
       
         get journey() {
-          return this.store.journeyStore.resolveJourney(this.journeyId);
+          return this.store.rootStore.journeyStore.resolveJourney(this.journeyId);
         }
         get clanMember() {
-          return this.store.clanMemberStore.resolveClanMember(this.clanMemberId);
+          return this.store.rootStore.clanMemberStore.resolveClanMember(this.clanMemberId);
         }
         get role() {
-          return this.store.roleStore.resolveRole(this.roleId);
+          return this.store.rootStore.roleStore.resolveRole(this.roleId);
         }
 
         updateFromJson({  journeyId, clanMemberId, roleId }){
         
-          this.setJourney(this.store.journeyStore.resolveJourney(journeyId));
-          this.setClanMember(this.store.clanMemberStore.resolveClanMember(clanMemberId));
-          this.setRole(this.store.roleStore.resolveRole(roleId));
+          this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
+          this.setClanMember(this.store.rootStore.clanMemberStore.resolveClanMember(clanMemberId));
+          this.setRole(this.store.rootStore.roleStore.resolveRole(roleId));
          // this.journeys = journeys;
           //this.store.journeyStore.resolveJourney().linkWayfarer(this)
 
@@ -72,10 +75,9 @@ class WayfarerModel {
         get asJson() {
             return {
               id: this.id,
-              name: this.name,
-              age: this.age,
-              avatar: this.avatar,
-              journeys: this.journeys
+              clanMemberId: this.clanMemberId,
+              journeyId: this.journeyId,
+              roleId: this.role
             };
           }
 }

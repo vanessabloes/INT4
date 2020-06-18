@@ -4,12 +4,12 @@ import DefinedStoryWordModel from "./DefinedStoryWordModel";
 
 class StoryModel {
   
-    constructor({id, name, journeyId, store}){
+    constructor({id = v4(), name, journeyId, store}){
         this.id = id;
         this.name = name;
         this.store = store;
         this.words = [];
-        this.definedWords = [];
+        this.definedStoryWords = [];
         this.getDefinedWords();
         this.updateFromJson({
          journeyId
@@ -25,16 +25,16 @@ class StoryModel {
      getDefinedWords(){
 
       const allDefinedWordsFromServer = this.store.rootStore.definedWordStore.definedWords;
-      console.log(allDefinedWordsFromServer);
-        for (let index = 0; this.definedWords.length < 3; index++) {
+      //console.log(allDefinedWordsFromServer);
+        for (let index = 0; this.definedStoryWords.length < 3; index++) {
           const randomItem = allDefinedWordsFromServer[Math.floor(Math.random() * allDefinedWordsFromServer.length)];
-          console.log("choose a random word");
+         // console.log("choose a random word");
          
 
           if(this.checkDefinedWord(randomItem) === true){
-            console.log("random word already in journey");
+            //console.log("random word already in journey");
           }else{
-           console.log(randomItem);
+           //console.log(randomItem);
           };
           
         }
@@ -47,13 +47,13 @@ class StoryModel {
           this.store.rootStore.uiStore.currentJourney.definedWords.forEach(definedStoryWord => {
            // console.log(definedStoryWord.definedWordId + "=" + definedWord.id)
             if(definedStoryWord.definedWordId === definedWord.id){
-              console.log("id's are same");
+             // console.log("id's are same");
               isInArray = true;
               
             }else{
              count ++;
            
-                if(count === this.store.rootStore.uiStore.currentJourney.definedWords.length){
+                if(count === this.store.rootStore.uiStore.currentJourney.definedWords.length){ // looped over whole array?
                   this.setDefinedWord(definedWord);
                   isInArray = false;
                  
@@ -62,7 +62,7 @@ class StoryModel {
           });
         }else{ // if nothing is in journey defined words
 
-
+          
           this.setDefinedWord(definedWord);
           isInArray = false;
         }
@@ -82,14 +82,14 @@ class StoryModel {
      setDefinedWord(definedWord){
        // moet nog een tussen model gemaakt worden voor enkel story 
        const definedStoryWord = new DefinedStoryWordModel({
-         id: "placeholdder",
          content: definedWord.content,
          definedWordId: definedWord.id,
+         storyId: this.id,
          store: this.store.rootStore.definedStoryWordStore 
        }); 
 
        
-       this.definedWords.push(definedStoryWord);
+       this.definedStoryWords.push(definedStoryWord);
        this.store.rootStore.uiStore.currentJourney.addDefinedWord(definedStoryWord); 
        
     }

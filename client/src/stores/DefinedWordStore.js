@@ -1,7 +1,7 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
 import DefinedWordModel from "../models/DefinedWordModel";
-
+import { v4 } from "uuid";
 
 class DefinedWordStore {
   constructor(rootStore) {
@@ -14,9 +14,9 @@ class DefinedWordStore {
   loadAllDefinedWords = async () => {
     //const jsonDefinedWords = await this.groupsService.getAll();
     const fakeJsonDefinedWords = [
-        {"id": 1, content:"word1"},
-        {"id": 2, content: "word2"},
-        {"id": 3, content: "word3"}
+        {id: v4(), content: "word1"}, // dit komt uit de db, dus om v4() in de db te genereren is onozel,dus wss zal dit terug veranderen naar "1" als id (string)
+        {id: v4(), content: "word2"},
+        {id: v4(), content: "word3"}
       ]
 
 

@@ -1,13 +1,13 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
-//import ClanModel from "../models/ClanModel";
+import ClanModel from "../models/ClanModel";
 
 
 class ClanStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.clans = [];
-    this.clanService = new RestService("clans");
+    this.clansService = new RestService("clans");
   }
 
   addClan(clan){
@@ -15,8 +15,9 @@ class ClanStore {
   }
 
   loadAllClans = async () => {
-    const jsonClans = await this.groupsService.getAll();
+    const jsonClans = await this.clansService.getAll();
     jsonClans.forEach(json => this.updateClanFromServer(json));
+    console.log(jsonClans);
   };
 
   loadClan = async (id) => {
@@ -31,8 +32,8 @@ class ClanStore {
     return this.resolveClan(id);
   };
 
-  createClan = async group => {
-    const json = await this.groupsService.create(group);
+  createClan = async clan => {
+    const json = await this.clansService.create(clan);
     this.updateClanFromServer(json);
   };
 
@@ -52,25 +53,28 @@ class ClanStore {
   //   this.updateClanFromServer(json);
   // };
 
-  updateWayfarerFromServer(json) {
-  //  let group = this.groups.find(group => group.id === json.id);
-  //  if (!group) {
-  //    group = new Clan({
-  //      id: json.id,
-  //      store: this.rootStore.groupStore
-  //    });
-  //  }
-  //  if (json.isDeleted) {
-  //    this.groups.remove(group);
-  //  } else {
-  //    group.updateFromJson(json);
-  //  }
-  //  return group;
+  updateClanFromServer(json) {
+    let clan = this.clans.find(clan => clan.id === json.id);
+    console.log(clan);
+    if (!clan) {
+      clan = new ClanModel({
+        id: json.id,
+        name: json.name,
+        password: json.password,
+        store: this.rootStore.clanStore
+      });
+    }
+    if (json.isDeleted) {
+      this.clans.remove(clan);
+    } else {
+      clan.updateFromJson(json);
+    }
+    return clan;
   }
 
   resolveClan = id => this.clans.find(clan => clan.id === id);
 
-  addClan = clan => {
+  addClan(clan){
     this.clans.push(clan);
   };
 }
@@ -78,7 +82,9 @@ class ClanStore {
 decorate(ClanStore, {
   clans: observable,
   addClan: action,
-  updateClanFromServer: action
+  updateClanFromServer: action,
+  resolveClan: action,
+  loadAllClans: action
 });
 
 export default ClanStore;

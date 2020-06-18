@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  clandestine-webserver:
+    build: ./docker
+    image: webserver-dev2
+    ports:
+      - "80:80"
+      - "443:433"
+    volumes:
+      - ./www:/var/www
+    links:
+      - clandestine-mysql
+
+  clandestine-mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_SERVERNAME: localhost
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: devine4life
+
+  clandestine-phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - clandestine-mysql
+    ports:
+      - "8080:80"
+    volumes:
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      MYSQL_SERVERNAME: localhost
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: devine4life
+      PMA_HOST: clandestine-mysql

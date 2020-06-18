@@ -1,13 +1,13 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
-//import ClanMemberModel from "../models/ClanMemberModel";
+import ClanMemberModel from "../models/ClanMemberModel";
 
 
 class ClanMemberStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.clanMembers = [];
-    this.clanMemberService = new RestService("clanMembers");
+    this.clanMembersService = new RestService("members");
   }
 
   addClanMember(clanMember){
@@ -15,62 +15,71 @@ class ClanMemberStore {
   }
 
   loadAllClanMembers = async () => {
-    const jsonClanMembers = await this.groupsService.getAll();
+    
+    const jsonClanMembers = await this.clanMembersService.getAll();
+    console.log(jsonClanMembers);
     jsonClanMembers.forEach(json => this.updateClanMemberFromServer(json));
   };
 
-  loadClanMember = async (id) => {
-    const jsonClanMember = await this.groupsService.getById(id);
-    this.updateClanMemberFromServer(jsonClanMember);
-    return this.resolveClanMember(id);
-  };
+ // loadClanMember = async (id) => {
+ //   const jsonClanMember = await this.clanMembersService.getById(id);
+ //   this.updateClanMemberFromServer(jsonClanMember);
+ //   return this.resolveClanMember(id);
+ // };
+//
+ // loadClanMemberUsers = async (id) => {
+ //   const jsonUsers = await this.clanMembersService.getById(id, 'users');
+ //   this.updateClanMemberFromServer({ id, users: jsonUsers });
+ //   return this.resolveClanMember(id);
+ // };
 
-  loadClanMemberUsers = async (id) => {
-    const jsonUsers = await this.groupsService.getById(id, 'users');
-    this.updateClanMemberFromServer({ id, users: jsonUsers });
-    return this.resolveClanMember(id);
-  };
-
-  createClanMember = async group => {
-    const json = await this.groupsService.create(group);
+  createClanMember = async clanMember => {
+    console.log(clanMember)
+    const json = await this.clanMembersService.create(clanMember);
+    console.log(json);
     this.updateClanMemberFromServer(json);
   };
 
-  updateLinkedUsers = async groupWithUsers => {
-    const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
-    this.updateClanMemberFromServer({ id: groupWithUsers.id, users: jsonUsers });
-    return this.resolveClanMember(groupWithUsers.id);
-  };
+ // updateLinkedUsers = async clanMemberWithUsers => {
+ //   const jsonUsers = await this.clanMembersService.updateLinked(clanMemberWithUsers, 'users');
+ //   this.updateClanMemberFromServer({ id: clanMemberWithUsers.id, users: jsonUsers });
+ //   return this.resolveClanMember(clanMemberWithUsers.id);
+ // };
 
-  // updateClanMember = async group => {
-  //   const json = await this.groupsService.update(group);
+  // updateClanMember = async clanMember => {
+  //   const json = await this.clanMembersService.update(clanMember);
   //   this.updateClanMemberFromServer(json);
   // };
 
-  // deleteClanMember = async group => {
-  //   const json = await this.groupsService.delete(group);
+  // deleteClanMember = async clanMember => {
+  //   const json = await this.clanMembersService.delete(clanMember);
   //   this.updateClanMemberFromServer(json);
   // };
 
-  updateWayfarerFromServer(json) {
-  //  let group = this.groups.find(group => group.id === json.id);
-  //  if (!group) {
-  //    group = new ClanMember({
-  //      id: json.id,
-  //      store: this.rootStore.groupStore
-  //    });
-  //  }
-  //  if (json.isDeleted) {
-  //    this.groups.remove(group);
-  //  } else {
-  //    group.updateFromJson(json);
-  //  }
-  //  return group;
+  updateClanMemberFromServer(json) {
+
+    let clanMember = this.clanMembers.find(clanMember => clanMember.id === json.id);
+    console.log(clanMember);
+    if (!clanMember) {
+      clanMember = new ClanMemberModel({
+        id: json.id,
+        name: json.name,
+        clanId: json.clanId,
+        store: this.rootStore.clanMemberStore
+      });
+      console.log(clanMember);
+    }
+    if (json.isDeleted) {
+      this.clanMembers.remove(clanMember);
+    } else {
+      clanMember.updateFromJson(json);
+    }
+    return clanMember;
   }
 
   resolveClanMember = id => this.clanMembers.find(clanMember => clanMember.id === id);
 
-  addClanMember = clanMember => {
+  addClanMember(clanMember) {
     this.clanMembers.push(clanMember);
   };
 }
