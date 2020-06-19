@@ -12,29 +12,32 @@ import StartJourneyButton from "../../components/buttons/StartJourney/StartJourn
 import MyClan from "../../components/MyClan/MyClan";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
+import World from  "../../components/World/World"
+import NameJourney from  "../../components/NameJourney/NameJourney"
 
 
 const Home = () => {
   const { launchFlowStore } = useStore()
   
   const [homeState, setState] = useState();
- 
+
   const testClan = [
     {id: 1, name: "piet", avatar: "/assets/img/testmasks/testmask1.svg"},
     {id: 2, name: "jan", avatar: "/assets/img/testmasks/testmask2.svg"} ,
     {id: 3, name: "jos", avatar: "/assets/img/testmasks/testmask3.svg" },
     {id: 4, name: "fret", avatar: "/assets/img/testmasks/testmask4.svg"}
   ]
-    
-    
-    
-  
-    
-  
+  const testworlds = [
+    {id: 1, name: "De mooiste wereld van de wereld", image: "/assets/img/Worlds/world1.svg"},
+    {id: 2, name: "snoep wereld", image: "/assets/img/Worlds/world2.svg"} ,
+    {id: 3, name: "wereld der werelden van de wereld", image: "/assets/img/Worlds/world3.svg" },
+    {id: 4, name: "fret de planeet", image: "/assets/img/Worlds/world9.svg"}
+  ]
+
 
   return useObserver (() => {
 
-    if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {// "Opening Screen"
+   if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {// "Opening Screen"
       return <OpeningScreen onClick={setState}/> 
     }
     
@@ -47,15 +50,31 @@ const Home = () => {
     }
 
     return (
-      <div className={styles.home_wrapper}>
-      
-        <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
-        <MyClan centerButton={"AddMember"} clan={testClan}/>
-        <StartJourneyButton/>
+      <NameJourney/>
 
-      </div>
-    );
       
+        /*<div className={styles.home_wrapper}>
+           <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
+          <MyClan centerButton={"MyClan"} clan={testClan}/> 
+
+          <div className={styles.worlds_wrapper}>
+            {
+              testworlds.map(world => (
+                <World world={world}/>
+              ))
+            }
+          </div>
+
+          <StartJourneyButton/> 
+         
+        </div>*/
+
+    );
+  
+      
+     
+  
+
   });
 };
 

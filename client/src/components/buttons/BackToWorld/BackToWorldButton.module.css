@@ -5,5 +5,5 @@
 }
 
 .button_title {
-  composes: button_title from "../../../styles/typo.module.css";
+  composes: button_title from "../../../styles/uiControls.module.css";
 }

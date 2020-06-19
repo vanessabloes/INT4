@@ -5,7 +5,7 @@
   align-items: center;
   text-align: center;
   width: 10rem;
-  height: 16rem;
+  z-index: 1;
 }
 
 .button_title {
