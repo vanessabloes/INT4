@@ -4,7 +4,8 @@
 
 .buttonContainer {
   background-image: url("./btnNewJourneyBackground.svg");
-  background-repeat: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 20.5rem;
   height: 24rem;
 

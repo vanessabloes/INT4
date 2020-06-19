@@ -8,7 +8,7 @@ import { useObserver } from "mobx-react-lite";
 
 
 
-const MyClan = ({centerButton, clan}) => {
+const MyClan = ({centerButton, clan}) => { //centerButton -> MyClan anders is het addMember
   
   const countClanMembers = clan.length;
   const arc = 360 / countClanMembers;
@@ -35,10 +35,10 @@ const MyClan = ({centerButton, clan}) => {
       ))
     }
     { 
-     centerButton === "MyClan" ? <MyClanButton/> : <AddMemberButton text={"Add another Member"}/> 
+     centerButton === "MyClan" ? <MyClanButton/> : <AddMemberButton text={"Add another Member"}  />  // linkTo={}
     }
     
-     
+    
     </div>
   )
   }

@@ -1,0 +1,18 @@
+.world_wrapper {
+  display: flex;
+  flex-flow: column-reverse;
+  align-items: center;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.world_title {
+  composes: subtext from "../../styles/typo.module.css";
+  margin-top: 1rem;
+  max-width: 16rem;
+  text-align: center;
+}
+
+.world_image {
+  height: 25rem;
+}
