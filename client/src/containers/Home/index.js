@@ -50,7 +50,7 @@ const Home = () => {
       <div className={styles.home_wrapper}>
       
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
-        <MyClan centerButton={"AddMember"} clan={testClan}/>
+        <MyClan centerButton={"MyClan"} clan={testClan}/>
         <StartJourneyButton/>
 
       </div>

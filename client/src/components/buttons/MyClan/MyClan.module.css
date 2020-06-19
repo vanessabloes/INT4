@@ -5,3 +5,7 @@
 .hidden {
   display: none;
 }
+
+.buttonContainer {
+  z-index: 0;
+}

@@ -12,7 +12,7 @@
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  /* color:  colorRed */
+  margin: 2rem;
 }
 
 .button {
