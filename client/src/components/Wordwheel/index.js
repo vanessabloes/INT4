@@ -2,6 +2,7 @@ import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import WordModel from "../../models/WordModel";
 import React, { useState } from 'react';
+import styles from "./Wordwheel.module.css"
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -70,21 +71,27 @@ const Wordwheel = () => {
             <p>Woorden wiel:</p>
             <p>{wordStore.wordCounter}</p>
 
-            <button onClick={togglePlay}>
-                {play ? <img src="/assets/img/GAME/pause.svg" /> : <img src="/assets/img/GAME/play.svg" />}
-            </button>
+            <div className={styles.circle__wrapper}>
+
+                <button onClick={togglePlay}>
+                    {play ? <img alt="play button" className={styles.toggle__btn} src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__btn} alt="pause button" src="/assets/img/GAME/play.svg" />}
+                </button>
+
+                {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+
+                <img className={styles.cirlce} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" />
+
+            </div>
 
             <div>
                 {wordStore.spokenNouns.length === 0 ? (
                     <p></p>
                 ) : (
                         wordStore.spokenNouns.map(noun => (
-                            <li key={noun.id}>{noun.content}</li>
+                            <li className={styles.word} key={noun.id}>{noun.content}</li>
                         ))
                     )}
             </div>
-
-            <img src="/assets/img/GAME/circle.svg" />
 
             <img src="/assets/img/GAME/pointer.svg" />
 
