@@ -10,22 +10,25 @@ class StoryStore {
   }
 
 
-  //loadAllStories = async () => {
-  //  const jsonStories = await this.storyService.getAll();
-  //  jsonStories.forEach(json => this.updateStoryFromServer(json));
-  //};
-  //
-  //loadStory = async (id) => {
-  //  const jsonStory = await this.storyService.getById(id);
-  //  this.updateStoryFromServer(jsonStory);
-  //  return this.resolveStory(id);
-  //};
-  //
-  //loadStoryUsers = async (id) => {
-  //  const jsonUsers = await this.storyService.getById(id, 'users');
-  //  this.updateStoryFromServer({ id, users: jsonUsers });
-  //  return this.resolveStory(id);
-  //};
+
+  loadAllStories = async () => {
+    const jsonStories = await this.storyService.getAll();
+    jsonStories.forEach(json => this.updateStoryFromServer(json));
+  };
+  
+  loadStory = async (id) => {
+    const jsonStory = await this.storyService.getById(id);
+    this.updateStoryFromServer(jsonStory);
+    return this.resolveStory(id);
+  };
+  // nog uit te werken
+  loadStoryWords = async (id) => {
+    const jsonWords = await this.storyService.getById(id, 'words');
+    this.updateStoryFromServer({ id, words: jsonWords });
+    console.log(jsonWords)
+    console.log(id)
+    return this.resolveStory(id);
+  };
   //
   //createStory = async story => {
   //  const json = await this.storyService.create(story);
@@ -44,10 +47,6 @@ class StoryStore {
     this.updateStoryFromServer(json);
   };
 
-  // deleteStory = async story => {
-  //   const json = await this.storyService.delete(story);
-  //   this.updateStoryFromServer(json);
-  // };
 
   updateStoryFromServer(json) {
     let story = this.stories.find(story => story.id === json.id); // gaat sws de story al vinden en geen nieuwe aanmaken => updaten

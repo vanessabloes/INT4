@@ -27,10 +27,18 @@ class JourneyModel {
     linkWayfarer(wayfarer){
       !this.wayfarers.includes(wayfarer) && this.wayfarers.push(wayfarer);
     }
+
+    setClan(clan){
+      if(clan){
+        this.clanId = clan.id;
+        clan.linkJourney(this);
+      }
+    }
       
-    updateFromJson({ name, image, wayfarers }){
+    updateFromJson({ name, image, clanId, wayfarers }){
         this.name = name;
         this.image = image;
+        this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
         
         //wayfarers.forEach(wayfarer => {
         //  console.log(wayfarer);

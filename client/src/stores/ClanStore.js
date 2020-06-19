@@ -21,14 +21,24 @@ class ClanStore {
   };
 
   loadClan = async (id) => {
-    const jsonClan = await this.groupsService.getById(id);
+    const jsonClan = await this.clansService.getById(id);
     this.updateClanFromServer(jsonClan);
     return this.resolveClan(id);
   };
+  
+  // nog uit te werken
+  loadClanMembers = async (id) => {
+    const jsonClanMembers = await this.clansService.getById(id, 'members');
+    console.log(id)
+    this.updateClanFromServer({ id, jsonClanMembers });
+    return this.resolveClan(id);
+  };
 
-  loadClanUsers = async (id) => {
-    const jsonUsers = await this.groupsService.getById(id, 'users');
-    this.updateClanFromServer({ id, users: jsonUsers });
+  // nog uit te werken
+  loadClanJourneys = async (id) => {
+    const jsonClanMembers = await this.clansService.getById(id, 'journeys');
+    console.log(id)
+    this.updateClanFromServer({ id, jsonClanMembers });
     return this.resolveClan(id);
   };
 
@@ -37,11 +47,11 @@ class ClanStore {
     this.updateClanFromServer(json);
   };
 
-  updateLinkedUsers = async groupWithUsers => {
-    const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
-    this.updateClanFromServer({ id: groupWithUsers.id, users: jsonUsers });
-    return this.resolveClan(groupWithUsers.id);
-  };
+  //updateLinkedUsers = async groupWithUsers => {
+  //  const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
+  //  this.updateClanFromServer({ id: groupWithUsers.id, users: jsonUsers });
+  //  return this.resolveClan(groupWithUsers.id);
+  //};
 
   // updateClan = async group => {
   //   const json = await this.groupsService.update(group);
@@ -54,6 +64,7 @@ class ClanStore {
   // };
 
   updateClanFromServer(json) {
+    console.log(json)
     let clan = this.clans.find(clan => clan.id === json.id);
     console.log(clan);
     if (!clan) {
@@ -68,7 +79,8 @@ class ClanStore {
     if (json.isDeleted) {
       this.clans.remove(clan);
     } else {
-      clan.updateFromJson(json);
+      console.log(json)
+      //clan.updateFromJson(json);
     }
     return clan;
   }

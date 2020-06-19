@@ -11,6 +11,9 @@ import WayfarerStore from "./WayfarerStore";
 import WordStore from "./WordStore";
 import CoreStore from "./CoreStore";
 import LaunchFlowStore from "./LaunchFlowStore";
+import TopMaskStore from "./TopMaskStore";
+import MiddleMaskStore from "./MiddleMaskStore";
+import BottomMaskStore from "./BottomMaskStore";
 
 configure({ enforceActions: `observed` });
 
@@ -20,12 +23,12 @@ class Store {
     this.clanStore = new ClanStore(this);
     this.uiStore = new UiStore(this);
     this.clanMemberStore = new ClanMemberStore(this);
-   
+    this.topMaskStore = new TopMaskStore(this);
+    this.middleMaskStore = new MiddleMaskStore(this);
+    this.bottomMaskStore = new BottomMaskStore(this);
     this.journeyStore = new JourneyStore(this);
     this.wayfarerStore = new WayfarerStore(this);
     this.storyStore = new StoryStore(this);
-
-
     this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);

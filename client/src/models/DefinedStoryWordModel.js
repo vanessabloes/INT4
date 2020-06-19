@@ -12,7 +12,8 @@ class DefinedStoryWordModel {
     }
 
      
-    
+    create = async () => this.store.createDefinedStoryWord(this.asJson);
+
 
 
 
@@ -21,6 +22,7 @@ class DefinedStoryWordModel {
           id: this.id,
           content: this.content,
           definedWordId: this.definedWordId,
+          storyId: this.storyId,
           isReached: this.isReached,
         };
       }

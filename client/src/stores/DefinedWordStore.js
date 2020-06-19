@@ -7,20 +7,14 @@ class DefinedWordStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
     this.definedWords = [];
-    this.definedWordsService = new RestService("definedWords");
+    this.definedWordsService = new RestService("definedwords");
   }
 
 
   loadAllDefinedWords = async () => {
-    //const jsonDefinedWords = await this.groupsService.getAll();
-    const fakeJsonDefinedWords = [
-        {id: v4(), content: "word1"}, // dit komt uit de db, dus om v4() in de db te genereren is onozel,dus wss zal dit terug veranderen naar "1" als id (string)
-        {id: v4(), content: "word2"},
-        {id: v4(), content: "word3"}
-      ]
-
-
-      fakeJsonDefinedWords.forEach(json => this.updateDefinedWordFromServer(json));
+   // const jsonDefinedWords = await this.definedWordsService.getAll();
+   // console.log(jsonDefinedWords);
+   //   jsonDefinedWords.forEach(json => this.updateDefinedWordFromServer(json));
   };
 
   loadDefinedWord = async (id) => {
@@ -32,14 +26,14 @@ class DefinedWordStore {
   updateDefinedWordFromServer(json) {
      let definedWord = this.definedWords.find(definedWord => definedWord.id === json.id);
      if (!definedWord) {
-        
         definedWord = new DefinedWordModel({
             id: json.id, 
             content: json.content,
-            store: this.rootStore.definedWordStore
+            store: this
         });
 
      }
+     console.log(definedWord);
      //if (json.isDeleted) {
      //  this.definedWords.remove(definedWord);
      //} else {
@@ -51,6 +45,7 @@ class DefinedWordStore {
   resolveDefinedWord = id => this.definedWords.find(definedWord => definedWord.id === id);
 
   addDefinedWord(definedWord){
+    console.log(definedWord)
       this.definedWords.push(definedWord);
   }
 }

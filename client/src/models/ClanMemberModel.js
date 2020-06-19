@@ -26,7 +26,21 @@ class ClanMemberModel {
             this.clan.linkClanMember(this);
           }
         }
-    
+
+        setTopMask(topMask){
+          console.log(topMask)
+          this.topMaskId = topMask.id;
+        }
+
+        setMiddleMask(middleMask){
+          console.log(middleMask)
+          this.middleMaskId = middleMask.id;
+        }
+
+        setBottomMask(bottomMask){
+          console.log(bottomMask)
+          this.bottomMaskId = bottomMask.id;
+        }
        //linkJourney(journey){
        //  !this.journeys.includes(journey) && this.journeys.push(journey);
        //}
@@ -40,13 +54,16 @@ class ClanMemberModel {
         delete = async () => this.store.deleteUser(this.asJson);
 
 
-        updateFromJson({ name, age , avatar, clanId }){
-          console.log(clanId)
-          console.log(this.store.rootStore.clanStore.resolveClan(clanId));
+        updateFromJson({ name, age , topMaskId, middleMaskId, bottomMaskId, clanId }){
+         
           this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
+          this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
+          this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
+          this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
+          
           this.name = name;
           this.age = age;
-          this.avatar = avatar;
+
     
           
 
@@ -63,6 +80,9 @@ class ClanMemberModel {
               id: this.id,
               name: this.name,
               clanId: this.clanId,
+              topMaskId: this.topMaskId,
+              middleMaskId: this.middleMaskId,
+              bottomMaskId: this.bottomMaskId
               //age: this.age,
               //avatar: this.avatar,
               //journeys: this.journeys
@@ -76,7 +96,13 @@ decorate(ClanMemberModel, {
   updateFromJson: action,
   linkWayfarer: action,
   linkJourney: action,
-  asJson: computed
+  asJson: computed,
+  setTopMask: action,
+  setMiddleMask: action,
+  setBottomMask: action,
+  topMaskId: observable,
+  middleMaskId: observable,
+  bottomMaskId: observable
  });
 
 export default ClanMemberModel;
