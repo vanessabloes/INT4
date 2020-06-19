@@ -68,18 +68,21 @@ const Wordwheel = () => {
 
     return useObserver(() => (
         <>
-            <p>Woorden wiel:</p>
-            <p>{wordStore.wordCounter}</p>
-
             <div className={styles.circle__wrapper}>
 
-                <button onClick={togglePlay}>
-                    {play ? <img alt="play button" className={styles.toggle__btn} src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__btn} alt="pause button" src="/assets/img/GAME/play.svg" />}
-                </button>
+                <div className={styles.cirlce__content}>
 
-                {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+                    <p className={styles.circle__counter}>{wordStore.wordCounter}</p>
 
-                <img className={styles.cirlce} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" />
+                    {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+
+                    <button className={styles.toggle__btn} onClick={togglePlay}>
+                        {play ? <img className={styles.toggle__icon} alt="play button" src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__icon} alt="pause button" src="/assets/img/GAME/play.svg" />}
+                    </button>
+
+                </div>
+
+                <img className={styles.cirlce__img} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" />
 
             </div>
 
