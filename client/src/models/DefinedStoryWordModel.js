@@ -6,7 +6,7 @@ class DefinedStoryWordModel {
         this.content = content;
         this.definedWordId = definedWordId;
         this.storyId = storyId;
-        this.isReached = undefined;
+        this.isReached = false;
         this.store = store;
         this.store.addDefinedStoryWord(this);
     }
@@ -14,16 +14,20 @@ class DefinedStoryWordModel {
      
     create = async () => this.store.createDefinedStoryWord(this.asJson);
 
-
+    updateFromJson({ }){
+   
+      console.log("hey im usels")
+  }
 
 
     get asJson() {
         return {
           id: this.id,
           content: this.content,
-          definedWordId: this.definedWordId,
-          storyId: this.storyId,
           isReached: this.isReached,
+          storyId: this.storyId,
+          definedWordId: this.definedWordId,
+          
         };
       }
 }

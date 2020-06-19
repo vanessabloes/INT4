@@ -12,9 +12,9 @@ class DefinedWordStore {
 
 
   loadAllDefinedWords = async () => {
-   // const jsonDefinedWords = await this.definedWordsService.getAll();
-   // console.log(jsonDefinedWords);
-   //   jsonDefinedWords.forEach(json => this.updateDefinedWordFromServer(json));
+    const jsonDefinedWords = await this.definedWordsService.getAll();
+    console.log(jsonDefinedWords);
+    jsonDefinedWords.forEach(json => this.updateDefinedWordFromServer(json));
   };
 
   loadDefinedWord = async (id) => {
@@ -30,8 +30,9 @@ class DefinedWordStore {
             id: json.id, 
             content: json.content,
             store: this
+         
         });
-
+        console.log(this);
      }
      console.log(definedWord);
      //if (json.isDeleted) {
@@ -44,7 +45,7 @@ class DefinedWordStore {
 
   resolveDefinedWord = id => this.definedWords.find(definedWord => definedWord.id === id);
 
-  addDefinedWord(definedWord){
+  addDefinedWord = (definedWord) =>{
     console.log(definedWord)
       this.definedWords.push(definedWord);
   }

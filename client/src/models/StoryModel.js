@@ -10,8 +10,8 @@ class StoryModel {
         this.store = store;
         this.words = [];
         this.definedStoryWords = [];
-       
-       // this.getDefinedWords();
+        
+        this.getDefinedWords();
        // this.updateFromJson({
        //  journeyId
        // });
@@ -41,14 +41,14 @@ class StoryModel {
           
         }
     }
-      checkDefinedWord(definedWord){
+      checkDefinedWord(randomDefinedWord){
        // console.log(this.store.rootStore.uiStore.currentJourney.definedWords.length)
        let isInArray = false;
         if(this.store.rootStore.uiStore.currentJourney.definedWords.length > 0){ 
           let count = 0;
           this.store.rootStore.uiStore.currentJourney.definedWords.forEach(definedStoryWord => {
            // console.log(definedStoryWord.definedWordId + "=" + definedWord.id)
-            if(definedStoryWord.definedWordId === definedWord.id){
+            if(definedStoryWord.definedWordId === randomDefinedWord.id){
              // console.log("id's are same");
               isInArray = true;
               
@@ -56,7 +56,7 @@ class StoryModel {
              count ++;
            
                 if(count === this.store.rootStore.uiStore.currentJourney.definedWords.length){ // looped over whole array?
-                  this.setDefinedWord(definedWord);
+                  this.setDefinedWord(randomDefinedWord);
                   isInArray = false;
                  
                  }
@@ -65,20 +65,21 @@ class StoryModel {
         }else{ // if nothing is in journey defined words
 
           
-        //  this.setDefinedWord(definedWord);
+          this.setDefinedWord(randomDefinedWord);
           isInArray = false;
         }
         return isInArray;
       }
 
 
-     setDefinedWord(definedWord){
+     setDefinedWord(randomDefinedWord){
+       console.log(randomDefinedWord)
        // moet nog een tussen model gemaakt worden voor enkel story 
        const definedStoryWord = new DefinedStoryWordModel({
          id: v4(),
-         content: definedWord.content,
-         definedWordId: definedWord.id,
+         content: randomDefinedWord.content,
          storyId: this.id,
+         definedWordId: randomDefinedWord.id,
          store: this.store.rootStore.definedStoryWordStore 
        }); 
 
@@ -128,6 +129,9 @@ class StoryModel {
 }
 
 decorate(StoryModel, {
+  definedStoryWords: observable,
+  getDefinedWords: action,
+  setDefinedWord: action,
   setJourney: action,
   journey: computed,
   updateFromJson: action,

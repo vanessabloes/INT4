@@ -1,6 +1,7 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
 import DefinedStoryWordModel from "../models/DefinedWordModel";
+import { v4 } from "uuid";
 
 
 class DefinedStoryWordStore {
@@ -11,18 +12,15 @@ class DefinedStoryWordStore {
   }
 
   createDefinedStoryWord = async definedStoryWord => {
+    console.log(definedStoryWord)
   const json = await this.definedStoryWordsService.create(definedStoryWord);
   this.updateDefinedStoryWordFromServer(json);
   }
 
   loadAllDefinedStoryWords = async () => {
-    //const jsonDefinedStoryWords = await this.groupsService.getAll();
-    const fakeJsonDefinedStoryWords = [
-
-      ]
-
-
-      fakeJsonDefinedStoryWords.forEach(json => this.updateDefinedStoryWordFromServer(json));
+    const jsonDefinedStoryWords = await this.definedStoryWordsService.getAll();
+    console.log(jsonDefinedStoryWords)
+    jsonDefinedStoryWords.forEach(json => this.updateDefinedStoryWordFromServer(json));
   };
 
   loadDefinedStoryWord = async (id) => {
@@ -33,13 +31,15 @@ class DefinedStoryWordStore {
 
   updateDefinedStoryWordFromServer(json) {
      let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
+     console.log(json);
      if (!definedStoryWord) {
         
         definedStoryWord = new DefinedStoryWordModel({
             id: json.id, 
             content: json.content,
-            definedStoryWordId: json.definedStoryWordId,
+            isReached: 0,
             storyId: json.storyId,
+            definedWordId: json.definedWordId,
             store: this.rootStore.definedStoryWordStore
         });
 

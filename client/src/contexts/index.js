@@ -28,10 +28,10 @@ const loadAllData = async () => {
       await store.uiStore.setCurrentClan(store.clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103"));
       await store.uiStore.setCurrentJourney(store.journeyStore.resolveJourney("f732a075-98a5-443d-a695-3818574380fe"));
 
-      //await store.storyStore.loadAllStories(); // moet nog vervangen worden door journeyStore.loadJourneyStories(id)
+      await store.storyStore.loadAllStories(); // moet nog vervangen worden door journeyStore.loadJourneyStories(id)
       await store.storyStore.loadStoryWords("adfebc3e-b20a-11ea-b3de-0242ac130004");
-
-
+      
+     // await store.definedStoryWordStore.loadAllDefinedStoryWords();
 
     //const cl2 = new ClanModel({id: v4(), name: "De Andere Clan", password: "testing", store: store.clanStore});
     //const c2 = new ClanMemberModel({id: v4(), name: "Tom", clanId: cl2.id, store: store.clanMemberStore});
