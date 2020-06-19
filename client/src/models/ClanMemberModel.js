@@ -23,7 +23,7 @@ class ClanMemberModel {
             console.log("hieronder de geresovled clan")
             console.log(clan.id)
             this.clanId = clan.id;
-            this.clan.linkClanMember(this);
+            clan.linkClanMember(this);
           }
         }
 
@@ -57,9 +57,10 @@ class ClanMemberModel {
         updateFromJson({ name, age , topMaskId, middleMaskId, bottomMaskId, clanId }){
          
           this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
-          this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
-          this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
-          this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
+
+          //this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
+          //his.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
+          //this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
           
           this.name = name;
           this.age = age;

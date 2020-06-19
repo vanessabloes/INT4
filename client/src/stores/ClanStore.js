@@ -10,14 +10,13 @@ class ClanStore {
     this.clansService = new RestService("clans");
   }
 
-  addClan(clan){
+  addClan(clan) {
     !this.clans.includes(clan) && this.clans.push(clan);
   }
 
   loadAllClans = async () => {
     const jsonClans = await this.clansService.getAll();
     jsonClans.forEach(json => this.updateClanFromServer(json));
-    console.log(jsonClans);
   };
 
   loadClan = async (id) => {
@@ -25,20 +24,21 @@ class ClanStore {
     this.updateClanFromServer(jsonClan);
     return this.resolveClan(id);
   };
-  
+
   // nog uit te werken
   loadClanMembers = async (id) => {
+
     const jsonClanMembers = await this.clansService.getById(id, 'members');
     console.log(id)
-    this.updateClanFromServer({ id, jsonClanMembers });
+    this.updateClanFromServer({ id, members: jsonClanMembers });
     return this.resolveClan(id);
   };
 
   // nog uit te werken
   loadClanJourneys = async (id) => {
-    const jsonClanMembers = await this.clansService.getById(id, 'journeys');
+    const jsonClanJourneys = await this.clansService.getById(id, 'journeys');
     console.log(id)
-    this.updateClanFromServer({ id, jsonClanMembers });
+    this.updateClanFromServer({ id, jsonClanJourneys });
     return this.resolveClan(id);
   };
 
@@ -64,9 +64,7 @@ class ClanStore {
   // };
 
   updateClanFromServer(json) {
-    console.log(json)
     let clan = this.clans.find(clan => clan.id === json.id);
-    console.log(clan);
     if (!clan) {
       clan = new ClanModel({
         id: json.id,
@@ -75,12 +73,10 @@ class ClanStore {
         store: this
       });
     }
-    console.log(clan)
     if (json.isDeleted) {
       this.clans.remove(clan);
     } else {
-      console.log(json)
-      //clan.updateFromJson(json);
+      clan.updateFromJson(json);
     }
     return clan;
   }
