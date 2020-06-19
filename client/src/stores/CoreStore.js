@@ -4,7 +4,6 @@ class CoreStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
         this.state = "loading";
-        this.listening = false;
     }
 
     setState(state) {

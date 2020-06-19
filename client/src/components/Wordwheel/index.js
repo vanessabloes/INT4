@@ -16,20 +16,22 @@ const Wordwheel = () => {
     const { coreStore, wordStore } = useStore();
 
 
-    let listening = "no";
+    let listening = "yes";
+
 
     const toggleListening = () => {
         if (listening === "no") {
             console.log(listening);
             stopListening();
-            //coreStore.setListening(true);
+            // coreStore.setListening("play");
             listening = "yes";
         } else if (listening === "yes") {
             console.log(listening);
             startListening();
-            //coreStore.setListening(false);
+            // coreStore.setListening("pause");
             listening = "no";
         }
+        return listening;
     }
 
     const startListening = () => {
@@ -63,7 +65,7 @@ const Wordwheel = () => {
             //console.log(taggedWords[i][1]);
             if (taggedWords[i][1] === "NN" || taggedWords[i][1] === "NNP" || taggedWords[i][1] === "NNPS" || taggedWords[i][1] === "NNS") {
                 const noun = taggedWords[i][0];
-                if (noun !== "m" && noun !== "re" && noun !== "ll" && noun !== "t" && noun !== "doesn" && noun !== "wouldn" && noun !== "ve" && noun !== "aren" && noun !== "couldn") {
+                if (noun !== "m" && noun !== "re" && noun !== "ll" && noun !== "t" && noun !== "doesn" && noun !== "wouldn" && noun !== "ve" && noun !== "aren" && noun !== "couldn" && noun !== "penis" && noun !== "vagina" && noun !== "cock") {
                     console.log("noun", taggedWords[i][0]);
                     addNoun(taggedWords[i][0]);
                 }
@@ -86,8 +88,9 @@ const Wordwheel = () => {
             <p>Counter</p>
 
             <button onClick={() => toggleListening()}>PUSHHH
-                {listening === "yes" ? console.log("listening werkttttt") : console.log("listening werkttttt niet")}
             </button>
+
+            {/* {coreStore.listening === "pause" ? "PAUSE" : "PLAY"} */}
 
             <div>
                 {wordStore.spokenNouns.length === 0 ? (
