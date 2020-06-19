@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  
+  height: 100vh;
+  width: 100vw;
+  background-image: url("/assets/img/GAME/nameWorldBackground.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.form_wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 80rem;
+  background-image: url("/assets/img/GAME/nameWorld.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.input {
+  composes: input from "../../styles/uiControls.module.css";
+  
+}
+
+.world_title {
+  composes: subtext from "../../styles/typo.module.css";
+  margin-top: 1rem;
+  max-width: 16rem;
+  text-align: center;
+}
+
+.world_image{
+  height: 33rem;
+  place-self: center;
+}
+
+.button {
+  composes: button from "../../styles/uiControls.module.css";
+}

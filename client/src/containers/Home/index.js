@@ -13,13 +13,14 @@ import MyClan from "../../components/MyClan/MyClan";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
+import NameJourney from  "../../components/NameJourney/NameJourney"
 
 
 const Home = () => {
   const { launchFlowStore } = useStore()
   
   const [homeState, setState] = useState();
- 
+
   const testClan = [
     {id: 1, name: "piet", avatar: "/assets/img/testmasks/testmask1.svg"},
     {id: 2, name: "jan", avatar: "/assets/img/testmasks/testmask2.svg"} ,
@@ -32,6 +33,7 @@ const Home = () => {
     {id: 3, name: "wereld der werelden van de wereld", image: "/assets/img/Worlds/world3.svg" },
     {id: 4, name: "fret de planeet", image: "/assets/img/Worlds/world9.svg"}
   ]
+
 
   return useObserver (() => {
 
@@ -48,23 +50,27 @@ const Home = () => {
     }
 
     return (
-      <div className={styles.home_wrapper}>
-      
-        <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
-        <MyClan centerButton={"MyClan"} clan={testClan}/> 
-        <StartJourneyButton/>
-        {
-          testworlds.map(world => (
-            <World world={world}/>
-          ))
-        }
+      <NameJourney/>
 
-      </div>
-    );
       
-    
-    
-     
+        /*<div className={styles.home_wrapper}>
+           <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
+          <MyClan centerButton={"MyClan"} clan={testClan}/> 
+
+          <div className={styles.worlds_wrapper}>
+            {
+              testworlds.map(world => (
+                <World world={world}/>
+              ))
+            }
+          </div>
+
+          <StartJourneyButton/> 
+         
+        </div>*/
+
+    );
+  
       
      
   

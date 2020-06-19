@@ -4,6 +4,7 @@
   align-items: center;
   margin: 2rem;
   padding: 1rem;
+  max-width: 22rem;
 }
 
 .world_title {
