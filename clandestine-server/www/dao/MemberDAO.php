@@ -28,11 +28,14 @@ class MemberDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `members` (`id`, `name`, `clanId`) VALUES (:id, :name, :clanId)";
+      $sql = "INSERT INTO `members` (`id`, `name`, `clanId`, `topMaskId`, `middleMaskId`, `bottomMaskId`) VALUES (:id, :name, :clanId, :topMaskId, :middleMaskId, :bottomMaskId)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
       $stmt->bindValue(':clanId', $data['clanId']);
+      $stmt->bindValue(':topMaskId', $data['topMaskId']);
+      $stmt->bindValue(':middleMaskId', $data['middleMaskId']);
+      $stmt->bindValue(':bottomMaskId', $data['bottomMaskId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -73,6 +76,16 @@ class MemberDAO extends DAO {
     if(!isset($data['clanId'])) {
       $errors['clanId'] = "Please fill in a clanId";
     }
+    if(!isset($data['topMaskId'])) {
+      $errors['topMaskId'] = "Please fill in topMaskId";
+    }
+    if(!isset($data['middleMaskId'])) {
+      $errors['middleMaskId'] = "Please fill in a middleMaskId";
+    }
+    if(!isset($data['bottomMaskId'])) {
+      $errors['bottomMaskId'] = "Please fill in a bottomMaskId";
+    }
+    
     return $errors;
   }
 }
