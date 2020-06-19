@@ -1,0 +1,52 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
+.line {
+    width: 10rem;
+    height: 5rem;
+    border-top: 0.4rem solid #1B1A1A;
+}
+
+.wave {
+    width: 10rem;
+    height: 5rem;
+    overflow: hidden; 
+}
+
+.wave:before {
+    content: "loaderloader";
+    position: relative;
+    top: -3.2rem;
+    width: calc(100% + 2.7rem);
+    font-size: 4rem;
+    color: white;
+    text-decoration-style: wavy;
+    text-decoration-color: #1B1A1A;
+    text-decoration-line: underline;
+    animation: animate .5s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        right: 0;
+    }
+
+    100%{
+        right: 2rem;
+    }
+}
+
+.toggle__btn {
+    border: none;
+    background-color: white;
+}
+
+.word {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.circle__wrapper {
+    display: flex;
+    justify-content: center;
+}

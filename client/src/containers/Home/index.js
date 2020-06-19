@@ -9,16 +9,28 @@ import OpeningSurrealWorld from "../../components/OpeningSurrealWorld/OpeningSur
 import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
+import MyClan from "../../components/MyClan/MyClan";
 import {STATES} from "../../consts/index";
+import styles from  "./Home.module.css"
 
 
 const Home = () => {
   const { launchFlowStore } = useStore()
   
-  
-
-
   const [homeState, setState] = useState();
+ 
+  const testClan = [
+    {id: 1, name: "piet", avatar: "/assets/img/testmasks/testmask1.svg"},
+    {id: 2, name: "jan", avatar: "/assets/img/testmasks/testmask2.svg"} ,
+    {id: 3, name: "jos", avatar: "/assets/img/testmasks/testmask3.svg" },
+    {id: 4, name: "fret", avatar: "/assets/img/testmasks/testmask4.svg"}
+  ]
+    
+    
+    
+  
+    
+  
 
   return useObserver (() => {
 
@@ -35,12 +47,13 @@ const Home = () => {
     }
 
     return (
-      <>
-       {/* standaard home component */}
+      <div className={styles.home_wrapper}>
+      
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
+        <MyClan centerButton={"AddMember"} clan={testClan}/>
         <StartJourneyButton/>
 
-      </>
+      </div>
     );
       
   });

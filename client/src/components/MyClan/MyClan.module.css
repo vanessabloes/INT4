@@ -1,0 +1,32 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
+.masks_wrapper {
+  width: 43rem;
+  height: 43rem;
+  background-image: url("/assets/img/BUTTONS/circle.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.mask_element {
+  display: block;
+  position: absolute;
+
+}
+
+.mask {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.mask_image {
+  height: 15rem;
+}
