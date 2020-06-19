@@ -17,8 +17,16 @@ class ClanDAO extends DAO {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function selectUsersForClan($id) {
-    $sql = "SELECT `users`.* FROM `users` INNER JOIN `users_clans`ON `users_clans`.`userId` = `users`.`id` WHERE `users_clans`.`groupId` = :id";
+  public function selectMembersForClan($id) {
+    $sql = "SELECT `members`.* FROM `members` INNER JOIN `clans`ON `members`.`clanId` = `clans`.`id` WHERE `members`.`clanId` = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function selectJourneysForClan($id) {
+    $sql = "SELECT `members`.* FROM `members` INNER JOIN `clans`ON `members`.`clanId` = `clans`.`id` WHERE `members`.`clanId` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();

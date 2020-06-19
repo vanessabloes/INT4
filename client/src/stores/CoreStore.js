@@ -3,7 +3,7 @@ import { decorate, observable, action } from "mobx";
 class CoreStore {
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.state = "loading";
+        this.state = "core";
     }
 
     setState(state) {

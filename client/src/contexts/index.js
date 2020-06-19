@@ -17,16 +17,24 @@ const loadAllData = async () => {
       await store.clanStore.loadAllClans();
       await store.roleStore.loadAllRoles();
       await store.definedWordStore.loadAllDefinedWords();
+      await store.topMaskStore.loadAllMasks();
+      await store.middleMaskStore.loadAllMasks();
+      await store.bottomMaskStore.loadAllMasks();
 
-
-      await store.clanMemberStore.loadAllClanMembers();
-      await store.journeyStore.loadAllJourneys();
-
+     
+      await store.clanMemberStore.loadAllClanMembers(); // moet nog vervangen worden door clanStore.loadClanMembers(id)
+      await store.journeyStore.loadAllJourneys(); // moet nog vervangen worden door clanStore.loadClanJourneys(id)
+    
       await store.uiStore.setCurrentClan(store.clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103"));
       await store.uiStore.setCurrentJourney(store.journeyStore.resolveJourney("f732a075-98a5-443d-a695-3818574380fe"));
 
-    const cl2 = new ClanModel({id: v4(), name: "De Andere Clan", password: "testing", store: store.clanStore});
-    const c2 = new ClanMemberModel({id: v4(), name: "Tom", clanId: cl2.id, store: store.clanMemberStore});
+      await store.storyStore.loadAllStories(); // moet nog vervangen worden door journeyStore.loadJourneyStories(id)
+      await store.storyStore.loadStoryWords("adfebc3e-b20a-11ea-b3de-0242ac130004");
+      
+     // await store.definedStoryWordStore.loadAllDefinedStoryWords();
+
+    //const cl2 = new ClanModel({id: v4(), name: "De Andere Clan", password: "testing", store: store.clanStore});
+    //const c2 = new ClanMemberModel({id: v4(), name: "Tom", clanId: cl2.id, store: store.clanMemberStore});
     
      
 

@@ -10,10 +10,14 @@ import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
 import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 import { ROUTES } from "../../consts";
 
+
+
 const Core = () => {
 
     const { coreStore } = useStore();
     console.log(coreStore.state);
+    
+
 
     return useObserver(() => (
         <>

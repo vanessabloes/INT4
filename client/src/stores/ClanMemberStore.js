@@ -59,12 +59,15 @@ class ClanMemberStore {
   updateClanMemberFromServer(json) {
 
     let clanMember = this.clanMembers.find(clanMember => clanMember.id === json.id);
-    console.log(clanMember);
+    console.log(json.topMaskId);
     if (!clanMember) {
       clanMember = new ClanMemberModel({
         id: json.id,
         name: json.name,
         clanId: json.clanId,
+        topMaskId: json.topMaskId,
+        middleMaskId: json.middleMaskId,
+        bottomMaskId: json.bottomMaskId,
         store: this.rootStore.clanMemberStore
       });
       console.log(clanMember);

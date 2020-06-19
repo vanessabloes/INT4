@@ -7,9 +7,11 @@ import PageTitle from "../PageTitle/PageTitle";
 import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
 import  style  from "./AddWayfarer.module.css";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
+import WayfarerModel from "../../models/WayfarerModel";
+import { v4 } from 'uuid';
 
 const AddWayfarers = () => {
-const { uiStore } = useStore();
+const { uiStore, wayfarerStore } = useStore();
 
 
 const dragEvent = () => {
@@ -18,6 +20,21 @@ const dragEvent = () => {
 
 const drop = () => {
   console.log("dropoed")
+}
+
+const addWayfarer = (e) => {
+  e.preventDefault();
+
+  const w = new WayfarerModel({
+    id: v4(), 
+    clanMemberId: "8fbfb448-6823-46ca-ac66-8e1245610843", // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon)
+    journeyId: uiStore.currentJourney.id,
+    roleId: "1", 
+    store: wayfarerStore
+  });
+
+ //  w.create();
+
 }
   return useObserver(() => (
       <>
@@ -34,6 +51,7 @@ const drop = () => {
     <div>
     <ul>
     Dit zijn alle clanMembers van de current clan: 
+    <button onClick={addWayfarer}>Add wayfarer</button>
     {uiStore.currentClan ? 
     uiStore.currentClan.clanMembers.map(clanMember => ( 
       <>    

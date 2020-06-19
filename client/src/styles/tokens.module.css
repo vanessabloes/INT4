@@ -4,6 +4,7 @@
 @value highlight-orange: #FF8A00;
 @value background-color: #FFFBF1;
 @value ui-light-grey: #E5E3E3;
+@value ui-black: #1B1A1A;
 
 @value title-font: mullingar;
 /* de rest van typo -> helvetica, in de index.css body*/

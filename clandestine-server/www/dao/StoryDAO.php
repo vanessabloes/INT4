@@ -1,33 +1,35 @@
 <?php
 require_once __DIR__ . '/DAO.php';
-class JourneyDAO extends DAO {
+class StoryDAO extends DAO {
 
   public function selectAll() {
-    $sql = "SELECT * FROM `journeys`";
+    $sql = "SELECT * FROM `stories`";
     $stmt = $this->pdo->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
   public function selectById($id) {
-    $sql = "SELECT * FROM `journeys` WHERE `id` = :id";
+    $sql = "SELECT * FROM `stories` WHERE `id` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function selectStoriesForJourney($id) {
-    $sql = "SELECT `stories`.* FROM `stories` INNER JOIN `journeys`ON `stories`.`journeyId` = `journeys`.`id` WHERE `stories`.`journeyId` = :id";
+  public function selectWordsForStory($id) {
+    $sql = "SELECT `words`.* FROM `words` INNER JOIN `stories`ON `stories`.`id` = `words`.`storyId` WHERE `words`.`storyId` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function selectWayfarersForJourney() {
-    $sql = "SELECT `wayfarers`.* FROM `wayfarers` INNER JOIN `journeys`ON `wayfarers`.`journeyId` = `journeys`.`id`";
+  public function selectContextForStory($id, $contextId) {
+    $sql = "SELECT `contexts`.* FROM `contexts` INNER JOIN `stories`ON `stories`.`contextId` = `contexts`.`id` WHERE `stories`.`id` = :id AND `contexts`.`id` = :contextId";
     $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->bindValue(':contextId', $contextId);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
@@ -35,7 +37,7 @@ class JourneyDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `journeys` (`id`, `name`, `image`) VALUES (:id, :name, :image)";
+      $sql = "INSERT INTO `stories` (`id`, `name`, `image`) VALUES (:id, :name, :image)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
@@ -50,7 +52,7 @@ class JourneyDAO extends DAO {
   public function update($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "UPDATE `journeys` SET `name` = :name, `avatar` = :avatar WHERE `id` = :id";
+      $sql = "UPDATE `stories` SET `name` = :name, `avatar` = :avatar WHERE `id` = :id";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
@@ -63,7 +65,7 @@ class JourneyDAO extends DAO {
   }
 
   public function delete($id) {
-    $sql = "DELETE FROM `journeys` WHERE `id` = :id";
+    $sql = "DELETE FROM `stories` WHERE `id` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     return $stmt->execute();

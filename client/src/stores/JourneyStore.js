@@ -12,15 +12,8 @@ class JourneyStore {
   }
 
 
- // loadAllJourneys = async () => {
- //   const jsonJourneys = await this.groupsService.getAll();
- //   jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
- // };
-
   loadAllJourneys = async () => {
     const jsonJourneys = await this.journeysService.getAll();
-
-    console.log(jsonJourneys)
    jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
   }
 
@@ -30,9 +23,16 @@ class JourneyStore {
     return this.resolveJourney(id);
   };
 
-  loadJourneyUsers = async (id) => {
-    const jsonUsers = await this.groupsService.getById(id, 'users');
-    this.updateJourneyFromServer({ id, users: jsonUsers });
+  // nog uit te werken
+  loadJourneyWayfarers= async (id) => {
+    const jsonUsers = await this.journeysService.getById(id, 'wayfarers');
+    this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
+    return this.resolveJourney(id);
+  };
+ // nog uit te werken
+  loadJourneyStories= async (id) => {
+    const jsonUsers = await this.journeysService.getById(id, 'stories');
+    this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
     return this.resolveJourney(id);
   };
 
@@ -41,12 +41,12 @@ class JourneyStore {
     this.updateJourneyFromServer(json);
   };
 
-  updateLinkedUsers = async groupWithUsers => {
-    const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
-    this.updateJourneyFromServer({ id: groupWithUsers.id, users: jsonUsers });
-    return this.resolveJourney(groupWithUsers.id);
-  };
-
+ // updateLinkedUsers = async groupWithUsers => {
+ //   const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
+ //   this.updateJourneyFromServer({ id: groupWithUsers.id, users: jsonUsers });
+ //   return this.resolveJourney(groupWithUsers.id);
+ // };
+//
   // updateJourney = async group => {
   //   const json = await this.groupsService.update(group);
   //   this.updateJourneyFromServer(json);
@@ -65,6 +65,7 @@ class JourneyStore {
        id: json.id,
        name: json.name,
        image: json.image,
+       clanId: json.clanId,
        store: this.rootStore.journeyStore
      });
    }

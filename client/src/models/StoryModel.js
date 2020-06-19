@@ -10,11 +10,12 @@ class StoryModel {
         this.store = store;
         this.words = [];
         this.definedStoryWords = [];
+        
         this.getDefinedWords();
-        this.updateFromJson({
-         journeyId
-        });
- 
+       // this.updateFromJson({
+       //  journeyId
+       // });
+        this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
         this.store.addStory(this);
         //if(journeyId){
         //    this.journey = this.store.journeyStore.resolveJourney(journeyId);
@@ -25,7 +26,8 @@ class StoryModel {
      getDefinedWords(){
 
       const allDefinedWordsFromServer = this.store.rootStore.definedWordStore.definedWords;
-      //console.log(allDefinedWordsFromServer);
+
+      console.log(allDefinedWordsFromServer);
         for (let index = 0; this.definedStoryWords.length < 3; index++) {
           const randomItem = allDefinedWordsFromServer[Math.floor(Math.random() * allDefinedWordsFromServer.length)];
          // console.log("choose a random word");
@@ -39,14 +41,14 @@ class StoryModel {
           
         }
     }
-      checkDefinedWord(definedWord){
+      checkDefinedWord(randomDefinedWord){
        // console.log(this.store.rootStore.uiStore.currentJourney.definedWords.length)
        let isInArray = false;
         if(this.store.rootStore.uiStore.currentJourney.definedWords.length > 0){ 
           let count = 0;
           this.store.rootStore.uiStore.currentJourney.definedWords.forEach(definedStoryWord => {
            // console.log(definedStoryWord.definedWordId + "=" + definedWord.id)
-            if(definedStoryWord.definedWordId === definedWord.id){
+            if(definedStoryWord.definedWordId === randomDefinedWord.id){
              // console.log("id's are same");
               isInArray = true;
               
@@ -54,7 +56,7 @@ class StoryModel {
              count ++;
            
                 if(count === this.store.rootStore.uiStore.currentJourney.definedWords.length){ // looped over whole array?
-                  this.setDefinedWord(definedWord);
+                  this.setDefinedWord(randomDefinedWord);
                   isInArray = false;
                  
                  }
@@ -63,34 +65,28 @@ class StoryModel {
         }else{ // if nothing is in journey defined words
 
           
-          this.setDefinedWord(definedWord);
+          this.setDefinedWord(randomDefinedWord);
           isInArray = false;
         }
         return isInArray;
       }
-      //if(this.store.rootStore.uiStore.currentJourney.definedWords.includes(definedWord)){ // ipv. includes een forEach die over de journey defiend words loops en id vgl met definedWordId, in een if meet return
-      // 
-      // // test of woord al in journey zit
-      //  return true;
-   //   }else{
-   //    // console.log(definedWord);
-   //      this.setDefinedWord(definedWord);
-   //     return false;
-   //   }
-   // }
 
-     setDefinedWord(definedWord){
+
+     setDefinedWord(randomDefinedWord){
+       console.log(randomDefinedWord)
        // moet nog een tussen model gemaakt worden voor enkel story 
        const definedStoryWord = new DefinedStoryWordModel({
-         content: definedWord.content,
-         definedWordId: definedWord.id,
+         id: v4(),
+         content: randomDefinedWord.content,
          storyId: this.id,
+         definedWordId: randomDefinedWord.id,
          store: this.store.rootStore.definedStoryWordStore 
        }); 
 
        
        this.definedStoryWords.push(definedStoryWord);
        this.store.rootStore.uiStore.currentJourney.addDefinedWord(definedStoryWord); 
+       definedStoryWord.create();
        
     }
 
@@ -101,13 +97,9 @@ class StoryModel {
     setJourney(journey){
       if(journey){
         this.journeyId = journey.id;
-        this.journey.linkStory(this);
+        journey.linkStory(this);
       }
     }
-
- 
-
-  
 
     addWord(word){
       this.words.push(word);
@@ -119,9 +111,10 @@ class StoryModel {
       return this.store.rootStore.journeyStore.resolveJourney(this.journeyId);
     }
 
-    updateFromJson({ words, journeyId }){
-      this.words = words;
-      this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
+    updateFromJson({ words }){
+     
+     this.words = words;
+      
     }
 
 
@@ -136,6 +129,9 @@ class StoryModel {
 }
 
 decorate(StoryModel, {
+  definedStoryWords: observable,
+  getDefinedWords: action,
+  setDefinedWord: action,
   setJourney: action,
   journey: computed,
   updateFromJson: action,
