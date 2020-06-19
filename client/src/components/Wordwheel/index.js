@@ -1,7 +1,7 @@
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import WordModel from "../../models/WordModel";
-import React from 'react';
+import React, { useState } from 'react';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -14,34 +14,17 @@ recognition.continuous = true;
 const Wordwheel = () => {
 
     const { coreStore, wordStore } = useStore();
+    const [play, setPlay] = useState(false);
 
-
-    let listening = "yes";
-
-
-    const toggleListening = () => {
-        if (listening === "no") {
-            console.log(listening);
-            stopListening();
-            // coreStore.setListening("play");
-            listening = "yes";
-        } else if (listening === "yes") {
-            console.log(listening);
-            startListening();
-            // coreStore.setListening("pause");
-            listening = "no";
+    const togglePlay = () => {
+        setPlay(!play);
+        if (!play) {
+            recognition.start();
+            console.log("is aant recorden");
+        } else {
+            recognition.stop();
+            console.log("is aant stoppen");
         }
-        return listening;
-    }
-
-    const startListening = () => {
-        console.log("START");
-        recognition.start();
-    }
-
-    const stopListening = () => {
-        console.log("STOP");
-        recognition.stop();
     }
 
     recognition.onresult = (e) => {
@@ -65,7 +48,7 @@ const Wordwheel = () => {
             //console.log(taggedWords[i][1]);
             if (taggedWords[i][1] === "NN" || taggedWords[i][1] === "NNP" || taggedWords[i][1] === "NNPS" || taggedWords[i][1] === "NNS") {
                 const noun = taggedWords[i][0];
-                if (noun !== "m" && noun !== "re" && noun !== "ll" && noun !== "t" && noun !== "doesn" && noun !== "wouldn" && noun !== "ve" && noun !== "aren" && noun !== "couldn" && noun !== "penis" && noun !== "vagina" && noun !== "cock") {
+                if (noun !== "m" && noun !== "re" && noun !== "ll" && noun !== "t" && noun !== "doesn" && noun !== "wouldn" && noun !== "ve" && noun !== "aren" && noun !== "couldn" && noun !== "penis" && noun !== "vagina" && noun !== "cock" && noun !== "dick" && noun !== "f***") {
                     console.log("noun", taggedWords[i][0]);
                     addNoun(taggedWords[i][0]);
                 }
@@ -85,12 +68,11 @@ const Wordwheel = () => {
     return useObserver(() => (
         <>
             <p>Woorden wiel:</p>
-            <p>Counter</p>
+            <p>{wordStore.wordCounter}</p>
 
-            <button onClick={() => toggleListening()}>PUSHHH
+            <button onClick={togglePlay}>
+                {play ? <img src="/assets/img/GAME/pause.svg" /> : <img src="/assets/img/GAME/play.svg" />}
             </button>
-
-            {/* {coreStore.listening === "pause" ? "PAUSE" : "PLAY"} */}
 
             <div>
                 {wordStore.spokenNouns.length === 0 ? (
@@ -101,6 +83,10 @@ const Wordwheel = () => {
                         ))
                     )}
             </div>
+
+            <img src="/assets/img/GAME/circle.svg" />
+
+            <img src="/assets/img/GAME/pointer.svg" />
 
             <button>Back to Journey</button>
             <button>Take Challenge</button>
