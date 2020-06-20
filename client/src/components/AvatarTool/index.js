@@ -11,22 +11,30 @@ const AvatarTool = () => {
     const [nickname, setNickname] = useState("");
     const [age, setAge] = useState("");
 
-    console.log(nickname);
-    console.log(age);
 
+    const handleUpdateAvatar = e => {
+        e.preventDefault();
+
+    }
+
+   // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
-        // addClanMember
-
+        if(clanMemberStore.clanMembers.length < 6){
         const newClanMember = new ClanMemberModel({
             store: clanMemberStore,
             name: nickname,
             age: age,
-            topMaskId: (uiStore.topCount + 1),
-            middleMaskId: (uiStore.middleCount + 1),
-            bottomMaskId: (uiStore.bottomCount + 1),
+            topMaskId: (uiStore.topCount + 1).toString(),
+            middleMaskId: (uiStore.middleCount + 1).toString(),
+            bottomMaskId: (uiStore.bottomCount + 1).toString(),
             clanId: uiStore.currentClan.id
-        })
+        });
+        newClanMember.create();
+        }else{
+        uiStore.setError("Max clanmember limit reached");
+
+        }
     }
 
     const closeOverlay = () => {
@@ -61,7 +69,8 @@ const AvatarTool = () => {
 
         <div className={styles.test}>
             <button onClick={closeOverlay}>X</button>
-            <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
+
+           
                 <div className={styles.avatarImageWrapper}>
 
                     <div className={styles.buttonWrapper}>
@@ -85,22 +94,24 @@ const AvatarTool = () => {
                     </div>
 
                 </div>
+                <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
                 <div className={styles.inputElements}>
                     <label>
                         Nickname<input
-                            value={nickname}
+                            value={uiStore.name !== "" ? uiStore.name : nickname}
                             type="text"
                             onChange={e => setNickname(e.target.value)} />
                     </label>
 
                     <label>
                         Age<input
-                            value={age}
+                            value={uiStore.age !== 0 ? uiStore.age : age}
                             type="number"
                             onChange={e => setAge(e.target.value)} />
                     </label>
-
-                    <input type='submit' value="Create avatar" />
+                    <p>{uiStore.error}</p>
+                    {uiStore.age > 0 ? <button onClick={(e) => handleUpdateAvatar(e)}>Update avatar</button> : <input type='submit' value="Create avatar" />}
+                    
                 </div>
             </form>
 

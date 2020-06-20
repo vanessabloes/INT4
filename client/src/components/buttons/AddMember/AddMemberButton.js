@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./AddMemberButton.module.css";
 import { useStore } from "../../../hooks";
 import { ReactComponent as AddMember } from './btnAddMember.svg';
-import AvatarTool from "../../AvatarTool";
+
 
 const AddMemberButton = ({text}) => {
 

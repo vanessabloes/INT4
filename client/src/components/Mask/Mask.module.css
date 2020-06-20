@@ -1,0 +1,27 @@
+.maskContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    height: 165%;
+}
+
+.maskTop {
+ grid-column: 1;
+ grid-row: 1;
+}
+
+
+.maskMiddle {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-start;
+    margin-top: 20%;
+
+}
+ 
+.maskBottom {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-end;
+}

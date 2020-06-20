@@ -13,6 +13,13 @@ class UiStore {
     this.topCount = 0;
     this.middleCount = 0;
     this.bottomCount = 0;
+    this.error = "";
+    this.name = "";
+    this.age = 0;
+  }
+
+  setError(value){
+    this.error = value;
   }
 
   setLoadedAllData(value) {
@@ -66,6 +73,22 @@ class UiStore {
     console.log(this.topCount);
   }
 
+  setTopCount(value){
+    value = (parseInt(value) - 1).toString();
+
+    this.topCount = value
+  }
+  setMiddleCount(value){
+    value = (parseInt(value) - 1).toString();
+   
+    this.middleCount = value
+  }
+  setBottomCount(value){
+    value = (parseInt(value) - 1).toString();
+ 
+    this.bottomCount = value
+  }
+// hardcoded number vervangen door length van array - 1 die meegestuurd kan worden
   topCountDown() {
     if (this.topCount > 0) {
       this.topCount--;
@@ -111,6 +134,14 @@ class UiStore {
     console.log(this.bottomCount);
   }
 
+  setName(value){
+    this.name = value;
+  }
+
+  setAge(value){
+    this.age = parseInt(value);
+  }
+
 }
 
 decorate(UiStore, {
@@ -140,7 +171,18 @@ decorate(UiStore, {
   middleCountDown: action,
   bottomCount: observable,
   bottomCountUp: action,
-  bottomCountDown: action
+  bottomCountDown: action,
+
+  error: observable,
+  setError: action,
+
+  setTopCount: action,
+  setMiddleCount: action,
+  setBottomCount: action,
+  name: observable,
+  age: observable,
+  setName: action,
+  setAge: action
 
 });
 

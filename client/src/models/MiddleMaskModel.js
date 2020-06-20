@@ -1,7 +1,6 @@
-import { v4 } from "uuid";
 import { decorate, computed } from "mobx";
 class MiddleMaskModel {
-    constructor({id = v4(), middleImage, store}){
+    constructor({id , middleImage, store}){
         this.id = id;
         this.middleImage = middleImage;
         this.store = store;

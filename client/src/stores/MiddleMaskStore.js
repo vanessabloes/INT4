@@ -14,11 +14,6 @@ class MiddleMaskStore {
   loadAllMasks = async () => {
     const jsonMasks = await this.middleMasksService.getAll();
     console.log(jsonMasks);
-    //const fakeJsonMasks = [
-    //    {"middleMaskName":"Foodie", "middleMaskDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
-    //  ]
-//
-//
       jsonMasks.forEach(json => this.updateMaskFromServer(json));
   };
 
