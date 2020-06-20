@@ -4,34 +4,36 @@ import { useObserver } from "mobx-react-lite";
 //import PropTypes from "prop-types";
 
 import Loading from "../../components/Loading";
-import Coreflow from "../../components/Coreflow";
+import Core from "../../components/Core";
+import Challenge from "../../components/Challenge";
 import { useStore } from "../../hooks";
-
-// conditional over alle drie de elementen:
-// core_loading, core_wheel, core_challenge
-// setState in de button steken (per pagina) om de juiste componenten te laden, deze setState/setPage bijhouden in store
+import { STATES } from "../../consts";
 
 const AddStory = () => {
 
-  const { coreStore } = useStore();
-  console.log(coreStore.state);
+  const { uiStore} = useStore();
 
-  return useObserver(() => (
-    <>
-      {coreStore.state === "loading" ?
-        <div>
-          <Loading />
-        </div>
-        :
-        <div>
-          <Coreflow />
-        </div>}
-    </>
-  ));
+  return useObserver(() => {
+    if (uiStore.addStoryState === STATES.ADDSTORY_STATE_LOADING) {
+      return <Loading />
+    }
+
+    if (uiStore.addStoryState === STATES.ADDSTORY_STATE_CORE) {
+      return <Core />
+    }
+
+    if (uiStore.addStoryState === STATES.ADDSTORY_STATE_CHALLENGE) {
+      return <Challenge />;
+    }
+
+    return(
+      <p>Loading..</p>
+    )
+  });
 };
 
-AddStory.propTypes = {
+    AddStory.propTypes = {
 
-};
+    };
 
-export default AddStory;
+    export default AddStory;

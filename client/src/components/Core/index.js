@@ -10,14 +10,13 @@ import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
 import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 import { ROUTES } from "../../consts";
 
+import { STATES } from "../../consts";
+
 
 
 const Core = () => {
 
-    const { coreStore } = useStore();
-    console.log(coreStore.state);
-    
-
+    const { uiStore } = useStore();
 
     return useObserver(() => (
         <>
@@ -27,7 +26,7 @@ const Core = () => {
             <Wordwheel />
             <button
                 value="challenge"
-                onClick={e => coreStore.setState("challenge")}>
+                onClick={e => uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE)}>
                 <TheePotFlow
                     text="Find your way back" />
             </button>

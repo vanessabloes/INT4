@@ -57,7 +57,7 @@ class ClanMemberStore {
   // };
 
   updateClanMemberFromServer(json) {
-
+    // we krijgen hier 1 member binnen
     let clanMember = this.clanMembers.find(clanMember => clanMember.id === json.id);
     console.log(json.topMaskId);
     if (!clanMember) {
@@ -75,6 +75,7 @@ class ClanMemberStore {
     if (json.isDeleted) {
       this.clanMembers.remove(clanMember);
     } else {
+      //console.log(json.clanId); IS OK!
       clanMember.updateFromJson(json);
     }
     return clanMember;
