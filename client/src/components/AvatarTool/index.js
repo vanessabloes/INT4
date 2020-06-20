@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import styles from "./AvatarTool.module.css";
 import { useStore } from "../../hooks";
+import ClanMemberModel from "../../models/ClanMemberModel";
 
 const AvatarTool = () => {
 
-    const { uiStore, topMaskStore, middleMaskStore, bottomMaskStore } = useStore();
+    const { uiStore, topMaskStore, middleMaskStore, bottomMaskStore, clanMemberStore } = useStore();
 
-    let middleCount = 0;
-    let bottomCount = 0;
+    const [nickname, setNickname] = useState("");
+    const [age, setAge] = useState("");
 
-    const handleSubmitForm = e => {
+    console.log(nickname);
+    console.log(age);
+
+    const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
         // addClanMember
+
+        const newClanMember = new ClanMemberModel({
+            store: clanMemberStore,
+            name: nickname,
+            age: age,
+            topMaskId: (uiStore.topCount + 1),
+            middleMaskId: (uiStore.middleCount + 1),
+            bottomMaskId: (uiStore.bottomCount + 1),
+            clanId: uiStore.currentClan.id
+        })
     }
 
     const closeOverlay = () => {
@@ -22,33 +36,32 @@ const AvatarTool = () => {
     const handleTopCount = (value) => {
         if (value === "up") {
             uiStore.topCountUp();
-            console.log(uiStore.topCount)
         } else if (value === "down") {
             uiStore.topCountDown();
-            console.log(uiStore.topCount)
         }
     }
 
+    const handleMiddleCount = (value) => {
+        if (value === "up") {
+            uiStore.middleCountUp();
+        } else if (value === "down") {
+            uiStore.middleCountDown();
+        }
+    }
 
-    const handleMiddleCount = value => {
-        if (value === "down") {
-            middleCount--;
-        } else {
-            middleCount++;
+    const handleBottomCount = (value) => {
+        if (value === "up") {
+            uiStore.bottomCountUp();
+        } else if (value === "down") {
+            uiStore.bottomCountDown();
         }
     }
-    const handleBottomCount = value => {
-        if (value === "down") {
-            bottomCount--;
-        } else {
-            bottomCount++;
-        }
-    }
+
     return useObserver(() => (
 
         <div className={styles.test}>
             <button onClick={closeOverlay}>X</button>
-            <form className={styles.form} onSubmit={(e) => handleSubmitForm(e)}>
+            <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
                 <div className={styles.avatarImageWrapper}>
 
                     <div className={styles.buttonWrapper}>
@@ -60,9 +73,9 @@ const AvatarTool = () => {
                     <div className={styles.maskContainer}>
                         <img className={styles.maskTop} src={topMaskStore.topMasks[uiStore.topCount].topImage} alt="top mask image" />
 
-                        <img className={styles.maskMiddle} src={middleMaskStore.middleMasks[middleCount].middleImage} alt="middle mask image" />
+                        <img className={styles.maskMiddle} src={middleMaskStore.middleMasks[uiStore.middleCount].middleImage} alt="middle mask image" />
 
-                        <img className={styles.maskBottom} src={bottomMaskStore.bottomMasks[bottomCount].bottomImage} alt="bottom mask image" />
+                        <img className={styles.maskBottom} src={bottomMaskStore.bottomMasks[uiStore.bottomCount].bottomImage} alt="bottom mask image" />
                     </div>
 
                     <div className={styles.buttonWrapper}>
@@ -73,13 +86,18 @@ const AvatarTool = () => {
 
                 </div>
                 <div className={styles.inputElements}>
-                    <p>{topMaskStore.topMasks[uiStore.topCount].topImage}</p>
                     <label>
-                        Nickname<input />
+                        Nickname<input
+                            value={nickname}
+                            type="text"
+                            onChange={e => setNickname(e.target.value)} />
                     </label>
 
                     <label>
-                        Age<input />
+                        Age<input
+                            value={age}
+                            type="number"
+                            onChange={e => setAge(e.target.value)} />
                     </label>
 
                     <input type='submit' value="Create avatar" />

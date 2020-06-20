@@ -11,6 +11,8 @@ class UiStore {
     this.visibility = false;
     this.loadedAllData = false;
     this.topCount = 0;
+    this.middleCount = 0;
+    this.bottomCount = 0;
   }
 
   setLoadedAllData(value) {
@@ -65,14 +67,48 @@ class UiStore {
   }
 
   topCountDown() {
-    if (this.topCount > -1) {
+    if (this.topCount > 0) {
       this.topCount--;
-    } else if (this.topCount === -1) {
+    } else if (this.topCount === 0) {
       this.topCount = 3;
     }
-
-
     console.log(this.topCount);
+  }
+
+  middleCountUp() {
+    if (this.middleCount < 3) {
+      this.middleCount++;
+    } else if (this.middleCount === 3) {
+      this.middleCount = 0;
+    }
+    console.log(this.middleCount);
+  }
+
+  middleCountDown() {
+    if (this.middleCount > 0) {
+      this.middleCount--;
+    } else if (this.middleCount === 0) {
+      this.middleCount = 3;
+    }
+    console.log(this.middleCount);
+  }
+
+  bottomCountUp() {
+    if (this.bottomCount < 3) {
+      this.bottomCount++;
+    } else if (this.bottomCount === 3) {
+      this.bottomCount = 0;
+    }
+    console.log(this.bottomCount);
+  }
+
+  bottomCountDown() {
+    if (this.bottomCount > 0) {
+      this.bottomCount--;
+    } else if (this.bottomCount === 0) {
+      this.bottomCount = 3;
+    }
+    console.log(this.bottomCount);
   }
 
 }
@@ -98,7 +134,13 @@ decorate(UiStore, {
 
   topCount: observable,
   topCountUp: action,
-  topCountDown: action
+  topCountDown: action,
+  middleCount: observable,
+  middleCountUp: action,
+  middleCountDown: action,
+  bottomCount: observable,
+  bottomCountUp: action,
+  bottomCountDown: action
 
 });
 
