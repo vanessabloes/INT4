@@ -70,6 +70,25 @@
   justify-self: center;
 }
 
+.image_start {
+  composes: bodyCopy from "../../styles/typo.module.css";
+  font-weight: bold;
+  grid-row: 3;
+  grid-column: 1;
+  justify-self: start;
+  width: 5rem;
+}
+
+.image_end {
+  composes: bodyCopy from "../../styles/typo.module.css";
+  font-weight: bold;
+  grid-row: 3;
+  grid-column: 1;
+  justify-self: end;
+  width: 5rem;
+  text-align: right;
+}
+
 .image_circle {
   grid-area: circle;
   padding-bottom: 2rem;

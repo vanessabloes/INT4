@@ -14,25 +14,27 @@ const Manual = () => {
         <h2 className={styles.page_title}>How to tell your travel story?</h2>
         <div className={styles.destination} >
           <h3 className={styles.subtitle}>From start to destination</h3>
-          <p className={styles.bodycopy}>Your travel story consists of a starting word and an ending word. Some pitstop words are added in between to work towards this end destination.</p>
+          <p className={styles.bodycopy}>Light the fire and start your story. Your travel story consists of a starting word and an ending word under the blue flames. Some pitstop words are added in between, to work towards this end destination. Past pistopwords have a short grey/black extinguished matche (here first one). The current pitstopword is orange (here second one). The next pitstopwords come unde the big red matches.</p>
         </div>
 
         <div className={styles.image_proces_wrapper}>
           <p className={styles.image_proces_title }>Story 1</p>
           <p className={styles.image_proces_bodycopy}>In your world cars don’t exit</p>
-        <img className={styles.image_proces} src="assets/img/INFO/luciferbalk.svg" alt="story1: In your world cars don’t exit"/>
+          <img className={styles.image_proces} src="assets/img/INFO/luciferbalk.svg" alt="story1: In your world cars don’t exit"/>
+          <p className={styles.image_start}>starting word</p>
+          <p className={styles.image_end}>ending word</p>
 
         </div>
         
         
         <div className={styles.narrates} >
           <h3 className={styles.subtitle}>Who narrates when?</h3>
-          <p className={styles.bodycopy}>At the beginning of each round, a narrator gets randomly chosen. Look at who the indicator is pointing.</p>
+          <p className={styles.bodycopy}>At the beginning of each round, a narrator gets randomly chosen. Look at who the indicator, the blue wavy arrow is pointing. Press the orange play/pause button under the word counter when you start or stop telling. When you press the play button and the wheel starts listening the soundwave will start moving.</p>
         </div>
         <img className={styles.image_circle} src="assets/img/INFO/WhoNarratesWhen.svg" alt="Who narrates when?"/>
         <div>
           <h3 className={styles.subtitle}>The wordcounter</h3>
-          <p className={styles.bodycopy}>During your storytelling a wordcounter counts down. It is intented that you have to link the startword with the endword before the counter reaches 0. Should the counter hit 0 before you reach the endword, you get lost in imagination. The role who who was the last to narrate has to complete a challenge with the clan to get back on track.</p>
+          <p className={styles.bodycopy}>During your storytelling a wordcounter counts down (here 22). It is intented that you have to link the startword with the endword before the counter reaches 0. Should the counter hit 0 before you reach the endword, you get lost in imagination. The role who who was the last to narrate has to complete a challenge with the clan to get back on track.</p>
         </div>
         <div>
           <h3 className={styles.subtitle}>The goal</h3>
