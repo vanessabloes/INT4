@@ -22,8 +22,8 @@ const JourneyDetail = () => {
 
   return (
     <div>
-      { journey.name ? <BackToWorldButton /> : <TheePotLink text={"Name Journey"}/>}
-      <PageTitle title={"Journey 1"} subtext={"Start your storytelling with a bonfire"} />
+      {journey.name ? <BackToWorldButton /> : <TheePotLink text={"Name Journey"} />}
+      <PageTitle title={journey.name ? journey.name : "Your Journey"} subtext={"Start your storytelling with a bonfire"} />
       <Masklayout></Masklayout>
       <NewStoryButton text={"Start new Story"} />
 
