@@ -1,0 +1,117 @@
+@value tokens: "../../styles/tokens.module.css";
+@value font-base, title-font, bodyCopy-font from tokens;
+
+.hidden {
+  display: none;
+}
+
+.manual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  column-gap: 3rem;
+  grid-template-areas:  
+  "title title"
+  "destination proces"
+  "narrates narrates"
+  "circle circle"
+  ;
+  margin: 3rem;
+}
+
+.page_title {
+  composes: page_title from "../../styles/typo.module.css";
+  grid-area: title;
+  text-align: center;
+}
+  
+.subtitle {
+    composes: subtitle_bold from "../../styles/typo.module.css";
+}
+  
+.bodycopy {
+    composes: bodyCopy from "../../styles/typo.module.css";
+}
+
+.destination {
+    grid-area: destination;
+}
+
+.narrates {
+    grid-area: narrates;
+}
+
+.image_proces_wrapper {
+  grid-area: proces;
+  place-self: center;
+
+  display: grid;
+  grid-template-rows: 1fr 1.5fr 1fr;
+}
+
+.image_proces {
+  place-self: center;
+  grid-row: 1/4;
+  grid-column: 1;
+  place-self: center;
+}
+
+.image_proces_title {
+  composes: page_title from "../../styles/typo.module.css";
+  grid-row: 1;
+  grid-column: 1;
+  place-self: center;
+}
+
+.image_proces_bodycopy {
+  composes: bodyCopy from "../../styles/typo.module.css";
+  grid-row: 2;
+  grid-column: 1;
+  justify-self: center;
+}
+
+.image_circle {
+  grid-area: circle;
+  padding-bottom: 2rem;
+  place-self: center;
+}
+
+.page_title_roles {
+  composes: page_title from "../../styles/typo.module.css";
+  text-align: center;
+  grid-column: 1/4;
+}
+
+.roles {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  column-gap: 3rem;  
+  margin: 3rem;
+}
+
+.role_wrapper {
+  max-width: 20rem;
+  /* text-align: center; */
+  display: flex;
+  flex-flow: column-reverse;
+  align-self: start;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  composes: subtitle_bold from "../../styles/typo.module.css";
+}
+
+.bodycopy {
+  composes: bodyCopy from "../../styles/typo.module.css";
+}
+
+.bodycopy_italic {
+  composes: bodycopy_italic from "../../styles/typo.module.css";
+}
+
+.role_image {
+  margin-bottom: 2rem;
+}
+

@@ -13,7 +13,7 @@ import MyClan from "../../components/MyClan/MyClan";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
-import NameJourney from  "../../components/NameJourney/NameJourney"
+import Manual from  "../../components/Manual/Manual"
 
 
 const Home = () => {
@@ -50,7 +50,7 @@ const Home = () => {
     }
 
     return (
-      <NameJourney/>
+      <Manual/>
 
       
         /*<div className={styles.home_wrapper}>

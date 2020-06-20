@@ -1,0 +1,27 @@
+@value tokens: "../../styles/tokens.module.css";
+@value font-base, title-font, bodyCopy-font from tokens;
+
+.role_wrapper {
+  max-width: 20rem;
+  /* text-align: center; */
+  display: flex;
+  flex-flow: column-reverse;
+  align-self: start;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  composes: subtitle_bold from "../../styles/typo.module.css";
+}
+
+.bodycopy {
+  composes: bodyCopy from "../../styles/typo.module.css";
+}
+
+.bodycopy_italic {
+  composes: bodycopy_italic from "../../styles/typo.module.css";
+}
+
+.role_image {
+  margin-bottom: 2rem;
+}
