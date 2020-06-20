@@ -8,6 +8,10 @@
   z-index: 1;
 }
 
+.addMemberButton {
+  z-index: 2;
+}
+
 .button_title {
   composes: button_title from "../../../styles/typo.module.css";
 }

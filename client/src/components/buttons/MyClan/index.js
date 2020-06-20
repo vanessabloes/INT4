@@ -7,6 +7,7 @@ import { ReactComponent as Button } from './btnMyClan.svg';
 
 const MyClanButton = () => {
   return (
+    
     <div className={styles.buttonContainer}>
     <Link  to={ROUTES.myClan}>
       <Button className={styles.button}/>

@@ -5,10 +5,7 @@ import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { STATES } from "../../consts";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import Box from "../Box";
 
 const ChooseRoles = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
@@ -60,9 +57,24 @@ const ChooseRoles = () => {
       <p>choose roles</p>
 
       {uiStore.currentJourney.wayfarers.map(wayfarer => (
-        <p onClick={linkRole}>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</p>
+        <>
+        <div>
+          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).topMaskId} alt="top-mask"/>
+          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).middleMaskId} alt="middle-mask"/>
+          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).bottomMaskId} alt="bottom-mask"/>
+        </div>
+        <p>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</p>
+        <button onClick={linkRole}>Linkrole</button>
+        </>
       ))}
+{/* 
+de op geklikte clanMember zn id checken
 
+met de wayfarer.clanMemberId 
+
+in de currentJourney
+
+*/}
       {roleStore.uniqueRoles.map(role => (
         <p>{role.roleName}</p>
       ))}

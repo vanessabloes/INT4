@@ -44,7 +44,7 @@ const App = () => {
        </Route>
 
        <Route path={ROUTES.home}>
-           <Home />
+           <Home page={ROUTES.home}/>
        </Route>
  </Switch>
     </>

@@ -59,7 +59,7 @@ class ClanMemberModel {
           this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
 
           //this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
-          //his.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
+          //this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
           //this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
           
           this.name = name;

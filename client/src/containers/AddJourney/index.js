@@ -17,6 +17,7 @@ import ChooseRoles from "../../components/ChooseRoles";
 import ExploreRoles from "../../components/ExploreRoles/ExploreRoles";
 
 import { STATES } from "../../consts";
+import Loading from "../../components/Loading";
 
 const AddJourney = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore, journeyStore, wayfarerStore } = useStore();
@@ -45,6 +46,7 @@ const AddJourney = () => {
   const [addWayfarerState, setState] = useState();
   
   return useObserver (() => {
+
     if (uiStore.addJourneyState === STATES.ADDJOURNEY_STATE_ADDWAYFARERS) {
       return <AddWayfarers onClick={setState}/> 
     }

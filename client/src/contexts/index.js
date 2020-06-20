@@ -37,7 +37,7 @@ const loadAllData = async () => {
     //const c2 = new ClanMemberModel({id: v4(), name: "Tom", clanId: cl2.id, store: store.clanMemberStore});
     
      
-
+     await store.uiStore.setLoadedAllData(true);
 
 }
 

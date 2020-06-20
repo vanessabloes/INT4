@@ -3,13 +3,14 @@ import styles from "./OpeningScreen.module.css"
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow"
 import { useStore } from "../../hooks";
 import {STATES} from "../../consts/index"
+import { useObserver } from "mobx-react-lite";
 
 
 const OpeningScreen = () => {
 
-  const { launchFlowStore } = useStore()
+  const { launchFlowStore, uiStore } = useStore()
 
-  return (
+  return useObserver (() => (
     <div className={styles.opening_screen_wrapper}>
       <div className={styles.title_wrapper}>
         <h1 className={styles.title}>Clandestine</h1>
@@ -19,10 +20,12 @@ const OpeningScreen = () => {
       <img className={styles.image_wolkOne} src="assets/img/BOOT/wolkje1.svg" alt="een gele wolk"/>
       <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg"alt="nog een gele wolk"/>
       <div className={styles.button}>
-        <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/>
+
+        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : ""}
+        
       </div>
     </div>
-  );
+  ));
 };
 
 export default OpeningScreen;

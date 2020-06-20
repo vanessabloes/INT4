@@ -8,6 +8,12 @@ class UiStore {
     this.currentJourney = undefined;
     this.addJourneyState = STATES.ADDJOURNEY_STATE_ADDWAYFARERS;
     this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
+    this.visibility = false;
+    this.loadedAllData = false;
+  }
+
+  setLoadedAllData(value){
+    this.loadedAllData = value;
   }
 
   login = (username, password) => {
@@ -18,6 +24,10 @@ class UiStore {
         this.loggedIn = true;
       }
     });
+  }
+
+  setVisibility(value){
+    this.visibility = value;
   }
 
   setCurrentClan = async (clan) => {
@@ -57,7 +67,13 @@ decorate(UiStore, {
   setAddJourneyState: action,
   addJourneyState: observable,
   setAddStoryState: action,
-  addStoryState: observable
+  addStoryState: observable,
+
+  visibility: observable,
+  setVisibility: action,
+
+  loadedAllData: observable,
+  setLoadedAllData: action
 
 });
 

@@ -1,18 +1,28 @@
 import React from "react";
-import styles from "./AddMemberButton.module.css"
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../../consts";
-
+import styles from "./AddMemberButton.module.css";
+import { useStore } from "../../../hooks";
 import { ReactComponent as AddMember } from './btnAddMember.svg';
+import AvatarTool from "../../AvatarTool";
 
-const AddMemberButton = ({text, linkTo}) => {
+const AddMemberButton = ({text}) => {
+
+const { uiStore } = useStore();
+
+const showOverlay = () => {
+  uiStore.setVisibility(true);
+}
   return (
+    <div>
     <div className={styles.buttonContainer}>
-      <Link  to={linkTo}>
+      <button className={styles.addMemberButton} onClick={showOverlay}>
+      
         <AddMember/>
         <p className={styles.button_title}>{text}</p>
-      </Link>
+      </button>
+
     </div>
+
+</div>
   );
 };
 

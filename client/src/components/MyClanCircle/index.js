@@ -1,14 +1,14 @@
 import React from "react";
-import styles from "./MyClan.module.css"
+import styles from "./MyClanCircle.module.css"
 import { useStore } from "../../hooks";
-import MyClanButton from "../buttons/MyClan/MyclanButton"
+import MyClanButton from "../buttons/MyClan"
 import AddMemberButton from "../buttons/AddMember/AddMemberButton"
 import { useObserver } from "mobx-react-lite";
 
 
 
 
-const MyClan = ({centerButton, clan}) => { //centerButton -> MyClan anders is het addMember
+const MyClanCircle = ({clan, page}) => { //centerButton -> MyClanCircle anders is het addMember
   
   const countClanMembers = clan.length;
   const arc = 360 / countClanMembers;
@@ -35,7 +35,7 @@ const MyClan = ({centerButton, clan}) => { //centerButton -> MyClan anders is he
       ))
     }
     { 
-     centerButton === "MyClan" ? <MyClanButton/> : <AddMemberButton text={"Add another Member"}  />  // linkTo={}
+     page === "/" ? <MyClanButton/> : <AddMemberButton text={"Add another Member"}  />  // linkTo={}
     }
     
     
@@ -43,4 +43,4 @@ const MyClan = ({centerButton, clan}) => { //centerButton -> MyClan anders is he
   )
   }
   
-  export default MyClan;
+  export default MyClanCircle;

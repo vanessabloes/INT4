@@ -9,14 +9,14 @@ import OpeningSurrealWorld from "../../components/OpeningSurrealWorld/OpeningSur
 import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
-import MyClan from "../../components/MyClan/MyClan";
+import MyClanCircle from "../../components/MyClanCircle/";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
-import Manual from  "../../components/Manual/"
 
 
-const Home = () => {
+
+const Home = ({ page }) => {
   const { launchFlowStore } = useStore()
   
   const [homeState, setState] = useState();
@@ -55,7 +55,7 @@ const Home = () => {
       
         <div className={styles.home_wrapper}>
            <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
-          <MyClan centerButton={"MyClan"} clan={testClan}/> 
+          <MyClanCircle page={page} clan={testClan}/> 
 
           <div className={styles.worlds_wrapper}>
             {

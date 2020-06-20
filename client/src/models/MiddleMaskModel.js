@@ -1,9 +1,9 @@
 import { v4 } from "uuid";
 import { decorate, computed } from "mobx";
 class MiddleMaskModel {
-    constructor({id = v4(), middle, store}){
+    constructor({id = v4(), middleImage, store}){
         this.id = id;
-        this.middle = middle;
+        this.middleImage = middleImage;
         this.store = store;
         this.store.addMiddleMask(this);
     }
@@ -11,7 +11,7 @@ class MiddleMaskModel {
     get asJson() {
         return {
           id: this.id,
-          middle: this.middle
+          middleImage: this.middleImage
         };
       }
 }
