@@ -10,9 +10,10 @@ class UiStore {
     this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
     this.visibility = false;
     this.loadedAllData = false;
+    this.topCount = 0;
   }
 
-  setLoadedAllData(value){
+  setLoadedAllData(value) {
     this.loadedAllData = value;
   }
 
@@ -26,7 +27,7 @@ class UiStore {
     });
   }
 
-  setVisibility(value){
+  setVisibility(value) {
     this.visibility = value;
   }
 
@@ -54,6 +55,26 @@ class UiStore {
     this.addStoryState = state;
   }
 
+  topCountUp() {
+    if (this.topCount < 3) {
+      this.topCount++;
+    } else if (this.topCount === 3) {
+      this.topCount = 0;
+    }
+    console.log(this.topCount);
+  }
+
+  topCountDown() {
+    if (this.topCount > -1) {
+      this.topCount--;
+    } else if (this.topCount === -1) {
+      this.topCount = 3;
+    }
+
+
+    console.log(this.topCount);
+  }
+
 }
 
 decorate(UiStore, {
@@ -73,7 +94,11 @@ decorate(UiStore, {
   setVisibility: action,
 
   loadedAllData: observable,
-  setLoadedAllData: action
+  setLoadedAllData: action,
+
+  topCount: observable,
+  topCountUp: action,
+  topCountDown: action
 
 });
 
