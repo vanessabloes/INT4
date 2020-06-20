@@ -33,13 +33,15 @@ const AddWayfarers = () => {
 
   const addWayfarer = (id) => {
     console.log(id);
-    const w = new WayfarerModel({
+    let w = new WayfarerModel({
       id: v4(), //OKEEE
       clanMemberId: id, // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon) //OKE!
       journeyId: uiStore.currentJourney.id,
       roleId: "1",
       store: wayfarerStore
     });
+
+    console.log(w);
 
     //w.create(); DIT WERKT, maar moet pas in laatste stap wanner je op set journey klikt
 
@@ -63,8 +65,7 @@ const AddWayfarers = () => {
           {uiStore.currentClan ?
             uiStore.currentClan.clanMembers.map(clanMember => (
               <>
-                <button onClick={addWayfarer(clanMember.id)} >{clanMember.name}</button>
-                <img draggable="true" onDrag={dragEvent} src="assets/img/PROGRESS/1of3.svg" />
+                <button onClick={() => addWayfarer(clanMember.id)} >{clanMember.name}</button>
               </>
             )) : "loading"}
 
@@ -73,7 +74,7 @@ const AddWayfarers = () => {
       </div>
       <div className={style.container}>
         <img className={style.rotation} src="assets/img/PREPARING/behindsun_moving.svg" />
-        <img onDrop={(e) => drop(e)} className={style.static} src="assets/img/PREPARING/sun_static.svg" />
+        <img className={style.static} src="assets/img/PREPARING/sun_static.svg" />
         <img className={style.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
       </div>
       <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />

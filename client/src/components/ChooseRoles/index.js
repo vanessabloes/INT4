@@ -12,53 +12,66 @@ import Box from "../Box";
 
 const ChooseRoles = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
- 
+
   const linkRole = () => {
-    
+
   }
 
   const loadRoles = () => {
-    let uniqueRoles = [];
 
-      console.log("loaded")
-      console.log(roleStore.roles[0]) // = roleModel
-      console.log(roleStore.roles.length); // = 1
-      console.log(uniqueRoles.length) // = O
-      for (let index = 0; uniqueRoles.length < 1; index++) {
+    console.log("loaded")
+    console.log(roleStore.roles[0]) // = roleModel
+    console.log(roleStore.roles.length); // = 1
+    console.log(roleStore.uniqueRoles.length) // = O
 
-          const randomRole = roleStore.roles[Math.floor(Math.random() * (roleStore.roles.length - 1))];
-  
-      console.log(randomRole)
-        uniqueRoles.push(randomRole);
-        console.log(uniqueRoles)
+    console.log(uiStore.currentJourney.wayfarers.length);
+
+    for (let index = 0; roleStore.uniqueRoles.length < uiStore.currentJourney.wayfarers.length; index++) {
+
+      const randomRole = roleStore.roles[Math.floor(Math.random() * (roleStore.roles.length))];
+
+      if (roleStore.uniqueRoles.length === 0) {
+        roleStore.addUniqueRole(randomRole);
+      } else {
+        let counter = 0;
+        roleStore.uniqueRoles.forEach(role => {
+          if (role === randomRole) {
+            console.log("same role..");
+          } else {
+            counter++;
+            if (counter === roleStore.uniqueRoles.length) {
+              roleStore.addUniqueRole(randomRole);
+            }
+          }
+        })
+      }
+
     }
-   
 
-    
-      
+    console.log(roleStore.uniqueRoles);
+
   }
 
   loadRoles();
 
 
-  return useObserver (() => (
+  return useObserver(() => (
     <>
-   <p>choose roles</p>
+      <p>choose roles</p>
 
- 
-    {uiStore.currentJourney.wayfarers.map(wayfarer => (
-      <p onClick={linkRole}>{wayfarer.id}</p>
-    ))}
-  
+      {uiStore.currentJourney.wayfarers.map(wayfarer => (
+        <p onClick={linkRole}>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</p>
+      ))}
+
+      {roleStore.uniqueRoles.map(role => (
+        <p>{role.roleName}</p>
+      ))}
+
+      <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)} />
+
+    </>
 
 
-
-  
-   <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)}/>
-
-  </>
-
-  
   ));
 };
 
