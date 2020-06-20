@@ -86,7 +86,7 @@ const AddJourney = () => {
                 <li>Dit zijn alle clanMembers: {clanMember.name}</li>
           ))}
   </ul>
-  <button onClick={addWayfarer}>Add wayfarer</button>
+<button onClick={addWayfarer}>Add wayfarer</button>
 
       
   <p>Dit is de current clan name: {uiStore.currentClan ? uiStore.currentClan.name : "loading"}</p>

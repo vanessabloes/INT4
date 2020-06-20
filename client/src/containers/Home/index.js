@@ -13,7 +13,7 @@ import MyClan from "../../components/MyClan/MyClan";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
-import Manual from  "../../components/Manual/Manual"
+import Manual from  "../../components/Manual/"
 
 
 const Home = () => {
@@ -50,10 +50,10 @@ const Home = () => {
     }
 
     return (
-      <Manual/>
+    
 
       
-        /*<div className={styles.home_wrapper}>
+        <div className={styles.home_wrapper}>
            <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
           <MyClan centerButton={"MyClan"} clan={testClan}/> 
 
@@ -67,7 +67,7 @@ const Home = () => {
 
           <StartJourneyButton/> 
          
-        </div>*/
+        </div>
 
     );
   

@@ -59,7 +59,7 @@ const AddWayfarers = () => {
       <div>
         <ul>
           Dit zijn alle clanMembers van de current clan:
-    <button onClick={addWayfarer}>Add wayfarer</button>
+
           {uiStore.currentClan ?
             uiStore.currentClan.clanMembers.map(clanMember => (
               <>

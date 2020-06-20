@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./NameJourney.module.css"
-import PageTitle from "../../components/PageTitle/PageTitle"
-import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow"
+import PageTitle from "../PageTitle/PageTitle"
+import TheePotFlow from "../buttons/Algemeen/TheePotFlow"
 import {ROUTES} from "../../consts/index"
 import { useStore } from "../../hooks";
 import { useParams } from "react-router-dom";

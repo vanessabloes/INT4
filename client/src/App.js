@@ -10,6 +10,7 @@ import StoryDetail from "./containers/StoryDetail";
 import MyClan from "./containers/MyClan";
 import AddJourney from "./containers/AddJourney";
 import AddStory from "./containers/AddStory";
+import NameJourney from "./components/NameJourney";
 
 
 
@@ -28,6 +29,10 @@ const App = () => {
 
        <Route path={ROUTES.addStory}>
            <AddStory />
+       </Route>
+
+       <Route path={ROUTES.nameJourney}>
+           <NameJourney />
        </Route>
 
        <Route path={ROUTES.storyDetail.path}>

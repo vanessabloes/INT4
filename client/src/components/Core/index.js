@@ -11,6 +11,7 @@ import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 import { ROUTES } from "../../consts";
 
 import { STATES } from "../../consts";
+import Manual from "../Manual";
 
 
 
@@ -24,6 +25,7 @@ const Core = () => {
             <Pitstops />
             <Power />
             <Wordwheel />
+            <Manual/>
             <button
                 value="challenge"
                 onClick={e => uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE)}>

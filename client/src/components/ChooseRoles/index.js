@@ -8,40 +8,52 @@ import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import Dustbin from "../Dustbin";
 import Box from "../Box";
 
 const ChooseRoles = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
  
+  const linkRole = () => {
+    
+  }
 
+  const loadRoles = () => {
+    let uniqueRoles = [];
+
+      console.log("loaded")
+      console.log(roleStore.roles[0]) // = roleModel
+      console.log(roleStore.roles.length); // = 1
+      console.log(uniqueRoles.length) // = O
+      for (let index = 0; uniqueRoles.length < 1; index++) {
+
+          const randomRole = roleStore.roles[Math.floor(Math.random() * (roleStore.roles.length - 1))];
+  
+      console.log(randomRole)
+        uniqueRoles.push(randomRole);
+        console.log(uniqueRoles)
+    }
+   
+
+    
+      
+  }
+
+  loadRoles();
 
 
   return useObserver (() => (
     <>
    <p>choose roles</p>
-   <div className="App">
-				<DndProvider backend={HTML5Backend}>
-        <div>
-    <div style={{ overflow: 'hidden', clear: 'both', margin: '-1rem' }}>
-      <Dustbin greedy={true}>
-        <Dustbin greedy={true}>
-          <Dustbin greedy={true} />
-        </Dustbin>
-      </Dustbin>
-      <Dustbin>
-        <Dustbin>
-          <Dustbin />
-        </Dustbin>
-      </Dustbin>
-    </div>
 
-    <div style={{ overflow: 'hidden', clear: 'both', marginTop: '1.5rem' }}>
-      <Box />
-    </div>
-  </div>
-				</DndProvider>
-			</div>
+ 
+    {uiStore.currentJourney.wayfarers.map(wayfarer => (
+      <p onClick={linkRole}>{wayfarer.id}</p>
+    ))}
+  
+
+
+
+  
    <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)}/>
 
   </>

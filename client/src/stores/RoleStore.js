@@ -14,12 +14,7 @@ class RoleStore {
   loadAllRoles = async () => {
     const jsonRoles = await this.rolesService.getAll();
     console.log(jsonRoles);
-    //const fakeJsonRoles = [
-    //    {"roleName":"Foodie", "roleDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
-    //  ]
-//
-//
-      jsonRoles.forEach(json => this.updateRoleFromServer(json));
+    jsonRoles.forEach(json => this.updateRoleFromServer(json));
   };
 
   loadRole = async (id) => {
