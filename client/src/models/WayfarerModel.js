@@ -36,9 +36,9 @@ class WayfarerModel {
             clanMember.linkWayfarer(this);
           }
         }
-        setRole(role){
-          if(role){
-            this.roleId = role.id;
+        setRole(roleId){
+          if(roleId){
+            this.roleId = roleId;
            // this.role.linkWayfarer(this);
           }
         }

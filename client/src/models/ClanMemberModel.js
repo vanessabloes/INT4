@@ -63,7 +63,8 @@ class ClanMemberModel {
 
 
   updateFromJson({ name, age, topMaskId, middleMaskId, bottomMaskId, clanId }) {
-    console.log(topMaskId)
+    console.log(bottomMaskId)
+    console.log(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId))
     this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
 
     this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
@@ -93,8 +94,6 @@ class ClanMemberModel {
       topMaskId: this.topMaskId,
       middleMaskId: this.middleMaskId,
       bottomMaskId: this.bottomMaskId
-      //avatar: this.avatar,
-      //journeys: this.journeys
     };
   }
 }

@@ -18,10 +18,12 @@ const AvatarToolUpdate = () => {
         e.preventDefault();
 
         const clanMemberToUpdate = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId);
-
+        console.log(clanMemberToUpdate);
         const topMaskId = (uiStore.topCount + 1).toString();
         const middleMaskId = (uiStore.middleCount + 1).toString();
         const bottomMaskId = (uiStore.bottomCount + 1).toString();
+        const name = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name;
+        const age = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).age;
 
         console.log("_______________________-")
 
@@ -29,8 +31,10 @@ const AvatarToolUpdate = () => {
         clanMemberToUpdate.updateFromJson({
             topMaskId,
             middleMaskId,
-            bottomMaskId
-
+            bottomMaskId,
+            name,
+            age
+   
         });
         clanMemberToUpdate.update();
     }
@@ -97,9 +101,9 @@ const AvatarToolUpdate = () => {
                 <div className={styles.inputElements}>
                     <label>
                         Nickname<input
-                            value={clanMember.name}
+                            value={clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name}
                             type="text"
-                            onChange={e => clanMember.setNickname(e.target.value)} />
+                            onChange={e => clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).setNickname(e.target.value)} />
                     </label>
 
                     <label>

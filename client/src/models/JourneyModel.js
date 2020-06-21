@@ -2,17 +2,19 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class JourneyModel {
-    constructor({id = v4(), stories = [], store, ...json}){
+    constructor({id = v4(), stories = [], image = "image", name="Unnamed journey", clanId, store}){
         if (!store) {
             throw new Error("A journey needs a store");
           }
         this.id = id;
-        this.image = undefined;
+        this.name = name;
+        this.image = image;
         this.store = store;
         this.stories = stories;
         this.wayfarers = [];
         this.definedWords = [];
-        this.updateFromJson(json);
+        this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
+        //this.updateFromJson(json);
         this.store.addJourney(this);
     }
 
@@ -35,10 +37,11 @@ class JourneyModel {
       }
     }
       
-    updateFromJson({ name, image, clanId, wayfarers }){
+    updateFromJson({ name, image }){
+        console.log(name);
         this.name = name;
         this.image = image;
-        this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
+        
         
         //wayfarers.forEach(wayfarer => {
         //  console.log(wayfarer);
@@ -57,7 +60,8 @@ class JourneyModel {
         return {
           id: this.id,
           name: this.name,
-          image: this.image
+          image: this.image,
+          clanId: this.clanId
         };
       }
 }

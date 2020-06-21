@@ -53,15 +53,16 @@ class ClanMemberStore {
     this.updateClanMemberFromServer(json);
   };
 
-  // deleteClanMember = async clanMember => {
-  //   const json = await this.clanMembersService.delete(clanMember);
-  //   this.updateClanMemberFromServer(json);
-  // };
+   deleteClanMember = async clanMember => {
+     const json = await this.clanMembersService.delete(clanMember);
+     console.log(json)
+     this.updateClanMemberFromServer(json);
+   };
 
   updateClanMemberFromServer(json) {
     // we krijgen hier 1 member binnen
     let clanMember = this.clanMembers.find(clanMember => clanMember.id === json.id);
-    console.log(json.topMaskId);
+
     if (!clanMember) {
       clanMember = new ClanMemberModel({
         id: json.id,
@@ -72,9 +73,10 @@ class ClanMemberStore {
         bottomMaskId: json.bottomMaskId,
         store: this.rootStore.clanMemberStore
       });
-      console.log(clanMember);
+   
     }
     if (json.isDeleted) {
+      console.log(json.isDeleted);
       this.clanMembers.remove(clanMember);
     } else {
       //console.log(json.clanId); IS OK!

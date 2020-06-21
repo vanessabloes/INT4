@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./TheePotLink.module.css"
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../../consts";
 
 import { ReactComponent as TheePot } from './btnTheePot.svg';
 
