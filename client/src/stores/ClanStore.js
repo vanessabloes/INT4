@@ -34,7 +34,6 @@ class ClanStore {
     return this.resolveClan(id);
   };
 
-  // nog uit te werken
   loadClanJourneys = async (id) => {
     const jsonClanJourneys = await this.clansService.getById(id, 'journeys');
     console.log(id)

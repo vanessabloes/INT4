@@ -45,18 +45,18 @@ class JourneyModel {
     this.image = image;
   }
 
-  updateFromJson({ name, image }) {
+  updateFromJson({ name, image, wayfarers = undefined }) {
     console.log(name);
+    console.log(wayfarers);
     this.name = name;
     this.image = image;
 
-
-    //wayfarers.forEach(wayfarer => {
-    //  console.log(wayfarer);
-    //  wayfarer.linkJourney(this);
-    //this.store.clanMemberStore.updateWayfarerFromServer(wayfarer).linkJourney(this);
-
-    // });
+    if (wayfarers !== undefined) {
+      wayfarers.forEach(wayfarer => {
+        console.log(wayfarer);
+        this.store.rootStore.wayfarerStore.updateWayfarerFromServer(wayfarer).setJourney(this);
+      });
+    }
 
   }
 

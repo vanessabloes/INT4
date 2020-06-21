@@ -14,7 +14,7 @@ class JourneyStore {
 
   loadAllJourneys = async () => {
     const jsonJourneys = await this.journeysService.getAll();
-   jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
+    jsonJourneys.forEach(json => this.updateJourneyFromServer(json));
   }
 
   loadJourney = async (id) => {
@@ -23,14 +23,16 @@ class JourneyStore {
     return this.resolveJourney(id);
   };
 
-  // nog uit te werken
-  loadJourneyWayfarers= async (id) => {
+  loadJourneyWayfarers = async (id) => {
+    console.log(id);
     const jsonUsers = await this.journeysService.getById(id, 'wayfarers');
+    console.log(jsonUsers);
     this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
     return this.resolveJourney(id);
   };
- // nog uit te werken
-  loadJourneyStories= async (id) => {
+
+  // nog uit te werken
+  loadJourneyStories = async (id) => {
     const jsonUsers = await this.journeysService.getById(id, 'stories');
     this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
     return this.resolveJourney(id);
@@ -41,12 +43,12 @@ class JourneyStore {
     this.updateJourneyFromServer(json);
   };
 
- // updateLinkedUsers = async groupWithUsers => {
- //   const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
- //   this.updateJourneyFromServer({ id: groupWithUsers.id, users: jsonUsers });
- //   return this.resolveJourney(groupWithUsers.id);
- // };
-//
+  // updateLinkedUsers = async groupWithUsers => {
+  //   const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
+  //   this.updateJourneyFromServer({ id: groupWithUsers.id, users: jsonUsers });
+  //   return this.resolveJourney(groupWithUsers.id);
+  // };
+  //
   updateJourney = async journey => {
     const json = await this.journeysService.update(journey);
     this.updateJourneyFromServer(json);
@@ -58,28 +60,28 @@ class JourneyStore {
   // };
 
   updateJourneyFromServer(json) {
-    console.log(json)
-   let journey = this.journeys.find(journey => journey.id === json.id);
-   if (!journey) {
-     journey = new JourneyModel({
-       id: json.id,
-       name: json.name,
-       image: json.image,
-       clanId: json.clanId,
-       store: this.rootStore.journeyStore
-     });
-   }
-   if (json.isDeleted) {
-     this.journeys.remove(journey);
-   } else {
-     journey.updateFromJson(json);
-   }
-   return journey;
+    let journey = this.journeys.find(journey => journey.id === json.id);
+    if (!journey) {
+      journey = new JourneyModel({
+        id: json.id,
+        name: json.name,
+        image: json.image,
+        clanId: json.clanId,
+        store: this.rootStore.journeyStore
+      });
+    }
+    console.log(journey);
+    if (json.isDeleted) {
+      this.journeys.remove(journey);
+    } else {
+      journey.updateFromJson(json);
+    }
+    return journey;
   }
 
   resolveJourney = id => this.journeys.find(journey => journey.id === id);
 
-  addJourney(journey){
+  addJourney(journey) {
     this.journeys.push(journey);
   };
 }

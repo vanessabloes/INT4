@@ -10,38 +10,35 @@ import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
 import MyClanCircle from "../../components/MyClanCircle/";
-import {STATES} from "../../consts/index";
-import styles from  "./Home.module.css"
-import World from  "../../components/World/World"
-
+import { STATES } from "../../consts/index";
+import styles from "./Home.module.css"
+import World from "../../components/World/World"
+import { Link } from "react-router-dom";
 
 
 const Home = ({ page }) => {
-  const { launchFlowStore } = useStore()
-  
+  const { launchFlowStore, clanStore, uiStore } = useStore()
+
   const [homeState, setState] = useState();
 
-  const testClan = [
-    {id: 1, name: "piet", avatar: "/assets/img/testmasks/testmask1.svg"},
-    {id: 2, name: "jan", avatar: "/assets/img/testmasks/testmask2.svg"} ,
-    {id: 3, name: "jos", avatar: "/assets/img/testmasks/testmask3.svg" },
-    {id: 4, name: "fret", avatar: "/assets/img/testmasks/testmask4.svg"}
-  ]
   const testworlds = [
-    {id: 1, name: "De mooiste wereld van de wereld", image: "/assets/img/Worlds/world1.svg"},
-    {id: 2, name: "snoep wereld", image: "/assets/img/Worlds/world2.svg"} ,
-    {id: 3, name: "wereld der werelden van de wereld", image: "/assets/img/Worlds/world3.svg" },
-    {id: 4, name: "fret de planeet", image: "/assets/img/Worlds/world9.svg"}
+    { id: 1, name: "De mooiste wereld van de wereld", image: "/assets/img/Worlds/world1.svg" },
+    { id: 2, name: "snoep wereld", image: "/assets/img/Worlds/world2.svg" },
+    { id: 3, name: "wereld der werelden van de wereld", image: "/assets/img/Worlds/world3.svg" },
+    { id: 4, name: "fret de planeet", image: "/assets/img/Worlds/world9.svg" }
   ]
 
+  const clan = clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103");
 
-  return useObserver (() => {
+  const journeysOfClan = clanStore.loadClanJourneys("675a4afd-7810-4666-a90b-bdabee51b103");
 
-   if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {// "Opening Screen"
-      return <OpeningScreen onClick={setState}/> 
+  return useObserver(() => {
+
+    if (launchFlowStore.homeState === STATES.HOME_STATE_OPENING_SCREEN) {// "Opening Screen"
+      return <OpeningScreen onClick={setState} />
     }
-    
-    if(launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
+
+    if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
       return <OpeningFamily />
     }
 
@@ -50,30 +47,25 @@ const Home = ({ page }) => {
     }
 
     return (
-    
 
-      
-        <div className={styles.home_wrapper}>
-          <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"}/>
-          <MyClanCircle page={page} clan={testClan}/> 
+      <div className={styles.home_wrapper}>
+        <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
+        <MyClanCircle page={page} clan={clan} />
 
-          <div className={styles.worlds_wrapper}>
-            {
-              testworlds.map(world => (
-                <World world={world}/>
-              ))
-            }
-          </div>
-
-          <StartJourneyButton/> 
-         
+        <div className={styles.worlds_wrapper}>
+          {
+            uiStore.currentClan.journeys.map(journey => (
+              <Link to={journey.id}>
+                <World journey={journey} />
+              </Link>
+            ))
+          }
         </div>
 
+        <StartJourneyButton />
+      </div>
+
     );
-  
-      
-     
-  
 
   });
 };
