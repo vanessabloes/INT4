@@ -1,6 +1,7 @@
 import React from "react";
 import { useObserver } from "mobx-react-lite";
 import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
+import LoadingWheel from "../../components/LoadingWheel";
 import styles from "./Loading.module.css";
 import { useStore } from "../../hooks";
 import { STATES } from "../../consts";
@@ -33,12 +34,11 @@ const Loading = () => {
                     <div className={styles.deur}>
                         <img className={styles.leftDoor} src="/assets/img/IMAGINATION/loaderLeft.svg" />
                         <img className={styles.rightDoor} src="/assets/img/IMAGINATION/loaderRight.svg" />
+                        <div className={styles.LoadingWheel}>
+                            <LoadingWheel/>
+                        </div>
                     </div>
-
-                    <div className={styles.loadingdiv}>
-                        <img className={styles.loading} src="/assets/img/IMAGINATION/laadsymbol.svg" />
-                        <p className={styles.laadknop_text}>loading...</p>
-                    </div>
+                    
                 </div>
             </div>
 

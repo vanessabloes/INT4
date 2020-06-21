@@ -9,7 +9,6 @@ const World = ({world}) => {
     <div className={styles.world_wrapper}>
       <h2 className={styles.world_title}>{world.name}</h2>
       <img className={styles.world_image} src={world.image} alt={world.name} />
-
     </div>
     
   );

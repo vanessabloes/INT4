@@ -1,20 +1,10 @@
 @value tokens: "../../styles/tokens.module.css";
 @value title-font from tokens;
 
-@keyframes float {
-	0% {
-		transform: translatey(0px);
-	}
-	50% {
-		transform: translatey(-20px);
-	}
-	100% {
-		transform: translatey(0px);
-	}
-}
 
 .opening_screen_wrapper {
   composes: opening_screen_wrapper from "../../styles/launch.module.css";
+  grid-template-rows: 1fr auto 1fr;
 }
 
 
@@ -35,7 +25,7 @@
 
 .image_mask {
   place-self: center;
-  height: 90rem;
+  height: 80rem;
   grid-row: 2;
   grid-column: 1;
   z-index: 1;
@@ -66,4 +56,19 @@
 
 .button {
   place-self: center;
+  grid-row: 3;
+  grid-column: 1;
+}
+
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
 }

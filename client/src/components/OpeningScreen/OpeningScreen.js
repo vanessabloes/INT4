@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./OpeningScreen.module.css"
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow"
+import LoadingWheel from "../../components/LoadingWheel/index"
 import { useStore } from "../../hooks";
 import {STATES} from "../../consts/index"
 import { useObserver } from "mobx-react-lite";
@@ -21,7 +22,8 @@ const OpeningScreen = () => {
       <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg"alt="nog een gele wolk"/>
       <div className={styles.button}>
 
-        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : ""}
+      {/* <LoadingWheel /> */}
+        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : <LoadingWheel />}
         
       </div>
     </div>

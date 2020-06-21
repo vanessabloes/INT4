@@ -33,7 +33,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
     uiStore.setSelectedClanMember(id);
   }
   return useObserver(() => (
-
+ 
     <div className={styles.masks_wrapper}>
       {
         uiStore.currentClan.clanMembers.map(clanMember => (

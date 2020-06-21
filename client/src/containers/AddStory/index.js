@@ -14,12 +14,13 @@ const AddStory = () => {
   const { uiStore} = useStore();
 
   return useObserver(() => {
+
     if (uiStore.addStoryState === STATES.ADDSTORY_STATE_LOADING) {
       return <Loading />
     }
 
     if (uiStore.addStoryState === STATES.ADDSTORY_STATE_CORE) {
-      return <Core />
+      return <><Core /></>
     }
 
     if (uiStore.addStoryState === STATES.ADDSTORY_STATE_CHALLENGE) {
