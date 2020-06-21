@@ -13,6 +13,7 @@ import MyClanCircle from "../../components/MyClanCircle/";
 import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
+import BackToJourney from "../../components/buttons/BackToJourney/BackToJourney";
 
 
 
@@ -66,6 +67,7 @@ const Home = ({ page }) => {
           </div>
 
           <StartJourneyButton/> 
+          
          
         </div>
 
