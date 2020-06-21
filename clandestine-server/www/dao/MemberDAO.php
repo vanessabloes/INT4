@@ -47,11 +47,14 @@ class MemberDAO extends DAO {
   public function update($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "UPDATE `members` SET `name` = :name, `avatar` = :avatar WHERE `id` = :id";
+      $sql = "UPDATE `members` SET `name` = :name, `age` = :age, `topMaskId` = :topMaskId, `middleMaskId` = :middleMaskId, `bottomMaskId` = :bottomMaskId WHERE `id` = :id";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
-      $stmt->bindValue(':avatar', $data['avatar']);
+      $stmt->bindValue(':age', $data['age']);
+      $stmt->bindValue(':topMaskId', $data['topMaskId']);
+      $stmt->bindValue(':middleMaskId', $data['middleMaskId']);
+      $stmt->bindValue(':bottomMaskId', $data['bottomMaskId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }

@@ -383,6 +383,26 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+
+      $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
+        $memberDAO = new MemberDAO();
+        $input = $request->getParsedBody();
+        
+        $errors = $memberDAO->getValidationErrors($input);
+
+        if (!empty($errors)) {
+        $response->getBody()->write(json_encode($errors));
+        return $response
+        ->withHeader('Content-Type', 'application/json')
+        ->withStatus(422);
+        }
+      $result = $memberDAO->update($input);
+ 
+      $response->getBody()->write(json_encode($result));
+      return $response
+      ->withHeader('Content-Type', 'application/json')
+      ->withStatus(200);
+      });
    
 
   $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
