@@ -32,6 +32,11 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
     uiStore.setVisibilityUpdate(true);
     uiStore.setSelectedClanMember(id);
   }
+
+
+  const handleDeleteAvatar = async clanMember => {
+    await clanMember.delete();
+  }
   return useObserver(() => (
 
     <div className={styles.masks_wrapper}>
@@ -49,6 +54,9 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
               </div>
               {
                 page === "/" ? "" : <div><button onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}>Edit</button></div>
+              }
+               {
+                page === "/" ? "" : <div><button onClick={() => handleDeleteAvatar(clanMember)}>Delete</button></div>
               }
             </div>
           </div>

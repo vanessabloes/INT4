@@ -10,6 +10,7 @@ import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import WayfarerModel from "../../models/WayfarerModel";
 import { v4 } from 'uuid';
 import Mask from "../Mask";
+import AvatarTool from "../AvatarTool";
 
 const AddWayfarers = () => {
 
@@ -38,6 +39,12 @@ const AddWayfarers = () => {
     //w.create(); DIT WERKT, maar moet pas in laatste stap wanner je op set journey klikt
 
   }
+
+
+  const showOverlay = () => {
+    uiStore.setVisibilityCreate(true);
+  }
+
   return useObserver(() => (
     <>
       <div>
@@ -63,7 +70,7 @@ const AddWayfarers = () => {
             )) : "loading"}
 
         </ul>
-        <AddMemberButton text={"Add wayfarer"} linkTo={ROUTES.home} />
+        <AddMemberButton text={"Add member"} onClick={showOverlay} />
       </div>
       <div className={styles.container}>
         <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" />
@@ -71,6 +78,7 @@ const AddWayfarers = () => {
         <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
       </div>
       <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+      {uiStore.visibilityCreate ? <AvatarTool/> : ""}
     </>
   ));
 };

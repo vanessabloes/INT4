@@ -15,6 +15,9 @@ const StartJourneyButton = () => {
 
   const addNewJourney = () => {
     const newJourney = new JourneyModel({
+      name: "Unnamed journey",
+      image: "Unproccesed image",
+      clanId: uiStore.currentClan.id,
       store: journeyStore
     })
 

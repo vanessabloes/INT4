@@ -5,6 +5,9 @@ import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import { STATES } from "../../consts";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
+import Mask from "../Mask";
+
+
 
 
 const ChooseRoles = () => {
@@ -12,7 +15,20 @@ const ChooseRoles = () => {
 
   const linkRole = () => {
 
+
+    for (let index = 0; index < roleStore.uniqueRoles.length; index++) {
+      for (let index = 0; index < uiStore.currentJourney.wayfarers.length; index++) {
+        uiStore.currentJourney.wayfarers[index].setRole(roleStore.uniqueRoles[index].id);
+      }
+      
+    }
+    console.log(uiStore.currentJourney.wayfarers)
+  
+
+
   }
+
+
 
   const loadRoles = () => {
 
@@ -57,16 +73,17 @@ const ChooseRoles = () => {
       <p>choose roles</p>
 
       {uiStore.currentJourney.wayfarers.map(wayfarer => (
-        <>
-        <div>
-          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).topMaskId} alt="top-mask"/>
-          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).middleMaskId} alt="middle-mask"/>
-          <img src={clanMemberStore.resolveClanMember(wayfarer.clanMemberId).bottomMaskId} alt="bottom-mask"/>
-        </div>
-        <p>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</p>
-        <button onClick={linkRole}>Linkrole</button>
-        </>
+  
+
+        <Mask  clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)}/>
+        
+   
+
+   
+
       ))}
+
+<button onClick={e => linkRole()}>Linkrole</button>
 {/* 
 de op geklikte clanMember zn id checken
 
