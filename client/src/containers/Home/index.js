@@ -14,6 +14,7 @@ import {STATES} from "../../consts/index";
 import styles from  "./Home.module.css"
 import World from  "../../components/World/World"
 import BackToJourney from "../../components/buttons/BackToJourney/BackToJourney";
+import AvatarToolUpdate from "../../components/AvatarToolUpdate";
 
 
 
@@ -66,7 +67,9 @@ const Home = ({ page }) => {
             }
           </div>
 
-          <StartJourneyButton/> 
+          <StartJourneyButton/>
+          
+          
           
          
         </div>

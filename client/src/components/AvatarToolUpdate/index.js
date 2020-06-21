@@ -73,16 +73,16 @@ const AvatarToolUpdate = () => {
 
         <div className={styles.overlay}>
 
+            <button className={styles.closeButton} onClick={closeOverlay}>X</button>
             <PageTitle title={"Make your avatar"} />
-            <button onClick={closeOverlay}>X</button>
 
 
             <div className={styles.avatarImageWrapper}>
 
                 <div className={styles.buttonWrapper}>
-                    <button onClick={() => handleTopCount("down")}>&lt;</button>
-                    <button onClick={() => handleMiddleCount("down")}>&lt;</button>
-                    <button onClick={() => handleBottomCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lt;</button>
                 </div>
 
                 <div className={styles.maskContainer}>
@@ -94,29 +94,41 @@ const AvatarToolUpdate = () => {
                 </div>
 
                 <div className={styles.buttonWrapper}>
-                    <button onClick={() => handleTopCount("up")}>&gt;</button>
-                    <button onClick={() => handleMiddleCount("up")}>&gt;</button>
-                    <button onClick={() => handleBottomCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&gt;</button>
                 </div>
 
             </div>
             <form className={styles.form} onSubmit={(e) => handleUpdateAvatar(e)}>
                 <div className={styles.inputElements}>
-                    <label>
-                        Nickname<input
+
+
+
+                    <label className={styles.labelWrapper}>
+                        <span className={styles.span}>Nickname</span>
+                        <input
+                            className={styles.input}
                             value={clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name}
                             type="text"
-                            onChange={e => clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).setNickname(e.target.value)} />
+                            onChange={e => clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).setNickname(e.target.value)}
+                            size="20"
+                            />
                     </label>
 
-                    <label>
-                        Age<input
+
+                    <label className={styles.labelWrapper}>
+                       <span className={styles.span} >Age</span>
+                       <input
+                            className={styles.input}
                             value={clanMember.age}
                             type="number"
-                            onChange={e => clanMember.setAge(e.target.value)} />
+                            onChange={e => clanMember.setAge(e.target.value)}
+                            size="6" 
+                        />
                     </label>
                     <p>{uiStore.error}</p>
-                    <input type="submit" value="update avatar" />
+                    <input className={styles.buttonSubmitm} type="submit" value="update avatar" />
 
                 </div>
             </form>
