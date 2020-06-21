@@ -67,8 +67,8 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
   });
   $routeGroup->group('/definedstorywords', function (RouteCollectorProxy $routeGroup) {
     $routeGroup->get('', function (Request $request, Response $response) {
-      $definedStoryWord = new DefinedStoryWordDAO();
-      $data = $definedStoryWord->selectAll();
+      $definedStoryWordDAO = new DefinedStoryWordDAO();
+      $data = $definedStoryWordDAO->selectAll();
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')

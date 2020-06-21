@@ -2,7 +2,7 @@
     grid-column: 1;
     grid-row: 1;
     z-index: 1;
-    animation: rotating 2s linear infinite;
+    animation: rotating 10s linear infinite;
 }
 
 .static{
@@ -15,6 +15,10 @@
     grid-column: 1;
     grid-row: 1;
     z-index: 0;
+}
+
+.membersWrapper {
+  display: flex;
 }
 
 .container{

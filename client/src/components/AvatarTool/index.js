@@ -12,11 +12,6 @@ const AvatarTool = () => {
     const [age, setAge] = useState("");
 
 
-    const handleUpdateAvatar = e => {
-        e.preventDefault();
-
-    }
-
    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
