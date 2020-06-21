@@ -10,6 +10,7 @@ import JourneyModel from "../../models/JourneyModel";
 import JourneyStore from "../../stores/JourneyStore";
 import Mask from "../Mask";
 import { useHistory } from "react-router-dom";
+import PageTitle from "../PageTitle/PageTitle";
 
 
 const ExploreRoles = () => {
@@ -28,6 +29,7 @@ const ExploreRoles = () => {
     <>
       <p onClick={setJourneyWithWayfarers} >explore roles</p>
 
+    <PageTitle title={"Your Roles"} subtext={"Discover the powers of your roles"} />
       <ul >
         Dit zijn alle clanMembers van de current clan:
 

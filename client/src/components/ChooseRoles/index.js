@@ -6,6 +6,7 @@ import { useObserver } from "mobx-react-lite";
 import { STATES } from "../../consts";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import Mask from "../Mask";
+import PageTitle from "../PageTitle/PageTitle";
 
 
 
@@ -70,17 +71,11 @@ const ChooseRoles = () => {
 
   return useObserver(() => (
     <>
-      <p>choose roles</p>
-
+      <PageTitle title={"Choose Roles"} subtext={"Click on a role to explore it’s power. Drag your avatar to a role"} />
       {uiStore.currentJourney.wayfarers.map(wayfarer => (
   
-
-        <Mask  clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)}/>
+        <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)}/>
         
-   
-
-   
-
       ))}
 
 <button onClick={e => linkRole()}>Linkrole</button>

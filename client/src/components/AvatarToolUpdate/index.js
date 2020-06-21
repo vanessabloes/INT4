@@ -3,6 +3,7 @@ import { useObserver } from "mobx-react-lite";
 import styles from "./AvatarToolUpdate.module.css";
 import { useStore } from "../../hooks";
 import ClanMemberModel from "../../models/ClanMemberModel";
+import PageTitle from "../PageTitle/PageTitle";
 
 const AvatarToolUpdate = () => {
 
@@ -70,7 +71,9 @@ const AvatarToolUpdate = () => {
 
     return useObserver(() => (
 
-        <div className={styles.test}>
+        <div className={styles.overlay}>
+
+            <PageTitle title={"Make your avatar"} />
             <button onClick={closeOverlay}>X</button>
 
 
