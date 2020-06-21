@@ -8,14 +8,14 @@ const Mask = ({clanMember}) => {
     const { topMaskStore, middleMaskStore, bottomMaskStore } = useStore();
 
     return useObserver(() => (
-        <div>
+        <>
         <div className={styles.maskContainer}>
             <img className={styles.maskTop} src={topMaskStore.resolveTopMask(clanMember.topMaskId).topImage}/>
             <img className={styles.maskMiddle} src={middleMaskStore.resolveMiddleMask(clanMember.middleMaskId).middleImage}/>
             <img className={styles.maskBottom} src={bottomMaskStore.resolveBottomMask(clanMember.bottomMaskId).bottomImage}/>
         </div>
         <p>{clanMember.name}</p>
-        </div>
+        </>
     ));
 };
 

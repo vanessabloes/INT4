@@ -10,6 +10,8 @@
 
 .addMemberButton {
   z-index: 2;
+  composes: button from "../../../styles/uiControls.module.css";
+
 }
 
 .button_title {

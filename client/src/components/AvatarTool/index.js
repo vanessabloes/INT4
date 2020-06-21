@@ -11,7 +11,7 @@ const AvatarTool = () => {
 
     const [nickname, setNickname] = useState("");
     const [age, setAge] = useState("");
-
+ 
 
    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
@@ -66,14 +66,14 @@ const AvatarTool = () => {
 
         <div className={styles.overlay}>
 
+            <button className={styles.closeButton} onClick={closeOverlay}>X</button>
             <PageTitle title={"Make your avatar"} />
-            <button onClick={closeOverlay}>X</button>
            
                 <div className={styles.avatarImageWrapper}>
                     <div className={styles.buttonWrapper}>
-                        <button onClick={() => handleTopCount("down")}>&lt;</button>
-                        <button onClick={() => handleMiddleCount("down")}>&lt;</button>
-                        <button onClick={() => handleBottomCount("down")}>&lt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lt;</button>
                     </div>
 
                     <div className={styles.maskContainer}>
@@ -85,29 +85,33 @@ const AvatarTool = () => {
                     </div>
 
                     <div className={styles.buttonWrapper}>
-                        <button onClick={() => handleTopCount("up")}>&gt;</button>
-                        <button onClick={() => handleMiddleCount("up")}>&gt;</button>
-                        <button onClick={() => handleBottomCount("up")}>&gt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&gt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&gt;</button>
+                        <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&gt;</button>
                     </div>
 
                 </div>
                 <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
                 <div className={styles.inputElements}>
-                    <label>
-                        Nickname<input
+                    <label className={styles.labelWrapper}>
+                        <span className={styles.span}>Nickname</span>
+                        <input
+                            className={styles.input}
                             value={nickname}
                             type="text"
                             onChange={e => setNickname(e.target.value)} />
                     </label>
 
-                    <label>
-                        Age<input
+                    <label className={styles.labelWrapper}>
+                       <span className={styles.span} >Age</span>
+                       <input
+                            className={styles.input}
                             value={age}
                             type="number"
                             onChange={e => setAge(e.target.value)} />
                     </label>
                     <p>{uiStore.error}</p>
-                    <input type='submit' value="Create avatar" />
+                    <input className={styles.buttonSubmitm} type='submit' value="Create avatar" />
                 </div>
             </form>
         </div>

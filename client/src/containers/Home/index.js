@@ -63,8 +63,8 @@ const Home = ({ page }) => {
               </Link>
             ))
           }
-
-        </div>
+        </div> 
+        <StartJourneyButton />
 
       </div>
 

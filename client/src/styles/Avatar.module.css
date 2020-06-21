@@ -1,0 +1,124 @@
+@value tokens: "./tokens.module.css";
+@value background-color, highlight-orange from tokens;
+
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: background-color;
+    z-index: 3;
+    border-radius: 3rem;
+    border: 0.3rem solid highlight-orange;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    /* padding: 0 4rem 4rem; */
+}
+
+.closeButton {
+    composes: button from "./uiControls.module.css";
+    padding: 2rem;
+    margin: 1rem;
+    font-size: 4rem;
+    color: highlight-orange;
+    align-self: flex-end;
+}
+
+.maskContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin: 0 2rem;
+    height: 27rem;
+}
+
+.maskTop {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+
+.maskMiddle {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-start;
+    margin-top: 20%;
+}
+
+.maskBottom {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-end;
+}
+
+
+.avatarImageWrapper{
+    display: flex;
+    margin: 5rem;
+}
+
+.buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 25rem;
+
+}
+
+.buttonLeft {
+    composes: button from "./uiControls.module.css";
+    font-size: 4rem;
+}
+
+.form {
+    margin: auto;
+    width: 100%;    
+}
+
+.labelWrapper {
+    display: grid;
+    grid-template-rows: 1fr auto ;
+    margin: 1rem 0;
+}
+
+.span {
+    grid-row: 1 /2;
+    grid-column: 1;
+    z-index: 1;
+    font-size: 2rem;
+    margin-left: 1rem;
+    color: highlight-orange;
+    background-color: background-color;
+    height: 2rem;
+
+}
+
+.input {
+    composes: input from "./uiControls.module.css";
+    grid-row: 1 /3;
+    grid-column: 1;
+    margin: 1rem 0 0;
+}
+
+
+.inputElements {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.hidden {
+    composes: visually-hidden from "./index.css"
+}
+
+.buttonSubmitm {
+    composes: button from "./uiControls.module.css";
+    color: highlight-orange;
+    margin: 1rem 0 3rem;
+    font-size: 3rem;
+}
