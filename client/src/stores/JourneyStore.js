@@ -47,10 +47,10 @@ class JourneyStore {
  //   return this.resolveJourney(groupWithUsers.id);
  // };
 //
-  // updateJourney = async group => {
-  //   const json = await this.groupsService.update(group);
-  //   this.updateJourneyFromServer(json);
-  // };
+  updateJourney = async journey => {
+    const json = await this.journeysService.update(journey);
+    this.updateJourneyFromServer(json);
+  };
 
   // deleteJourney = async group => {
   //   const json = await this.groupsService.delete(group);

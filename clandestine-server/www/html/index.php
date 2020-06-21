@@ -266,6 +266,26 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+
+    $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
+      $journeyDAO = new JourneyDAO();
+      $input = $request->getParsedBody();
+      
+      $errors = $journeyDAO->getValidationErrors($input);
+
+      if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+      ->withHeader('Content-Type', 'application/json')
+      ->withStatus(422);
+      }
+    $result = $journeyDAO->update($input);
+
+    $response->getBody()->write(json_encode($result));
+    return $response
+    ->withHeader('Content-Type', 'application/json')
+    ->withStatus(200);
+    });
    
 
   $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
