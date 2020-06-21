@@ -16,34 +16,42 @@ import { useParams } from "react-router-dom";
 import Mask from "../../components/Mask";
 import ClanMemberStore from "../../stores/ClanMemberStore";
 
-const JourneyDetail = () => {
+
+const JourneyDetail =() => {
+
   const { journeyStore, clanMemberStore, uiStore, roleStore } = useStore();
   const { id } = useParams();
 
+  console.log(id);
   const journey = journeyStore.resolveJourney(id);
+  console.log(journey);
 
-  const wayfarersOfJourney = journeyStore.loadJourneyWayfarers();
+  const wayfarersOfJourney = journeyStore.loadJourneyWayfarers(id);
   console.log(wayfarersOfJourney);
 
-  return (
+  
+
+  return useObserver(() => (
     <div>
       {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={`${journey.id}` + ROUTES.nameJourney} text={"Name Journey"} />}
 
       <PageTitle title={journey.name ? journey.name : "Your Journey"} subtext={"Start your storytelling with a bonfire"} />
 
+    {/* {journey ? <p>{journey.name}</p> : <p>GEEN JOURNEY</p>} */}
 
-      {journey.wayfarers.map(wayfarer => (
+
+      {journey !== undefined ? journey.wayfarers.map(wayfarer => (
         <>
           <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-          <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
+          {/* <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p> */}
         </>
-      ))}
+      )) : <p>"loading"</p>}
 
       <NewStoryButton text={"Start new Story"} />
 
     </div>
 
-  );
+  ));
 };
 
 JourneyDetail.propTypes = {

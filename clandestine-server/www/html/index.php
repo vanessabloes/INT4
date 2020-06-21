@@ -391,6 +391,16 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
             ->withStatus(200);
   });
 
+  $routeGroup->get('/{id}/journeys', function (Request $request, Response $response, $args) {
+    $clanDAO = new ClanDAO();
+    $data = $clanDAO->selectJourneysForClan($args['id']);
+    $response->getBody()->write(json_encode($data));
+    return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withStatus(200);
+  });
+
+
   
 });
 
