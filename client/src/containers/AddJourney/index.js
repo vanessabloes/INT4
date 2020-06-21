@@ -1,12 +1,7 @@
 import React, { useState } from "react";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
-
-
-
-
 import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow"
-
 
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";

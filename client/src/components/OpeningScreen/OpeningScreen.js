@@ -23,8 +23,7 @@ const OpeningScreen = () => {
       <div className={styles.button}>
 
       {/* <LoadingWheel /> */}
-        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : <LoadingWheel />}
-        
+        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : <LoadingWheel />}        
       </div>
     </div>
   ));

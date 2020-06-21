@@ -1,9 +1,12 @@
-.test {
+@value tokens: "../../styles/tokens.module.css";
+@value background-color from tokens;
+
+.overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: aqua;
+    background-color: background-color;
     height: 50vh;
     z-index: 3;
 }

@@ -7,6 +7,7 @@ import { ReactComponent as Button } from './btnMyClan.svg';
 
 const MyClanButton = () => {
   return (
+    <>
     
     <div className={styles.buttonContainer}>
     <Link  to={ROUTES.myClan}>
@@ -14,6 +15,7 @@ const MyClanButton = () => {
       <p className={styles.hidden}>My Clan</p>
     </Link>
   </div>
+  </>
   );
 };
 

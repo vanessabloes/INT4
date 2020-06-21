@@ -12,6 +12,7 @@ import { ROUTES } from "../../consts";
 
 import { STATES } from "../../consts";
 import Manual from "../Manual";
+import PageTitle from "../PageTitle/PageTitle";
 
 
 
@@ -21,7 +22,7 @@ const Core = () => {
 
     return useObserver(() => (
         <>
-            <p>CORE</p>
+            <PageTitle title={"story 1"}/>
             <Pitstops />
             <Power />
             <Wordwheel />

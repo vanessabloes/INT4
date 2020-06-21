@@ -20,7 +20,7 @@ const Manual = () => {
         <div className={styles.image_proces_wrapper}>
           <p className={styles.image_proces_title }>Story 1</p>
           <p className={styles.image_proces_bodycopy}>In your world cars don’t exit</p>
-          <img className={styles.image_proces} src="assets/img/INFO/luciferbalk.svg" alt="story1: In your world cars don’t exit"/>
+          <img className={styles.image_proces} src="/assets/img/INFO/luciferbalk.svg" alt="story1: In your world cars don’t exit"/>
           <p className={styles.image_start}>starting word</p>
           <p className={styles.image_end}>ending word</p>
 
@@ -31,7 +31,7 @@ const Manual = () => {
           <h3 className={styles.subtitle}>Who narrates when?</h3>
           <p className={styles.bodycopy}>At the beginning of each round, a narrator gets randomly chosen. Look at who the indicator, the blue wavy arrow is pointing. Press the orange play/pause button under the word counter when you start or stop telling. When you press the play button and the wheel starts listening the soundwave will start moving.</p>
         </div>
-        <img className={styles.image_circle} src="assets/img/INFO/WhoNarratesWhen.svg" alt="Who narrates when?"/>
+        <img className={styles.image_circle} src="/assets/img/INFO/WhoNarratesWhen.svg" alt="Who narrates when?"/>
         <div>
           <h3 className={styles.subtitle}>The wordcounter</h3>
           <p className={styles.bodycopy}>During your storytelling a wordcounter counts down (here 22). It is intented that you have to link the startword with the endword before the counter reaches 0. Should the counter hit 0 before you reach the endword, you get lost in imagination. The role who who was the last to narrate has to complete a challenge with the clan to get back on track.</p>
@@ -53,7 +53,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>Change a pitstop word with a random word</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/explorer.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/explorer.svg" alt="Who narrates when?"/>
         </article>
         <article className={styles.role_wrapper}>
           <div>
@@ -63,7 +63,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>When a pitstop word is reached in max. 5 words, add 5 words to the counter.</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/budgeteer.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/budgeteer.svg" alt="Who narrates when?"/>
         </article>
         <article className={styles.role_wrapper}>
           <div>
@@ -73,7 +73,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>Skip your turn (spin the weel).</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/siesta.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/siesta.svg" alt="Who narrates when?"/>
         </article>
         <article className={styles.role_wrapper}>
           <div>
@@ -83,7 +83,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>Show a random object to use in the current pitstop.</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/prepper.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/prepper.svg" alt="Who narrates when?"/>
         </article>
         <article className={styles.role_wrapper}>
           <div>
@@ -93,7 +93,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>Play a random (not-abstract) sound to incorporate in the current pitstop.</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/foodie.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/foodie.svg" alt="Who narrates when?"/>
         </article>
         <article className={styles.role_wrapper}>
           <div>
@@ -103,7 +103,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>Couple up in the story of someone and use up to  5 words.</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/lovestruck.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/lovestruck.svg" alt="Who narrates when?"/>
         </article>
         {/* <article className={styles.role_wrapper}>
           <div>
@@ -112,7 +112,7 @@ const Manual = () => {
             <h4 className={styles.subtitle}>Clan Power:</h4>
             <p className={styles.bodycopy}>skip your turn (spin the weel)</p>
           </div>
-          <img className={styles.role_image} src="assets/img/ROLES/siesta.svg" alt="Who narrates when?"/>
+          <img className={styles.role_image} src="/assets/img/ROLES/siesta.svg" alt="Who narrates when?"/>
         </article> */}
 
         

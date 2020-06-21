@@ -3,6 +3,7 @@ import { useObserver } from "mobx-react-lite";
 import styles from "./AvatarTool.module.css";
 import { useStore } from "../../hooks";
 import ClanMemberModel from "../../models/ClanMemberModel";
+import PageTitle from "../PageTitle/PageTitle";
 
 const AvatarTool = () => {
 
@@ -63,12 +64,12 @@ const AvatarTool = () => {
 
     return useObserver(() => (
 
-        <div className={styles.test}>
-            <button onClick={closeOverlay}>X</button>
+        <div className={styles.overlay}>
 
+            <PageTitle title={"Make your avatar"} />
+            <button onClick={closeOverlay}>X</button>
            
                 <div className={styles.avatarImageWrapper}>
-
                     <div className={styles.buttonWrapper}>
                         <button onClick={() => handleTopCount("down")}>&lt;</button>
                         <button onClick={() => handleMiddleCount("down")}>&lt;</button>
@@ -107,10 +108,8 @@ const AvatarTool = () => {
                     </label>
                     <p>{uiStore.error}</p>
                     <input type='submit' value="Create avatar" />
-                    
                 </div>
             </form>
-
         </div>
     ));
 };

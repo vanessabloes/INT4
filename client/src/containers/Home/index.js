@@ -48,6 +48,7 @@ const Home = ({ page }) => {
 
     return (
 
+
       <div className={styles.home_wrapper}>
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
         <MyClanCircle page={page} clan={clan} />
