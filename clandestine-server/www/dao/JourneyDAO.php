@@ -35,11 +35,12 @@ class JourneyDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `journeys` (`id`, `name`, `image`) VALUES (:id, :name, :image)";
+      $sql = "INSERT INTO `journeys` (`id`, `name`, `image`, `clanId`) VALUES (:id, :name, :image, :clanId)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
       $stmt->bindValue(':image', $data['image']);
+      $stmt->bindValue(':clanId', $data['clanId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -79,6 +80,9 @@ class JourneyDAO extends DAO {
     }
     if(!isset($data['image'])) {
       $errors['image'] = "Please fill in a image";
+    }
+    if(!isset($data['clanId'])) {
+      $errors['clanId'] = "Please fill in a clanId";
     }
     return $errors;
   }
