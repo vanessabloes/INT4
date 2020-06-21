@@ -20,48 +20,49 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
   clanStore.loadClanMembers(uiStore.currentClan.id);
   const countClanMembers = uiStore.currentClan.clanMembers.length;
   const arc = 360 / countClanMembers;
-  
+
   let graden = null;
 
-  const showOverlay = (topMaskId, middleMaskId, bottomMaskId, name, age) => {
+  const showOverlay = (topMaskId, middleMaskId, bottomMaskId, name, age, id) => {
     uiStore.setName(name);
     uiStore.setAge(age);
     uiStore.setTopCount(topMaskId);
     uiStore.setMiddleCount(middleMaskId);
     uiStore.setBottomCount(bottomMaskId);
-    uiStore.setVisibility(true);
+    uiStore.setVisibilityUpdate(true);
+    uiStore.setSelectedClanMember(id);
   }
-  return useObserver (() => (
+  return useObserver(() => (
 
     <div className={styles.masks_wrapper}>
-    {
-      uiStore.currentClan.clanMembers.map(clanMember => (
-        
-        graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
-          
+      {
+        uiStore.currentClan.clanMembers.map(clanMember => (
+
+          graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
+
           <div className={styles.mask_element} key={clanMember.id}>
-            <div style={{ transform: `rotate(${graden}deg) translate(0rem, 16rem)`}} className={styles.mask}>
+            <div style={{ transform: `rotate(${graden}deg) translate(0rem, 16rem)` }} className={styles.mask}>
               <div className={styles.mask_image}>
-               
-                  <Mask clanMember={clanMember}/>
-       
+
+                <Mask clanMember={clanMember} />
+
               </div>
-              { 
-     page === "/" ? "" : <div><button onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age)}>Edit</button></div>
-    }
+              {
+                page === "/" ? "" : <div><button onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}>Edit</button></div>
+              }
             </div>
           </div>
-       
-      ))
-    }
-    { 
-     page === "/" ? <MyClanButton/> : <AddMemberButton text={"Add another Member"}  />  // linkTo={}
-    }
-    
-    
+
+        ))
+      }
+      {
+        page === "/" ? <MyClanButton /> : <AddMemberButton text={"Add another Member"} />  // linkTo={}
+      }
+
+
     </div>
   )
   )
-  }
-  
-  export default MyClanCircle;
+}
+
+export default MyClanCircle;

@@ -4,25 +4,25 @@ import { useStore } from "../../../hooks";
 import { ReactComponent as AddMember } from './btnAddMember.svg';
 
 
-const AddMemberButton = ({text}) => {
+const AddMemberButton = ({ text }) => {
 
-const { uiStore } = useStore();
+  const { uiStore } = useStore();
 
-const showOverlay = () => {
-  uiStore.setVisibility(true);
-}
+  const showOverlay = () => {
+    uiStore.setVisibilityCreate(true);
+  }
   return (
     <div>
-    <div className={styles.buttonContainer}>
-      <button className={styles.addMemberButton} onClick={showOverlay}>
-      
-        <AddMember/>
-        <p className={styles.button_title}>{text}</p>
-      </button>
+      <div className={styles.buttonContainer}>
+        <button className={styles.addMemberButton} onClick={showOverlay}>
+
+          <AddMember />
+          <p className={styles.button_title}>{text}</p>
+        </button>
+
+      </div>
 
     </div>
-
-</div>
   );
 };
 

@@ -8,7 +8,8 @@ class UiStore {
     this.currentJourney = undefined;
     this.addJourneyState = STATES.ADDJOURNEY_STATE_ADDWAYFARERS;
     this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
-    this.visibility = false;
+    this.visibilityCreate = false;
+    this.visibilityUpdate = false;
     this.loadedAllData = false;
     this.topCount = 0;
     this.middleCount = 0;
@@ -16,9 +17,10 @@ class UiStore {
     this.error = "";
     this.name = "";
     this.age = 0;
+    this.selectedClanMemberId = "";
   }
 
-  setError(value){
+  setError(value) {
     this.error = value;
   }
 
@@ -36,8 +38,12 @@ class UiStore {
     });
   }
 
-  setVisibility(value) {
-    this.visibility = value;
+  setVisibilityCreate(value) {
+    this.visibilityCreate = value;
+  }
+
+  setVisibilityUpdate(value) {
+    this.visibilityUpdate = value;
   }
 
   setCurrentClan = async (clan) => {
@@ -73,22 +79,22 @@ class UiStore {
     console.log(this.topCount);
   }
 
-  setTopCount(value){
+  setTopCount(value) {
     value = (parseInt(value) - 1).toString();
 
     this.topCount = value
   }
-  setMiddleCount(value){
+  setMiddleCount(value) {
     value = (parseInt(value) - 1).toString();
-   
+
     this.middleCount = value
   }
-  setBottomCount(value){
+  setBottomCount(value) {
     value = (parseInt(value) - 1).toString();
- 
+
     this.bottomCount = value
   }
-// hardcoded number vervangen door length van array - 1 die meegestuurd kan worden
+  // hardcoded number vervangen door length van array - 1 die meegestuurd kan worden
   topCountDown() {
     if (this.topCount > 0) {
       this.topCount--;
@@ -134,12 +140,16 @@ class UiStore {
     console.log(this.bottomCount);
   }
 
-  setName(value){
+  setName(value) {
     this.name = value;
   }
 
-  setAge(value){
+  setAge(value) {
     this.age = parseInt(value);
+  }
+
+  setSelectedClanMember(id) {
+    this.selectedClanMemberId = id;
   }
 
 }
@@ -156,9 +166,6 @@ decorate(UiStore, {
   addJourneyState: observable,
   setAddStoryState: action,
   addStoryState: observable,
-
-  visibility: observable,
-  setVisibility: action,
 
   loadedAllData: observable,
   setLoadedAllData: action,
@@ -182,7 +189,15 @@ decorate(UiStore, {
   name: observable,
   age: observable,
   setName: action,
-  setAge: action
+  setAge: action,
+
+  setSelectedClanMember: action,
+  selectedClanMemberId: observable,
+
+  setVisibilityCreate: action,
+  setVisibilityUpdate: action,
+  visibilityCreate: observable,
+  visibilityUpdate: observable
 
 });
 

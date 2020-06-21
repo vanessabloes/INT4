@@ -45,13 +45,21 @@ class ClanMemberModel {
   //  !this.journeys.includes(journey) && this.journeys.push(journey);
   //}
 
+  setAge(age) {
+    this.age = age;
+  }
+
+  setNickname(nickname) {
+    this.name = nickname;
+  }
+
   linkWayfarer(wayfarer) {
     !this.wayfarers.includes(wayfarer) && this.wayfarers.push(wayfarer);
   }
 
   create = async () => this.store.createClanMember(this.asJson);
-  update = async () => this.store.updateUser(this.asJson);
-  delete = async () => this.store.deleteUser(this.asJson);
+  update = async () => this.store.updateClanMember(this.asJson);
+  delete = async () => this.store.deleteClanMember(this.asJson);
 
 
   updateFromJson({ name, age, topMaskId, middleMaskId, bottomMaskId, clanId }) {
@@ -80,11 +88,11 @@ class ClanMemberModel {
     return {
       id: this.id,
       name: this.name,
+      age: this.age,
       clanId: this.clanId,
       topMaskId: this.topMaskId,
       middleMaskId: this.middleMaskId,
       bottomMaskId: this.bottomMaskId
-      //age: this.age,
       //avatar: this.avatar,
       //journeys: this.journeys
     };
@@ -103,7 +111,11 @@ decorate(ClanMemberModel, {
   setBottomMask: action,
   topMaskId: observable,
   middleMaskId: observable,
-  bottomMaskId: observable
+  bottomMaskId: observable,
+  setAge: action,
+  setNickname: action,
+  age: observable,
+  name: observable
 });
 
 export default ClanMemberModel;

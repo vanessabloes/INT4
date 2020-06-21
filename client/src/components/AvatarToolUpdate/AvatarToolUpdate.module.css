@@ -1,0 +1,60 @@
+.test {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: aqua;
+    height: 50vh;
+    z-index: 3;
+}
+
+.maskContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+}
+
+.maskTop {
+ grid-column: 1;
+ grid-row: 1;
+}
+
+
+.maskMiddle {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-start;
+    margin-top: 20%;
+}
+
+.maskBottom {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: flex-end;
+}
+
+
+.avatarImageWrapper{
+    display: flex;
+
+}
+.buttonWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-height: 25rem;
+
+}
+
+.form {
+    margin: auto;
+    width: 100%;
+    padding: 2rem 10rem;
+}
+
+.inputElements {
+    margin-top: 10rem; 
+    display: flex;
+    flex-direction: column;
+}

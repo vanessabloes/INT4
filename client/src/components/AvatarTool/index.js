@@ -20,6 +20,7 @@ const AvatarTool = () => {
    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
+        console.log()
         if(clanMemberStore.clanMembers.length < 6){
         const newClanMember = new ClanMemberModel({
             store: clanMemberStore,
@@ -38,7 +39,7 @@ const AvatarTool = () => {
     }
 
     const closeOverlay = () => {
-        uiStore.setVisibility(false);
+        uiStore.setVisibilityCreate(false);
     }
 
     const handleTopCount = (value) => {
@@ -98,19 +99,19 @@ const AvatarTool = () => {
                 <div className={styles.inputElements}>
                     <label>
                         Nickname<input
-                            value={uiStore.name !== "" ? uiStore.name : nickname}
+                            value={nickname}
                             type="text"
                             onChange={e => setNickname(e.target.value)} />
                     </label>
 
                     <label>
                         Age<input
-                            value={uiStore.age !== 0 ? uiStore.age : age}
+                            value={age}
                             type="number"
                             onChange={e => setAge(e.target.value)} />
                     </label>
                     <p>{uiStore.error}</p>
-                    {uiStore.age > 0 ? <button onClick={(e) => handleUpdateAvatar(e)}>Update avatar</button> : <input type='submit' value="Create avatar" />}
+                    <input type='submit' value="Create avatar" />
                     
                 </div>
             </form>
