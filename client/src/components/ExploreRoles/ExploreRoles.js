@@ -18,45 +18,51 @@ const ExploreRoles = () => {
 
   const history = useHistory();
   const setJourneyWithWayfarers = async () => {
- 
+
     console.log("hey")
-   await  uiStore.currentJourney.create();
+    await uiStore.currentJourney.create();
     await uiStore.currentJourney.wayfarers.forEach(wayfarer => {
-       wayfarer.create();
+      wayfarer.create();
     });
     history.push(ROUTES.journeyDetail.to + uiStore.currentJourney.id);
   }
 
   return useObserver(() => (
-    <>
-      
 
-      <div className={styles.progres}>
-        <BackToWorldButton linkTo={ROUTES.home} />
-        <p className={styles.progresTitle}>Preparing the journey</p>
-        <img className={styles.progresImg} src="assets/img/PROGRESS/3of3.svg" alt="Preparing the journey: Explore roles" />
-        <p className={styles.select}>Select wayfarers</p>
-        <p className={styles.choose}>Choose roles</p>
-        <p className={styles.explore}>Explore roles</p>
+    <div className={styles.pagewrapper}>
+      <header className={styles.header}>
+        <div className={styles.headerButton}>
+          <BackToWorldButton linkTo={ROUTES.home} />
         </div>
+        <div className={styles.progres}>
+          <p className={styles.progresTitle}>Preparing the journey</p>
+          <img className={styles.progresImg} src="assets/img/PROGRESS/3of3.svg" alt="Preparing the journey: Explore roles" />
+          <p className={styles.select}>Select wayfarers</p>
+          <p className={styles.choose}>Choose roles</p>
+          <p className={styles.explore}>Explore roles</p>
+        </div>
+        <div className={styles.headerTitle}>
+          <PageTitle title={"Your Roles"} subtext={"Discover your role and its power, which can be used during the storytelling of your journey"} />
+        </div>
+      </header>
 
-    <PageTitle title={"Your Roles"} subtext={"Discover the powers of your roles"} />
-      <ul >
-        Dit zijn alle clanMembers van de current clan:
+      <ul className={styles.roles}>
 
-          {uiStore.currentJourney ?
+        {uiStore.currentJourney ?
           uiStore.currentJourney.wayfarers.map(wayfarer => (
             <>
-              <Roleitem wayfarer={wayfarer}/>
+              <Roleitem wayfarer={wayfarer} />
             </>
           )) : "loading"}
 
       </ul>
 
-      <button onClick={setJourneyWithWayfarers}>
-       <TheePotFlow text={"Set journey"}/>
-      </button>
-    </>
+      <div className={styles.next}>
+        <button onClick={setJourneyWithWayfarers}>
+          <TheePotFlow text={"Set journey"} />
+        </button>
+      </div>
+    </div>
 
   ));
 };

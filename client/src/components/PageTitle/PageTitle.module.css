@@ -8,12 +8,13 @@
 }
 
 .title {
-  composes: page_title from "../../styles/typo.module.css"
-
+  composes: page_title from "../../styles/typo.module.css";
 }
 
 .subtext {
-  composes: subtext from "../../styles/typo.module.css"
+  composes: subtext from "../../styles/typo.module.css";
+  text-align: center;
+  padding: 0 4rem;
 }
 
 
