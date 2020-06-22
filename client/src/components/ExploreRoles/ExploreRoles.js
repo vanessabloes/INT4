@@ -30,6 +30,7 @@ const ExploreRoles = () => {
   return useObserver(() => (
 
     <div className={styles.pagewrapper}>
+
       <header className={styles.header}>
         <div className={styles.headerButton}>
           <BackToWorldButton linkTo={ROUTES.home} />

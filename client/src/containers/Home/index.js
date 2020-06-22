@@ -9,7 +9,7 @@ import OpeningSurrealWorld from "../../components/OpeningSurrealWorld/OpeningSur
 import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
-import MyClanCircle from "../../components/MyClanCircle/";
+import MyClanCircleTiny from "../../components/MyClanCircleTiny/";
 
 import { STATES } from "../../consts/index";
 import styles from "./Home.module.css"
@@ -22,8 +22,8 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
-console.log(uiStore.currentClan)
- // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
+  console.log(uiStore.currentClan)
+  // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
   return useObserver(() => {
 
@@ -42,9 +42,10 @@ console.log(uiStore.currentClan)
     return (
 
       <div className={styles.home_wrapper}>
-        <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
-        <StartJourneyButton />
-        <MyClanCircle page={page} clan={uiStore.currentClan} />
+
+        <div className={styles.homeTitle}>
+          <PageTitle title={"Uncover your world"} subtext={"Go on adventurious journeys with our clan and reveal all parts of your imaginary world bit by bit"} />
+        </div>
 
         <div className={styles.worlds_wrapper}>
           {
@@ -54,7 +55,16 @@ console.log(uiStore.currentClan)
               </Link>
             ))
           }
-        </div> 
+        </div>
+
+        <div className={styles.homeClan}>
+          <MyClanCircleTiny page={page} clan={uiStore.currentClan} />
+        </div>
+
+        <div className={styles.homeButton}>
+          <StartJourneyButton />
+        </div>
+
       </div>
 
     );
