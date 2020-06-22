@@ -10,6 +10,7 @@ import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
 import MyClanCircle from "../../components/MyClanCircle/";
+
 import { STATES } from "../../consts/index";
 import styles from "./Home.module.css"
 import World from "../../components/World/World"
@@ -40,6 +41,7 @@ console.log(uiStore.currentClan)
 
     return (
 
+          
 
       <div className={styles.home_wrapper}>
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
@@ -53,9 +55,9 @@ console.log(uiStore.currentClan)
               </Link>
             ))
           }
-        </div>
-
+        </div> 
         <StartJourneyButton />
+
       </div>
 
     );

@@ -1,63 +1,63 @@
-@value tokens: "../../styles/tokens.module.css";
-@value background-color from tokens;
-
 .overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: background-color;
-    height: 50vh;
-    z-index: 3;
+    composes: overlay from "../../styles/Avatar.module.css";
+}
+
+.closeButton {
+    composes: closeButton from "../../styles/Avatar.module.css";
 }
 
 .maskContainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
+    composes: maskContainer from "../../styles/Avatar.module.css";
 }
 
 .maskTop {
- grid-column: 1;
- grid-row: 1;
+    composes: maskTop from "../../styles/Avatar.module.css";
 }
 
-
 .maskMiddle {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: flex-start;
-    margin-top: 20%;
+    composes: maskMiddle from "../../styles/Avatar.module.css";
 }
 
 .maskBottom {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: flex-end;
+    composes: maskBottom from "../../styles/Avatar.module.css";
 }
-
 
 .avatarImageWrapper{
-    display: flex;
-
+    composes: avatarImageWrapper from "../../styles/Avatar.module.css";
 }
-.buttonWrapper{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    min-height: 25rem;
 
+.buttonWrapper{
+    composes: buttonWrapper from "../../styles/Avatar.module.css";
+}
+
+.buttonLeft {
+    composes: buttonLeft from "../../styles/Avatar.module.css";
 }
 
 .form {
-    margin: auto;
-    width: 100%;
-    padding: 2rem 10rem;
+    composes: form from "../../styles/Avatar.module.css";  
+}
+
+.labelWrapper {
+    composes: labelWrapper from "../../styles/Avatar.module.css"; 
+}
+
+.span {
+    composes: span from "../../styles/Avatar.module.css";
+}
+
+.input {
+    composes: input from "../../styles/Avatar.module.css";
 }
 
 .inputElements {
-    margin-top: 10rem; 
-    display: flex;
-    flex-direction: column;
+    composes: inputElements from "../../styles/Avatar.module.css";
+}
+
+.hidden {
+    composes: visually-hidden from "../../styles/index.css"
+}
+
+.buttonSubmitm {
+    composes: buttonSubmitm from "../../styles/Avatar.module.css";
 }

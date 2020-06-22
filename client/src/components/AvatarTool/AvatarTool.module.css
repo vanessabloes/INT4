@@ -1,0 +1,63 @@
+.overlay {
+    composes: overlay from "../../styles/Avatar.module.css";
+}
+
+.closeButton {
+    composes: closeButton from "../../styles/Avatar.module.css";
+}
+
+.maskContainer {
+    composes: maskContainer from "../../styles/Avatar.module.css";
+}
+
+.maskTop {
+    composes: maskTop from "../../styles/Avatar.module.css";
+}
+
+.maskMiddle {
+    composes: maskMiddle from "../../styles/Avatar.module.css";
+}
+
+.maskBottom {
+    composes: maskBottom from "../../styles/Avatar.module.css";
+}
+
+.avatarImageWrapper{
+    composes: avatarImageWrapper from "../../styles/Avatar.module.css";
+}
+
+.buttonWrapper{
+    composes: buttonWrapper from "../../styles/Avatar.module.css";
+}
+
+.buttonLeft {
+    composes: buttonLeft from "../../styles/Avatar.module.css";
+}
+
+.form {
+    composes: form from "../../styles/Avatar.module.css";  
+}
+
+.labelWrapper {
+    composes: labelWrapper from "../../styles/Avatar.module.css"; 
+}
+
+.span {
+    composes: span from "../../styles/Avatar.module.css";
+}
+
+.input {
+    composes: input from "../../styles/Avatar.module.css";
+}
+
+.inputElements {
+    composes: inputElements from "../../styles/Avatar.module.css";
+}
+
+.hidden {
+    composes: visually-hidden from "../../styles/index.css"
+}
+
+.buttonSubmitm {
+    composes: buttonSubmitm from "../../styles/Avatar.module.css";
+}

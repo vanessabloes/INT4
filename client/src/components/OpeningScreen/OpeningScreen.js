@@ -22,10 +22,15 @@ const OpeningScreen = () => {
       <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg"alt="nog een gele wolk"/>
       <div className={styles.button}>
 
-      {/* <LoadingWheel /> */}
+      
         {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)}/> : <LoadingWheel />}        
-      </div>
+      </div>      
     </div>
+    
+
+
+
+
   ));
 };
 
