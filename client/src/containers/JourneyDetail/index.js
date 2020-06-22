@@ -32,6 +32,7 @@ const JourneyDetail = () => {
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
   const [state, setState] = useState(STATE_LOADING);
 
+ 
 
   useEffect(() => {
 
@@ -40,7 +41,7 @@ const JourneyDetail = () => {
       try {
 
         const journey = await journeyStore.loadJourney(id);
-
+        uiStore.currentJourney = journey;
         if (!journey) {
           setState(STATE_NOT_FOUND);
           return;

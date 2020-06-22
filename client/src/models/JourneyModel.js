@@ -12,7 +12,7 @@ class JourneyModel {
     this.store = store;
     this.stories = stories;
     this.wayfarers = [];
-    this.definedWords = [];
+    this.definedStoryWords = [];
     this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
     //this.updateFromJson(json);
     this.store.addJourney(this);
@@ -61,8 +61,8 @@ class JourneyModel {
 
   }
 
-  async addDefinedWord(definedWord) {
-    await this.definedWords.push(definedWord);
+  async addDefinedStoryWord(definedStoryWord) {
+    await this.definedStoryWords.push(definedStoryWord);
   }
 
   get asJson() {

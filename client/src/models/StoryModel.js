@@ -12,7 +12,7 @@ class StoryModel {
     this.definedStoryWords = [];
     //this.contextId = contextId;
 
-    //this.getDefinedWords();
+   // this.getDefinedWords();
     // this.updateFromJson({
     //  journeyId
     // });
@@ -24,13 +24,17 @@ class StoryModel {
 
   }
 
+  addDefinedStoryWord(definedStoryWord){
+    this.definedStoryWords.push(definedStoryWord);
+  }
+
   getDefinedWords() {
 
     const allDefinedWordsFromServer = this.store.rootStore.definedWordStore.definedWords;
 
     console.log(allDefinedWordsFromServer);
 
-    for (let index = 0; this.definedStoryWords.length < 3; index++) {
+    for (let index = 0; this.definedStoryWords.length < this.store.uiStore.currentJourney.wayfarers; index++) {
       const randomItem = allDefinedWordsFromServer[Math.floor(Math.random() * allDefinedWordsFromServer.length)];
       // console.log("choose a random word");
 
