@@ -2,7 +2,6 @@
   
 }
 
-
 .progres {
   composes: progres from "../../styles/ProcesBar.module.css";
 }
@@ -29,4 +28,23 @@
   align-self: end;
   justify-self: center;
   margin: 0;
+}
+
+.pagewrapper {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 2fr 6fr 1fr;
+}
+
+.next {
+ display: flex;
+ justify-content: flex-end;
+ align-items: flex-start;
+ margin-right: 10rem;
+ margin-bottom: 5rem;
+}
+
+.roles {
+  height: 50%;
+  overscroll-y: scroll;
 }

@@ -1,0 +1,29 @@
+
+.maskWrapper {
+    composes: maskContainer from "../../styles/Avatar.module.css";
+    margin: 0;
+
+}
+
+.maskTop {
+    composes: maskTop from "../../styles/Avatar.module.css";
+
+}
+
+
+.maskMiddle {
+    composes: maskMiddle from "../../styles/Avatar.module.css";
+
+
+}
+ 
+.maskBottom {
+    composes: maskBottom from "../../styles/Avatar.module.css";
+}
+
+.name {
+    composes: button_title from "../../styles/typo.module.css";
+    text-align: center;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
