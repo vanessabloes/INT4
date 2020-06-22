@@ -1,3 +1,6 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
 .home_wrapper {
   padding: 3rem;
   display: grid;
@@ -14,6 +17,7 @@
   display: flex;
   flex-flow: row;
   align-items: center;
+  justify-content: center;
   overflow-x: scroll;
   width: 100%;
 }
@@ -34,6 +38,13 @@
   display: flex;
   flex-flow: row;
   align-items: center;
+}
+
+.homeClanInfo {
+  font-family: title-font;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
 }
 
 @keyframes float {
