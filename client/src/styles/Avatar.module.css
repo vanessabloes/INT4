@@ -15,7 +15,8 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    /* padding: 0 4rem 4rem; */
+    padding: 0 4rem 4rem;
+    
 }
 
 .closeButton {
@@ -34,6 +35,7 @@
     justify-items: center;
     margin: 0 2rem;
     height: 27rem;
+    width: 22rem;
 }
 
 .maskTop {

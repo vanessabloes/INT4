@@ -59,6 +59,8 @@ const AddWayfarers = () => {
         </div>
       </div>
       <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"} />
+     
+     
       <div>
         <ul className={styles.membersWrapper}>
           Dit zijn alle clanMembers van de current clan:
@@ -66,8 +68,11 @@ const AddWayfarers = () => {
           {uiStore.currentClan ?
             uiStore.currentClan.clanMembers.map(clanMember => (
               <>
-                <button onClick={() => addWayfarer(clanMember.id)} >{clanMember.name}</button>
+                <button onClick={() => addWayfarer(clanMember.id)} >
+                  <p>{clanMember.name}</p>
                 <Mask clanMember={clanMember} />
+                </button>
+                
               </>
             )) : "loading"}
 
