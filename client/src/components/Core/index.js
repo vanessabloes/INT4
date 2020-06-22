@@ -27,7 +27,6 @@ const Core = () => {
     console.log(id);
 
     const wayfarers = journeyStore.resolveJourney(id).wayfarers;
-
     const showOverlay = () => {
         
     }
@@ -36,7 +35,11 @@ const Core = () => {
         <>
             <PageTitle title={"story 1"} />
             <Pitstops />
-
+            {uiStore.currentStory.definedStoryWords.map(definedStoryWord => (
+                <ul>
+                    <li>{definedStoryWord.content}</li>
+                </ul>
+            ))}
             {wayfarers.map(wayfarer => (
                 <ul>
                     <li onClick={showOverlay}key={wayfarer.id}><Power wayfarer={wayfarer} /></li>

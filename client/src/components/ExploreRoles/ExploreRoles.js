@@ -4,7 +4,7 @@ import React from "react";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 
-import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
+import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
 import { ROUTES } from "../../consts";
 import JourneyModel from "../../models/JourneyModel";
 import JourneyStore from "../../stores/JourneyStore";
@@ -15,19 +15,21 @@ import PageTitle from "../PageTitle/PageTitle";
 
 const ExploreRoles = () => {
   const { uiStore, roleStore, clanMemberStore } = useStore()
-  const { history } = useHistory()
 
-  const setJourneyWithWayfarers = () => {
+  const history = useHistory();
+  const setJourneyWithWayfarers = async () => {
+ 
     console.log("hey")
-    uiStore.currentJourney.create();
-    uiStore.currentJourney.wayfarers.forEach(wayfarer => {
-      wayfarer.create();
+   await  uiStore.currentJourney.create();
+    await uiStore.currentJourney.wayfarers.forEach(wayfarer => {
+       wayfarer.create();
     });
+    history.push(ROUTES.journeyDetail.to + uiStore.currentJourney.id);
   }
 
   return useObserver(() => (
     <>
-      <p onClick={setJourneyWithWayfarers} >explore roles</p>
+      
 
     <PageTitle title={"Your Roles"} subtext={"Discover the powers of your roles"} />
       <ul >
@@ -44,7 +46,7 @@ const ExploreRoles = () => {
       </ul>
 
       <button onClick={setJourneyWithWayfarers}>
-        <TheePotLink text={"Set Journey"} linkTo={ROUTES.journeyDetail.to + `${uiStore.currentJourney.id}`} />
+       <TheePotFlow text={"Set journey"}/>
       </button>
     </>
 

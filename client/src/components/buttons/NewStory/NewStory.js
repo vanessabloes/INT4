@@ -7,18 +7,26 @@ import { ReactComponent as Button } from './btnNewStory.svg';
 import StoryModel from "../../../models/StoryModel";
 import { useStore } from "../../../hooks";
 import { useObserver } from "mobx-react-lite";
+import DefinedStoryWordModel from "../../../models/DefinedStoryWordModel";
+import { v4 } from "uuid";
+import JourneyStore from "../../../stores/JourneyStore";
+import DefinedWordStore from "../../../stores/DefinedWordStore";
 
 const NewStoryButton = ({ text, id }) => {
 
-  const { storyStore, uiStore } = useStore();
+  const { storyStore, uiStore, journeyStore, definedWordStore } = useStore();
 
+
+    
   const addNewStory = () => {
-    const newStory = new StoryModel(
-      {
+    const journey = journeyStore.resolveJourney(id)
+    
+    const newStory = new StoryModel({
         store: storyStore,
-        journeyId: "test"
-      }
-    );
+        journeyId: id
+      });
+    uiStore.setCurrentStory(newStory);
+    definedWordStore.getDefinedWords(id);
 
   }
   return useObserver(() => (

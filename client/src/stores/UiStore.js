@@ -20,6 +20,11 @@ class UiStore {
     this.age = 0;
     this.selectedClanMemberId = "";
     this.selectedPowerId = "";
+    this.currentStory = undefined;
+  }
+
+  setCurrentStory(story){
+    this.currentStory = story;
   }
 
   setError(value) {
@@ -210,7 +215,10 @@ decorate(UiStore, {
   setVisibilityPower: action,
   visibilityPower: observable,
   setSelectedPower: action,
-  selectedPowerId: observable
+  selectedPowerId: observable,
+
+  setCurrentStory: action,
+  currentStory: observable
 
 });
 

@@ -1,6 +1,6 @@
 import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
-import DefinedStoryWordModel from "../models/DefinedWordModel";
+import DefinedStoryWordModel from "../models/DefinedStoryWordModel";
 import { v4 } from "uuid";
 
 
@@ -30,8 +30,10 @@ class DefinedStoryWordStore {
   };
 
   updateDefinedStoryWordFromServer(json) {
+
      let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
-     
+    console.log("gecheckt")
+     console.log(definedStoryWord)
      if (!definedStoryWord) {
         
         definedStoryWord = new DefinedStoryWordModel({

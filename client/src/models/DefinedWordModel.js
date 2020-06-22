@@ -6,7 +6,7 @@ class DefinedWordModel {
     this.content = content;
     this.store = store;
   
-    //this.store.addDefinedWord(this);
+    this.store.addDefinedWord(this);
   }
 
 
