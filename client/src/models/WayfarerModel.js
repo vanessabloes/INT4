@@ -2,7 +2,7 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
-  constructor({ id = v4(), clanMemberId, journeyId, roleId, store, ...json }) {
+  constructor({ id = v4(), clanMemberId, journeyId, store, ...json }) {
     this.id = id;
     if (!store) {
       throw new Error("A wayfarer needs a store");
@@ -10,7 +10,7 @@ class WayfarerModel {
     this.store = store;
     this.clanMemberId = clanMemberId;
     this.journeyId = journeyId;
-    this.roleId = roleId;
+ 
 
     this.store.addWayfarer(this);
 
@@ -33,9 +33,9 @@ class WayfarerModel {
       clanMember.linkWayfarer(this);
     }
   }
-  setRole(roleId) {
-    if (roleId) {
-      this.roleId = roleId;
+  setRole(role) {
+    if (role) {
+      this.roleId = role.id;
       // this.role.linkWayfarer(this);
     }
   }

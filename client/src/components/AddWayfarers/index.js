@@ -30,7 +30,6 @@ const AddWayfarers = () => {
       id: v4(), //OKEEE
       clanMemberId: id, // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon) //OKE!
       journeyId: uiStore.currentJourney.id,
-      roleId: "1",
       store: wayfarerStore
     });
 
