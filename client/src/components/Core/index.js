@@ -3,6 +3,7 @@ import { useObserver } from "mobx-react-lite";
 
 import Pitstops from "../Pitstops";
 import Power from "../Power";
+import PowerOverlay from "../PowerOverlay";
 import Wordwheel from "../Wordwheel";
 
 import { useStore } from "../../hooks";
@@ -13,20 +14,35 @@ import { ROUTES } from "../../consts";
 import { STATES } from "../../consts";
 import Manual from "../Manual";
 import PageTitle from "../PageTitle/PageTitle";
+import JourneyStore from "../../stores/JourneyStore";
+import { useParams } from "react-router-dom";
 
 
 
 const Core = () => {
 
-    const { uiStore } = useStore();
+    const { uiStore, journeyStore } = useStore();
+    const { id } = useParams();
+
+    console.log(id);
+
+    const wayfarers = journeyStore.resolveJourney(id).wayfarers;
 
     return useObserver(() => (
         <>
-            <PageTitle title={"story 1"}/>
+            <PageTitle title={"story 1"} />
             <Pitstops />
-            <Power />
+
+            {wayfarers.map(wayfarer => (
+                <ul>
+                    <li key={wayfarer.id}><Power wayfarer={wayfarer} /></li>
+                    {uiStore.visibilityPower ?
+                        <li key={wayfarer.id}><PowerOverlay wayfarer={wayfarer} /></li> : ""}
+                </ul>
+            ))}
+
             <Wordwheel />
-            <Manual/>
+            <Manual />
             <button
                 value="challenge"
                 onClick={e => uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE)}>

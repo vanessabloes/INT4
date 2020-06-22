@@ -30,7 +30,7 @@ const App = () => {
            <AddJourney />
        </Route>
 
-       <Route path={ROUTES.addStory}>
+       <Route path={ROUTES.addStory.path}>
            <AddStory />
        </Route>
 

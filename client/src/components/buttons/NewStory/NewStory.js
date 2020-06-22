@@ -1,15 +1,16 @@
 import React from "react";
 import styles from "./NewStory.module.css"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 
 import { ReactComponent as Button } from './btnNewStory.svg';
 import StoryModel from "../../../models/StoryModel";
 import { useStore } from "../../../hooks";
+import { useObserver } from "mobx-react-lite";
 
-const NewStoryButton = ({ text }) => {
+const NewStoryButton = ({ text, id }) => {
 
-  const { storyStore } = useStore();
+  const { storyStore, uiStore } = useStore();
 
   const addNewStory = () => {
     const newStory = new StoryModel(
@@ -18,16 +19,18 @@ const NewStoryButton = ({ text }) => {
         journeyId: "test"
       }
     );
-    
+
   }
-  return (
+  return useObserver(() => (
     <div className={styles.buttonContainer}>
-      <Link to={ROUTES.addStory}>
-        <Button className={styles.button} onClick={addNewStory} />
-        <p className={styles.button_title}>{text}</p>
-      </Link>
+      <button onClick={addNewStory}>
+        <Link to={`${id}` + ROUTES.addStory.to}>
+          <Button className={styles.button} />
+          <p className={styles.button_title}>{text}</p>
+        </Link>
+      </button>
     </div>
-  );
+  ));
 };
 
 export default NewStoryButton;

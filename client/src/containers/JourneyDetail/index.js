@@ -15,6 +15,8 @@ import { useParams } from "react-router-dom";
 import Mask from "../../components/Mask";
 import Loading from "../../components/Loading";
 import ClanStore from "../../stores/ClanStore";
+import StoryModel from "../../models/StoryModel";
+import StoryStore from "../../stores/StoryStore";
 
 
 
@@ -24,7 +26,7 @@ const JourneyDetail = () => {
   const STATE_LOADING_MORE_DETAILS = 'loading more details';
   const STATE_FULLY_LOADED = 'fully loaded';
 
-  const { journeyStore, clanMemberStore, uiStore, clanStore, roleStore } = useStore();
+  const { journeyStore, clanMemberStore, uiStore, clanStore, roleStore, storyStore } = useStore();
   const { id } = useParams(); // check
 
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
@@ -58,7 +60,12 @@ const JourneyDetail = () => {
   }, [id, journeyStore]);
 
 
-  console.log(journey.wayfarers);
+  const makeNewStory = () => {
+    const story = new StoryModel({
+      store: storyStore,
+      journeyId: id
+    })
+  }
 
   return useObserver(() => {
     if (state === STATE_NOT_FOUND) {
@@ -81,7 +88,7 @@ const JourneyDetail = () => {
           </>
         ))}
 
-        <NewStoryButton text={"Start new Story"} />
+        <NewStoryButton text={"Start new Story"} onClick={makeNewStory} id={id}/>
 
       </div>
 

@@ -10,6 +10,7 @@ class UiStore {
     this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
     this.visibilityCreate = false;
     this.visibilityUpdate = false;
+    this.visibilityPower = false;
     this.loadedAllData = false;
     this.topCount = 0;
     this.middleCount = 0;
@@ -18,6 +19,7 @@ class UiStore {
     this.name = "";
     this.age = 0;
     this.selectedClanMemberId = "";
+    this.selectedPowerId = "";
   }
 
   setError(value) {
@@ -44,6 +46,10 @@ class UiStore {
 
   setVisibilityUpdate(value) {
     this.visibilityUpdate = value;
+  }
+
+  setVisibilityPower(value) {
+    this.visibilityPower = value
   }
 
   setCurrentClan = async (clan) => {
@@ -100,7 +106,7 @@ class UiStore {
     } else if (this.topCount === 0) {
       this.topCount = 3;
     }
-    
+
   }
 
   middleCountUp() {
@@ -109,7 +115,7 @@ class UiStore {
     } else if (this.middleCount === 3) {
       this.middleCount = 0;
     }
-  
+
   }
 
   middleCountDown() {
@@ -118,7 +124,7 @@ class UiStore {
     } else if (this.middleCount === 0) {
       this.middleCount = 3;
     }
-  
+
   }
 
   bottomCountUp() {
@@ -127,7 +133,7 @@ class UiStore {
     } else if (this.bottomCount === 3) {
       this.bottomCount = 0;
     }
- 
+
   }
 
   bottomCountDown() {
@@ -149,6 +155,10 @@ class UiStore {
 
   setSelectedClanMember(id) {
     this.selectedClanMemberId = id;
+  }
+
+  setSelectedPower(id) {
+    this.selectedPowerId = id;
   }
 
 }
@@ -196,7 +206,11 @@ decorate(UiStore, {
   setVisibilityCreate: action,
   setVisibilityUpdate: action,
   visibilityCreate: observable,
-  visibilityUpdate: observable
+  visibilityUpdate: observable,
+  setVisibilityPower: action,
+  visibilityPower: observable,
+  setSelectedPower: action,
+  selectedPowerId: observable
 
 });
 
