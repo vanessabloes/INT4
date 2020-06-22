@@ -61,44 +61,58 @@ const AddWayfarers = () => {
 
   return useObserver(() => (
     <>
-      {/* <div>
-        <BackToWorldButton linkTo={ROUTES.home} />
-        <div className={styles.progres}>
-          <p className={styles.progresTitle}>Preparing the journey</p>
-          <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="" />
-          <p className={styles.select}>Select wayfarers</p>
-          <p className={styles.choose}>Choose roles</p>
-          <p className={styles.explore}>Explore roles</p>
-        </div>
-      </div>
-      <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"} />
-      */}
-     
-      <div>
-        <ul className={styles.membersWrapper}>
 
-          {uiStore.currentClan ?
-            uiStore.currentClan.clanMembers.map(clanMember => ( 
-              <li>
-            {/* <button onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} ></button> */}
-                  <MaskSmall clanMember={clanMember} />
-            </li>    
-                
+  <div className={styles.pagewrapper}>
+    <header className={styles.header}>
+      <div className={styles.headerButton}>
+        <BackToWorldButton linkTo={ROUTES.home} />
+      </div>
+      <div className={styles.progres}>
+        <p className={styles.progresTitle}>Preparing the journey</p>
+        <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="Preparing the journey: Select wayfarers" />
+        <p className={styles.select}>Select wayfarers</p>
+        <p className={styles.choose}>Choose roles</p>
+        <p className={styles.explore}>Explore roles</p>
+      </div>
+      <div className={styles.headerTitle}>
+        <PageTitle title={"Your Roles"} subtext={"select the wayfarers of the journey"} />
+      </div>
+    </header>
+
+
+
+     
+      <div className={styles.membersWrapper}>
+        <ul className={styles.membersList}>
+
+          {uiStore.currentClan ? uiStore.currentClan.clanMembers.map(clanMember => ( 
             
-            )) : "loading"}
+            <li className={styles.memberListItem} key={clanMember.id}>
+              <button className={styles.button} onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)}>
+                <MaskSmall clanMember={clanMember} />
+              </button>
+            </li>
+          
+          )) : "loading"}
 
         </ul>
-        {/* <AddMemberButton text={"Add member"} onClick={showOverlay} /> */}
+        <AddMemberButton text={"Add member"} onClick={showOverlay} />
       </div>
-      {/* <div className={styles.container}>
+
+
+
+
+
+      <div className={styles.imagesContainer}>
         <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" />
         <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" />
         <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
       </div>
-      <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
-      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""} */}
-
-      
+      <div className={styles.buttonNext}>
+        <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+        {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
+      </div>
+  </div>
     </>
   ));
 };

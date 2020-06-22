@@ -57,11 +57,10 @@ const ExploreRoles = () => {
 
       </ul>
 
-      <div className={styles.next}>
-        <button onClick={setJourneyWithWayfarers}>
+        <button className={styles.buttonNext} onClick={setJourneyWithWayfarers}>
           <TheePotFlow text={"Set journey"} />
         </button>
-      </div>
+
     </div>
 
   ));
