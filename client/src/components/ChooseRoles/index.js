@@ -18,17 +18,26 @@ const ChooseRoles = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
 
   const linkRole = () => {
-    for (let index = 0; index < roleStore.uniqueRoles.length; index++) {
-      for (let index = 0; index < uiStore.currentJourney.wayfarers.length; index++) {
-        uiStore.currentJourney.wayfarers[index].setRole(roleStore.uniqueRoles[index].id);
-      }
+    // for (let index = 0; index < roleStore.uniqueRoles.length; index++) {
+    //   for (let index2 = 0; index2 < uiStore.currentJourney.wayfarers.length; index2++) {
+    //     uiStore.currentJourney.wayfarers[index].setRole(roleStore.uniqueRoles[index2]);
+    //   }
       
-    }
-    console.log(roleStore.uniqueRoles)
-    console.log(uiStore.currentJourney.wayfarers)
-    console.log(uiStore.currentJourney.wayfarers[0].setRole(roleStore.uniqueRoles[0].id));
+    // }
+    // console.log(roleStore.uniqueRoles)
+    // console.log(uiStore.currentJourney.wayfarers)
+    // console.log(uiStore.currentJourney.wayfarers[0].setRole(roleStore.uniqueRoles[0]));
+    const wayfarersToLinkRole = uiStore.currentJourney.wayfarers;
+    console.log(wayfarersToLinkRole)
+    wayfarersToLinkRole.forEach(setRole);
 
 
+  }
+
+  function setRole(wayfarer, index) {
+    console.log(index)
+    console.log(wayfarer)
+    wayfarer.setRole(roleStore.uniqueRoles[index]);
   }
 
 
@@ -88,7 +97,7 @@ const ChooseRoles = () => {
         
       ))}
 
-<button onClick={e => linkRole()}>Linkrole</button>
+<button onClick={linkRole}>Linkrole</button>
 {/* 
 de op geklikte clanMember zn id checken
 

@@ -21,37 +21,50 @@ const App = () => {
   const { journeyStore, uiStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
   return useObserver(() => (
       <div className={Styles.appContainer}>
-        {uiStore.loadedAllData ? 
+   
         <Switch>
-            <Route path={ROUTES.myClan}>
-                <MyClan />
-            </Route>
+       <Route path={ROUTES.myClan}>
+       {uiStore.loadedAllData ? 
+           <MyClan />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.addJourney}>
-                <AddJourney />
-            </Route>
+       <Route path={ROUTES.addJourney}>
+       {uiStore.loadedAllData ? 
+           <AddJourney />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.addStory.path}>
-                <AddStory />
-            </Route>
+       <Route path={ROUTES.addStory.path}>
+       {uiStore.loadedAllData ? 
+           <AddStory />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.nameJourney.path}>
-                <NameJourney />
-            </Route>
+       <Route path={ROUTES.nameJourney.path}>
+       {uiStore.loadedAllData ? 
+           <NameJourney />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.storyDetail.path}>
-                <StoryDetail />
-            </Route>
+       <Route path={ROUTES.storyDetail.path}>
+       {uiStore.loadedAllData ? 
+           <StoryDetail />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.journeyDetail.path}>
-                <JourneyDetail />
-            </Route>
+       <Route path={ROUTES.journeyDetail.path}>
+       {uiStore.loadedAllData ? 
+           <JourneyDetail />
+           : <Loading/>}
+       </Route>
 
-            <Route path={ROUTES.home}>
-                <Home page={ROUTES.home}/>
-            </Route>
-        </Switch>
-        : <Loading/>}
+       <Route path={ROUTES.home}>
+           <Home page={ROUTES.home}/>
+       </Route>
+ </Switch>
+
+>>>>>>> b14a017c37fe29429e6bf9f2e5400cba232e4408
     </div>
     
   ));

@@ -32,16 +32,23 @@ const JourneyDetail = () => {
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
   const [state, setState] = useState(STATE_LOADING);
 
- 
+  const makeNewStory = () => {
+    const story = new StoryModel({
+      store: storyStore,
+      journeyId: id
+    })
+  }
 
   useEffect(() => {
 
     const loadJourneyy = async (id) => {
 
-      try {
-
+     try{
+        console.log(id)
         const journey = await journeyStore.loadJourney(id);
-        uiStore.currentJourney = journey;
+        uiStore.setCurrentJourney(journey);
+
+        console.log(journey)
         if (!journey) {
           setState(STATE_NOT_FOUND);
           return;
@@ -51,22 +58,18 @@ const JourneyDetail = () => {
         await clanStore.loadClanMembers(uiStore.currentClan.id);
         await journeyStore.loadWayfarersForJourney(id);
         setState(STATE_FULLY_LOADED);
-
       }
-      catch (error) {
-        setState(STATE_NOT_FOUND);
-      }
+     
+       catch (error) {
+         console.log("error")
+         setState(STATE_NOT_FOUND);
+       }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);
 
 
-  const makeNewStory = () => {
-    const story = new StoryModel({
-      store: storyStore,
-      journeyId: id
-    })
-  }
+
 
   return useObserver(() => {
     if (state === STATE_NOT_FOUND) {
@@ -85,7 +88,7 @@ const JourneyDetail = () => {
         {journey.wayfarers.map(wayfarer => (
           <>
             <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-            <p>{roleStore.resolveRole(wayfarer.roleId.id).roleName}</p>
+            <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
           </>
         ))}
 
