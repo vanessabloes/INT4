@@ -3,7 +3,6 @@ import React, { useState } from "react";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
-import ClanMemberStore from "../../stores/ClanMemberStore";
 import OpeningScreen from "../../components/OpeningScreen/OpeningScreen";
 import OpeningSurrealWorld from "../../components/OpeningSurrealWorld/OpeningSurrealWorld";
 import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
@@ -18,7 +17,7 @@ import { Link } from "react-router-dom";
 
 
 const Home = ({ page }) => {
-  const { launchFlowStore, clanStore, uiStore } = useStore()
+  const { launchFlowStore, uiStore } = useStore()
 
   const [homeState, setState] = useState();
 
@@ -44,10 +43,14 @@ const Home = ({ page }) => {
       <div className={styles.home_wrapper}>
 
         <div className={styles.homeTitle}>
-          <PageTitle title={"Uncover your world"} subtext={"Go on adventurious journeys with our clan and reveal all parts of your imaginary world bit by bit"} />
+          <PageTitle title={"Uncover your world"} subtext={"Go on adventurious journeys with your clan and reveal all parts of your imaginary world bit by bit"} />
         </div>
 
+
         <div className={styles.worlds_wrapper}>
+
+          <div className={styles.arrow}>&lsaquo;</div>
+
           {
             uiStore.currentClan.journeys.map(journey => (
               <Link to={journey.id}>
@@ -55,7 +58,11 @@ const Home = ({ page }) => {
               </Link>
             ))
           }
+          <div className={styles.arrow}>&rsaquo;</div>
+
         </div>
+
+
 
         <div className={styles.homeClan}>
           <MyClanCircleTiny page={page} clan={uiStore.currentClan} />

@@ -1,14 +1,11 @@
 import React from "react";
 import styles from "./TheePotLink.module.css"
 
-
-
 import { ReactComponent as TheePot } from './btnTheePot.svg';
-import { useStore } from "../../../hooks";
+
 
 
 const TheePotFlow = ({text, onClick}) => {
-  const { launchFlowStore } = useStore()
 
 
   return (

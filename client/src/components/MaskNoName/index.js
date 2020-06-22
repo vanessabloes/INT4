@@ -10,9 +10,9 @@ const MaskNoName = ({ clanMember }) => {
     return useObserver(() => (
         <div className={styles.maskContainer}>
             <div className={styles.maskWrapper}>
-                <img className={styles.maskTop} src={topMaskStore.resolveTopMask(clanMember.topMaskId).topImage} />
-                <img className={styles.maskMiddle} src={middleMaskStore.resolveMiddleMask(clanMember.middleMaskId).middleImage} />
-                <img className={styles.maskBottom} src={bottomMaskStore.resolveBottomMask(clanMember.bottomMaskId).bottomImage} />
+                <img alt="top piece of mask" className={styles.maskTop} src={topMaskStore.resolveTopMask(clanMember.topMaskId).topImage} />
+                <img alt="middle piece of mask"className={styles.maskMiddle} src={middleMaskStore.resolveMiddleMask(clanMember.middleMaskId).middleImage} />
+                <img alt="bottom piece of mask"className={styles.maskBottom} src={bottomMaskStore.resolveBottomMask(clanMember.bottomMaskId).bottomImage} />
             </div>
         </div>
     ));

@@ -14,7 +14,7 @@ import Roleitem from "../Roleitem";
 
 
 const ExploreRoles = () => {
-  const { uiStore, roleStore, clanMemberStore } = useStore()
+  const { uiStore } = useStore()
 
   const history = useHistory();
   const setJourneyWithWayfarers = async () => {
