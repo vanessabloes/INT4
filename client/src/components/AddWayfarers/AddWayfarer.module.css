@@ -54,19 +54,13 @@
   margin: 0 auto;
 }
 
-
-
-
-
-
-
 .membersWrapper {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-content: center;
   max-width: 70rem;
-  margin: 0 auto;
+  margin: 0 auto 0 9.5rem;
 }
 
 .membersList {
@@ -75,8 +69,9 @@
 }
 
 .memberListItem {
-  max-width: 9.5rem;
+  width: 9.5rem;
   padding: 0 1rem;
+  z-index: 1;
 }
 
 .button {
