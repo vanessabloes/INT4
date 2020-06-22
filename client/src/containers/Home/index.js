@@ -48,8 +48,8 @@ const Home = ({ page }) => {
 
 
         <div className={styles.worlds_wrapper}>
+          {uiStore.currentClan.journeys.length > 3 ? <div className={styles.arrow}>&lsaquo;</div> : ""}
 
-          <div className={styles.arrow}>&lsaquo;</div>
 
           {
             uiStore.currentClan.journeys.map(journey => (
@@ -58,13 +58,14 @@ const Home = ({ page }) => {
               </Link>
             ))
           }
-          <div className={styles.arrow}>&rsaquo;</div>
+          {uiStore.currentClan.journeys.length > 3 ? <div className={styles.arrow}>&rsaquo;</div> : ""}
 
         </div>
 
 
 
         <div className={styles.homeClan}>
+          {uiStore.currentClan.clanMembers.length === 0 ? <p className={styles.homeClanInfo}>Add some family members and become a clan!</p> : ""}
           <MyClanCircleTiny page={page} clan={uiStore.currentClan} />
         </div>
 
