@@ -98,7 +98,7 @@ const AvatarToolCreate = () => {
                 <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
                 <div className={styles.inputElements}>
                     <label className={styles.labelWrapper}>
-                        <span className={styles.span}>Nickname</span>
+                        <span className={styles.spanNickname}>Nickname</span>
                         <input
                             className={styles.input}
                             value={nickname}
@@ -107,7 +107,7 @@ const AvatarToolCreate = () => {
                     </label>
 
                     <label className={styles.labelWrapper}>
-                       <span className={styles.span} >Age</span>
+                       <span className={styles.spanAge} >Age</span>
                        <input
                             className={styles.input}
                             value={age}

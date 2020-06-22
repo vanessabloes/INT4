@@ -108,7 +108,7 @@ const AvatarToolUpdate = () => {
 
 
                     <label className={styles.labelWrapper}>
-                        <span className={styles.span}>Nickname</span>
+                        <span className={styles.spanNickname}>Nickname</span>
                         <input
                             className={styles.input}
                             value={clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name}
@@ -120,7 +120,7 @@ const AvatarToolUpdate = () => {
 
 
                     <label className={styles.labelWrapper}>
-                        <span className={styles.span} >Age</span>
+                        <span className={styles.spanAge} >Age</span>
                         <input
                             className={styles.input}
                             value={clanMember.age}
