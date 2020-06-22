@@ -3,7 +3,7 @@ import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import styles from "./Mask.module.css";
 
-const Mask = ({clanMember}) => {
+const Mask = ({ clanMember }) => {
 
     const { topMaskStore, middleMaskStore, bottomMaskStore } = useStore();
 

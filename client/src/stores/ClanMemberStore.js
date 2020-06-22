@@ -17,7 +17,7 @@ class ClanMemberStore {
   loadAllClanMembers = async () => {
 
     const jsonClanMembers = await this.clanMembersService.getAll();
-    console.log(jsonClanMembers);
+
     jsonClanMembers.forEach(json => this.updateClanMemberFromServer(json));
   };
 
@@ -34,9 +34,9 @@ class ClanMemberStore {
   // };
 
   createClanMember = async clanMember => {
-    console.log(clanMember)
+
     const json = await this.clanMembersService.create(clanMember);
-    console.log(json);
+
     this.updateClanMemberFromServer(json);
   };
 
@@ -48,16 +48,16 @@ class ClanMemberStore {
 
   updateClanMember = async clanMember => {
     const json = await this.clanMembersService.update(clanMember);
-    console.log("__________________")
-    console.log(json);
+
     this.updateClanMemberFromServer(json);
   };
 
-   deleteClanMember = async clanMember => {
-     const json = await this.clanMembersService.delete(clanMember);
-     console.log(json)
-     this.updateClanMemberFromServer(json);
-   };
+  deleteClanMember = async clanMember => {
+    // this.rootStore.clanStore.resolveClan(clanMember.clanId).unlinkClanMember(clanMember); VANESSA
+    const json = await this.clanMembersService.delete(clanMember);
+    console.log(json);
+    this.updateClanMemberFromServer(json);
+  };
 
   updateClanMemberFromServer(json) {
     // we krijgen hier 1 member binnen
@@ -73,13 +73,13 @@ class ClanMemberStore {
         bottomMaskId: json.bottomMaskId,
         store: this.rootStore.clanMemberStore
       });
-   
+
     }
     if (json.isDeleted) {
-      console.log(json.isDeleted);
       this.clanMembers.remove(clanMember);
+      //console.log(this.clanMembers);
+      
     } else {
-      //console.log(json.clanId); IS OK!
       clanMember.updateFromJson(json);
     }
     return clanMember;

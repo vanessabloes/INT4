@@ -10,6 +10,7 @@ class StoryModel {
     this.store = store;
     this.words = [];
     this.definedStoryWords = [];
+    //this.contextId = contextId;
 
     //this.getDefinedWords();
     // this.updateFromJson({
@@ -28,6 +29,7 @@ class StoryModel {
     const allDefinedWordsFromServer = this.store.rootStore.definedWordStore.definedWords;
 
     console.log(allDefinedWordsFromServer);
+
     for (let index = 0; this.definedStoryWords.length < 3; index++) {
       const randomItem = allDefinedWordsFromServer[Math.floor(Math.random() * allDefinedWordsFromServer.length)];
       // console.log("choose a random word");

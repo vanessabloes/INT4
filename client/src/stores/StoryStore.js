@@ -25,8 +25,7 @@ class StoryStore {
   loadStoryWords = async (id) => {
     const jsonWords = await this.storyService.getById(id, 'words');
     this.updateStoryFromServer({ id, words: jsonWords });
-    console.log(jsonWords)
-    console.log(id)
+ 
     return this.resolveStory(id);
   };
   //

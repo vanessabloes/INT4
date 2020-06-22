@@ -10,7 +10,7 @@ import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import WayfarerModel from "../../models/WayfarerModel";
 import { v4 } from 'uuid';
 import Mask from "../Mask";
-import AvatarTool from "../AvatarTool";
+import AvatarToolCreate from "../AvatarToolCreate";
 
 const AddWayfarers = () => {
 
@@ -33,6 +33,8 @@ const AddWayfarers = () => {
       roleId: "1",
       store: wayfarerStore
     });
+
+    w.setJourney(uiStore.currentJourney);
 
     console.log(w);
 
@@ -66,7 +68,7 @@ const AddWayfarers = () => {
             uiStore.currentClan.clanMembers.map(clanMember => (
               <>
                 <button onClick={() => addWayfarer(clanMember.id)} >{clanMember.name}</button>
-                <Mask clanMember={clanMember}/>
+                <Mask clanMember={clanMember} />
               </>
             )) : "loading"}
 
@@ -79,7 +81,7 @@ const AddWayfarers = () => {
         <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
       </div>
       <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
-      {uiStore.visibilityCreate ? <AvatarTool/> : ""}
+      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
     </>
   ));
 };

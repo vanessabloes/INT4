@@ -434,10 +434,11 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
       ->withStatus(200);
       });
    
-      $routeGroup->delete('/{id}', function (Request $request, Response $response) {
+      $routeGroup->delete('/{id}', function (Request $request, Response $response, $args) {
         $memberDAO = new MemberDAO();
-        $input = $request->getParsedBody();
-      $result = $memberDAO->delete($input);
+        //$input = $request->getParsedBody();
+      $result = $memberDAO->delete($args['id']);
+
       $response->getBody()->write(json_encode($result));
       return $response
       ->withHeader('Content-Type', 'application/json')

@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../consts";
 //import PropTypes from "prop-types";
 
 import PageTitle from "../../components/PageTitle/PageTitle"
 import NewStoryButton from "../../components/buttons/NewStory/NewStory"
-import Masklayout from "../../components/MaskLayout/index"
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 
@@ -14,44 +13,88 @@ import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 
 import { useParams } from "react-router-dom";
 import Mask from "../../components/Mask";
-import ClanMemberStore from "../../stores/ClanMemberStore";
+import Loading from "../../components/Loading";
+import ClanStore from "../../stores/ClanStore";
+import StoryModel from "../../models/StoryModel";
+import StoryStore from "../../stores/StoryStore";
 
 
-const JourneyDetail =() => {
 
-  const { journeyStore, clanMemberStore, uiStore, roleStore } = useStore();
-  const { id } = useParams();
+const JourneyDetail = () => {
+  const STATE_LOADING = 'loading';
+  const STATE_NOT_FOUND = 'notFound';
+  const STATE_LOADING_MORE_DETAILS = 'loading more details';
+  const STATE_FULLY_LOADED = 'fully loaded';
 
-  console.log(id);
-  const journey = journeyStore.resolveJourney(id);
-  console.log(journey);
+  const { journeyStore, clanMemberStore, uiStore, clanStore, roleStore, storyStore } = useStore();
+  const { id } = useParams(); // check
 
-  const wayfarersOfJourney = journeyStore.loadJourneyWayfarers(id);
-  console.log(wayfarersOfJourney);
-
-  
-
-  return useObserver(() => (
-    <div>
-      {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={`${journey.id}` + ROUTES.nameJourney} text={"Name Journey"} />}
-
-      <PageTitle title={journey.name ? journey.name : "Your Journey"} subtext={"Start your storytelling with a bonfire"} />
-
-    {/* {journey ? <p>{journey.name}</p> : <p>GEEN JOURNEY</p>} */}
+  const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
+  const [state, setState] = useState(STATE_LOADING);
 
 
-      {journey !== undefined ? journey.wayfarers.map(wayfarer => (
-        <>
-          <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-          {/* <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p> */}
-        </>
-      )) : <p>"loading"</p>}
+  useEffect(() => {
 
-      <NewStoryButton text={"Start new Story"} />
+    const loadJourneyy = async (id) => {
 
-    </div>
+      try {
 
-  ));
+        const journey = await journeyStore.loadJourney(id);
+
+        if (!journey) {
+          setState(STATE_NOT_FOUND);
+          return;
+        }
+        setJourney(journey);
+        setState(STATE_LOADING_MORE_DETAILS);
+        await clanStore.loadClanMembers(uiStore.currentClan.id);
+        await journeyStore.loadWayfarersForJourney(id);
+        setState(STATE_FULLY_LOADED);
+
+      }
+      catch (error) {
+        setState(STATE_NOT_FOUND);
+      }
+    }
+    loadJourneyy(id);
+  }, [id, journeyStore]);
+
+
+  const makeNewStory = () => {
+    const story = new StoryModel({
+      store: storyStore,
+      journeyId: id
+    })
+  }
+
+  return useObserver(() => {
+    if (state === STATE_NOT_FOUND) {
+      return <p>Group not found"</p>;
+    }
+    if (state === STATE_LOADING) {
+      return <p>Loading"</p>;;
+    }
+    return (
+      <div>
+        {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={journey.id + `${ROUTES.nameJourney.to}`} text={"Name Journey"} />}
+
+        <PageTitle title={journey.name} subtext={"Start your storytelling with a bonfire"} />
+
+
+        {journey.wayfarers.map(wayfarer => (
+          <>
+            <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
+            <p>{roleStore.resolveRole(wayfarer.roleId.id).roleName}</p>
+          </>
+        ))}
+
+        <NewStoryButton text={"Start new Story"} onClick={makeNewStory} id={id}/>
+
+      </div>
+
+
+    );
+  });
 };
 
 JourneyDetail.propTypes = {

@@ -13,8 +13,8 @@ class TopMaskStore {
 
   loadAllMasks = async () => {
     const jsonMasks = await this.topMasksService.getAll();
-    console.log("masks");
-    console.log(jsonMasks);
+
+ 
     //const fakeJsonMasks = [
     //    {"topMaskName":"Foodie", "topMaskDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
     //  ]
@@ -50,7 +50,7 @@ class TopMaskStore {
   resolveTopMask = id => this.topMasks.find(topMask => topMask.id === id);
 
   addTopMask(topMask){
-    console.log(topMask)
+  
       this.topMasks.push(topMask);
   }
 }

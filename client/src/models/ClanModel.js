@@ -22,7 +22,6 @@ class ClanModel {
 
   linkClanMember(clanMember) {
     !this.clanMembers.includes(clanMember) && this.clanMembers.push(clanMember);
-    //console.log(this.clanMembers); DIT IS OK
   }
 
   unlinkClanMember(clanMember) {
@@ -52,19 +51,26 @@ class ClanModel {
 
   // };
 
-  updateFromJson = ({ members = undefined }) => {
+  updateFromJson = ({ members = undefined, journeys = undefined }) => {
+
     if (members !== undefined) {
       // unlink the old member
       // const oldMembers = this.members.concat();
       // oldMembers.forEach(member => member.unlinkGroup(this));
       members.forEach(member => {
-        //console.log(member); DIT IS OKE, IS CLANMEMBER MODEL
+       
         this.store.rootStore.clanMemberStore.
           updateClanMemberFromServer(member).setClan(this);
       });
     }
-  };
+  if (journeys !== undefined) {
 
+    journeys.forEach(journey => {
+
+      this.store.rootStore.journeyStore.updateJourneyFromServer(journey).setClan(this);
+    });
+  }
+}
 
   get asJson() {
     return {

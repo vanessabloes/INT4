@@ -5,7 +5,7 @@ import { useStore } from "../../hooks";
 import ClanMemberModel from "../../models/ClanMemberModel";
 import PageTitle from "../PageTitle/PageTitle";
 
-const AvatarTool = () => {
+const AvatarToolCreate = () => {
 
     const { uiStore, topMaskStore, middleMaskStore, bottomMaskStore, clanMemberStore } = useStore();
 
@@ -16,22 +16,26 @@ const AvatarTool = () => {
    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
-        console.log()
+
+        console.log(uiStore.currentClan.id);
+
         if(clanMemberStore.clanMembers.length < 6){
         const newClanMember = new ClanMemberModel({
             store: clanMemberStore,
             name: nickname,
             age: age,
+            clanId: uiStore.currentClan.id,
             topMaskId: (uiStore.topCount + 1).toString(),
             middleMaskId: (uiStore.middleCount + 1).toString(),
             bottomMaskId: (uiStore.bottomCount + 1).toString(),
-            clanId: uiStore.currentClan.id
+            
         });
         newClanMember.create();
         }else{
         uiStore.setError("Max clanmember limit reached");
 
         }
+        closeOverlay();
     }
 
     const closeOverlay = () => {
@@ -118,4 +122,4 @@ const AvatarTool = () => {
     ));
 };
 
-export default AvatarTool;
+export default AvatarToolCreate;

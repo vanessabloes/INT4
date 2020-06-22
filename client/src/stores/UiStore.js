@@ -10,6 +10,7 @@ class UiStore {
     this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
     this.visibilityCreate = false;
     this.visibilityUpdate = false;
+    this.visibilityPower = false;
     this.loadedAllData = false;
     this.topCount = 0;
     this.middleCount = 0;
@@ -18,6 +19,7 @@ class UiStore {
     this.name = "";
     this.age = 0;
     this.selectedClanMemberId = "";
+    this.selectedPowerId = "";
   }
 
   setError(value) {
@@ -31,7 +33,7 @@ class UiStore {
   login = (username, password) => {
     this.rootStore.clanStore.clans.forEach((clan) => {
       if (clan.name === username && clan.password === password) {
-        console.log(clan)
+
         this.setCurrentClan(clan);
         this.loggedIn = true;
       }
@@ -44,6 +46,10 @@ class UiStore {
 
   setVisibilityUpdate(value) {
     this.visibilityUpdate = value;
+  }
+
+  setVisibilityPower(value) {
+    this.visibilityPower = value
   }
 
   setCurrentClan = async (clan) => {
@@ -76,7 +82,6 @@ class UiStore {
     } else if (this.topCount === 3) {
       this.topCount = 0;
     }
-    console.log(this.topCount);
   }
 
   setTopCount(value) {
@@ -101,7 +106,7 @@ class UiStore {
     } else if (this.topCount === 0) {
       this.topCount = 3;
     }
-    console.log(this.topCount);
+
   }
 
   middleCountUp() {
@@ -110,7 +115,7 @@ class UiStore {
     } else if (this.middleCount === 3) {
       this.middleCount = 0;
     }
-    console.log(this.middleCount);
+
   }
 
   middleCountDown() {
@@ -119,7 +124,7 @@ class UiStore {
     } else if (this.middleCount === 0) {
       this.middleCount = 3;
     }
-    console.log(this.middleCount);
+
   }
 
   bottomCountUp() {
@@ -128,7 +133,7 @@ class UiStore {
     } else if (this.bottomCount === 3) {
       this.bottomCount = 0;
     }
-    console.log(this.bottomCount);
+
   }
 
   bottomCountDown() {
@@ -137,7 +142,7 @@ class UiStore {
     } else if (this.bottomCount === 0) {
       this.bottomCount = 3;
     }
-    console.log(this.bottomCount);
+
   }
 
   setName(value) {
@@ -150,6 +155,10 @@ class UiStore {
 
   setSelectedClanMember(id) {
     this.selectedClanMemberId = id;
+  }
+
+  setSelectedPower(id) {
+    this.selectedPowerId = id;
   }
 
 }
@@ -197,7 +206,11 @@ decorate(UiStore, {
   setVisibilityCreate: action,
   setVisibilityUpdate: action,
   visibilityCreate: observable,
-  visibilityUpdate: observable
+  visibilityUpdate: observable,
+  setVisibilityPower: action,
+  visibilityPower: observable,
+  setSelectedPower: action,
+  selectedPowerId: observable
 
 });
 

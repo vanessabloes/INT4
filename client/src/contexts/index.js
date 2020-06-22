@@ -23,9 +23,9 @@ const loadAllData = async () => {
       await store.middleMaskStore.loadAllMasks();
       await store.bottomMaskStore.loadAllMasks();
 
-     
-      await store.journeyStore.loadAllJourneys(); // moet nog vervangen worden door clanStore.loadClanJourneys(id)
-    
+     console.log(store.uiStore.currentClan.id)
+     // await store.journeyStore.loadAllJourneys(); // moet nog vervangen worden door clanStore.loadClanJourneys(id)
+      await store.clanStore.loadClanJourneys(store.uiStore.currentClan.id);
       // await store.uiStore.setCurrentJourney(store.journeyStore.resolveJourney("f732a075-98a5-443d-a695-3818574380fe"));
 
       await store.storyStore.loadAllStories(); // moet nog vervangen worden door journeyStore.loadJourneyStories(id)

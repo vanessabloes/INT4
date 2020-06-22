@@ -25,9 +25,10 @@ class JourneyDAO extends DAO {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function selectWayfarersForJourney() {
-    $sql = "SELECT `wayfarers`.* FROM `wayfarers` INNER JOIN `journeys`ON `wayfarers`.`journeyId` = `journeys`.`id`";
+  public function selectWayfarersForJourney($id) {
+    $sql = "SELECT `wayfarers`.* FROM `wayfarers` INNER JOIN `journeys`ON `wayfarers`.`journeyId` = `journeys`.`id` WHERE `wayfarers`.`journeyId` = :id";
     $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }

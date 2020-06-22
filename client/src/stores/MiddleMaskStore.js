@@ -13,7 +13,7 @@ class MiddleMaskStore {
 
   loadAllMasks = async () => {
     const jsonMasks = await this.middleMasksService.getAll();
-    console.log(jsonMasks);
+
       jsonMasks.forEach(json => this.updateMaskFromServer(json));
   };
 
@@ -44,7 +44,7 @@ class MiddleMaskStore {
   resolveMiddleMask = id => this.middleMasks.find(middleMask => middleMask.id === id);
 
   addMiddleMask(middleMask){
-    console.log(middleMask)
+
       this.middleMasks.push(middleMask);
   }
 }

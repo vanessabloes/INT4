@@ -43,4 +43,11 @@
 
 .button {
   composes: button from "../../styles/uiControls.module.css";
+  background-color: rgba(255, 0, 0, 0);;
+  background-image: url("/assets/img/BUTTONS/btnTheePot.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 10rem;
+  height: 10rem;
 }

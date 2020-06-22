@@ -14,7 +14,7 @@ class RoleStore {
 
   loadAllRoles = async () => {
     const jsonRoles = await this.rolesService.getAll();
-    console.log(jsonRoles);
+  
     jsonRoles.forEach(json => this.updateRoleFromServer(json));
   };
 
@@ -49,7 +49,7 @@ class RoleStore {
   resolveRole = id => this.roles.find(role => role.id === id);
 
   addRole(role) {
-    console.log(role)
+    
     this.roles.push(role);
   }
 
@@ -63,7 +63,8 @@ decorate(RoleStore, {
   addRole: action,
   updateRoleFromServer: action,
   uniqueRoles: observable,
-  addUniqueRole: action
+  addUniqueRole: action,
+  resolveRole: action
 });
 
 export default RoleStore;
