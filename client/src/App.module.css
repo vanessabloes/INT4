@@ -1,9 +1,7 @@
-.layout {
-  composes: layout from "./styles/layout.module.css";
-}
+@value tokens: "./styles/tokens.module.css";
+@value highlight-orange, background-color from tokens;
 
-.wrapper {
-  background: var(--ultralight-color);
-  border-radius: 0 0 0.7rem 0.7rem;
-  padding: 2rem;
+
+.appContainer {
+  background-color: background-color;
 }

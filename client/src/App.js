@@ -13,13 +13,14 @@ import AddStory from "./containers/AddStory";
 import NameJourney from "./components/NameJourney";
 import { useObserver } from "mobx-react-lite";
 import Loading from "./components/Loading";
+import Styles from "./App.module.css"
 
 
 
 const App = () => {
   const { journeyStore, uiStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
   return useObserver(() => (
-      <>
+      <div className={Styles.appContainer}>
       {uiStore.loadedAllData ? 
         <Switch>
        <Route path={ROUTES.myClan}>
@@ -51,7 +52,7 @@ const App = () => {
        </Route>
  </Switch>
 : <Loading/>}
-    </>
+    </div>
     
   ));
 };
