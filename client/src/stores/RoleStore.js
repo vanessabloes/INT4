@@ -63,7 +63,8 @@ decorate(RoleStore, {
   addRole: action,
   updateRoleFromServer: action,
   uniqueRoles: observable,
-  addUniqueRole: action
+  addUniqueRole: action,
+  resolveRole: action
 });
 
 export default RoleStore;

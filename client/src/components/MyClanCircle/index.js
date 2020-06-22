@@ -37,6 +37,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
   const handleDeleteAvatar = async clanMember => {
     await clanMember.delete();
   }
+  
   return useObserver(() => (
  
     <div className={styles.masks_wrapper}>

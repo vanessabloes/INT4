@@ -11,13 +11,16 @@ import MyClan from "./containers/MyClan";
 import AddJourney from "./containers/AddJourney";
 import AddStory from "./containers/AddStory";
 import NameJourney from "./components/NameJourney";
+import { useObserver } from "mobx-react-lite";
+import Loading from "./components/Loading";
 
 
 
 const App = () => {
-  const { journeyStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
-  return (
+  const { journeyStore, uiStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
+  return useObserver(() => (
       <>
+      {uiStore.loadedAllData ? 
         <Switch>
        <Route path={ROUTES.myClan}>
            <MyClan />
@@ -31,7 +34,7 @@ const App = () => {
            <AddStory />
        </Route>
 
-       <Route path={ROUTES.nameJourney}>
+       <Route path={ROUTES.nameJourney.path}>
            <NameJourney />
        </Route>
 
@@ -47,9 +50,10 @@ const App = () => {
            <Home page={ROUTES.home}/>
        </Route>
  </Switch>
+: <Loading/>}
     </>
     
-  );
+  ));
 };
 
 export default App;

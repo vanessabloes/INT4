@@ -26,7 +26,7 @@ class ClanDAO extends DAO {
   }
 
   public function selectJourneysForClan($id) {
-    $sql = "SELECT `members`.* FROM `members` INNER JOIN `clans`ON `members`.`clanId` = `clans`.`id` WHERE `members`.`clanId` = :id";
+    $sql = "SELECT `journeys`.* FROM `journeys` INNER JOIN `clans`ON `journeys`.`clanId` = `clans`.`id` WHERE `journeys`.`clanId` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();

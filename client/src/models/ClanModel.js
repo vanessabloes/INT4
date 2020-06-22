@@ -52,7 +52,8 @@ class ClanModel {
 
   // };
 
-  updateFromJson = ({ members = undefined }) => {
+  updateFromJson = ({ members = undefined, journeys = undefined }) => {
+
     if (members !== undefined) {
       // unlink the old member
       // const oldMembers = this.members.concat();
@@ -63,8 +64,14 @@ class ClanModel {
           updateClanMemberFromServer(member).setClan(this);
       });
     }
-  };
+  if (journeys !== undefined) {
 
+    journeys.forEach(journey => {
+
+      this.store.rootStore.journeyStore.updateJourneyFromServer(journey).setClan(this);
+    });
+  }
+}
 
   get asJson() {
     return {

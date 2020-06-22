@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useObserver } from "mobx-react-lite";
 import styles from "./AvatarToolUpdate.module.css";
 import { useStore } from "../../hooks";
@@ -20,15 +20,15 @@ const AvatarToolUpdate = () => {
 
         const clanMemberToUpdate = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId);
         console.log(clanMemberToUpdate);
-        const topMaskId = (uiStore.topCount + 1).toString();
-        const middleMaskId = (uiStore.middleCount + 1).toString();
-        const bottomMaskId = (uiStore.bottomCount + 1).toString();
+        const topMaskId = parseInt(uiStore.topCount) + 1;
+        const middleMaskId = parseInt(uiStore.middleCount) + 1;
+        const bottomMaskId = parseInt(uiStore.bottomCount) + 1;
         const name = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name;
         const age = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).age;
 
         console.log("_______________________-")
 
-        console.log(topMaskId);
+        console.log(clanMemberToUpdate);
         clanMemberToUpdate.updateFromJson({
             topMaskId,
             middleMaskId,

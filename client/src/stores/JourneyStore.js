@@ -18,12 +18,14 @@ class JourneyStore {
   }
 
   loadJourney = async (id) => {
-    const jsonJourney = await this.groupsService.getById(id);
+    console.log(id) // check
+    const jsonJourney = await this.journeysService.getById(id);
+    console.log(jsonJourney);
     this.updateJourneyFromServer(jsonJourney);
     return this.resolveJourney(id);
   };
 
-  loadJourneyWayfarers = async (id) => {
+  loadWayfarersForJourney = async (id) => {
     console.log(id);
     const jsonUsers = await this.journeysService.getById(id, 'wayfarers');
     console.log(jsonUsers);
@@ -60,6 +62,7 @@ class JourneyStore {
   // };
 
   updateJourneyFromServer(json) {
+    console.log(json.name) //HELP MIJ
     let journey = this.journeys.find(journey => journey.id === json.id);
     if (!journey) {
       journey = new JourneyModel({
@@ -70,7 +73,7 @@ class JourneyStore {
         store: this.rootStore.journeyStore
       });
     }
-    console.log(journey);
+  
     if (json.isDeleted) {
       this.journeys.remove(journey);
     } else {

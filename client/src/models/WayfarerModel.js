@@ -8,14 +8,13 @@ class WayfarerModel {
             throw new Error("A wayfarer needs a store");
           }
           this.store = store;
-          console.log(journeyId)
-    
+          console.log("___________________________________")
+          console.log(clanMemberId)
+          this.clanMemberId = clanMemberId;
+          this.journeyId = journeyId;
+          this.roleId = roleId;
   
-          this.updateFromJson({
-            clanMemberId,
-            journeyId,
-            roleId
-          });
+      
           this.store.addWayfarer(this);
       
          // this.store.clanMemberStore.addWayfarer(this);
@@ -31,14 +30,16 @@ class WayfarerModel {
         }
 
         setClanMember(clanMember){
-          if(clanMember){
+          
+        if(clanMember){
+            console.log(clanMember);
             this.clanMemberId = clanMember.id;
             clanMember.linkWayfarer(this);
-          }
         }
-        setRole(roleId){
-          if(roleId){
-            this.roleId = roleId;
+        }
+        setRole(role){
+          if(role){
+            this.roleId = role.id;
            // this.role.linkWayfarer(this);
           }
         }
@@ -63,6 +64,8 @@ class WayfarerModel {
         }
 
         updateFromJson({ journeyId, clanMemberId, roleId }){
+          if(clanMemberId !== undefined){
+  
           this.setClanMember(this.store.rootStore.clanMemberStore.resolveClanMember(clanMemberId));
           this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
           this.setRole(this.store.rootStore.roleStore.resolveRole(roleId));
@@ -71,6 +74,7 @@ class WayfarerModel {
           console.log(this.clanMemberId);
           console.log(this.journeyId);
           console.log(this.roleId);
+          }
         };
 
         get asJson() {

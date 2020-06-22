@@ -1,44 +1,44 @@
-import { decorate, action, computed, observable } from "mobx";
+import { decorate, action, computed, observable, set } from "mobx";
 import { v4 } from "uuid";
 
 class ClanMemberModel {
-  constructor({ id = v4(), store, ...json }) {
+  constructor({ id = v4(), name, age, topMaskId, middleMaskId, bottomMaskId, store }) {
     this.id = id;
     if (!store) {
       throw new Error("A member needs a store");
     }
 
     this.store = store;
-
+    this.topMaskId = topMaskId;
+    this.middleMaskId = middleMaskId;
+    this.bottomMaskId = bottomMaskId;
+    this.name = name;
+    this.age = age;
     //this.journeys = [];
     this.wayfarers = [];
 
-    this.updateFromJson(json);
+
     this.store.addClanMember(this);
 
   }
 
   setClan(clan) {
     if (clan) {
-      console.log("hieronder de geresovled clan")
-      console.log(clan.id)
       this.clanId = clan.id;
       clan.linkClanMember(this);
     }
   }
 
-  setTopMask(topMask) {
-    console.log(topMask)
+  setTopMask(topMask){
+    console.log(topMask) //1 string
     this.topMaskId = topMask.id;
   }
 
   setMiddleMask(middleMask) {
-    console.log(middleMask)
     this.middleMaskId = middleMask.id;
   }
 
   setBottomMask(bottomMask) {
-    console.log(bottomMask)
     this.bottomMaskId = bottomMask.id;
   }
   //linkJourney(journey){
@@ -63,22 +63,18 @@ class ClanMemberModel {
 
 
   updateFromJson({ name, age, topMaskId, middleMaskId, bottomMaskId, clanId }) {
-    console.log(bottomMaskId)
-    console.log(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId))
-    this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
 
+    this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
+    console.log(topMaskId) //1 int
+    if(topMaskId !== undefined){
+   console.log(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId)) // model met id 1
     this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
     this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
     this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
-
+    }
     this.name = name;
     this.age = age;
 
-
-
-
-    // this.journeys = journeys;
-    //this.store.journeyStore.resolveJourney().linkClanMember(this)
 
   };
   get clan() {

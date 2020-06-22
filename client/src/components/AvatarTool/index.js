@@ -16,16 +16,17 @@ const AvatarTool = () => {
    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
-        console.log()
+
         if(clanMemberStore.clanMembers.length < 6){
         const newClanMember = new ClanMemberModel({
             store: clanMemberStore,
             name: nickname,
             age: age,
+            clanId: uiStore.currentClan.id,
             topMaskId: (uiStore.topCount + 1).toString(),
             middleMaskId: (uiStore.middleCount + 1).toString(),
             bottomMaskId: (uiStore.bottomCount + 1).toString(),
-            clanId: uiStore.currentClan.id
+            
         });
         newClanMember.create();
         }else{

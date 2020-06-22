@@ -21,16 +21,8 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
-  const testworlds = [
-    { id: 1, name: "De mooiste wereld van de wereld", image: "/assets/img/Worlds/world1.svg" },
-    { id: 2, name: "snoep wereld", image: "/assets/img/Worlds/world2.svg" },
-    { id: 3, name: "wereld der werelden van de wereld", image: "/assets/img/Worlds/world3.svg" },
-    { id: 4, name: "fret de planeet", image: "/assets/img/Worlds/world9.svg" }
-  ]
-
-  const clan = clanStore.resolveClan("675a4afd-7810-4666-a90b-bdabee51b103");
-
-  const journeysOfClan = clanStore.loadClanJourneys("675a4afd-7810-4666-a90b-bdabee51b103");
+console.log(uiStore.currentClan)
+ // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
   return useObserver(() => {
 
@@ -51,7 +43,7 @@ const Home = ({ page }) => {
 
       <div className={styles.home_wrapper}>
         <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
-        <MyClanCircle page={page} clan={clan} />
+        <MyClanCircle page={page} clan={uiStore.currentClan} />
 
         <div className={styles.worlds_wrapper}>
           {

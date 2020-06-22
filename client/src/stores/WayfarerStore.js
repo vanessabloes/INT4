@@ -62,7 +62,7 @@ class WayfarerStore {
         clanMemberId: json.clanMemberId,
         journeyId: json.journeyId,
         roleId: json.roleId,
-        store: this.rootStore.wayfarerStore
+        store: this
       });
 
     }
