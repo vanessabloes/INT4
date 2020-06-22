@@ -6,11 +6,12 @@ import { useObserver } from "mobx-react-lite";
 
 import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 import { ROUTES } from "../../consts";
-import JourneyModel from "../../models/JourneyModel";
-import JourneyStore from "../../stores/JourneyStore";
+
 import Mask from "../Mask";
 import { useHistory } from "react-router-dom";
 import PageTitle from "../PageTitle/PageTitle";
+import styles from "./ExploreRoles.module.css"
+import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
 
 
 const ExploreRoles = () => {
@@ -28,6 +29,15 @@ const ExploreRoles = () => {
   return useObserver(() => (
     <>
       <p onClick={setJourneyWithWayfarers} >explore roles</p>
+
+      <div className={styles.progres}>
+        <BackToWorldButton linkTo={ROUTES.home} />
+        <p className={styles.progresTitle}>Preparing the journey</p>
+        <img className={styles.progresImg} src="assets/img/PROGRESS/3of3.svg" alt="Preparing the journey: Explore roles" />
+        <p className={styles.select}>Select wayfarers</p>
+        <p className={styles.choose}>Choose roles</p>
+        <p className={styles.explore}>Explore roles</p>
+        </div>
 
     <PageTitle title={"Your Roles"} subtext={"Discover the powers of your roles"} />
       <ul >

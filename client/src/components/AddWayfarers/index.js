@@ -48,12 +48,13 @@ const AddWayfarers = () => {
   return useObserver(() => (
     <>
       <div>
-        <BackToWorldButton text={"dit is een test"} linkTo={ROUTES.home} />
-        <div>
-          <img src="assets/img/PROGRESS/1of3.svg" alt="" />
-          <p>Select wayfarers</p>
-          <p>Choose roles</p>
-          <p>Explore roles</p>
+        <BackToWorldButton linkTo={ROUTES.home} />
+        <div className={styles.progres}>
+          <p className={styles.progresTitle}>Preparing the journey</p>
+          <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="" />
+          <p className={styles.select}>Select wayfarers</p>
+          <p className={styles.choose}>Choose roles</p>
+          <p className={styles.explore}>Explore roles</p>
         </div>
       </div>
       <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"} />

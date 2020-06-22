@@ -1,3 +1,35 @@
+.header {
+  
+}
+
+
+.progres {
+  composes: progres from "../../styles/ProcesBar.module.css";
+}
+
+.progresTitle {
+  composes: progresTitle from "../../styles/ProcesBar.module.css";
+}
+
+.progresImg {
+  composes: progresImg from "../../styles/ProcesBar.module.css";
+}
+
+.select {
+  composes: select from "../../styles/ProcesBar.module.css";
+  font-weight: bold;
+  align-self: end;
+  justify-self: center;
+}
+
+.choose {  
+  composes: choose from "../../styles/ProcesBar.module.css";
+}
+
+.explore {
+  composes: explore from "../../styles/ProcesBar.module.css";
+}
+
 .rotation{
     grid-column: 1;
     grid-row: 1;

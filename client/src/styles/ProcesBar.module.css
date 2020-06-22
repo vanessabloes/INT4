@@ -1,0 +1,46 @@
+.progres {
+  display: grid;
+  grid-template-rows: 1fr  1fr 1fr;
+  grid-template-columns: 2fr 2fr 2fr;
+  width: 55%;
+}
+
+.progresTitle {
+  composes: subtitle from "./typo.module.css"; 
+  grid-row: 1;
+  grid-column: 1 /4;
+  text-align: center;
+}
+
+.progresImg {
+  grid-row: 1 /4;
+  grid-column: 1 /4;
+  justify-self: center
+}
+
+.select {
+  composes: subtext from "./typo.module.css"; 
+  
+  grid-row: 3;
+  grid-column: 1;
+  align-self: start;
+  justify-self: center;
+  margin: 0;
+}
+
+.choose {
+  composes: subtext from "./typo.module.css"; 
+  grid-row: 3;
+  grid-column: 2;
+  align-self: start;
+  justify-self: center;
+}
+
+.explore {
+  composes: subtext from "./typo.module.css"; 
+  grid-row: 3;
+  grid-column: 3;
+  align-self: start;
+  justify-self: center;
+}
+
