@@ -5,6 +5,7 @@ import { useObserver } from "mobx-react-lite";
 import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldButton";
 import AvatarToolUpdate from "../../components/AvatarToolUpdate";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import Styles from "./MyClan.module.css"
 
 import AvatarToolCreate from "../../components/AvatarToolCreate";
 
