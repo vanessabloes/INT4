@@ -20,7 +20,7 @@ class JourneyStore {
   loadJourney = async (id) => {
   
     const jsonJourney = await this.journeysService.getById(id);
-   
+    console.log(jsonJourney)
     this.updateJourneyFromServer(jsonJourney);
     return this.resolveJourney(id);
   };
@@ -73,7 +73,7 @@ class JourneyStore {
         store: this.rootStore.journeyStore
       });
     }
-  
+    console.log(journey)
     if (json.isDeleted) {
       this.journeys.remove(journey);
     } else {
