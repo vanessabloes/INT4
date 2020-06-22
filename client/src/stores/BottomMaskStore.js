@@ -13,7 +13,7 @@ class BottomMaskStore {
 
   loadAllMasks = async () => {
     const jsonMasks = await this.bottomMasksService.getAll();
-    console.log(jsonMasks);
+  
     //const fakeJsonMasks = [
     //    {"bottomMaskName":"Foodie", "bottomMaskDescription":"Doe", "powerName":"Doe","powerDescription":"Doe","image":"Doe" }
     //  ]
@@ -49,7 +49,7 @@ class BottomMaskStore {
   resolveBottomMask = id => this.bottomMasks.find(bottomMask => bottomMask.id === id);
 
   addBottomMask(bottomMask){
-    console.log(bottomMask)
+   
       this.bottomMasks.push(bottomMask);
   }
 }

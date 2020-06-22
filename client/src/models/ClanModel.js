@@ -22,7 +22,6 @@ class ClanModel {
 
   linkClanMember(clanMember) {
     !this.clanMembers.includes(clanMember) && this.clanMembers.push(clanMember);
-    //console.log(this.clanMembers); DIT IS OK
   }
 
   unlinkClanMember(clanMember) {
@@ -59,7 +58,7 @@ class ClanModel {
       // const oldMembers = this.members.concat();
       // oldMembers.forEach(member => member.unlinkGroup(this));
       members.forEach(member => {
-        //console.log(member); DIT IS OKE, IS CLANMEMBER MODEL
+       
         this.store.rootStore.clanMemberStore.
           updateClanMemberFromServer(member).setClan(this);
       });

@@ -12,14 +12,14 @@ class DefinedStoryWordStore {
   }
 
   createDefinedStoryWord = async definedStoryWord => {
-    console.log(definedStoryWord)
+  
   const json = await this.definedStoryWordsService.create(definedStoryWord);
   this.updateDefinedStoryWordFromServer(json);
   }
 
   loadAllDefinedStoryWords = async () => {
     const jsonDefinedStoryWords = await this.definedStoryWordsService.getAll();
-    console.log(jsonDefinedStoryWords)
+   
     jsonDefinedStoryWords.forEach(json => this.updateDefinedStoryWordFromServer(json));
   };
 
@@ -31,7 +31,7 @@ class DefinedStoryWordStore {
 
   updateDefinedStoryWordFromServer(json) {
      let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
-     console.log(json);
+     
      if (!definedStoryWord) {
         
         definedStoryWord = new DefinedStoryWordModel({

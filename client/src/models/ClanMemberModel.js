@@ -2,7 +2,7 @@ import { decorate, action, computed, observable, set } from "mobx";
 import { v4 } from "uuid";
 
 class ClanMemberModel {
-  constructor({ id = v4(), name, age, topMaskId, middleMaskId, bottomMaskId, store }) {
+  constructor({ id = v4(), name, age, clanId, topMaskId, middleMaskId, bottomMaskId, store }) {
     this.id = id;
     if (!store) {
       throw new Error("A member needs a store");
@@ -14,6 +14,7 @@ class ClanMemberModel {
     this.bottomMaskId = bottomMaskId;
     this.name = name;
     this.age = age;
+    this.clanId = clanId;
     //this.journeys = [];
     this.wayfarers = [];
 
@@ -29,8 +30,8 @@ class ClanMemberModel {
     }
   }
 
-  setTopMask(topMask){
-    console.log(topMask) //1 string
+  setTopMask(topMask) {
+    
     this.topMaskId = topMask.id;
   }
 
@@ -64,13 +65,14 @@ class ClanMemberModel {
 
   updateFromJson({ name, age, topMaskId, middleMaskId, bottomMaskId, clanId }) {
 
+    //console.log(topMaskId.toString());
+
     this.setClan(this.store.rootStore.clanStore.resolveClan(clanId));
-    console.log(topMaskId) //1 int
-    if(topMaskId !== undefined){
-   console.log(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId)) // model met id 1
-    this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId));
-    this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId));
-    this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId));
+   
+    if (topMaskId !== undefined) {
+      this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId.toString()));
+      this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId.toString()));
+      this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId.toString()));
     }
     this.name = name;
     this.age = age;

@@ -15,16 +15,15 @@ const ChooseRoles = () => {
   const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
 
   const linkRole = () => {
-
-
     for (let index = 0; index < roleStore.uniqueRoles.length; index++) {
       for (let index = 0; index < uiStore.currentJourney.wayfarers.length; index++) {
         uiStore.currentJourney.wayfarers[index].setRole(roleStore.uniqueRoles[index].id);
       }
       
     }
+    console.log(roleStore.uniqueRoles)
     console.log(uiStore.currentJourney.wayfarers)
-  
+    console.log(uiStore.currentJourney.wayfarers[0].setRole(roleStore.uniqueRoles[0].id));
 
 
   }

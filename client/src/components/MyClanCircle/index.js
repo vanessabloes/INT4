@@ -8,15 +8,10 @@ import Mask from "../Mask";
 import AvatarTool from "../AvatarTool";
 
 
-
-
-
-
-
 const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is het addMember
 
 
-  const { uiStore, clanStore, topMaskStore, middleMaskStore, bottomMaskStore } = useStore();
+  const { uiStore, clanStore, topMaskStore, middleMaskStore, bottomMaskStore, clanMemberStore } = useStore();
   clanStore.loadClanMembers(uiStore.currentClan.id);
   const countClanMembers = uiStore.currentClan.clanMembers.length;
   const arc = 360 / countClanMembers;
@@ -34,8 +29,9 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
   }
 
 
-  const handleDeleteAvatar = async clanMember => {
-    await clanMember.delete();
+  const handleDeleteAvatar = clanMember => {
+    clanMemberStore.deleteClanMember(clanMember);
+    //clanMember.delete();
   }
   
   return useObserver(() => (
@@ -65,7 +61,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
         ))
       }
       {
-        page === "/" ? <MyClanButton /> : <AddMemberButton text={"Add another Member"} />  // linkTo={}
+        page === "/" ? <MyClanButton /> : <AddMemberButton text={"Add Member"} />  // linkTo={}
       }
 
 

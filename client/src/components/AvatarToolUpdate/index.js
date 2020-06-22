@@ -19,25 +19,27 @@ const AvatarToolUpdate = () => {
         e.preventDefault();
 
         const clanMemberToUpdate = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId);
-        console.log(clanMemberToUpdate);
+
         const topMaskId = parseInt(uiStore.topCount) + 1;
         const middleMaskId = parseInt(uiStore.middleCount) + 1;
         const bottomMaskId = parseInt(uiStore.bottomCount) + 1;
         const name = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).name;
         const age = clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).age;
+        const clanId = uiStore.currentClan.id;
 
-        console.log("_______________________-")
+        // OKE DIT: console.log(clanMemberToUpdate);
 
-        console.log(clanMemberToUpdate);
         clanMemberToUpdate.updateFromJson({
             topMaskId,
             middleMaskId,
             bottomMaskId,
             name,
-            age
-   
+            age,
+            clanId
+
         });
         clanMemberToUpdate.update();
+        closeOverlay();
     }
 
 
@@ -100,7 +102,7 @@ const AvatarToolUpdate = () => {
                 </div>
 
             </div>
-            <form className={styles.form} onSubmit={(e) => handleUpdateAvatar(e)}>
+            <form className={styles.form} onSubmit={handleUpdateAvatar}>
                 <div className={styles.inputElements}>
 
 
@@ -113,18 +115,18 @@ const AvatarToolUpdate = () => {
                             type="text"
                             onChange={e => clanMemberStore.resolveClanMember(uiStore.selectedClanMemberId).setNickname(e.target.value)}
                             size="20"
-                            />
+                        />
                     </label>
 
 
                     <label className={styles.labelWrapper}>
-                       <span className={styles.span} >Age</span>
-                       <input
+                        <span className={styles.span} >Age</span>
+                        <input
                             className={styles.input}
                             value={clanMember.age}
                             type="number"
                             onChange={e => clanMember.setAge(e.target.value)}
-                            size="6" 
+                            size="6"
                         />
                     </label>
                     <p>{uiStore.error}</p>

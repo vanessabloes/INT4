@@ -6,6 +6,7 @@ import { useObserver } from "mobx-react-lite";
 import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldButton";
 import AvatarToolUpdate from "../../components/AvatarToolUpdate";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import AvatarToolCreate from "../../components/AvatarToolCreate";
 
 const MyClan = () => {
   const { uiStore } = useStore();
@@ -15,7 +16,7 @@ const MyClan = () => {
       <BackToWorldButton />
       <PageTitle title={"Your Clan"} subtext={"Click on your mask to edit"} />
       <MyClanCircle />
-      {uiStore.visibilityCreate ? <AvatarTool /> : ""}
+      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
       {uiStore.visibilityUpdate ? <AvatarToolUpdate /> : ""}
     </div>
   ));

@@ -18,17 +18,17 @@ class JourneyStore {
   }
 
   loadJourney = async (id) => {
-    console.log(id) // check
+  
     const jsonJourney = await this.journeysService.getById(id);
-    console.log(jsonJourney);
+   
     this.updateJourneyFromServer(jsonJourney);
     return this.resolveJourney(id);
   };
 
   loadWayfarersForJourney = async (id) => {
-    console.log(id);
+   
     const jsonUsers = await this.journeysService.getById(id, 'wayfarers');
-    console.log(jsonUsers);
+
     this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
     return this.resolveJourney(id);
   };
@@ -62,7 +62,7 @@ class JourneyStore {
   // };
 
   updateJourneyFromServer(json) {
-    console.log(json.name) //HELP MIJ
+
     let journey = this.journeys.find(journey => journey.id === json.id);
     if (!journey) {
       journey = new JourneyModel({

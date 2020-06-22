@@ -31,7 +31,7 @@ class UiStore {
   login = (username, password) => {
     this.rootStore.clanStore.clans.forEach((clan) => {
       if (clan.name === username && clan.password === password) {
-        console.log(clan)
+
         this.setCurrentClan(clan);
         this.loggedIn = true;
       }
@@ -76,7 +76,6 @@ class UiStore {
     } else if (this.topCount === 3) {
       this.topCount = 0;
     }
-    console.log(this.topCount);
   }
 
   setTopCount(value) {
@@ -101,7 +100,7 @@ class UiStore {
     } else if (this.topCount === 0) {
       this.topCount = 3;
     }
-    console.log(this.topCount);
+    
   }
 
   middleCountUp() {
@@ -110,7 +109,7 @@ class UiStore {
     } else if (this.middleCount === 3) {
       this.middleCount = 0;
     }
-    console.log(this.middleCount);
+  
   }
 
   middleCountDown() {
@@ -119,7 +118,7 @@ class UiStore {
     } else if (this.middleCount === 0) {
       this.middleCount = 3;
     }
-    console.log(this.middleCount);
+  
   }
 
   bottomCountUp() {
@@ -128,7 +127,7 @@ class UiStore {
     } else if (this.bottomCount === 3) {
       this.bottomCount = 0;
     }
-    console.log(this.bottomCount);
+ 
   }
 
   bottomCountDown() {
@@ -137,7 +136,7 @@ class UiStore {
     } else if (this.bottomCount === 0) {
       this.bottomCount = 3;
     }
-    console.log(this.bottomCount);
+
   }
 
   setName(value) {

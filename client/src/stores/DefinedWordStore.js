@@ -13,7 +13,7 @@ class DefinedWordStore {
 
   loadAllDefinedWords = async () => {
     const jsonDefinedWords = await this.definedWordsService.getAll();
-    console.log(jsonDefinedWords);
+   
     jsonDefinedWords.forEach(json => this.updateDefinedWordFromServer(json));
   };
 
@@ -32,9 +32,9 @@ class DefinedWordStore {
             store: this
          
         });
-        console.log(this);
+        
      }
-     console.log(definedWord);
+    
      //if (json.isDeleted) {
      //  this.definedWords.remove(definedWord);
      //} else {

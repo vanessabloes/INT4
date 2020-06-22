@@ -29,16 +29,17 @@ const JourneyDetail = () => {
 
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
   const [state, setState] = useState(STATE_LOADING);
+
+
   useEffect(() => {
-  
+
     const loadJourneyy = async (id) => {
 
-      try{
+      try {
 
         const journey = await journeyStore.loadJourney(id);
-        console.log("useeffect")
-        console.log(journey)
-        if(!journey){
+
+        if (!journey) {
           setState(STATE_NOT_FOUND);
           return;
         }
@@ -47,43 +48,42 @@ const JourneyDetail = () => {
         await clanStore.loadClanMembers(uiStore.currentClan.id);
         await journeyStore.loadWayfarersForJourney(id);
         setState(STATE_FULLY_LOADED);
-       
+
       }
-      catch(error){
+      catch (error) {
         setState(STATE_NOT_FOUND);
       }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);
 
+
+  console.log(journey.wayfarers);
+
   return useObserver(() => {
     if (state === STATE_NOT_FOUND) {
       return <p>Group not found"</p>;
     }
     if (state === STATE_LOADING) {
-      return <p>Loading"</p>; ;
+      return <p>Loading"</p>;;
     }
     return (
-    <div>
-      {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={journey.id + `${ROUTES.nameJourney.to}`} text={"Name Journey"} />}
+      <div>
+        {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={journey.id + `${ROUTES.nameJourney.to}`} text={"Name Journey"} />}
 
-      <PageTitle title={journey.name} subtext={"Start your storytelling with a bonfire"} />
-
-  
+        <PageTitle title={journey.name} subtext={"Start your storytelling with a bonfire"} />
 
 
-      {journey.wayfarers.map(wayfarer => (
-        <>
- {console.log(clanMemberStore.resolveClanMember(wayfarer.clanMemberId))}
-       
-          <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-        <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
-        </>
-      ))}
+        {journey.wayfarers.map(wayfarer => (
+          <>
+            <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
+            <p>{roleStore.resolveRole(wayfarer.roleId.id).roleName}</p>
+          </>
+        ))}
 
-      <NewStoryButton text={"Start new Story"} />
+        <NewStoryButton text={"Start new Story"} />
 
-    </div>
+      </div>
 
 
     );
