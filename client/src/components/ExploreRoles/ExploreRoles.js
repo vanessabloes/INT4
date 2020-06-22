@@ -1,5 +1,4 @@
 import React from "react";
-//import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
@@ -7,11 +6,11 @@ import { useObserver } from "mobx-react-lite";
 import TheePotFlow from "../../components/buttons/Algemeen/TheePotFlow";
 import { ROUTES } from "../../consts";
 
-import Mask from "../Mask";
 import { useHistory } from "react-router-dom";
 import PageTitle from "../PageTitle/PageTitle";
 import styles from "./ExploreRoles.module.css"
 import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
+import Roleitem from "../Roleitem";
 
 
 const ExploreRoles = () => {
@@ -48,8 +47,7 @@ const ExploreRoles = () => {
           {uiStore.currentJourney ?
           uiStore.currentJourney.wayfarers.map(wayfarer => (
             <>
-              <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-              <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
+              <Roleitem wayfarer={wayfarer}/>
             </>
           )) : "loading"}
 
