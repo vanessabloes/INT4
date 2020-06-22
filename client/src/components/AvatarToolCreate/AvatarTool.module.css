@@ -42,8 +42,14 @@
     composes: labelWrapper from "../../styles/Avatar.module.css"; 
 }
 
-.span {
+.spanNickname {
     composes: span from "../../styles/Avatar.module.css";
+    width: 7rem;
+}
+
+.spanAge {
+    composes: span from "../../styles/Avatar.module.css";
+    width: 3rem;
 }
 
 .input {
