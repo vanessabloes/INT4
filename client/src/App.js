@@ -63,8 +63,6 @@ const App = () => {
            <Home page={ROUTES.home}/>
        </Route>
  </Switch>
-
->>>>>>> b14a017c37fe29429e6bf9f2e5400cba232e4408
     </div>
     
   ));
