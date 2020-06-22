@@ -28,6 +28,10 @@ const Core = () => {
 
     const wayfarers = journeyStore.resolveJourney(id).wayfarers;
 
+    const showOverlay = () => {
+        
+    }
+
     return useObserver(() => (
         <>
             <PageTitle title={"story 1"} />
@@ -35,9 +39,9 @@ const Core = () => {
 
             {wayfarers.map(wayfarer => (
                 <ul>
-                    <li key={wayfarer.id}><Power wayfarer={wayfarer} /></li>
-                    {uiStore.visibilityPower ?
-                        <li key={wayfarer.id}><PowerOverlay wayfarer={wayfarer} /></li> : ""}
+                    <li onClick={showOverlay}key={wayfarer.id}><Power wayfarer={wayfarer} /></li>
+                    
+                        <li key={wayfarer.id}><PowerOverlay wayfarer={wayfarer} /></li> 
                 </ul>
             ))}
 
