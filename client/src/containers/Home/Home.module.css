@@ -4,17 +4,16 @@
   flex-flow: column;
   align-items: center;
   justify-content:space-between ;
-  max-width: 100vw;
+  width: 100vw;
   height: 100vh;
-  /* overflow-x: hidden */
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .worlds_wrapper {
   /* display: grid;
   grid-template-columns: repeat(30, 1fr) ;
   grid-template-rows: repeat(30, 1fr) ; */
-  overflow: scroll;
   display: flex;
   flex-flow: row;
-  overflow-y: scroll;
 }
