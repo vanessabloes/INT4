@@ -7,6 +7,9 @@ import { STATES } from "../../consts";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import Mask from "../Mask";
 import PageTitle from "../PageTitle/PageTitle";
+import styles from "./ChooseRoles.module.css"
+import {ROUTES} from "../../consts/index"
+import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
 
 
 
@@ -70,6 +73,14 @@ const ChooseRoles = () => {
 
   return useObserver(() => (
     <>
+      <div className={styles.progres}>
+        <BackToWorldButton linkTo={ROUTES.home} />
+        <p className={styles.progresTitle}>Preparing the journey</p>
+        <img className={styles.progresImg} src="assets/img/PROGRESS/2of3.svg" alt="Choose roles Select wayfarers" />
+        <p className={styles.select}>Select wayfarers</p>
+        <p className={styles.choose}>Choose roles</p>
+        <p className={styles.explore}>Explore roles</p>
+        </div>
       <PageTitle title={"Choose Roles"} subtext={"Click on a role to explore it’s power. Drag your avatar to a role"} />
       {uiStore.currentJourney.wayfarers.map(wayfarer => (
   

@@ -1,27 +1,29 @@
-.maskContainer {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    justify-items: center;
-    height: 165%;
+
+.maskWrapper {
+    composes: maskContainer from "../../styles/Avatar.module.css";
+    margin: 0;
+
 }
 
 .maskTop {
- grid-column: 1;
- grid-row: 1;
+    composes: maskTop from "../../styles/Avatar.module.css";
+
 }
 
 
 .maskMiddle {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: flex-start;
-    margin-top: 20%;
+    composes: maskMiddle from "../../styles/Avatar.module.css";
+
 
 }
  
 .maskBottom {
-    grid-column: 1;
-    grid-row: 1;
-    align-self: flex-end;
+    composes: maskBottom from "../../styles/Avatar.module.css";
+}
+
+.name {
+    composes: button_title from "../../styles/typo.module.css";
+    text-align: center;
+    font-size: 2rem;
+    text-transform: capitalize;
 }

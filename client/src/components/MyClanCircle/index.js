@@ -36,26 +36,22 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
   
   return useObserver(() => (
  
-    <div className={styles.masks_wrapper}>
+    <div className={styles.circle_wrapper}>
       {
         uiStore.currentClan.clanMembers.map(clanMember => (
 
           graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
 
-          <div className={styles.mask_element} key={clanMember.id}>
-            <div style={{ transform: `rotate(${graden}deg) translate(0rem, 16rem)` }} className={styles.mask}>
+          <div className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 23rem)` }} key={clanMember.id}>
+            
+              
               <div className={styles.mask_image}>
-
                 <Mask clanMember={clanMember} />
-
               </div>
-              {
-                page === "/" ? "" : <div><button onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}>Edit</button></div>
-              }
-               {
-                page === "/" ? "" : <div><button onClick={() => handleDeleteAvatar(clanMember)}>Delete</button></div>
-              }
-            </div>
+  
+              {page === "/" ? "" : <button className={styles.buttonEdit} onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}><span className={styles.hidden}>Edit</span></button>}
+              {page === "/" ? "" : <button className={styles.buttonDelete} onClick={() => handleDeleteAvatar(clanMember)}><span className={styles.hidden}>Delete</span></button>}
+
           </div>
 
         ))

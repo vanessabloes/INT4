@@ -1,0 +1,23 @@
+.myClanWrapper {  
+  height: 100vh;
+}
+
+.header {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr;
+}
+
+.title {
+  justify-self: center;
+  align-self: center;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.button {
+  justify-self: start;
+  align-self: start;
+  grid-column: 1;
+  grid-row: 1;
+}
