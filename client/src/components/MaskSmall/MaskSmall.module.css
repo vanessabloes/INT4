@@ -1,0 +1,35 @@
+
+.maskWrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    margin: 0;
+    height: 9.5rem;
+}
+
+.maskTop {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+
+.maskMiddle {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: center;
+    margin-top: -35%;
+}
+ 
+.maskBottom {
+    grid-row: 1;
+    grid-column: 1;
+    align-self: flex-end;
+}
+
+.name {
+    composes: button_title from "../../styles/typo.module.css";
+    text-align: center;
+    font-size: 2rem;
+    text-transform: capitalize;
+}

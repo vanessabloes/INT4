@@ -11,6 +11,7 @@ import WayfarerModel from "../../models/WayfarerModel";
 import { v4 } from 'uuid';
 import Mask from "../Mask";
 import AvatarToolCreate from "../AvatarToolCreate";
+import MaskSmall from "../MaskSmall";
 
 const AddWayfarers = () => {
 
@@ -60,7 +61,7 @@ const AddWayfarers = () => {
 
   return useObserver(() => (
     <>
-      <div>
+      {/* <div>
         <BackToWorldButton linkTo={ROUTES.home} />
         <div className={styles.progres}>
           <p className={styles.progresTitle}>Preparing the journey</p>
@@ -71,33 +72,33 @@ const AddWayfarers = () => {
         </div>
       </div>
       <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"} />
-     
+      */}
      
       <div>
         <ul className={styles.membersWrapper}>
-          Dit zijn alle clanMembers van de current clan:
 
           {uiStore.currentClan ?
-            uiStore.currentClan.clanMembers.map(clanMember => (
-              <>
-                <button onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} >
-                  <p>{clanMember.name}</p>
-                <Mask clanMember={clanMember} />
-                </button>
+            uiStore.currentClan.clanMembers.map(clanMember => ( 
+              <li>
+            {/* <button onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} ></button> */}
+                  <MaskSmall clanMember={clanMember} />
+            </li>    
                 
-              </>
+            
             )) : "loading"}
 
         </ul>
-        <AddMemberButton text={"Add member"} onClick={showOverlay} />
+        {/* <AddMemberButton text={"Add member"} onClick={showOverlay} /> */}
       </div>
-      <div className={styles.container}>
+      {/* <div className={styles.container}>
         <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" />
         <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" />
         <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
       </div>
       <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
-      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
+      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""} */}
+
+      
     </>
   ));
 };
