@@ -23,9 +23,10 @@ const AddWayfarers = () => {
     //console.log("geen current clan defined!");
     console.log(uiStore.currentClan);
   }
-
-  const addWayfarer = (id) => {
-    console.log(id);
+  let teller = 0;
+  const addWayfarer = (id, mask) => {
+    
+    console.log(teller);
     let w = new WayfarerModel({
       id: v4(), //OKEEE
       clanMemberId: id, // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon) //OKE!
@@ -35,7 +36,18 @@ const AddWayfarers = () => {
 
     w.setJourney(uiStore.currentJourney);
 
+
+    const coords = ["50rem, 20rem", "10rem, 20rem"]
+     switch (mask.getBoundingClientRect().x) {
+      case 203.984375: return mask.style.transform = `translate(${coords[teller]})`; break;
+    
+       default:
+         break;
+     }
+    console.log(mask.getBoundingClientRect().x);
+    
     console.log(w);
+    teller++;
 
     //w.create(); DIT WERKT, maar moet pas in laatste stap wanner je op set journey klikt
 
@@ -68,7 +80,7 @@ const AddWayfarers = () => {
           {uiStore.currentClan ?
             uiStore.currentClan.clanMembers.map(clanMember => (
               <>
-                <button onClick={() => addWayfarer(clanMember.id)} >
+                <button onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} >
                   <p>{clanMember.name}</p>
                 <Mask clanMember={clanMember} />
                 </button>
