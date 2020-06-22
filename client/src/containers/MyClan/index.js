@@ -1,6 +1,5 @@
 import React from "react";
 import MyClanCircle from "../../components/MyClanCircle";
-import AvatarTool from "../../components/AvatarTool";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
 import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldButton";
