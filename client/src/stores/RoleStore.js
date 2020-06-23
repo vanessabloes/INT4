@@ -2,7 +2,6 @@ import RestService from "../services/RestService";
 import { decorate, observable, action } from "mobx";
 import RoleModel from "../models/RoleModel";
 
-
 class RoleStore {
   constructor(rootStore) {
     this.rootStore = rootStore;

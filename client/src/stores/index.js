@@ -14,12 +14,13 @@ import LaunchFlowStore from "./LaunchFlowStore";
 import TopMaskStore from "./TopMaskStore";
 import MiddleMaskStore from "./MiddleMaskStore";
 import BottomMaskStore from "./BottomMaskStore";
+import ChallengeStore from "./ChallengeStore";
 
 configure({ enforceActions: `observed` });
 
 class Store {
   constructor() {
- 
+
     this.clanStore = new ClanStore(this);
     this.uiStore = new UiStore(this);
     this.clanMemberStore = new ClanMemberStore(this);
@@ -32,7 +33,7 @@ class Store {
     this.roleStore = new RoleStore(this);
     this.definedWordStore = new DefinedWordStore(this);
     this.definedStoryWordStore = new DefinedStoryWordStore(this);
-
+    this.challengeStore = new ChallengeStore(this);
 
     this.launchFlowStore = new LaunchFlowStore(this);
 
