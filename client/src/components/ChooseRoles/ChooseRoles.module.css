@@ -13,7 +13,6 @@
   margin: 2rem auto;
 }
 
-
 .progres {
   composes: progres from "../../styles/ProcesBar.module.css";
   grid-row: 1;
@@ -94,7 +93,21 @@
 .roleListItem {
   position: absolute;
   z-index: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 } 
+
+
+.roleImg {
+
+}
+
+.roleName {
+  composes: subtext from "../../styles/typo.module.css";
+  margin: 1rem auto 0rem;
+  font-weight: bold;
+}
 
 
 .LinkRoutton {
