@@ -9,6 +9,14 @@ class WordDAO extends DAO {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  public function selectWordsForStory($id) {
+    $sql = "SELECT `words`.* FROM `words` INNER JOIN `stories`ON `words`.`storyId` = `stories`.`id` WHERE `words`.`storyId` = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
