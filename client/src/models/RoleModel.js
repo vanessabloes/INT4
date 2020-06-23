@@ -1,4 +1,3 @@
-import { v4 } from "uuid";
 import { decorate, computed } from "mobx";
 class RoleModel {
     constructor({id, roleName, roleDescription, powerName, powerDescription, image, store}){
@@ -11,11 +10,6 @@ class RoleModel {
         this.store = store;
         this.store.addRole(this);
     }
-
-     
-    
-
-
 
     get asJson() {
         return {
@@ -31,4 +25,5 @@ class RoleModel {
 decorate(RoleModel, {
 asJson: computed
  });
+ 
 export default RoleModel;
