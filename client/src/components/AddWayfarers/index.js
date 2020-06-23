@@ -40,23 +40,23 @@ const AddWayfarers = () => {
     console.log(mask.getBoundingClientRect().x);
     
      switch (mask.getBoundingClientRect().x) {
-      case 95: teller++ ; return mask.style.transform = `translate(58rem, 12rem) rotate(220deg)`;
-      case 630.0296630859375: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 95: teller++ ; return mask.style.transform = `translate(58rem, 12rem) rotate(220deg)`, mask.style.transition= `1s ease-in-out`;
+      case 630.0296630859375: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
       
-      case 190: teller++; return mask.style.transform = `translate(51rem, 39.5rem) rotate(-70deg)`;
-      case 649.265869140625: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 190: teller++; return mask.style.transform = `translate(51rem, 39.5rem) rotate(-70deg)`, mask.style.transition= `1s ease-in-out`;
+      case 649.265869140625: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
       
-      case 285: teller++; return mask.style.transform = `translate(40rem, 55rem) rotate(-50deg)`;
-      case 635.1301879882812: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 285: teller++; return mask.style.transform = `translate(40rem, 55rem) rotate(-50deg)`, mask.style.transition= `1s ease-in-out`;
+      case 635.1301879882812: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
       
-      case 380: teller++; return mask.style.transform = `translate(-28rem, 56rem) rotate(50deg)`;
-      case 50.130210876464844: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 380: teller++; return mask.style.transform = `translate(-28rem, 56rem) rotate(50deg)`, mask.style.transition= `1s ease-in-out`;
+      case 50.130210876464844: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
       
-      case 475: teller++; return mask.style.transform = `translate(-43rem, 28rem) rotate(130deg)`;
-      case -4.869789123535156: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 475: teller++; return mask.style.transform = `translate(-43rem, 28rem) rotate(130deg)`, mask.style.transition= `1s ease-in-out`;
+      case -4.869789123535156: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
       
-      case 570: teller++; return mask.style.transform = `translate(-44rem, 12rem) rotate(155deg)`;
-      case 97.57693481445312: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      case 570: teller++; return mask.style.transform = `translate(-44rem, 12rem) rotate(155deg)`, mask.style.transition= `1s ease-in-out`;
+      case 97.57693481445312: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
     
       default:
       break;

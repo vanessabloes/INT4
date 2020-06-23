@@ -36,13 +36,13 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
   
   return useObserver(() => (
  
-    <div className={styles.circle_wrapper}>
+    <ul className={styles.circle_wrapper}>
       {
         uiStore.currentClan.clanMembers.map(clanMember => (
 
           graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
 
-          <div className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 23rem)` }} key={clanMember.id}>
+          <li className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 23rem)` }} key={clanMember.id}>
             
               
               <div className={styles.mask_image}>
@@ -52,7 +52,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
               {page === "/" ? "" : <button className={styles.buttonEdit} onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}><span className={styles.hidden}>Edit</span></button>}
               {page === "/" ? "" : <button className={styles.buttonDelete} onClick={() => handleDeleteAvatar(clanMember)}><span className={styles.hidden}>Delete</span></button>}
 
-          </div>
+          </li>
 
         ))
       }
@@ -61,7 +61,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
       }
 
 
-    </div>
+    </ul>
   )
   )
 }

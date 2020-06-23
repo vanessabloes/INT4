@@ -40,7 +40,7 @@ const MyClanCircleTiny = ({ page }) => { //centerButton -> MyClanCircle anders i
       {
         uiStore.currentClan.clanMembers.map(clanMember => (
           graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
-          <div className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 18rem)` }} key={clanMember.id}>
+          <div className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 18rem)`,transition: `1s ease-in-out` }} key={clanMember.id}>
 
 
             <div className={styles.mask_image}>

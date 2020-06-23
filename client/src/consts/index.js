@@ -18,7 +18,7 @@ const STATES = {
   ADDJOURNEY_STATE_EXPLOREROLES: "Explore roles",
   ADDSTORY_STATE_LOADING: "Loading",
   ADDSTORY_STATE_CORE: "Core function",
-  ADDSTORY_STATE_CHALLENGE: "Do challenge"
+  ADDSTORY_STATE_CHALLENGE: "Do challenge",
 };
 
 export { ROUTES, STATES };

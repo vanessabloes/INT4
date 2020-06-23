@@ -30,3 +30,59 @@
 .explore {
   composes: explore from "../../styles/ProcesBar.module.css";
 }
+
+
+.wayferersRolesWrapper {
+  height: 65vh;
+  max-width: 95vw;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  margin: 0 auto;
+  margin-top: -2rem;
+}
+
+.wayfarerList {
+  grid-row: 1;
+  grid-column: 1;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+  z-index: 1;
+}
+
+.wayfarerListItem {
+  position: absolute;
+  z-index: 0;
+}
+
+.rolerList {
+  grid-row: 1;
+  grid-column: 1;
+
+  background-repeat: no-repeat;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+.roleListItem {
+  position: absolute;
+  z-index: 0;
+} 
+
+
+.LinkRoutton {
+  composes: button from "../../styles/uiControls.module.css";
+  grid-row: 1;
+  grid-column: 1;
+  height: 4rem;
+  align-self: center;
+  justify-self: center;
+  z-index: 2;
+}
