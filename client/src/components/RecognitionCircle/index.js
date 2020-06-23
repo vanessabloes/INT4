@@ -3,6 +3,7 @@ import { useStore } from "../../hooks";
 import WordModel from "../../models/WordModel";
 import React, { useState } from 'react';
 import styles from "./RecognitionCircle.module.css"
+import JourneyStore from "../../stores/JourneyStore";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -13,11 +14,11 @@ recognition.lang = 'en-US';
 recognition.continuous = true;
 
 const RecognitionCircle = () => {
-    const { wordStore, uiStore, definedStoryWordStore } = useStore();
+    const { wordStore, uiStore, definedStoryWordStore, journeyStore } = useStore();
     const [play, setPlay] = useState(false);
 
    const definedStoryWords = uiStore.currentStory.definedStoryWords;
- 
+    console.log(definedStoryWords);
 
 
 
@@ -26,9 +27,12 @@ const RecognitionCircle = () => {
 
         definedStoryWords.forEach(definedStoryWord => {
             // sets first definedstoryword always true  ------WERKT NIET------
-            if(definedStoryWords.indexOf(definedStoryWords === 0)){
+            if(definedStoryWords.indexOf(definedStoryWord) === 0){
                 const firstDefinedStoryWordToCheck = definedStoryWordStore.resolveDefinedStoryWord(definedStoryWords[0].id);
+                console.log(firstDefinedStoryWordToCheck);
                 firstDefinedStoryWordToCheck.setReached('true');
+                firstDefinedStoryWordToCheck.update();
+             
             }
             // checks all true's and ups the pitstopcount to be in sync with server
             if(definedStoryWord.isReached === "true"){
@@ -79,9 +83,7 @@ const RecognitionCircle = () => {
      }
      
      const addNoun = noun => {
-         if(noun === "alter"){
-             noun = "altar";
-         }
+         
 
          const word = new WordModel({
              content: noun.toLowerCase(),
@@ -90,22 +92,14 @@ const RecognitionCircle = () => {
          });
          console.log(word)
 
- 
-         
- 
- 
-        
- 
-
-         
-
- 
          if(uiStore.pitStopCount < definedStoryWords.length){ // zolang de count kleiner is dan de lengte van alle definedstorywords doe je de logica
              const definedStoryWordToCheck = definedStoryWordStore.resolveDefinedStoryWord(uiStore.currentStory.definedStoryWords[uiStore.pitStopCount].id);
              // eerste woord altijd true
-            
+             console.log(definedStoryWordToCheck);
+            console.log(definedStoryWords.length);
             
              if(definedStoryWordToCheck.content === word.content){
+                 console.log("equals")
                  definedStoryWordToCheck.setReached("true");
                  definedStoryWordToCheck.update();
              }
@@ -117,13 +111,13 @@ const RecognitionCircle = () => {
               }
  
          word.create();
-     
+         uiStore.currentStory.addWord(word)
     }
  }
   return useObserver (() => (
       <>
 
-    <p className={styles.circle__counter}>{wordStore.wordCounter}</p>
+    <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>
 
     {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
 

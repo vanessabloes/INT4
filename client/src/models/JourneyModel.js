@@ -67,9 +67,23 @@ class JourneyModel {
 
   }
 
-  async addDefinedStoryWord(definedStoryWord) {
-    await this.definedStoryWords.push(definedStoryWord);
+   addDefinedStoryWord(definedStoryWord) {
+    !this.definedStoryWords.includes(definedStoryWord) && this.definedStoryWords.push(definedStoryWord);
   }
+
+  get wordCounter() {
+    return (this.wayfarers.length * 30) - this.store.rootStore.uiStore.currentStory.words.length;
+}
+
+get definedJourneyStoryWords() {
+  let array = [];
+  this.stories.forEach(story => {
+      story.definedStoryWords.forEach(definedStoryWord => {
+        array.push(definedStoryWord);
+      });
+  });
+  return array;
+}
 
   get asJson() {
     return {
@@ -92,7 +106,10 @@ decorate(JourneyModel, {
   asJson: computed,
   setJourneyName: action,
   setImage: action,
-  setClan: action
+  setClan: action,
+  wordCounter: computed,
+
+  definedJourneyStoryWords: computed
 });
 
 export default JourneyModel;

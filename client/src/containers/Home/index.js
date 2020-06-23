@@ -22,7 +22,7 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
-  console.log(uiStore.currentClan)
+  //console.log(uiStore.currentClan)
   // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
   return useObserver(() => {
@@ -32,10 +32,8 @@ const Home = ({ page }) => {
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
-        return <ProgressFlame />  
-    
-    // return <OpeningFamily />
-    }
+        return <OpeningFamily />  
+
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_SURREAL_WORLD) {//"Opening Surreal World",
       return <OpeningSurrealWorld />;

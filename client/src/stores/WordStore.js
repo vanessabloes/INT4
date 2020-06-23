@@ -43,15 +43,12 @@ class WordStore {
       }
 
 
-    get wordCounter() {
-        return this.spokenNouns.length;
-    }
+  
 }
 
 decorate(WordStore, {
     spokenNouns: observable,
     addWord: action,
-    wordCounter: computed,
     updateWordFromServer: action
 });
 

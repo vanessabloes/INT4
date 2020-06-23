@@ -16,7 +16,7 @@ class WordModel {
 
     create = async () => this.store.createWord(this.asJson);
 
-
+  
 
 
     get asJson() {

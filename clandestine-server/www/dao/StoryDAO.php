@@ -45,10 +45,10 @@ class StoryDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `stories` (`id`, `name`, `journeyId`, `contextId`, `levelId`) VALUES (:id, :name, :journeyId, :contextId, :levelId)";
+      $sql = "INSERT INTO `stories` (`id`, `journeyId`, `contextId`, `levelId`) VALUES (:id, :journeyId, :contextId, :levelId)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
-      $stmt->bindValue(':name', $data['name']);
+
       $stmt->bindValue(':journeyId', $data['journeyId']);
       $stmt->bindValue(':contextId', $data['contextId']);
       $stmt->bindValue(':levelId', $data['levelId']);
@@ -88,9 +88,8 @@ class StoryDAO extends DAO {
     if(!isset($data['id'])) {
       $errors['id'] = "Please fill in id";
     }
-    if(!isset($data['name'])) {
-      $errors['name'] = "Please fill in a name";
-    }
+  
+    
     if(!isset($data['journeyId'])) {
       $errors['journeyId'] = "Please fill in a journeyId";
     }
