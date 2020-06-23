@@ -14,7 +14,7 @@ import { STATES } from "../../consts/index";
 import styles from "./Home.module.css"
 import World from "../../components/World/World"
 import { Link } from "react-router-dom";
-import Challenge from "../../components/Challenge";
+import ProgressFlame from "../../components/ProgressFlames";
 
 
 const Home = ({ page }) => {
@@ -32,7 +32,7 @@ const Home = ({ page }) => {
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
-        return <Challenge />  
+        return <ProgressFlame />  
     
     // return <OpeningFamily />
     }
