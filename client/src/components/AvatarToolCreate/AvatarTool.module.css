@@ -1,5 +1,7 @@
 .overlay {
     composes: overlay from "../../styles/Avatar.module.css";
+    display: flex;
+    flex-direction: column;
 }
 
 .closeButton {
@@ -90,4 +92,15 @@
     font-size: 1.6rem;
     font-family: Helvetica Neue;
     margin-top: -3rem;
+  }
+
+  .close{
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+  }
+
+  .errorLabel {
+      color: #E30613;
+      font-weight: bold;
   }

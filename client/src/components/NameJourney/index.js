@@ -1,12 +1,11 @@
 import React, { useState } from "react";
+import { useObserver } from "mobx-react-lite";
 import styles from "./NameJourney.module.css"
 import PageTitle from "../PageTitle/PageTitle"
 import { ROUTES, STATES } from "../../consts/index"
 import { useStore } from "../../hooks";
 import { useParams } from "react-router-dom";
-import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
-import { set } from "mobx";
 
 const getRandomInt = () => {
   return Math.floor(Math.random() * Math.floor(10));
@@ -25,6 +24,7 @@ const NameJourney = () => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
+
     if (journeyName !== "") {
 
       const journey = journeyStore.resolveJourney(id);
@@ -35,12 +35,15 @@ const NameJourney = () => {
       journey.update();
 
       setBtw(true);
+      launchFlowStore.setNameJourneyError("");
       launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME);
 
+    } else {
+      launchFlowStore.setNameJourneyError("Please fill in a journey name");
     }
   }
 
-  return (
+  return useObserver(() => (
     <div className={styles.wrapper}>
 
       <div className={styles.title}>
@@ -64,6 +67,8 @@ const NameJourney = () => {
             />
           </label>
 
+          <p className={styles.error}>{launchFlowStore.journeyNameError}</p>
+
           {!btw ?
             <label className={styles.theepot}>
               <input
@@ -78,7 +83,7 @@ const NameJourney = () => {
       </div>
 
     </div>
-  );
+  ));
 };
 
 export default NameJourney;

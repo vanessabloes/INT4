@@ -25,11 +25,11 @@ class UiStore {
   }
 
 
-  setPitStopCount(value){
+  setPitStopCount(value) {
     this.pitStopCount = this.pitStopCount + value;
   }
 
-  setCurrentStory(story){
+  setCurrentStory(story) {
     console.log(story)
     this.currentStory = story;
   }
