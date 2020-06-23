@@ -1,0 +1,60 @@
+@value tokens: "../../styles/tokens.module.css";
+@value highlight-orange from tokens;
+
+.challengePage {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    width: 100vw;
+    padding: 2rem;
+}
+
+.pageTitle {
+    justify-self: start;
+}
+
+.center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.buttonWrapper {
+    border: .3rem solid highlight-orange;
+    border-radius: 3rem;
+    width: 30rem;
+    z-index: 1;
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 2rem;
+}
+
+.button {
+    composes: button from "../../styles/uiControls.module.css";
+    height: 5rem;
+    width: 15rem;
+    border-radius: 3rem;
+}
+
+.challengeWrapper {
+    border: .3rem solid highlight-orange;
+    border-radius: 1rem;
+    width: 70vw;
+    margin: 0 auto;
+    padding: 3rem 5rem;
+    height: 20rem;
+}
+
+.title {
+    composes: page_title from "../../styles/typo.module.css";
+}
+
+.text {
+    composes: subtext from "../../styles/typo.module.css";
+}
+
+.button {
+    justify-self: end;
+}
