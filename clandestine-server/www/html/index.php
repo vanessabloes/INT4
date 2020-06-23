@@ -22,6 +22,8 @@ require __DIR__ . '/../dao/WordDAO.php';
 require __DIR__ . '/../dao/DefinedWordDAO.php';
 require __DIR__ . '/../dao/DefinedStoryWordDAO.php';
 
+require __DIR__ . '/../dao/ChallengeDAO.php';
+
 /**
  * Instantiate App
  *
@@ -52,6 +54,18 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 // Define app routes
 
 $app->group('/api', function (RouteCollectorProxy $routeGroup) {
+
+  $routeGroup->group('/challenges', function (RouteCollectorProxy $routeGroup) {
+    $routeGroup->get('', function (Request $request, Response $response) {
+      $challengeDAO = new ChallengeDAO();
+      $data = $challengeDAO->selectAll();
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
+  });
 
 
   $routeGroup->group('/definedwords', function (RouteCollectorProxy $routeGroup) {
