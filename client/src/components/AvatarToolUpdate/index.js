@@ -75,7 +75,7 @@ const AvatarToolUpdate = () => {
 
         <div className={styles.overlay}>
 
-            <button className={styles.closeButton} onClick={closeOverlay}><img alt="close icon" scr="/assets/img/BUTTONS/close.svg"/></button>
+            <button className={styles.closeButton} onClick={closeOverlay}><img className={styles.close} alt="close icon" src="assets/img/BUTTONS/close.svg" /></button>
             <PageTitle title={"Update your avatar"} />
 
 

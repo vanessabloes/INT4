@@ -34,6 +34,7 @@
   width: 11.5rem;
   padding-top: .5rem;
   padding-left: .5rem;
+  margin-top: -.5rem
 }
 
 .labelWrapper {
@@ -88,4 +89,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.error {
+  color: #E30613;;
+  font-weight: bold;
+  text-align: center;
 }
