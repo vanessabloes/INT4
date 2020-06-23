@@ -67,8 +67,8 @@ class JourneyModel {
 
   }
 
-  async addDefinedStoryWord(definedStoryWord) {
-    await this.definedStoryWords.push(definedStoryWord);
+   addDefinedStoryWord(definedStoryWord) {
+    !this.definedStoryWords.includes(definedStoryWord) && this.definedStoryWords.push(definedStoryWord);
   }
 
   get wordCounter() {

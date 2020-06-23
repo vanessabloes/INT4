@@ -12,7 +12,11 @@ class DefinedStoryWordStore {
   }
 
   createDefinedStoryWord = async definedStoryWord => {
+    console.log("______________ IK CREATE")
+    console.log(definedStoryWord);
   const json = await this.definedStoryWordsService.create(definedStoryWord);
+  console.log(json)
+  console.log("______________ IK CREATE JSON HIERBOVEN")
   this.updateDefinedStoryWordFromServer(json);
   }
 
@@ -47,12 +51,13 @@ class DefinedStoryWordStore {
   };
 
   updateDefinedStoryWordFromServer(json) {
-
+    let fromServere = false;
     let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
-    console.log("gecheckt")
+      console.log("_________________ IK CHECK EN LOG ONDER MIJ ZOU EEN MODEL MOETEN ZIJN")
      console.log(definedStoryWord)
      if (!definedStoryWord) {
-        
+        fromServere = true;
+        console.log("________ DIT NIET ZIEN")
         definedStoryWord = new DefinedStoryWordModel({
             id: json.id, 
             content: json.content,
@@ -61,11 +66,12 @@ class DefinedStoryWordStore {
             definedWordId: json.definedWordId,
             store: this
         });
-
+      
      }
      if (json.isDeleted) {
        this.definedStoryWords.remove(definedStoryWord);
-     } else {
+     } else if(fromServere === true){
+       console.log("______ IK GA UPDATEN IN JSON")
        definedStoryWord.updateFromJson(json);
      }
      return definedStoryWord;

@@ -18,9 +18,14 @@ class DefinedStoryWordModel {
     update = async () => this.store.updateDefinedStoryWord(this.asJson);
 
     updateFromJson(definedStoryWord){
-      const story = this.store.rootStore.storyStore.resolveStory(definedStoryWord.storyId);
-      story.addDefinedStoryWord(definedStoryWord);
-      console.log("hey im usels")
+      console.log(definedStoryWord);
+      if(definedStoryWord !== undefined){
+        const story = this.store.rootStore.storyStore.resolveStory(definedStoryWord.storyId);
+        const journey = this.store.rootStore.journeyStore.resolveJourney(story.journeyId);
+        story.addDefinedStoryWord(definedStoryWord);
+        journey.addDefinedStoryWord(definedStoryWord);
+        console.log("update from json definedStoryWord");
+      }
   }
 
 

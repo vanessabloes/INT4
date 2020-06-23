@@ -29,7 +29,7 @@ const NewStoryButton = ({ text, id }) => {
    console.log(newStory.id) // check
     await uiStore.setCurrentJourney(journey); //check
     await uiStore.setCurrentStory(newStory); //check
-    definedWordStore.getDefinedWords(newStory.id);
+    await definedWordStore.getDefinedWords(newStory.id);
     await newStory.create();
     history.push(`${id}` + ROUTES.addStory.to + `/`+ uiStore.currentStory.id)
 

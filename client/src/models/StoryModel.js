@@ -27,7 +27,7 @@ class StoryModel {
   }
 
   addDefinedStoryWord(definedStoryWord){
-    this.definedStoryWords.includes(definedStoryWord) && this.definedStoryWords.push(definedStoryWord);
+    !this.definedStoryWords.includes(definedStoryWord) && this.definedStoryWords.push(definedStoryWord);
     
   }
 
@@ -125,8 +125,8 @@ class StoryModel {
     return this.store.rootStore.journeyStore.resolveJourney(this.journeyId);
   }
 
-  updateFromJson({ name, words, definedStoryWords }) {
-    console.log(name)
+  updateFromJson({ words, definedStoryWords }) {
+  
    // if(name !== undefined){
    //   this.name = name;
    // }
@@ -140,12 +140,11 @@ class StoryModel {
     }
    
     if(definedStoryWords !== undefined){
+      console.log(definedStoryWords)
+      console.log("updatefromjson definedstorywords array")
     definedStoryWords.forEach(definedStoryWord => {
-      this.addDefinedStoryWord(definedStoryWord);
+     // this.addDefinedStoryWord(definedStoryWord);
       this.store.rootStore.definedStoryWordStore.updateDefinedStoryWordFromServer(definedStoryWord);
-
-     
-
     });
   }
   }

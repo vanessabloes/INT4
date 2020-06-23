@@ -39,12 +39,13 @@ const JourneyDetail = () => {
 
     const loadJourneyy = async (id) => {
 
-       try {
+       //try {
         console.log(id)
        
         const journey = await journeyStore.loadJourney(id);
         uiStore.setCurrentJourney(journey);
-        const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
+        //const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
+       // console.log(lol)
         console.log(journey)
         if (!journey) {
           setState(STATE_NOT_FOUND);
@@ -53,17 +54,17 @@ const JourneyDetail = () => {
         setJourney(journey);
         setState(STATE_LOADING_MORE_DETAILS);
   
-        console.log(lol)
+      
         await clanStore.loadClanMembers(uiStore.currentClan.id);
         await journeyStore.loadWayfarersForJourney(id);
         await journeyStore.loadStoriesForJourney(id);
         setState(STATE_FULLY_LOADED);
-     }
+    //  }
 
-       catch (error) {
-         console.log("error")
-         setState(STATE_NOT_FOUND);
-       }
+    //    catch (error) {
+    //      console.log("error")
+    //      setState(STATE_NOT_FOUND);
+    //    }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);
@@ -89,7 +90,7 @@ const JourneyDetail = () => {
 
         <div className={styles.wayfarers}>
           {journey.wayfarers.map(wayfarer => (
-            <div className={styles.wayfarer}>
+            <div key={wayfarer.id} className={styles.wayfarer}>
               <MaskNoName key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
               <h1>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</h1>
               <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>

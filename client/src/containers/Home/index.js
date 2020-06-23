@@ -21,7 +21,7 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
-  console.log(uiStore.currentClan)
+  //console.log(uiStore.currentClan)
   // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
   return useObserver(() => {

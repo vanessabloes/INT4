@@ -18,7 +18,7 @@ const RecognitionCircle = () => {
     const [play, setPlay] = useState(false);
 
    const definedStoryWords = uiStore.currentStory.definedStoryWords;
- 
+    console.log(definedStoryWords);
 
 
 
@@ -27,8 +27,9 @@ const RecognitionCircle = () => {
 
         definedStoryWords.forEach(definedStoryWord => {
             // sets first definedstoryword always true  ------WERKT NIET------
-            if(definedStoryWords.indexOf(definedStoryWords === 0)){
+            if(definedStoryWords.indexOf(definedStoryWords) === 0){
                 const firstDefinedStoryWordToCheck = definedStoryWordStore.resolveDefinedStoryWord(definedStoryWords[0].id);
+                console.log(firstDefinedStoryWordToCheck);
                 firstDefinedStoryWordToCheck.setReached('true');
             }
             // checks all true's and ups the pitstopcount to be in sync with server
