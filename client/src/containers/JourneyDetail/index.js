@@ -44,7 +44,7 @@ const JourneyDetail = () => {
        
         const journey = await journeyStore.loadJourney(id);
         uiStore.setCurrentJourney(journey);
-        //const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
+        const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
        // console.log(lol)
         console.log(journey)
         if (!journey) {
@@ -104,7 +104,7 @@ const JourneyDetail = () => {
 
             <li key={story.id}>
               {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}
-              <p>{story.name}</p>
+          <p>{"Your story"}</p>
 
             </li>
           ))}

@@ -148,11 +148,14 @@ class StoryModel {
     });
   }
   }
-  get name  () {
-     
-   // return `from ` +  this.definedStoryWords[0].content + ` to ` + this.definedStoryWords[this.definedStoryWords.length - 1].content;
-   //return "name";
-}
+//   get name  () {
+//      if(this.definedStoryWords !== undefined){
+//     return `from ` +  this.definedStoryWords[0].content + ` to ` + this.definedStoryWords[this.definedStoryWords.length - 1].content;
+//      }else{
+//        return 'Your journey';
+//      }
+//    //return "name";
+// }
 
 
   get asJson() {
@@ -176,7 +179,7 @@ decorate(StoryModel, {
   words: observable,
   addWord: action,
   asJson: computed,
-  name: computed
+  
 });
 
 export default StoryModel;

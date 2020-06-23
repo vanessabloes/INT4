@@ -3,7 +3,7 @@ import { decorate, observable, action } from "mobx";
 import DefinedWordModel from "../models/DefinedWordModel";
 import { v4 } from "uuid";
 import DefinedStoryWordModel from "../models/DefinedStoryWordModel";
-
+let checkedJourneyArray = [];
 class DefinedWordStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
@@ -78,12 +78,16 @@ class DefinedWordStore {
     if (this.rootStore.uiStore.currentJourney.definedStoryWords.length > 0) {
       console.log("checkin length")
       let count = 0;
+      
       this.rootStore.uiStore.currentJourney.definedStoryWords.forEach(definedStoryWord => {
         // console.log(definedStoryWord.definedWordId + "=" + definedWord.id)
         if (definedStoryWord.definedWordId === randomDefinedWord.id) {
           // console.log("id's are same");
           isInArray = true;
-
+          !checkedJourneyArray.includes(definedStoryWord) && checkedJourneyArray.push(definedStoryWord);
+          if(checkedJourneyArray.length === this.rootStore.uiStore.currentJourney.definedStoryWords.length){
+            this.setDefinedWord(randomDefinedWord, storyId); // set anyway to prevent infinite loops
+          }
         } else {
           count++;
 

@@ -32,7 +32,7 @@ const Home = ({ page }) => {
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
-        return <Challenge />  
+        return <OpeningFamily />  
     
     // return <OpeningFamily />
     }
