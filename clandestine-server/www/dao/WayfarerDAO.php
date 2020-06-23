@@ -28,12 +28,16 @@ class WayfarerDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `wayfarers` (`id`, `clanMemberId`, `journeyId`, `roleId`) VALUES (:id, :clanMemberId, :journeyId, :roleId)";
+      $sql = "INSERT INTO `wayfarers` (`id`, `clanMemberId`, `journeyId`, `roleId`, `name`, `topMaskId`, `middleMaskId`, `bottomMaskId`) VALUES (:id, :clanMemberId, :journeyId, :roleId, :name, :topMaskId, :middleMaskId, :bottomMaskId)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':clanMemberId', $data['clanMemberId']);
       $stmt->bindValue(':journeyId', $data['journeyId']);
       $stmt->bindValue(':roleId', $data['roleId']);
+      $stmt->bindValue(':name', $data['name']);
+      $stmt->bindValue(':topMaskId', $data['topMaskId']);
+      $stmt->bindValue(':middleMaskId', $data['middleMaskId']);
+      $stmt->bindValue(':bottomMaskId', $data['bottomMaskId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }

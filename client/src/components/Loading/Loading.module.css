@@ -1,133 +1,38 @@
-.gridbox {
+.loadingWrapper {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-template-rows: repeat(1,1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  align-items: center;
-  justify-content: center;
-}
-
-.laadknop_text {
-  composes: button_title from "../../styles/typo.module.css";
-}
-
-.title {
-  composes: page_title from "../../styles/typo.module.css";
-  padding-top: 1rem;
-   
-}
-
-.pictures {
-  grid-area: 1 / 2 / 3 / 3;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  margin-top: 12rem;
-    
-}
-
-.driehoek {
-  margin-top: -3rem;
-  z-index: 0;
-}
-
-.koepel {
-  grid-area: 1 / 2 / 3 / 3;
-  z-index: 1;
-  margin-right: 10%;
-  margin-top: 10%;
-}
-
-.deur {
-  grid-area: 3 / 2 / 4 / 3;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  max-width: 10%;
-  place-self: center;
-}
-
-.loadingdiv {
-  margin-top: -10rem;
-}
-
-.loading {
-  margin-top: -30rem;
-  z-index: -1;
-  grid-area: 3 / 2 / 4 / 3;
-  -webkit-animation-name: spin;
-  -webkit-animation-duration: 2000ms;
-  -webkit-animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  -moz-animation-name: spin;
-  -moz-animation-duration: 2000ms;
-  -moz-animation-iteration-count: infinite;
-  -moz-animation-timing-function: linear;
-  -ms-animation-name: spin;
-  -ms-animation-duration: 2000ms;
-  -ms-animation-iteration-count: infinite;
-  -ms-animation-timing-function: linear;
-  animation-name: spin;
-  animation-duration: 2000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
-  
-@-ms-keyframes spin {
-  from {
-    -ms-transform: rotate(0deg);
-  }
-  to {
-    -ms-transform: rotate(360deg);
-  }
-}
-  
-@-moz-keyframes spin {
-  from {
-    -moz-transform: rotate(0deg);
-  }
-  to {
-    -moz-transform: rotate(360deg);
-  }
-}
-  
-@-webkit-keyframes spin {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-  to {
-    -webkit-transform: rotate(360deg);
-  }
-}
-  
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  grid-template-columns: 1;
+  grid-template-rows: 1;
+  margin: auto 0;
+  height: 100vh;
 }
 
 .hidden {
-    composes: visually-hidden from "../../styles/index.css"
+  composes: visually-hidden from "../../styles/index.css"
+}
+
+.koepel {
+  z-index: 1;
+  margin: auto;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+
+.deur {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  place-self: end center;
+  margin-bottom: 4rem;
 }
 
 .leftDoor {
-  
   position: relative;
   animation: deurL 5s infinite;
   grid-row: 1;
   grid-column: 1;
   z-index: 3;
   margin-left: 1.4rem;
-}
-
-@keyframes deurL {
-  from {right: 0px;}
-  to {right: 80px;}
 }
 
 .rightDoor {
@@ -140,19 +45,19 @@
   margin-right: 1.4rem;
 }
 
-@keyframes deurR {
-  from {left: 0px;}
-  to {left: 80px;}
-}
-
 .LoadingWheel {
   grid-row: 1;
   grid-column: 1;
 }
 
-.loadingWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: auto 0;
+@keyframes deurL {
+  from {right: 0px;}
+  to {right: 80px;}
 }
+
+
+@keyframes deurR {
+  from {left: 0px;}
+  to {left: 80px;}
+}
+

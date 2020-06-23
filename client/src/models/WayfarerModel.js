@@ -2,7 +2,7 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
-  constructor({ id = v4(), clanMemberId, journeyId, roleId, store, ...json }) {
+  constructor({ id = v4(), clanMemberId, journeyId, roleId, topMaskId, middleMaskId, bottomMaskId, name, store, ...json }) {
     this.id = id;
     if (!store) {
       throw new Error("A wayfarer needs a store");
@@ -11,7 +11,11 @@ class WayfarerModel {
     this.roleId = roleId;
     this.clanMemberId = clanMemberId;
     this.journeyId = journeyId;
- 
+
+    this.topMaskId = topMaskId;
+    this.middleMaskId = middleMaskId;
+    this.bottomMaskId = bottomMaskId;
+    this.name = name;
 
     this.store.addWayfarer(this);
 
@@ -47,7 +51,18 @@ class WayfarerModel {
   update = async () => this.store.updateUser(this.asJson);
   delete = async () => this.store.deleteUser(this.asJson);
 
+  setTopMask(topMask) {
 
+    this.topMaskId = topMask.id;
+  }
+
+  setMiddleMask(middleMask) {
+    this.middleMaskId = middleMask.id;
+  }
+
+  setBottomMask(bottomMask) {
+    this.bottomMaskId = bottomMask.id;
+  }
 
 
   get journey() {
@@ -60,7 +75,7 @@ class WayfarerModel {
     return this.store.rootStore.roleStore.resolveRole(this.roleId);
   }
 
-  updateFromJson({ journeyId, clanMemberId, roleId }) {
+  updateFromJson({ journeyId, clanMemberId, roleId, topMaskId, middleMaskId, bottomMaskId, name }) {
 
     console.log(roleId)
     if (clanMemberId !== undefined) {
@@ -68,6 +83,14 @@ class WayfarerModel {
       this.setClanMember(this.store.rootStore.clanMemberStore.resolveClanMember(clanMemberId));
       this.setJourney(this.store.rootStore.journeyStore.resolveJourney(journeyId));
       this.setRole(this.store.rootStore.roleStore.resolveRole(roleId));
+
+      if (topMaskId !== undefined) {
+        this.setTopMask(this.store.rootStore.topMaskStore.resolveTopMask(topMaskId.toString()));
+        this.setMiddleMask(this.store.rootStore.middleMaskStore.resolveMiddleMask(middleMaskId.toString()));
+        this.setBottomMask(this.store.rootStore.bottomMaskStore.resolveBottomMask(bottomMaskId.toString()));
+      }
+
+      this.name = name;
       // this.journeys = journeys;
       //this.store.journeyStore.resolveJourney().linkWayfarer(this)
     }
@@ -78,7 +101,11 @@ class WayfarerModel {
       id: this.id,
       clanMemberId: this.clanMemberId,
       journeyId: this.journeyId,
-      roleId: this.roleId
+      roleId: this.roleId,
+      topMaskId: this.topMaskId,
+      middleMaskId: this.middleMaskId,
+      bottomMaskId: this.bottomMaskId,
+      name: this.name
     };
   }
 }
@@ -93,7 +120,14 @@ decorate(WayfarerModel, {
   roleId: observable,
   clanMemberId: observable,
   journeyId: observable,
-  asJson: computed
+  asJson: computed,
+  topMaskId: observable,
+  middleMaskId: observable,
+  bottomMaskId: observable,
+  name: observable,
+  setTopMask: action,
+  setMiddleMask: action,
+  setBottomMask: action
 });
 
 export default WayfarerModel;

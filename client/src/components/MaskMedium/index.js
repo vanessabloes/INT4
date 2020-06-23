@@ -11,7 +11,7 @@ const MaskMedium = ({ clanMember }) => {
         <>
             <div className={styles.maskWrapper}>
                 <img height="100" className={styles.maskTop} src={topMaskStore.resolveTopMask(clanMember.topMaskId).topImage} alt="topmask" />
-                <img height="45" className={styles.maskMiddle} src={middleMaskStore.resolveMiddleMask(clanMember.middleMaskId).middleImage} alt="topmask" />
+                <img height="46" className={styles.maskMiddle} src={middleMaskStore.resolveMiddleMask(clanMember.middleMaskId).middleImage} alt="topmask" />
                 <img height="75" className={styles.maskBottom} src={bottomMaskStore.resolveBottomMask(clanMember.bottomMaskId).bottomImage} alt="topmask" />
             </div>
             <p className={styles.name}>{clanMember.name}</p>

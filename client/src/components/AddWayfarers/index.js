@@ -14,54 +14,60 @@ import MaskSmall from "../MaskSmall";
 
 const AddWayfarers = () => {
 
-  const { uiStore, wayfarerStore, clanStore } = useStore();
+  const { uiStore, wayfarerStore, clanStore, clanMemberStore } = useStore();
 
   if (uiStore.currentClan !== undefined) {
     clanStore.loadClanMembers(uiStore.currentClan.id);
-    
+
   } else {
     //console.log("geen current clan defined!");
     console.log(uiStore.currentClan);
   }
 
   let teller = 1;
-  
+
   const addWayfarer = (id, mask) => {
-    
+
     console.log(teller);
     let w = new WayfarerModel({
       id: v4(), //OKEEE
       clanMemberId: id, // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon) //OKE!
       // journeyId: uiStore.currentJourney.id,
-      store: wayfarerStore
+      store: wayfarerStore,
+      topMaskId: clanMemberStore.resolveClanMember(id).topMaskId,
+      middleMaskId: clanMemberStore.resolveClanMember(id).middleMaskId,
+      bottomMaskId: clanMemberStore.resolveClanMember(id).bottomMaskId,
+      name: clanMemberStore.resolveClanMember(id).name
     });
+
+    console.log(w);
 
     w.setJourney(uiStore.currentJourney);
     console.log(mask.getBoundingClientRect().x);
-    
-     switch (mask.getBoundingClientRect().x) {
-      case 95: teller++ ; return mask.style.transform = `translate(58rem, 12rem) rotate(220deg)`, mask.style.transition= `1s ease-in-out`;
-      case 630.0296630859375: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-      
-      case 190: teller++; return mask.style.transform = `translate(51rem, 39.5rem) rotate(-70deg)`, mask.style.transition= `1s ease-in-out`;
-      case 649.265869140625: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-      
-      case 285: teller++; return mask.style.transform = `translate(40rem, 55rem) rotate(-50deg)`, mask.style.transition= `1s ease-in-out`;
-      case 635.1301879882812: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-      
-      case 380: teller++; return mask.style.transform = `translate(-28rem, 56rem) rotate(50deg)`, mask.style.transition= `1s ease-in-out`;
-      case 50.130210876464844: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-      
-      case 475: teller++; return mask.style.transform = `translate(-43rem, 28rem) rotate(130deg)`, mask.style.transition= `1s ease-in-out`;
-      case -4.869789123535156: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-      
-      case 570: teller++; return mask.style.transform = `translate(-44rem, 12rem) rotate(155deg)`, mask.style.transition= `1s ease-in-out`;
-      case 97.57693481445312: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition= `1s ease-in-out`;
-    
+
+    switch (mask.getBoundingClientRect().x) {
+      case 95: teller++; return mask.style.transform = `translate(58rem, 12rem) rotate(220deg)`, mask.style.transition = `1s ease-in-out`;
+      case 630.0296630859375: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
+      case 190: teller++; return mask.style.transform = `translate(51rem, 39.5rem) rotate(-70deg)`, mask.style.transition = `1s ease-in-out`;
+      case 649.265869140625: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
+      case 285: teller++; return mask.style.transform = `translate(40rem, 55rem) rotate(-50deg)`, mask.style.transition = `1s ease-in-out`;
+      case 635.1301879882812: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
+      case 380: teller++; return mask.style.transform = `translate(-28rem, 56rem) rotate(50deg)`, mask.style.transition = `1s ease-in-out`;
+      case 50.130210876464844: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
+      case 475: teller++; return mask.style.transform = `translate(-43rem, 28rem) rotate(130deg)`, mask.style.transition = `1s ease-in-out`;
+      case -4.869789123535156: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
+      case 570: teller++; return mask.style.transform = `translate(-44rem, 12rem) rotate(155deg)`, mask.style.transition = `1s ease-in-out`;
+      case 97.57693481445312: teller++; return mask.style.transform = `translate(0) rotate(0deg)`, mask.style.transition = `1s ease-in-out`;
+
       default:
-      break;
-     }
-    
+        break;
+    }
+
     console.log(w);
     teller++;
 
@@ -77,56 +83,56 @@ const AddWayfarers = () => {
   return useObserver(() => (
     <>
 
-  <div className={styles.pagewrapper}>
-    <header className={styles.header}>
-      <div className={styles.headerButton}>
-        <BackToWorldButton linkTo={ROUTES.home} />
+      <div className={styles.pagewrapper}>
+        <header className={styles.header}>
+          <div className={styles.headerButton}>
+            <BackToWorldButton linkTo={ROUTES.home} />
+          </div>
+          <div className={styles.progres}>
+            <p className={styles.progresTitle}>Preparing the journey</p>
+            <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="Preparing the journey: Select wayfarers" />
+            <p className={styles.select}>Select wayfarers</p>
+            <p className={styles.choose}>Choose roles</p>
+            <p className={styles.explore}>Explore roles</p>
+          </div>
+          <div className={styles.headerTitle}>
+            <PageTitle title={"Your Roles"} subtext={"select the wayfarers of the journey"} />
+          </div>
+        </header>
+
+
+
+
+        <div className={styles.membersWrapper}>
+          <ul className={styles.membersList}>
+
+            {uiStore.currentClan ? uiStore.currentClan.clanMembers.map(clanMember => (
+
+              <li className={styles.memberListItem} onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} key={clanMember.id}>
+
+                <MaskSmall clanMember={clanMember} />
+              </li>
+
+            )) : "loading"}
+
+          </ul>
+          <AddMemberButton text={"Add member"} onClick={showOverlay} />
+        </div>
+
+
+
+
+
+        <div className={styles.imagesContainer}>
+          <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" alt={"tentakels"} />
+          <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" alt={"zon"} />
+          <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" alt={"zonnestralen"} />
+        </div>
+        <div className={styles.buttonNext}>
+          <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+          {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
+        </div>
       </div>
-      <div className={styles.progres}>
-        <p className={styles.progresTitle}>Preparing the journey</p>
-        <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="Preparing the journey: Select wayfarers" />
-        <p className={styles.select}>Select wayfarers</p>
-        <p className={styles.choose}>Choose roles</p>
-        <p className={styles.explore}>Explore roles</p>
-      </div>
-      <div className={styles.headerTitle}>
-        <PageTitle title={"Your Roles"} subtext={"select the wayfarers of the journey"} />
-      </div>
-    </header>
-
-
-
-     
-      <div className={styles.membersWrapper}>
-        <ul className={styles.membersList}>
-
-          {uiStore.currentClan ? uiStore.currentClan.clanMembers.map(clanMember => (
-            
-            <li className={styles.memberListItem} onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} key={clanMember.id}>
-
-              <MaskSmall clanMember={clanMember} />
-            </li>
-
-          )) : "loading"}
-
-        </ul>
-        <AddMemberButton text={"Add member"} onClick={showOverlay} />
-      </div>
-
-
-
-
-
-      <div className={styles.imagesContainer}>
-        <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" alt={"tentakels"} />
-        <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" alt={"zon"} />
-        <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" alt={"zonnestralen"} />
-      </div>
-      <div className={styles.buttonNext}>
-        <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
-        {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
-      </div>
-  </div>
     </>
   ));
 };

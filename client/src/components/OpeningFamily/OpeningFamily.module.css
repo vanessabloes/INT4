@@ -41,7 +41,7 @@
 }
 
 .image_maskOne {
-  grid-row: 3/4;
+  grid-row: 2/4;
   grid-column: 1;
   place-self: start center;
 }
@@ -59,7 +59,7 @@
 }
 
 .image_maskFour {
-  grid-row: 3/4;
+  grid-row: 2/4;
   grid-column: 4;
   place-self: start center;
   height: 60rem;

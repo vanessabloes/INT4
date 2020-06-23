@@ -26,7 +26,6 @@ const ChooseRoles = () => {
     //   }
     // }
 
-   
     setState(true)
    
     const wayfarersToLinkRole = uiStore.currentJourney.wayfarers;
@@ -77,15 +76,23 @@ const ChooseRoles = () => {
 
   return useObserver(() => (
     <>
-      <div className={styles.progres}>
-        <BackToWorldButton linkTo={ROUTES.home} />
-        <p className={styles.progresTitle}>Preparing the journey</p>
-        <img className={styles.progresImg} src="assets/img/PROGRESS/2of3.svg" alt="Choose roles Select wayfarers" />
-        <p className={styles.select}>Select wayfarers</p>
-        <p className={styles.choose}>Choose roles</p>
-        <p className={styles.explore}>Explore roles</p>
-      </div>
-      <PageTitle title={"Choose Roles"} subtext={"Click on a role to explore it’s power. Drag your avatar to a role"} />
+    <div className={styles.pagewrapper}>
+      <header className={styles.header}>
+        <div className={styles.headerButton}>
+          <BackToWorldButton linkTo={ROUTES.home} />
+        </div>
+        <div className={styles.progres}>
+          <p className={styles.progresTitle}>Preparing the journey</p>
+          <img className={styles.progresImg} src="assets/img/PROGRESS/2of3.svg" alt="Choose roles Select wayfarers" />
+          <p className={styles.select}>Select wayfarers</p>
+          <p className={styles.choose}>Choose roles</p>
+          <p className={styles.explore}>Explore roles</p>
+        </div>
+        <div className={styles.headerTitle}>
+          <PageTitle title={"Choose Roles"} subtext={"Click on a role to explore it’s power. Drag your avatar to a role"} />
+        </div>
+      </header>
+      
         
       <div className={styles.wayferersRolesWrapper}>
         <ul className={styles.wayfarerList}>
@@ -98,7 +105,7 @@ const ChooseRoles = () => {
                   `rotate(${gradenWayferers}deg)
                   ${rolesChosen ? 
                     "translate(4rem, 25rem)" :
-                    "translate(0rem, 10rem)"}`,
+                    "translate(0rem, 15rem)"}`,
                     transition: `1s ease-in-out` 
                 }} 
               key={wayfarer.id}
@@ -123,21 +130,26 @@ const ChooseRoles = () => {
                 }} 
               key={role.id}
             >
-              <img className={styles.progresImg} src={role.image} alt={role.name} />
-              <p>{role.roleName}</p>
+              <img className={styles.roleImg} src={role.image} alt={role.name} />
+              <p className={styles.roleName}>{role.roleName}</p>
             </li>
           ))}
         </ul>
         <div className={styles.LinkRoutton}>
-          {rolesChosen ? <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)} /> : <button  onClick={linkRole}>Linkrole</button>}
+          {rolesChosen ? 
+            <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)} /> :
+            <button className={styles.chooseButton} onClick={linkRole}>
+              <img className={styles.chooseButtonImg} src="/assets/img/BUTTONS/btnTheePotDubble.svg" alt="Linkrole" />
+              <p className={styles.button_title }>Linkrole</p>
+            </button>}
         </div>
       </div> 
 
       
       
 
+    </div>
     </>
-
 
   ));
 };
