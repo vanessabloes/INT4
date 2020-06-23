@@ -44,12 +44,14 @@
 
 .spanNickname {
     composes: span from "../../styles/Avatar.module.css";
-    width: 7rem;
+    width: 7.5rem;
+    padding-left: .5rem;
 }
 
 .spanAge {
     composes: span from "../../styles/Avatar.module.css";
-    width: 3rem;
+    width: 3.5rem;
+    padding-left: .5rem;
 }
 
 .input {
@@ -87,5 +89,5 @@
     font-weight: bold;
     font-size: 1.6rem;
     font-family: Helvetica Neue;
-    margin-top: -1rem;
+    margin-top: -3rem;
   }

@@ -53,8 +53,8 @@ const Home = ({ page }) => {
 
           {
             uiStore.currentClan.journeys.map(journey => (
-              <Link to={journey.id}>
-                <World journey={journey} />
+              <Link to={journey.id} key={journey.id}>
+                <World journey={journey}/>
               </Link>
             ))
           }

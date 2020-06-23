@@ -75,16 +75,16 @@ const AvatarToolUpdate = () => {
 
         <div className={styles.overlay}>
 
-            <button className={styles.closeButton} onClick={closeOverlay}>X</button>
-            <PageTitle title={"Make your avatar"} />
+            <button className={styles.closeButton} onClick={closeOverlay}><img alt="close icon" scr="/assets/img/BUTTONS/close.svg"/></button>
+            <PageTitle title={"Update your avatar"} />
 
 
             <div className={styles.avatarImageWrapper}>
 
                 <div className={styles.buttonWrapper}>
-                    <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lt;</button>
-                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lt;</button>
-                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lsaquo;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lsaquo;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lsaquo;</button>
                 </div>
 
                 <div className={styles.maskContainer}>
@@ -96,9 +96,9 @@ const AvatarToolUpdate = () => {
                 </div>
 
                 <div className={styles.buttonWrapper}>
-                    <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&gt;</button>
-                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&gt;</button>
-                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&rsaquo;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&rsaquo;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&rsaquo;</button>
                 </div>
 
             </div>

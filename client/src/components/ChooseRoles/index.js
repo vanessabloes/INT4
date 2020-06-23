@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
@@ -6,6 +6,7 @@ import { useObserver } from "mobx-react-lite";
 import { STATES } from "../../consts";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import Mask from "../Mask";
+import MaskSmall from "../MaskSmall";
 import PageTitle from "../PageTitle/PageTitle";
 import styles from "./ChooseRoles.module.css"
 import {ROUTES} from "../../consts/index"
@@ -15,46 +16,36 @@ import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
 
 
 const ChooseRoles = () => {
-  const { uiStore, roleStore, clanStore, clanMemberStore } = useStore()
+  const { uiStore, roleStore, launchFlowStore, clanMemberStore } = useStore()
+  const [rolesChosen, setState] = useState(false);
 
   const linkRole = () => {
     // for (let index = 0; index < roleStore.uniqueRoles.length; index++) {
     //   for (let index2 = 0; index2 < uiStore.currentJourney.wayfarers.length; index2++) {
     //     uiStore.currentJourney.wayfarers[index].setRole(roleStore.uniqueRoles[index2]);
     //   }
-      
     // }
-    // console.log(roleStore.uniqueRoles)
-    // console.log(uiStore.currentJourney.wayfarers)
-    // console.log(uiStore.currentJourney.wayfarers[0].setRole(roleStore.uniqueRoles[0]));
-    const wayfarersToLinkRole = uiStore.currentJourney.wayfarers;
-    console.log(wayfarersToLinkRole)
-    wayfarersToLinkRole.forEach(setRole);
 
+   
+    setState(true)
+   
+    const wayfarersToLinkRole = uiStore.currentJourney.wayfarers;
+    wayfarersToLinkRole.forEach(setRole);
 
   }
 
   function setRole(wayfarer, index) {
-    console.log(index)
-    console.log(wayfarer)
+    //console.log(index)
+    //console.log(wayfarer)
     wayfarer.setRole(roleStore.uniqueRoles[index]);
   }
 
 
 
-  const loadRoles = () => {
-
-    console.log("loaded")
-    console.log(roleStore.roles[0]) // = roleModel
-    console.log(roleStore.roles.length); // = 1
-    console.log(roleStore.uniqueRoles.length) // = O
-
-    console.log(uiStore.currentJourney.wayfarers.length);
-
+  const loadRoles = () => {  
     for (let index = 0; roleStore.uniqueRoles.length < uiStore.currentJourney.wayfarers.length; index++) {
 
       const randomRole = roleStore.roles[Math.floor(Math.random() * (roleStore.roles.length))];
-
       if (roleStore.uniqueRoles.length === 0) {
         roleStore.addUniqueRole(randomRole);
       } else {
@@ -70,12 +61,16 @@ const ChooseRoles = () => {
           }
         })
       }
-
     }
-
-    console.log(roleStore.uniqueRoles);
-
   }
+  
+  let gradenWayferers = null;
+  const countWayferers = uiStore.currentJourney.wayfarers.length;
+  const arcWayferers = 360 / countWayferers;
+  
+  let gradenRoles = null;
+  const countRoles = roleStore.uniqueRoles.length;
+  const arcRoles = 360 / countRoles;
 
   loadRoles();
 
@@ -89,28 +84,57 @@ const ChooseRoles = () => {
         <p className={styles.select}>Select wayfarers</p>
         <p className={styles.choose}>Choose roles</p>
         <p className={styles.explore}>Explore roles</p>
-        </div>
+      </div>
       <PageTitle title={"Choose Roles"} subtext={"Click on a role to explore it’s power. Drag your avatar to a role"} />
-      {uiStore.currentJourney.wayfarers.map(wayfarer => (
-  
-        <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)}/>
         
-      ))}
+      <div className={styles.wayferersRolesWrapper}>
+        <ul className={styles.wayfarerList}>
+          {uiStore.currentJourney.wayfarers.map(wayfarer => (
+            gradenWayferers = (0 + (uiStore.currentJourney.wayfarers.indexOf(wayfarer) * arcWayferers)),
+            
+            <li className={styles.wayfarerListItem} 
+              style={
+                { transform: 
+                  `rotate(${gradenWayferers}deg)
+                  ${rolesChosen ? 
+                    "translate(4rem, 25rem)" :
+                    "translate(0rem, 10rem)"}`,
+                    transition: `1s ease-in-out` 
+                }} 
+              key={wayfarer.id}
+            >
+              <MaskSmall clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)}/>
+            </li>
+          ))} 
+        </ul>
 
-<button onClick={linkRole}>Linkrole</button>
-{/* 
-de op geklikte clanMember zn id checken
+        <ul className={styles.rolerList}>
+          {roleStore.uniqueRoles.map(role => (
+            gradenRoles = (0 + (roleStore.uniqueRoles.indexOf(role) * arcRoles)),
+    
+            <li className={styles.roleListItem} 
+              style={
+                { transform: 
+                  `rotate(${gradenRoles}deg) 
+                  ${rolesChosen ?
+                    "translate(-6rem, 25rem)" :
+                    "translate(0rem, 30rem)"}` ,
+                    transition: `1s ease-in-out`
+                }} 
+              key={role.id}
+            >
+              <img className={styles.progresImg} src={role.image} alt={role.name} />
+              <p>{role.roleName}</p>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.LinkRoutton}>
+          {rolesChosen ? <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)} /> : <button  onClick={linkRole}>Linkrole</button>}
+        </div>
+      </div> 
 
-met de wayfarer.clanMemberId 
-
-in de currentJourney
-
-*/}
-      {roleStore.uniqueRoles.map(role => (
-        <p>{role.roleName}</p>
-      ))}
-
-      <TheePotFlow text={"Explore roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_EXPLOREROLES)} />
+      
+      
 
     </>
 
