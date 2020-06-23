@@ -105,7 +105,7 @@ const ChooseRoles = () => {
                   `rotate(${gradenWayferers}deg)
                   ${rolesChosen ? 
                     "translate(4rem, 25rem)" :
-                    "translate(0rem, 10rem)"}`,
+                    "translate(0rem, 15rem)"}`,
                     transition: `1s ease-in-out` 
                 }} 
               key={wayfarer.id}
@@ -130,8 +130,8 @@ const ChooseRoles = () => {
                 }} 
               key={role.id}
             >
-              <img className={styles.progresImg} src={role.image} alt={role.name} />
-              <p>{role.roleName}</p>
+              <img className={styles.roleImg} src={role.image} alt={role.name} />
+              <p className={styles.roleName}>{role.roleName}</p>
             </li>
           ))}
         </ul>
