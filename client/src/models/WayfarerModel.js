@@ -75,7 +75,7 @@ class WayfarerModel {
     return this.store.rootStore.roleStore.resolveRole(this.roleId);
   }
 
-  updateFromJson({ journeyId, clanMemberId, roleId }) {
+  updateFromJson({ journeyId, clanMemberId, roleId, topMaskId, middleMaskId, bottomMaskId, name }) {
 
     console.log(roleId)
     if (clanMemberId !== undefined) {
