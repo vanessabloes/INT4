@@ -64,8 +64,8 @@ class WayfarerStore {
         roleId: json.roleId,
         store: this
       });
-
     }
+    console.log(json.roleId)
     if (json.isDeleted) {
       this.wayfarers.remove(wayfarer);
     } else {

@@ -8,7 +8,7 @@ import { ReactComponent as TheePot } from './btnTheePot.svg';
 const TheePotLink = ({text, linkTo}) => {
   return (
     <div className={styles}>
-    <Link  to={linkTo}>
+    <Link to={linkTo}>
       <TheePot/>
       <p className={styles.button_title}>{text}</p>
     </Link>

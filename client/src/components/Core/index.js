@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react-lite";
 
 import Pitstops from "../Pitstops";
@@ -19,34 +19,99 @@ import { useParams } from "react-router-dom";
 
 
 
+
 const Core = () => {
 
-    const { uiStore, journeyStore } = useStore();
-    const { id } = useParams();
-
-    console.log(id);
-
-    const wayfarers = journeyStore.resolveJourney(id).wayfarers;
+    const { uiStore, journeyStore, definedStoryWordStore, storyStore } = useStore();
+    const { id, storyId } = useParams();
+    const STATE_LOADING = 'loading';
+    const STATE_NOT_FOUND = 'notFound';
+    const STATE_LOADING_MORE_DETAILS = 'loading more details';
+    const STATE_FULLY_LOADED = 'fully loaded';
+  
     const showOverlay = () => {
-        
+
     }
 
-    return useObserver(() => (
+    const [story, setStory] = useState(storyStore.resolveStory(storyId));
+    const [state, setState] = useState(STATE_LOADING);
+  
+
+  
+    useEffect(() => {
+  
+      const loadStory = async (id, storyId) => {
+  
+       try{
+          console.log(id)
+          console.log(storyId)
+          const story = await storyStore.loadStory(storyId);
+          const journey = await journeyStore.loadJourney(id);
+          uiStore.setCurrentJourney(journey);
+          uiStore.setCurrentStory(story);
+  
+          console.log(story)
+          console.log(journey)
+          if (!story) {
+            setState(STATE_NOT_FOUND);
+            return;
+          }
+          
+          setState(STATE_LOADING_MORE_DETAILS);
+          await storyStore.loadDefinedStoryWordsForStory(storyId);
+          const generatedName = `from `+  story.definedStoryWords[0].content + ` to ` + story.definedStoryWords[story.definedStoryWords.length - 1].content;
+          await story.updateFromJson({
+            name: generatedName
+          });
+          console.log(story);
+         // await story.update();
+          setStory(story);
+          await journeyStore.loadWayfarersForJourney(id);
+          await storyStore.loadAllSpokenNounsForStory(storyId);
+          
+
+        
+          setState(STATE_FULLY_LOADED);
+       }
+       
+         catch (error) {
+           console.log("error")
+           setState(STATE_NOT_FOUND);
+         }
+      }
+      loadStory(id, storyId);
+    }, [id, storyId, storyStore, journeyStore, setStory]);
+  
+  
+
+
+    return useObserver(() => {
+        if (state === STATE_NOT_FOUND) {
+          return <p>Story not found"</p>;
+        }
+        if (state === STATE_LOADING) {
+          return <p>Loading"</p>;;
+        }
+        return (
         <>
             <PageTitle title={"story 1"} />
             <Pitstops />
+            <ul>
             {uiStore.currentStory.definedStoryWords.map(definedStoryWord => (
-                <ul>
-                    <li>{definedStoryWord.content}</li>
-                </ul>
+                
+                    <li key={definedStoryWord.id}>{definedStoryWord.content}</li>
+                
             ))}
-            {wayfarers.map(wayfarer => (
-                <ul>
-                    <li onClick={showOverlay}key={wayfarer.id}><Power wayfarer={wayfarer} /></li>
+            </ul>
+            <ul>
+            {uiStore.currentJourney.wayfarers.map(wayfarer => (
+              
+                    <li key={wayfarer.id} onClick={showOverlay} >{wayfarer.id}</li>
                     
-                        <li key={wayfarer.id}><PowerOverlay wayfarer={wayfarer} /></li> 
-                </ul>
+                       
+               
             ))}
+             </ul>
 
             <Wordwheel />
             <Manual />
@@ -58,7 +123,9 @@ const Core = () => {
             </button>
             <TheePotLink text="Add Story" linkTo={ROUTES.path} />
         </>
-    ));
-};
+       );
+    });
+  };
+
 
 export default Core;

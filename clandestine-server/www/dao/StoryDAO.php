@@ -16,9 +16,17 @@ class StoryDAO extends DAO {
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
-
+  
   public function selectWordsForStory($id) {
     $sql = "SELECT `words`.* FROM `words` INNER JOIN `stories`ON `stories`.`id` = `words`.`storyId` WHERE `words`.`storyId` = :id";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':id', $id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function selectDefinedStoryWordsForStory($id) {
+    $sql = "SELECT `definedstorywords`.* FROM `definedstorywords` INNER JOIN `stories`ON `stories`.`id` = `definedstorywords`.`storyId` WHERE `definedstorywords`.`storyId` = :id";
     $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id);
     $stmt->execute();
@@ -37,11 +45,13 @@ class StoryDAO extends DAO {
   public function insert($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "INSERT INTO `stories` (`id`, `name`, `image`) VALUES (:id, :name, :image)";
+      $sql = "INSERT INTO `stories` (`id`, `name`, `journeyId`, `contextId`, `levelId`) VALUES (:id, :name, :journeyId, :contextId, :levelId)";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
-      $stmt->bindValue(':image', $data['image']);
+      $stmt->bindValue(':journeyId', $data['journeyId']);
+      $stmt->bindValue(':contextId', $data['contextId']);
+      $stmt->bindValue(':levelId', $data['levelId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -52,11 +62,13 @@ class StoryDAO extends DAO {
   public function update($data) {
     $errors = $this->getValidationErrors($data);
     if(empty($errors)) {
-      $sql = "UPDATE `stories` SET `name` = :name, `avatar` = :avatar WHERE `id` = :id";
+      $sql = "UPDATE `stories` SET `name` = :name, `journeyId` = :journeyId, `contextId` = :contextId, `levelId` = :levelId WHERE `id` = :id";
       $stmt = $this->pdo->prepare($sql);
       $stmt->bindValue(':id', $data['id']);
       $stmt->bindValue(':name', $data['name']);
-      $stmt->bindValue(':avatar', $data['avatar']);
+      $stmt->bindValue(':journedId', $data['journedId']);
+      $stmt->bindValue(':contextId', $data['contextId']);
+      $stmt->bindValue(':levelId', $data['levelId']);
       if($stmt->execute()) {
         return $this->selectById($data['id']);
       }
@@ -79,8 +91,14 @@ class StoryDAO extends DAO {
     if(!isset($data['name'])) {
       $errors['name'] = "Please fill in a name";
     }
-    if(!isset($data['image'])) {
-      $errors['image'] = "Please fill in a image";
+    if(!isset($data['journeyId'])) {
+      $errors['journeyId'] = "Please fill in a journeyId";
+    }
+    if(!isset($data['contextId'])) {
+      $errors['contextId'] = "Please fill in a contextId";
+    }
+    if(!isset($data['levelId'])) {
+      $errors['levelId'] = "Please fill in a levelId";
     }
     return $errors;
   }

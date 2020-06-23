@@ -6,6 +6,7 @@ import { useStore } from "../../hooks";
 import { useParams } from "react-router-dom";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import BackToWorldButton from "../buttons/BackToWorld/BackToWorldButton";
+import { set } from "mobx";
 
 const getRandomInt = () => {
   return Math.floor(Math.random() * Math.floor(10));
@@ -17,6 +18,7 @@ console.log("randomWorldImage", randomWorldImage)
 const NameJourney = () => {
 
   const [journeyName, setJourneyName] = useState("");
+  const [btw, setBtw] = useState(false);
 
   const { journeyStore, launchFlowStore } = useStore();
   const { id } = useParams();
@@ -26,15 +28,13 @@ const NameJourney = () => {
     if (journeyName !== "") {
 
       const journey = journeyStore.resolveJourney(id);
-
       journey.gridRow = getRandomInt();
       journey.gridColumn = getRandomInt();
-
       journey.setJourneyName(journeyName);
       journey.setImage(randomWorldImage);
-
       journey.update();
 
+      setBtw(true);
       launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME);
 
     }
@@ -42,36 +42,41 @@ const NameJourney = () => {
 
   return (
     <div className={styles.wrapper}>
-      <BackToWorldButton linkTo={ROUTES.home}/>
-      <PageTitle title={"Give your journey a name"} />
+
+      <div className={styles.title}>
+        <PageTitle title={"Give your journey a name"} />
+      </div>
 
       <div className={styles.form_wrapper}>
         <img className={styles.world_image} src={randomWorldImage} alt="A new world" />
 
         <form onSubmit={e => handleFormSubmit(e)} >
-          <input
-            className={styles.input}
-            id="Journey name"
-            name="journeyName"
-            placeholder="Give your journey a name"
-            value={journeyName}
-            onChange={e => setJourneyName(e.currentTarget.value)}
-            size="30"
-          />
-    
+          <label className={styles.labelWrapper}>
+            <span className={styles.spanName}>Name of journey</span>
+            <input
+              className={styles.input}
+              id="Journey name"
+              name="journeyName"
+              placeholder="Give your journey a name"
+              value={journeyName}
+              onChange={e => setJourneyName(e.currentTarget.value)}
+              size="30"
+            />
+          </label>
 
+          {!btw ?
+            <label className={styles.theepot}>
+              <input
+                className={styles.button}
+                type="submit"
+                value=""
+              />
+              <p>Name journey</p>
+            </label>
+            : <div className={styles.btw}><p>New journey created!</p> <BackToWorldButton linkTo={ROUTES.home} /> </div>}
+        </form>
+      </div>
 
-    <label>
-      <input
-        className={styles.button}
-        type="submit"
-        value=""
-
-       />
-       Name journey
-       </label>
-       </form>
-    </div>
     </div>
   );
 };

@@ -24,6 +24,7 @@ class UiStore {
   }
 
   setCurrentStory(story){
+    console.log(story)
     this.currentStory = story;
   }
 

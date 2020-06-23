@@ -1,14 +1,15 @@
 .circle_wrapper {
-  width: 75rem;
-  height: 75rem;
+  width: 60rem;
+  height: 60rem;
   background-image: url("/assets/img/BUTTONS/circle.svg");
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem auto;
+  margin: 10rem auto;
 }
 
 .mask_element {
@@ -28,7 +29,6 @@
 }
 
 
-
 .buttonEdit {
   composes: button from "../../styles/uiControls.module.css";
   background-image: url("/assets/img/BUTTONS/edit.svg");
@@ -39,7 +39,8 @@
   grid-row: 1;
   grid-column: 2;
   width: 4rem;
-  z-index: 2;
+  z-index: 3;
+  border-radius: 50%;
 }
 
 .buttonDelete {

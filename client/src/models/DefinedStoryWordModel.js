@@ -1,18 +1,21 @@
 import { v4 } from "uuid";
-import { decorate, computed, observable } from "mobx";
+import { decorate, computed, observable, action } from "mobx";
 class DefinedStoryWordModel {
     constructor({id = v4(), content, definedWordId, storyId, store}){
         this.id = id;
         this.content = content;
         this.definedWordId = definedWordId;
         this.storyId = storyId;
-        this.isReached = false;
+        this.isReached = "false";
         this.store = store;
         this.store.addDefinedStoryWord(this);
     }
 
-     
+    setReached = value => {
+      this.isReached = value;
+    }
     create = async () => this.store.createDefinedStoryWord(this.asJson);
+    update = async () => this.store.updateDefinedStoryWord(this.asJson);
 
     updateFromJson({ }){
    
@@ -33,6 +36,7 @@ class DefinedStoryWordModel {
 }
 decorate(DefinedStoryWordModel, {
 asJson: computed,
-isReached: observable
+isReached: observable,
+setReached: action
  });
 export default DefinedStoryWordModel;

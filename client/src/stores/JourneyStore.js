@@ -28,15 +28,15 @@ class JourneyStore {
   loadWayfarersForJourney = async (id) => {
    
     const jsonUsers = await this.journeysService.getById(id, 'wayfarers');
-
+    console.log(jsonUsers)
     this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
     return this.resolveJourney(id);
   };
 
   // nog uit te werken
-  loadJourneyStories = async (id) => {
+  loadStoriesForJourney = async (id) => {
     const jsonUsers = await this.journeysService.getById(id, 'stories');
-    this.updateJourneyFromServer({ id, wayfarers: jsonUsers });
+    this.updateJourneyFromServer({ id, stories: jsonUsers });
     return this.resolveJourney(id);
   };
 

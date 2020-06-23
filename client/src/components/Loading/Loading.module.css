@@ -4,6 +4,8 @@
   grid-template-rows: repeat(1,1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  align-items: center;
+  justify-content: center;
 }
 
 .laadknop_text {
@@ -27,22 +29,23 @@
 
 .driehoek {
   margin-top: -3rem;
-  z-index: -1;
+  z-index: 0;
 }
 
 .koepel {
   grid-area: 1 / 2 / 3 / 3;
-  z-index: -2;
-  margin-right: 10rem;
+  z-index: 1;
+  margin-right: 10%;
+  margin-top: 10%;
 }
 
 .deur {
   grid-area: 3 / 2 / 4 / 3;
-  z-index: 1;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  max-width: 10rem;
+  max-width: 10%;
   place-self: center;
 }
 
@@ -118,7 +121,7 @@
   animation: deurL 5s infinite;
   grid-row: 1;
   grid-column: 1;
-  z-index: 2;
+  z-index: 3;
   margin-left: 1.4rem;
 }
 
@@ -132,7 +135,7 @@
   animation: deurR 5s infinite;
   grid-row: 1;
   grid-column: 1;
-  z-index: 2;
+  z-index: 3;
   justify-self: flex-end;
   margin-right: 1.4rem;
 }
@@ -145,4 +148,11 @@
 .LoadingWheel {
   grid-row: 1;
   grid-column: 1;
+}
+
+.loadingWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
 }

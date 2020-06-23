@@ -4,6 +4,7 @@ import WordModel from "../../models/WordModel";
 import React, { useState } from 'react';
 import styles from "./Wordwheel.module.css"
 
+
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 const pos = require('pos');
@@ -14,8 +15,9 @@ recognition.continuous = true;
 
 const Wordwheel = () => {
 
-    const { coreStore, wordStore } = useStore();
+    const { wordStore, uiStore, definedStoryWordStore } = useStore();
     const [play, setPlay] = useState(false);
+    const [pitStopCount, setPitStopCount] = useState(0);
 
     const togglePlay = () => {
         setPlay(!play);
@@ -56,17 +58,50 @@ const Wordwheel = () => {
             }
         }
     }
-
+   // let pitStopCount = 0;
     const addNoun = noun => {
+        if(noun === "alter"){
+            noun = "altar";
+        }
         //console.log("noun", noun);
         const word = new WordModel({
-            content: noun
+            content: noun.toLowerCase(),
+            storyId: uiStore.currentStory.id,
+            store: wordStore
         });
+        console.log(word)
         //console.log(wordStore);
-        wordStore.addWord(word);
-    }
 
-    return useObserver(() => (
+        
+
+        const definedStoryWords = uiStore.currentStory.definedStoryWords;
+        if(pitStopCount < definedStoryWords.length){
+        definedStoryWords.forEach(d => {
+            if(definedStoryWords[pitStopCount] === "true"){
+                setPitStopCount(pitStopCount + 1) // logika moet nog ietsje anders 
+                console.log("pitstop increased")
+            }
+        });
+        console.log(pitStopCount);
+
+            if(uiStore.currentStory.definedStoryWords[pitStopCount].content === word.content){
+                const DSW = definedStoryWordStore.resolveDefinedStoryWord(uiStore.currentStory.definedStoryWords[0].id);
+                DSW.setReached("true");
+                console.log(pitStopCount)
+                console.log(uiStore.currentStory.definedStoryWords[0].id)
+               
+                console.log(DSW)
+                DSW.update();
+                console.log("it worked");
+          
+    
+            }
+   
+        word.create();
+    }
+}
+
+    return useObserver (() => (
         <>
             <div className={styles.circle__wrapper}>
 
@@ -86,15 +121,15 @@ const Wordwheel = () => {
 
             </div>
 
-            <div>
-                {wordStore.spokenNouns.length === 0 ? (
+            <ul>
+                {uiStore.currentStory.words.length === 0 ? (
                     <p></p>
                 ) : (
-                        wordStore.spokenNouns.map(noun => (
-                            <li className={styles.word} key={noun.id}>{noun.content}</li>
+                        uiStore.currentStory.words.map(noun => (
+                            <li key={noun.id} className={styles.word} >{noun.content}</li>
                         ))
                     )}
-            </div>
+            </ul>
 
             <img src="/assets/img/GAME/pointer.svg" />
 

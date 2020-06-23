@@ -11,7 +11,7 @@ class RestService {
   }
 
   getAll = async () => {
-    await delay(REST_DELAY);
+  //  await delay(REST_DELAY);
     const r = await fetch(`${this.url}/${this.entity}`);
     return await r.json();
   };
@@ -29,7 +29,7 @@ class RestService {
   };
 
   create = async entity => {
-    await delay(REST_DELAY);
+   // await delay(REST_DELAY);
     console.log(entity)
     const options = this.getOptions(`post`, entity);
     console.log(options)

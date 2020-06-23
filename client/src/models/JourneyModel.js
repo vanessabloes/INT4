@@ -45,7 +45,7 @@ class JourneyModel {
     this.image = image;
   }
 
-  updateFromJson({ name, image, wayfarers = undefined }) {
+  updateFromJson({ name, image, wayfarers = undefined, stories = undefined }) {
   
 
     if(name !== undefined){
@@ -54,8 +54,14 @@ class JourneyModel {
     }
     if (wayfarers !== undefined) {
       wayfarers.forEach(wayfarer => {
-  
+        console.log(wayfarer)
         this.store.rootStore.wayfarerStore.updateWayfarerFromServer(wayfarer).setJourney(this);
+      });
+    }
+    if (stories !== undefined) {
+      stories.forEach(story => {
+  
+        this.store.rootStore.storyStore.updateStoryFromServer(story).setJourney(this);
       });
     }
 

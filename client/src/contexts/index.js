@@ -29,7 +29,7 @@ const loadAllData = async () => {
       // await store.uiStore.setCurrentJourney(store.journeyStore.resolveJourney("f732a075-98a5-443d-a695-3818574380fe"));
 
       await store.storyStore.loadAllStories(); // moet nog vervangen worden door journeyStore.loadJourneyStories(id)
-      await store.storyStore.loadStoryWords("adfebc3e-b20a-11ea-b3de-0242ac130004");
+     // await store.storyStore.loadStoryWords("adfebc3e-b20a-11ea-b3de-0242ac130004");
       
      // await store.definedStoryWordStore.loadAllDefinedStoryWords();
 

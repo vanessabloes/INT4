@@ -48,7 +48,6 @@ class ClanMemberStore {
 
   updateClanMember = async clanMember => {
     const json = await this.clanMembersService.update(clanMember);
-
     this.updateClanMemberFromServer(json);
   };
 

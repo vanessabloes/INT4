@@ -42,6 +42,23 @@ class DefinedStoryWordDAO extends DAO {
     return false;
   }
 
+  public function update($data) {
+    $errors = $this->getValidationErrors($data);
+    if(empty($errors)) {
+      $sql = "UPDATE `definedstorywords` SET `content` = :content, `isReached` = :isReached, `storyId` = :storyId, `definedWordId` = :definedWordId WHERE `id` = :id";
+      $stmt = $this->pdo->prepare($sql);
+      $stmt->bindValue(':id', $data['id']);
+      $stmt->bindValue(':content', $data['content']);
+      $stmt->bindValue(':isReached', $data['isReached']);
+      $stmt->bindValue(':storyId', $data['storyId']);
+      $stmt->bindValue(':definedWordId', $data['definedWordId']);
+      if($stmt->execute()) {
+        return $this->selectById($data['id']);
+      }
+    }
+    return false;
+  }
+
   public function getValidationErrors($data) {
     $errors = array();
     if(!isset($data['id'])) {
@@ -50,7 +67,9 @@ class DefinedStoryWordDAO extends DAO {
     if(!isset($data['content'])) {
       $errors['content'] = "Please fill in a content";
     }
- 
+    if(!isset($data['isReached'])) {
+      $errors['isReached'] = "Please fill in a isReached";
+    }
       if(!isset($data['storyId'])) {
         $errors['storyId'] = "Please fill in a storyId";
       }

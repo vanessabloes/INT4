@@ -19,30 +19,44 @@ class StoryStore {
   loadStory = async (id) => {
     const jsonStory = await this.storyService.getById(id);
     this.updateStoryFromServer(jsonStory);
+    console.log(jsonStory)
     return this.resolveStory(id);
   };
   // nog uit te werken
-  loadStoryWords = async (id) => {
+  loadAllSpokenNounsForStory = async (id) => {
+    console.log(id);
     const jsonWords = await this.storyService.getById(id, 'words');
+    console.log(jsonWords)
     this.updateStoryFromServer({ id, words: jsonWords });
- 
+    
     return this.resolveStory(id);
   };
-  //
-  //createStory = async story => {
-  //  const json = await this.storyService.create(story);
-  //  this.updateStoryFromServer(json);
-  //};
-  //
-  //updateLinkedUsers = async storyWithUsers => {
-  //  const jsonUsers = await this.storyService.updateLinked(storyWithUsers, 'users');
-  //  this.updateStoryFromServer({ id: storyWithUsers.id, users: jsonUsers });
-  //  return this.resolveStory(storyWithUsers.id);
-  //};
+
+  loadDefinedStoryWordsForStory = async (id) => {
+    console.log(id);
+    const jsonDefinedStoryWords = await this.storyService.getById(id, 'definedstorywords');
+    console.log(jsonDefinedStoryWords)
+    this.updateStoryFromServer({ id, definedStoryWords: jsonDefinedStoryWords });
+    return this.resolveStory(id);
+  };
+  
+  createStory = async story => {
+    console.log(story);
+    const json = await this.storyService.create(story);
+    console.log(json);
+    this.updateStoryFromServer(json);
+  };
+
+  updateLinkedDefinedStoryWords = async storyWithDefinedStoryWords => {
+    const jsonDefinedStoryWords = await this.storyService.updateLinked(storyWithDefinedStoryWords, 'definedstorywords');
+    this.updateStoryFromServer({ id: storyWithDefinedStoryWords.id, definedStoryWords: jsonDefinedStoryWords });
+    return this.resolveStory(storyWithDefinedStoryWords.id);
+  };
 
   updateStory = async story => {
-    // const json = await this.storyService.update(story);
-    const json = { "id": 1, "name": "good story", "words": ["knight", "feather"], "journeyId": "1" };
+    console.log(story);
+     const json = await this.storyService.update(story);
+     console.log(json);
     this.updateStoryFromServer(json);
   };
 
@@ -53,7 +67,6 @@ class StoryStore {
       story = new StoryModel({
         id: json.id,
         name: json.name,
-        words: json.words,
         journeyId: json.journeyId,
         store: this.rootStore.storyStore
       });

@@ -5,13 +5,12 @@ import MyClanButton from "../buttons/MyClan"
 import AddMemberButton from "../buttons/AddMember/AddMemberButton"
 import { useObserver } from "mobx-react-lite";
 import Mask from "../Mask";
-import AvatarToolCreate from "../AvatarToolCreate";
 
 
 const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is het addMember
 
 
-  const { uiStore, clanStore, topMaskStore, middleMaskStore, bottomMaskStore, clanMemberStore } = useStore();
+  const { uiStore, clanStore, clanMemberStore } = useStore();
   clanStore.loadClanMembers(uiStore.currentClan.id);
   const countClanMembers = uiStore.currentClan.clanMembers.length;
   const arc = 360 / countClanMembers;
@@ -43,8 +42,7 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
           graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
 
           <li className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 23rem)` }} key={clanMember.id}>
-            
-              
+         
               <div className={styles.mask_image}>
                 <Mask clanMember={clanMember} />
               </div>

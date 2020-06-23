@@ -74,6 +74,20 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+
+    $routeGroup->get('/{id}', function (Request $request, Response $response, $args) {
+      $definedStoryWordDAO = new DefinedStoryWordDAO();
+      $data = $definedStoryWordDAO->selectById($args['id']);
+      if (empty($data)) {
+        return $response
+              ->withStatus(404);
+      }
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
     $routeGroup->post('', function (Request $request, Response $response) {
       $definedStoryWordDAO = new DefinedStoryWordDAO();
       $data = $request->getParsedBody();
@@ -91,6 +105,22 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+    $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
+      $definedStoryWordsDAO = new DefinedStoryWordDAO();
+      $input = $request->getParsedBody();
+      $errors = $definedStoryWordsDAO->getValidationErrors($input);
+      if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+      ->withHeader('Content-Type', 'application/json')
+      ->withStatus(422);
+      }
+    $result = $definedStoryWordsDAO->update($input);
+    $response->getBody()->write(json_encode($result));
+    return $response
+    ->withHeader('Content-Type', 'application/json')
+    ->withStatus(200);
+    });
   });
   $routeGroup->group('/words', function (RouteCollectorProxy $routeGroup) {
     $routeGroup->get('', function (Request $request, Response $response) {
@@ -101,6 +131,25 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+
+    $routeGroup->post('', function (Request $request, Response $response) {
+      $wordDAO = new WordDAO();
+      $data = $request->getParsedBody();
+      $errors = $wordDAO->getValidationErrors($data);
+      if(!empty($errors)){
+        $response->getBody()->write(json_encode($errors));
+        return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(422);
+      }
+  
+      $result = $wordDAO->insert($data);
+      $response->getBody()->write(json_encode($result));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
 
   });
 
@@ -139,9 +188,38 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withStatus(200);
     });
 
+    $routeGroup->put('/{id}', function (Request $request, Response $response, $args) {
+      $storyDAO = new StoryDAO();
+      $input = $request->getParsedBody();
+      $errors = $storyDAO->getValidationErrors($input);
+      if (!empty($errors)) {
+      $response->getBody()->write(json_encode($errors));
+      return $response
+      ->withHeader('Content-Type', 'application/json')
+      ->withStatus(422);
+      }
+    $result = $storyDAO->update($input);
+    $response->getBody()->write(json_encode($result));
+    return $response
+    ->withHeader('Content-Type', 'application/json')
+    ->withStatus(200);
+    });
+
+ 
+
     $routeGroup->get('/{id}/words', function (Request $request, Response $response, $args) {
       $storyDAO = new StoryDAO();
       $data = $storyDAO->selectWordsForStory($args['id']);
+      $response->getBody()->write(json_encode($data));
+      return $response
+              ->withHeader('Content-Type', 'application/json')
+              ->withStatus(200);
+    });
+
+
+    $routeGroup->get('/{id}/definedstorywords', function (Request $request, Response $response, $args) {
+      $storyDAO = new StoryDAO();
+      $data = $storyDAO->selectDefinedStoryWordsForStory($args['id']);
       $response->getBody()->write(json_encode($data));
       return $response
               ->withHeader('Content-Type', 'application/json')
@@ -176,6 +254,10 @@ $app->group('/api', function (RouteCollectorProxy $routeGroup) {
               ->withHeader('Content-Type', 'application/json')
               ->withStatus(200);
     });
+
+  
+
+
   });
 
   $routeGroup->group('/topmasks', function (RouteCollectorProxy $routeGroup) {
