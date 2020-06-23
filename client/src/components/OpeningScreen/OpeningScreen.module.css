@@ -5,12 +5,12 @@
 .opening_screen_wrapper {
   composes: opening_screen_wrapper from "../../styles/launch.module.css";
   grid-template-rows: 1fr auto 1fr;
+  align-items: center;
 }
-
 
 .title_wrapper {
   place-self: center;
-  margin: 4rem auto;
+  margin: 8rem auto;
 }
 
 .title {

@@ -12,10 +12,9 @@ import BackToWorldButton from "../../components/buttons/BackToWorld/BackToWorldB
 import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 
 import { useParams } from "react-router-dom";
-import Mask from "../../components/Mask";
 
-
-
+import styles from "./JourneyDetail.module.css";
+import MaskNoName from "../../components/MaskNoName";
 
 const JourneyDetail = () => {
   const STATE_LOADING = 'loading';
@@ -40,7 +39,7 @@ const JourneyDetail = () => {
 
     const loadJourneyy = async (id) => {
 
-     try{
+      try {
         console.log(id)
         const journey = await journeyStore.loadJourney(id);
         uiStore.setCurrentJourney(journey);
@@ -57,17 +56,14 @@ const JourneyDetail = () => {
         await journeyStore.loadStoriesForJourney(id);
         setState(STATE_FULLY_LOADED);
       }
-     
-       catch (error) {
-         console.log("error")
-         setState(STATE_NOT_FOUND);
-       }
+
+      catch (error) {
+        console.log("error")
+        setState(STATE_NOT_FOUND);
+      }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);
-
-
-
 
   return useObserver(() => {
     if (state === STATE_NOT_FOUND) {
@@ -77,30 +73,42 @@ const JourneyDetail = () => {
       return <p>Loading"</p>;;
     }
     return (
-      <div>
-        {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={journey.id + `${ROUTES.nameJourney.to}`} text={"Name Journey"} />}
+      <div className={styles.pageWrapper}>
 
-        <PageTitle title={journey.name} subtext={"Start your storytelling with a bonfire"} />
+        <div className={styles.journeyInfo}>
+          <div className={styles.journeyInfoButton}>
+            {journey.name !== "Your journey" ? <BackToWorldButton /> : <TheePotLink linkTo={journey.id + `${ROUTES.nameJourney.to}`} text={"Name Journey"} />}
+          </div>
+          <div className={styles.journeyInfoTitle}>
+            <PageTitle title={journey.name} subtext={"A place of storytelling, magic and wonders. Get your clan together around a bonfire and share & experience your stories"} />
+          </div>
+        </div>
+
+        <div className={styles.wayfarers}>
+          {journey.wayfarers.map(wayfarer => (
+            <div className={styles.wayfarer}>
+              <MaskNoName key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
+              <h1>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</h1>
+              <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
+            </div>
+          ))}
+        </div>
 
 
-        {journey.wayfarers.map(wayfarer => (
-          <>
-            <Mask key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-            <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
-          </>
-        ))}
         <ul>
-        {journey.stories.map(story => (
-         
+          {journey.stories.map(story => (
+
             <li key={story.id}>
-              {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt=""/> :<img src="assets/img/BUTTONS/btnXtotY.svg" alt=""/> }
-         
+              {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}
               <p>{story.name}</p>
+
             </li>
-       
-        ))}
+          ))}
         </ul>
-        <NewStoryButton text={"Start new Story"} id={id}/>
+
+        <div>
+          <NewStoryButton text={"Start new Story"} id={id} />
+        </div>
 
       </div>
 

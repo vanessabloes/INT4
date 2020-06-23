@@ -20,7 +20,7 @@ const Loading = () => {
 
     return useObserver(() => (
 
-        <div onLoad={handleLoading}>
+        <div className={styles.loadingWrapper} onLoad={handleLoading}>
             <div className={styles.gridbox}>
                 <div className={styles.titleBlock}>
                     <h1 className={styles.hidden}>Prepare to reveal imagination</h1>
@@ -35,10 +35,10 @@ const Loading = () => {
                         <img className={styles.leftDoor} src="/assets/img/IMAGINATION/loaderLeft.svg" />
                         <img className={styles.rightDoor} src="/assets/img/IMAGINATION/loaderRight.svg" />
                         <div className={styles.LoadingWheel}>
-                            <LoadingWheel/>
+                            <LoadingWheel />
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
 
