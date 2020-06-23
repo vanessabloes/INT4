@@ -76,8 +76,9 @@ class ClanMemberStore {
     }
     if (json.isDeleted) {
       this.clanMembers.remove(clanMember);
+      this.rootStore.uiStore.currentClan.unlinkClanMember(clanMember);
       //console.log(this.clanMembers);
-      
+
     } else {
       clanMember.updateFromJson(json);
     }

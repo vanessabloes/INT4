@@ -3,13 +3,12 @@ import React, { useState } from "react";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
 import { useObserver } from "mobx-react-lite";
-import ClanMemberStore from "../../stores/ClanMemberStore";
 import OpeningScreen from "../../components/OpeningScreen/OpeningScreen";
 import OpeningSurrealWorld from "../../components/OpeningSurrealWorld/OpeningSurrealWorld";
 import OpeningFamily from "../../components/OpeningFamily/OpeningFamily";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import StartJourneyButton from "../../components/buttons/StartJourney/StartJourneyButton";
-import MyClanCircle from "../../components/MyClanCircle/";
+import MyClanCircleTiny from "../../components/MyClanCircleTiny/";
 
 import { STATES } from "../../consts/index";
 import styles from "./Home.module.css"
@@ -18,12 +17,12 @@ import { Link } from "react-router-dom";
 
 
 const Home = ({ page }) => {
-  const { launchFlowStore, clanStore, uiStore } = useStore()
+  const { launchFlowStore, uiStore } = useStore()
 
   const [homeState, setState] = useState();
 
-console.log(uiStore.currentClan)
- // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
+  console.log(uiStore.currentClan)
+  // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
   return useObserver(() => {
 
@@ -42,10 +41,16 @@ console.log(uiStore.currentClan)
     return (
 
       <div className={styles.home_wrapper}>
-        <PageTitle title={"Uncover your world"} subtext={"Go on an adventurious journey with the clan and reveal all the parts of your wolrd bit by bit"} />
-        <MyClanCircle page={page} clan={uiStore.currentClan} />
+
+        <div className={styles.homeTitle}>
+          <PageTitle title={"Uncover your world"} subtext={"Go on adventurious journeys with your clan and reveal all parts of your imaginary world bit by bit"} />
+        </div>
+
 
         <div className={styles.worlds_wrapper}>
+          {uiStore.currentClan.journeys.length > 3 ? <div className={styles.arrow}>&lsaquo;</div> : ""}
+
+
           {
             uiStore.currentClan.journeys.map(journey => (
               <Link to={journey.id}>
@@ -53,8 +58,20 @@ console.log(uiStore.currentClan)
               </Link>
             ))
           }
-        </div> 
-        <StartJourneyButton />
+          {uiStore.currentClan.journeys.length > 3 ? <div className={styles.arrow}>&rsaquo;</div> : ""}
+
+        </div>
+
+
+
+        <div className={styles.homeClan}>
+          {uiStore.currentClan.clanMembers.length === 0 ? <p className={styles.homeClanInfo}>Add some family members and become a clan!</p> : ""}
+          <MyClanCircleTiny page={page} clan={uiStore.currentClan} />
+        </div>
+
+        <div className={styles.homeButton}>
+          <StartJourneyButton />
+        </div>
 
       </div>
 

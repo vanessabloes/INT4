@@ -1,14 +1,14 @@
 .wrapper {
   display: flex;
-  flex-flow: column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  
-  height: 100vh;
-  width: 100vw;
+  width:100vw;
+  height:100vh;
   background-image: url("/assets/img/GAME/nameWorldBackground.svg");
   background-position: center;
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .form_wrapper {
@@ -16,17 +16,28 @@
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  width: 90vw;
-  height: 80rem;
+  width:100%;
+  height:100%;
   background-image: url("/assets/img/GAME/nameWorld.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  margin: 5rem 5rem;
 }
 
 .input {
-  composes: input from "../../styles/uiControls.module.css";
-  
+  composes: input from "../../styles/Avatar.module.css";
+}
+
+.spanName {
+  composes: span from "../../styles/Avatar.module.css";
+  width: 11.5rem;
+  padding-top: .5rem;
+  padding-left: .5rem;
+}
+
+.labelWrapper {
+  composes: labelWrapper from "../../styles/Avatar.module.css";
 }
 
 .world_title {
@@ -50,4 +61,31 @@
   background-position: center;
   width: 10rem;
   height: 10rem;
+}
+
+.theepot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.theepot p {
+  font-weight: bold;
+  font-size: 1.6rem;
+  font-family: Helvetica Neue;
+  margin-top: -1rem;
+}
+
+.title {
+  padding-top: 10rem;
+}
+
+.btw {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

@@ -42,8 +42,14 @@
     composes: labelWrapper from "../../styles/Avatar.module.css"; 
 }
 
-.span {
+.spanNickname {
     composes: span from "../../styles/Avatar.module.css";
+    width: 7rem;
+}
+
+.spanAge {
+    composes: span from "../../styles/Avatar.module.css";
+    width: 3rem;
 }
 
 .input {
@@ -58,6 +64,28 @@
     composes: visually-hidden from "../../styles/index.css"
 }
 
-.buttonSubmitm {
+.button {
     composes: buttonSubmitm from "../../styles/Avatar.module.css";
+    composes: button from "../../styles/uiControls.module.css";
+    background-color: rgba(255, 0, 0, 0);;
+    background-image: url("/assets/img/BUTTONS/btnTheePot.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 10rem;
+    height: 10rem;
 }
+
+.theepot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .theepot p {
+    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: Helvetica Neue;
+    margin-top: -1rem;
+  }

@@ -63,7 +63,6 @@ const App = () => {
            <Home page={ROUTES.home}/>
        </Route>
  </Switch>
-
     </div>
     
   ));

@@ -3,7 +3,6 @@ import styles from "./StartJourney.module.css"
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 
-import button from "./btnNewJourney.svg";
 import { ReactComponent as Button } from './btnNewJourney.svg';
 
 import { useStore } from "../../../hooks";

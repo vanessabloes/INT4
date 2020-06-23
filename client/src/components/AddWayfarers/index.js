@@ -9,42 +9,58 @@ import styles from "./AddWayfarer.module.css";
 import TheePotFlow from "../buttons/Algemeen/TheePotFlow";
 import WayfarerModel from "../../models/WayfarerModel";
 import { v4 } from 'uuid';
-import Mask from "../Mask";
 import AvatarToolCreate from "../AvatarToolCreate";
+import MaskSmall from "../MaskSmall";
 
 const AddWayfarers = () => {
 
   const { uiStore, wayfarerStore, clanStore } = useStore();
 
-  if (uiStore.currentClan != undefined) {
+  if (uiStore.currentClan !== undefined) {
     clanStore.loadClanMembers(uiStore.currentClan.id);
-    //console.log("HET LUUUUUKT"); DIT IS OKE
+    
   } else {
     //console.log("geen current clan defined!");
     console.log(uiStore.currentClan);
   }
-  let teller = 0;
+
+  let teller = 1;
+  
   const addWayfarer = (id, mask) => {
     
     console.log(teller);
     let w = new WayfarerModel({
       id: v4(), //OKEEE
       clanMemberId: id, // komt binnen als je zal klikken op je masker van je clanMember (toevoegen aan blauwe stukjes op zon) //OKE!
-      journeyId: uiStore.currentJourney.id,
+      // journeyId: uiStore.currentJourney.id,
       store: wayfarerStore
     });
 
     w.setJourney(uiStore.currentJourney);
-
-
-    const coords = ["50rem, 20rem", "10rem, 20rem"]
-     switch (mask.getBoundingClientRect().x) {
-      case 203.984375: return mask.style.transform = `translate(${coords[teller]})`; break;
-    
-       default:
-         break;
-     }
     console.log(mask.getBoundingClientRect().x);
+    
+     switch (mask.getBoundingClientRect().x) {
+      case 95: teller++ ; return mask.style.transform = `translate(58rem, 12rem) rotate(220deg)`;
+      case 630.0296630859375: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      
+      case 190: teller++; return mask.style.transform = `translate(51rem, 39.5rem) rotate(-70deg)`;
+      case 649.265869140625: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      
+      case 285: teller++; return mask.style.transform = `translate(40rem, 55rem) rotate(-50deg)`;
+      case 635.1301879882812: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      
+      case 380: teller++; return mask.style.transform = `translate(-28rem, 56rem) rotate(50deg)`;
+      case 50.130210876464844: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      
+      case 475: teller++; return mask.style.transform = `translate(-43rem, 28rem) rotate(130deg)`;
+      case -4.869789123535156: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+      
+      case 570: teller++; return mask.style.transform = `translate(-44rem, 12rem) rotate(155deg)`;
+      case 97.57693481445312: teller++; return mask.style.transform = `translate(0) rotate(0deg)`;
+    
+      default:
+      break;
+     }
     
     console.log(w);
     teller++;
@@ -60,44 +76,57 @@ const AddWayfarers = () => {
 
   return useObserver(() => (
     <>
-      <div>
-        <BackToWorldButton linkTo={ROUTES.home} />
-        <div className={styles.progres}>
-          <p className={styles.progresTitle}>Preparing the journey</p>
-          <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="" />
-          <p className={styles.select}>Select wayfarers</p>
-          <p className={styles.choose}>Choose roles</p>
-          <p className={styles.explore}>Explore roles</p>
-        </div>
-      </div>
-      <PageTitle title={"Who joins the journey?"} subtext={"Select the wayfarers of the journey"} />
-     
-     
-      <div>
-        <ul className={styles.membersWrapper}>
-          Dit zijn alle clanMembers van de current clan:
 
-          {uiStore.currentClan ?
-            uiStore.currentClan.clanMembers.map(clanMember => (
-              <>
-                <button onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} >
-                  <p>{clanMember.name}</p>
-                <Mask clanMember={clanMember} />
-                </button>
-                
-              </>
-            )) : "loading"}
+  <div className={styles.pagewrapper}>
+    <header className={styles.header}>
+      <div className={styles.headerButton}>
+        <BackToWorldButton linkTo={ROUTES.home} />
+      </div>
+      <div className={styles.progres}>
+        <p className={styles.progresTitle}>Preparing the journey</p>
+        <img className={styles.progresImg} src="assets/img/PROGRESS/1of3.svg" alt="Preparing the journey: Select wayfarers" />
+        <p className={styles.select}>Select wayfarers</p>
+        <p className={styles.choose}>Choose roles</p>
+        <p className={styles.explore}>Explore roles</p>
+      </div>
+      <div className={styles.headerTitle}>
+        <PageTitle title={"Your Roles"} subtext={"select the wayfarers of the journey"} />
+      </div>
+    </header>
+
+
+
+     
+      <div className={styles.membersWrapper}>
+        <ul className={styles.membersList}>
+
+          {uiStore.currentClan ? uiStore.currentClan.clanMembers.map(clanMember => (
+            
+            <li className={styles.memberListItem} onClick={(e) => addWayfarer(clanMember.id, e.currentTarget)} key={clanMember.id}>
+
+              <MaskSmall clanMember={clanMember} />
+            </li>
+
+          )) : "loading"}
 
         </ul>
         <AddMemberButton text={"Add member"} onClick={showOverlay} />
       </div>
-      <div className={styles.container}>
-        <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" />
-        <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" />
-        <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" />
+
+
+
+
+
+      <div className={styles.imagesContainer}>
+        <img className={styles.rotation} src="assets/img/PREPARING/behindsun_moving.svg" alt={"tentakels"} />
+        <img className={styles.static} src="assets/img/PREPARING/sun_static.svg" alt={"zon"} />
+        <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" alt={"zonnestralen"} />
       </div>
-      <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
-      {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
+      <div className={styles.buttonNext}>
+        <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+        {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
+      </div>
+  </div>
     </>
   ));
 };

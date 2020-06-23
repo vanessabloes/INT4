@@ -1,0 +1,51 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font, bodyCopy-font from tokens;
+
+.rolewrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 12rem;
+    margin: 0 auto;
+}
+
+.role {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
+}
+
+.rolePower {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    margin-top: 1rem;
+    align-items: center;
+}
+
+.roleInfoName {
+    font-family: title-font;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+}
+
+.roleInfoDescription {
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 1.6rem;
+}
+
+.rolePowerInfo {
+    margin-left: 1.5rem;
+}
+
+.rolePowerName {
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.rolePowerDescription {
+    font-family: Helvetica Neue, sans-serif;
+    font-size: 1.6rem;
+}
