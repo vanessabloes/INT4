@@ -2,7 +2,7 @@ const ROUTES = {
   home: "/",
   myClan: "/myclan",
   addJourney: "/addjourney",
-  addStory: { path: "/:id/addStory", to: "/addStory" },
+  addStory: { path: "/:id/addStory/:storyId", to: "/addStory" },
   nameJourney: { path: "/:id/nameJourney", to: "/nameJourney" },
   journeyDetail: { path: "/:id", to: "/" }, // to = de backlink naar parentpagina
   storyDetail: { path: "/:id/:story_id", to: "/:id" }, // to = de backlink naar parentpagina

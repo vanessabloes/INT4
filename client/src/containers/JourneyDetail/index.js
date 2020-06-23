@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+
 import { ROUTES } from "../../consts";
 //import PropTypes from "prop-types";
 
@@ -13,10 +13,7 @@ import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 
 import { useParams } from "react-router-dom";
 import Mask from "../../components/Mask";
-import Loading from "../../components/Loading";
-import ClanStore from "../../stores/ClanStore";
-import StoryModel from "../../models/StoryModel";
-import StoryStore from "../../stores/StoryStore";
+
 
 
 
@@ -32,12 +29,12 @@ const JourneyDetail = () => {
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
   const [state, setState] = useState(STATE_LOADING);
 
-  const makeNewStory = () => {
-    const story = new StoryModel({
-      store: storyStore,
-      journeyId: id
-    })
-  }
+  // const makeNewStory = () => {
+  //   const story = new StoryModel({
+  //     store: storyStore,
+  //     journeyId: id
+  //   })
+  // }
 
   useEffect(() => {
 
@@ -57,6 +54,7 @@ const JourneyDetail = () => {
         setState(STATE_LOADING_MORE_DETAILS);
         await clanStore.loadClanMembers(uiStore.currentClan.id);
         await journeyStore.loadWayfarersForJourney(id);
+        await journeyStore.loadStoriesForJourney(id);
         setState(STATE_FULLY_LOADED);
       }
      
@@ -87,12 +85,22 @@ const JourneyDetail = () => {
 
         {journey.wayfarers.map(wayfarer => (
           <>
-            <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
+            <Mask key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
             <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
           </>
         ))}
-
-        <NewStoryButton text={"Start new Story"} onClick={makeNewStory} id={id}/>
+        <ul>
+        {journey.stories.map(story => (
+         
+            <li key={story.id}>
+              {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt=""/> :<img src="assets/img/BUTTONS/btnXtotY.svg" alt=""/> }
+         
+              <p>{story.name}</p>
+            </li>
+       
+        ))}
+        </ul>
+        <NewStoryButton text={"Start new Story"} id={id}/>
 
       </div>
 

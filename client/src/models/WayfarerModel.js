@@ -2,12 +2,13 @@ import { decorate, action, computed, observable } from "mobx";
 import { v4 } from "uuid";
 
 class WayfarerModel {
-  constructor({ id = v4(), clanMemberId, journeyId, store, ...json }) {
+  constructor({ id = v4(), clanMemberId, journeyId, roleId, store, ...json }) {
     this.id = id;
     if (!store) {
       throw new Error("A wayfarer needs a store");
     }
     this.store = store;
+    this.roleId = roleId;
     this.clanMemberId = clanMemberId;
     this.journeyId = journeyId;
  
@@ -60,6 +61,8 @@ class WayfarerModel {
   }
 
   updateFromJson({ journeyId, clanMemberId, roleId }) {
+
+    console.log(roleId)
     if (clanMemberId !== undefined) {
 
       this.setClanMember(this.store.rootStore.clanMemberStore.resolveClanMember(clanMemberId));

@@ -12,16 +12,30 @@ class DefinedStoryWordStore {
   }
 
   createDefinedStoryWord = async definedStoryWord => {
-  
   const json = await this.definedStoryWordsService.create(definedStoryWord);
   this.updateDefinedStoryWordFromServer(json);
   }
 
+  updateDefinedStoryWord = async definedStoryWord => {
+    console.log(definedStoryWord); // model 
+    const json = await this.definedStoryWordsService.update(definedStoryWord);
+    console.log(json); // undefined
+    this.updateDefinedStoryWordFromServer(json);
+  }
+
+  updateLinkedUsers = async groupWithUsers => {
+    const jsonUsers = await this.groupsService.updateLinked(groupWithUsers, 'users');
+    this.updateGroupFromServer({ id: groupWithUsers.id, users: jsonUsers });
+    return this.resolveGroup(groupWithUsers.id);
+  };
+
   loadAllDefinedStoryWords = async () => {
     const jsonDefinedStoryWords = await this.definedStoryWordsService.getAll();
-   
     jsonDefinedStoryWords.forEach(json => this.updateDefinedStoryWordFromServer(json));
   };
+
+
+
 
   loadDefinedStoryWord = async (id) => {
     const jsonDefinedStoryWord = await this.groupsService.getById(id);
@@ -31,7 +45,7 @@ class DefinedStoryWordStore {
 
   updateDefinedStoryWordFromServer(json) {
 
-     let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
+    let definedStoryWord = this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === json.id);
     console.log("gecheckt")
      console.log(definedStoryWord)
      if (!definedStoryWord) {
@@ -56,7 +70,7 @@ class DefinedStoryWordStore {
 
   resolveDefinedStoryWord = id => this.definedStoryWords.find(definedStoryWord => definedStoryWord.id === id);
 
-  addDefinedStoryWord(definedStoryWord){
+  addDefinedStoryWord = (definedStoryWord) => {
       this.definedStoryWords.push(definedStoryWord);
   }
 }

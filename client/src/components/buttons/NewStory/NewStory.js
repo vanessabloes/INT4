@@ -1,41 +1,48 @@
 import React from "react";
 import styles from "./NewStory.module.css"
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import { ROUTES } from "../../../consts";
 
 import { ReactComponent as Button } from './btnNewStory.svg';
 import StoryModel from "../../../models/StoryModel";
 import { useStore } from "../../../hooks";
 import { useObserver } from "mobx-react-lite";
-import DefinedStoryWordModel from "../../../models/DefinedStoryWordModel";
-import { v4 } from "uuid";
-import JourneyStore from "../../../stores/JourneyStore";
-import DefinedWordStore from "../../../stores/DefinedWordStore";
+
 
 const NewStoryButton = ({ text, id }) => {
 
   const { storyStore, uiStore, journeyStore, definedWordStore } = useStore();
 
 
-    
-  const addNewStory = () => {
+  const history = useHistory();  
+  const addNewStory = async () => {
+
     const journey = journeyStore.resolveJourney(id)
-    
+    console.log("im clikced")
     const newStory = new StoryModel({
+ 
+        name: "Your story",
+        journeyId: id,
+        contextId: "",
+        levelId: "",
         store: storyStore,
-        journeyId: id
+       
       });
-    uiStore.setCurrentStory(newStory);
-    definedWordStore.getDefinedWords(id);
+   console.log(newStory)
+    await uiStore.setCurrentJourney(journey);
+    await uiStore.setCurrentStory(newStory);
+    definedWordStore.getDefinedWords(newStory.id);
+    await newStory.create();
+    history.push(`${id}` + ROUTES.addStory.to + `/`+ uiStore.currentStory.id)
 
   }
   return useObserver(() => (
     <div className={styles.buttonContainer}>
       <button onClick={addNewStory}>
-        <Link to={`${id}` + ROUTES.addStory.to}>
+        
           <Button className={styles.button} />
           <p className={styles.button_title}>{text}</p>
-        </Link>
+     
       </button>
     </div>
   ));

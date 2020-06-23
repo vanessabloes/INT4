@@ -114,7 +114,7 @@ class DefinedWordStore {
     console.log(definedStoryWord);
     if(definedStoryWord !== undefined){
    // this.rootStore.definedStoryWordStore.definedStoryWords.push(definedStoryWord);
-    this.rootStore.uiStore.currentStory.addDefinedStoryWord(definedStoryWord);
+    //this.rootStore.uiStore.currentStory.addDefinedStoryWord(definedStoryWord);
     this.rootStore.uiStore.currentJourney.addDefinedStoryWord(definedStoryWord);
     }
     definedStoryWord.create();

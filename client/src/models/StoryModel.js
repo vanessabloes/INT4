@@ -4,10 +4,12 @@ import DefinedStoryWordModel from "./DefinedStoryWordModel";
 
 class StoryModel {
 
-  constructor({ id = v4(), name, journeyId, store }) {
+  constructor({ id = v4(), name, journeyId, contextId ="", levelId="", store }) {
     this.id = id;
     this.name = name;
     this.store = store;
+    this.contextId = contextId;
+    this.levelId = levelId;
     this.words = [];
     this.definedStoryWords = [];
     //this.contextId = contextId;
@@ -97,7 +99,7 @@ class StoryModel {
   }
 
   create = async () => this.store.createStory(this.asJson);
-
+  update = async () => this.store.updateStory(this.asJson);
 
 
   setJourney(journey) {
@@ -107,20 +109,42 @@ class StoryModel {
     }
   }
 
-  addWord(word) {
+  addWord = (word) =>{
     this.words.push(word);
   }
 
-
+  updateLinkedDefinedStoryWords = async () => {
+    const data = this.asJson;
+    data.definedStoryWords = this.definedStoryWords.map(definedStoryWord => definedStoryWord.asJson);
+    return this.store.updateLinkedDefinedStoryWords(data);
+  };
 
   get journey() {
     return this.store.rootStore.journeyStore.resolveJourney(this.journeyId);
   }
 
-  updateFromJson({ words }) {
+  updateFromJson({ name, words, definedStoryWords }) {
+    console.log(name)
+    if(name !== undefined){
+      this.name = name;
+    }
+    if(words !== undefined){
+      console.log(words)
+      words.forEach(word => {
+        this.addWord(word);
+        this.store.rootStore.wordStore.updateWordFromServer(word);
+      })
+    }
+   
+    if(definedStoryWords !== undefined){
+    definedStoryWords.forEach(definedStoryWord => {
+      this.addDefinedStoryWord(definedStoryWord);
+      this.store.rootStore.definedStoryWordStore.updateDefinedStoryWordFromServer(definedStoryWord);
 
-    this.words = words;
+     
 
+    });
+  }
   }
 
 
@@ -128,8 +152,9 @@ class StoryModel {
     return {
       id: this.id,
       name: this.name,
-      definedWords: this.definedWords,
-      journeyId: this.journeyId
+      journeyId: this.journeyId,
+      contextId: this.contextId,
+      levelId: this.levelId
     };
   }
 }
