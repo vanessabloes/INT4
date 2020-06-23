@@ -7,7 +7,7 @@ import { STATES } from "../consts/index"
 class LaunchFlowStore {
   constructor(rootStore) {
     this.rootStore = rootStore;
-    this.homeState = STATES.HOME_STATE_OPENING_SCREEN;
+    this.homeState = STATES.HOME_STATE_FAMILY;
     this.journeyNameError = "";
   }
 
