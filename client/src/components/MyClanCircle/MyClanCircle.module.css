@@ -13,8 +13,6 @@
 }
 
 .mask_element {
-
-  /* display: block; */
   position: absolute;
   z-index: 0;
   height: 31rem;
@@ -36,8 +34,8 @@
   background-position: center;
   padding: 2rem;
   align-self: end ;
-  grid-row: 1;
-  grid-column: 2;
+  grid-row: 2;
+  grid-column: 1;
   width: 4rem;
   z-index: 3;
   border-radius: 50%;
@@ -49,21 +47,16 @@
   background-repeat: no-repeat;
   background-position: center;
   padding: 2rem;
+  align-self: end ;
+  justify-self: end;
   grid-row: 2;
-  grid-column: 2;
-  align-self: end;
+  grid-column: 1;
   width: 4rem;
   z-index: 2;
+  border-radius: 50%;
 }
 
 .hidden {
   composes: visually-hidden from "../../styles/index.css"
 
 }
-
-/* .mask_name {
-  composes: subtext from "../../styles/typo.module.css";
-  padding-top: 1rem;
-  font-weight: bold;
-  text-transform: capitalize;
-} */
