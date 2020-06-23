@@ -9,6 +9,11 @@ class ChallengeStore {
         this.challengesService = new RestService("challenges");
     }
 
+
+    getChallengeByRoleId = (RoleId) => {
+        return this.challenges.find(challenge => challenge.roleId === RoleId);
+    }
+
     loadAllChallenges = async () => {
         const jsonChallenges = await this.challengesService.getAll();
         jsonChallenges.forEach(json => this.updateChallengeFromServer(json));

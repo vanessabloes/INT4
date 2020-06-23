@@ -14,6 +14,7 @@ import { STATES } from "../../consts/index";
 import styles from "./Home.module.css"
 import World from "../../components/World/World"
 import { Link } from "react-router-dom";
+import Challenge from "../../components/Challenge";
 
 
 const Home = ({ page }) => {
@@ -31,7 +32,9 @@ const Home = ({ page }) => {
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
-      return <OpeningFamily />
+        return <Challenge />  
+    
+    // return <OpeningFamily />
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_SURREAL_WORLD) {//"Opening Surreal World",
@@ -61,8 +64,6 @@ const Home = ({ page }) => {
           {uiStore.currentClan.journeys.length > 3 ? <div className={styles.arrow}>&rsaquo;</div> : ""}
 
         </div>
-
-
 
         <div className={styles.homeClan}>
           {uiStore.currentClan.clanMembers.length === 0 ? <p className={styles.homeClanInfo}>Add some family members and become a clan!</p> : ""}
