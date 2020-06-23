@@ -1,5 +1,5 @@
 import RestService from "../services/RestService";
-import { decorate, observable, action } from "mobx";
+import { decorate, observable, action, computed } from "mobx";
 import JourneyModel from "../models/JourneyModel";
 
 
@@ -87,6 +87,8 @@ class JourneyStore {
   addJourney(journey) {
     this.journeys.push(journey);
   };
+
+
 }
 
 decorate(JourneyStore, {

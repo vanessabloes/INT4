@@ -20,17 +20,15 @@ const NewStoryButton = ({ text, id }) => {
     const journey = journeyStore.resolveJourney(id)
     console.log("im clikced")
     const newStory = new StoryModel({
- 
-        name: "Your story",
         journeyId: id,
         contextId: "",
         levelId: "",
         store: storyStore,
        
       });
-   console.log(newStory)
-    await uiStore.setCurrentJourney(journey);
-    await uiStore.setCurrentStory(newStory);
+   console.log(newStory.id) // check
+    await uiStore.setCurrentJourney(journey); //check
+    await uiStore.setCurrentStory(newStory); //check
     definedWordStore.getDefinedWords(newStory.id);
     await newStory.create();
     history.push(`${id}` + ROUTES.addStory.to + `/`+ uiStore.currentStory.id)

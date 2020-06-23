@@ -42,14 +42,16 @@ const Core = () => {
   
       const loadStory = async (id, storyId) => {
   
-       try{
+      //  try{
           console.log(id)
           console.log(storyId)
+ 
           const story = await storyStore.loadStory(storyId);
           const journey = await journeyStore.loadJourney(id);
-          uiStore.setCurrentJourney(journey);
-          uiStore.setCurrentStory(story);
-  
+          
+          await uiStore.setCurrentJourney(journey);
+          await uiStore.setCurrentStory(story);
+          await storyStore.loadDefinedStoryWordsForStory(storyId);
           console.log(story)
           console.log(journey)
           if (!story) {
@@ -58,12 +60,12 @@ const Core = () => {
           }
           
           setState(STATE_LOADING_MORE_DETAILS);
-          await storyStore.loadDefinedStoryWordsForStory(storyId);
-          const generatedName = `from `+  story.definedStoryWords[0].content + ` to ` + story.definedStoryWords[story.definedStoryWords.length - 1].content;
-          await story.updateFromJson({
-            name: generatedName
-          });
-          console.log(story);
+         // await storyStore.loadDefinedStoryWordsForStory(storyId);
+          //const generatedName = `from `+  story.definedStoryWords[0].content + ` to ` + story.definedStoryWords[story.definedStoryWords.length - 1].content;
+         // await story.updateFromJson({
+         //   name: generatedName
+         // });
+         // console.log(story);
          // await story.update();
           setStory(story);
           await journeyStore.loadWayfarersForJourney(id);
@@ -71,13 +73,13 @@ const Core = () => {
           
 
         
-          setState(STATE_FULLY_LOADED);
-       }
+           setState(STATE_FULLY_LOADED);
+      //  }
        
-         catch (error) {
-           console.log("error")
-           setState(STATE_NOT_FOUND);
-         }
+      //    catch (error) {
+      //      console.log("error")
+      //      setState(STATE_NOT_FOUND);
+      //    }
       }
       loadStory(id, storyId);
     }, [id, storyId, storyStore, journeyStore, setStory]);
@@ -94,7 +96,7 @@ const Core = () => {
         }
         return (
         <>
-            <PageTitle title={"story 1"} />
+            <PageTitle title={uiStore.currentStory.name} />
             <ProgressFlame />
            
             <ul>

@@ -32,7 +32,7 @@ class DefinedWordStore {
             store: this
          
         });
-        console.log(definedWord)
+  
      }
     
      //if (json.isDeleted) {
@@ -50,20 +50,22 @@ class DefinedWordStore {
 //_____________________________//
 
   getDefinedWords(storyId){
-
-    const allDefinedWordsFromServer = this.definedWords;
-    const allDefinedStoryWords = this.rootStore.definedStoryWordStore.definedStoryWords;
-    console.log(allDefinedWordsFromServer);
+    console.log("getting defined words from server")
+    const allDefinedWordsFromServer = this.definedWords; // 7 models
+    const allDefinedStoryWords = this.rootStore.uiStore.currentStory.definedStoryWords; // length = 4
+    console.log(allDefinedWordsFromServer); // check
+    console.log(allDefinedStoryWords);  // 4
 
     for (let index = 0; allDefinedStoryWords.length < this.rootStore.uiStore.currentJourney.wayfarers.length + 2; index++) {
+      console.log("_________________________________DHIEHRIRHEIREHEIRHI_____________");
       const randomItem = allDefinedWordsFromServer[Math.floor(Math.random() * allDefinedWordsFromServer.length)];
-      // console.log("choose a random word");
+       console.log("choose a random word");
 
 
       if (this.checkDefinedWord(randomItem, storyId) === true) {
-        //console.log("random word already in journey");
+        console.log("random word already in journey");
       } else {
-        //console.log(randomItem);
+        console.log(randomItem);
       };
 
     }
@@ -73,6 +75,7 @@ class DefinedWordStore {
     // console.log(this.store.rootStore.uiStore.currentJourney.definedWords.length)
     let isInArray = false;
     if (this.rootStore.uiStore.currentJourney.definedStoryWords.length > 0) {
+      console.log("checkin length")
       let count = 0;
       this.rootStore.uiStore.currentJourney.definedStoryWords.forEach(definedStoryWord => {
         // console.log(definedStoryWord.definedWordId + "=" + definedWord.id)

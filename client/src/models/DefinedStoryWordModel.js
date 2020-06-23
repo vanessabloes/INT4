@@ -8,7 +8,7 @@ class DefinedStoryWordModel {
         this.storyId = storyId;
         this.isReached = "false";
         this.store = store;
-        this.store.addDefinedStoryWord(this);
+        this.store.addDefinedStoryWord(this); // voor de DefinedStoryWordStore
     }
 
     setReached = value => {
@@ -17,8 +17,9 @@ class DefinedStoryWordModel {
     create = async () => this.store.createDefinedStoryWord(this.asJson);
     update = async () => this.store.updateDefinedStoryWord(this.asJson);
 
-    updateFromJson({ }){
-   
+    updateFromJson(definedStoryWord){
+      const story = this.store.rootStore.storyStore.resolveStory(definedStoryWord.storyId);
+      story.addDefinedStoryWord(definedStoryWord);
       console.log("hey im usels")
   }
 

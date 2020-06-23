@@ -3,6 +3,7 @@ import { useStore } from "../../hooks";
 import WordModel from "../../models/WordModel";
 import React, { useState } from 'react';
 import styles from "./RecognitionCircle.module.css"
+import JourneyStore from "../../stores/JourneyStore";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -13,7 +14,7 @@ recognition.lang = 'en-US';
 recognition.continuous = true;
 
 const RecognitionCircle = () => {
-    const { wordStore, uiStore, definedStoryWordStore } = useStore();
+    const { wordStore, uiStore, definedStoryWordStore, journeyStore } = useStore();
     const [play, setPlay] = useState(false);
 
    const definedStoryWords = uiStore.currentStory.definedStoryWords;
@@ -117,13 +118,13 @@ const RecognitionCircle = () => {
               }
  
          word.create();
-     
+         uiStore.currentStory.addWord(word)
     }
  }
   return useObserver (() => (
       <>
 
-    <p className={styles.circle__counter}>{wordStore.wordCounter}</p>
+    <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>
 
     {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
 

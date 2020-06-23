@@ -71,6 +71,10 @@ class JourneyModel {
     await this.definedStoryWords.push(definedStoryWord);
   }
 
+  get wordCounter() {
+    return (this.wayfarers.length * 30) - this.store.rootStore.uiStore.currentStory.words.length;
+}
+
   get asJson() {
     return {
       id: this.id,
@@ -92,7 +96,8 @@ decorate(JourneyModel, {
   asJson: computed,
   setJourneyName: action,
   setImage: action,
-  setClan: action
+  setClan: action,
+  wordCounter: computed
 });
 
 export default JourneyModel;

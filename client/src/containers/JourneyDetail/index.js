@@ -22,7 +22,7 @@ const JourneyDetail = () => {
   const STATE_LOADING_MORE_DETAILS = 'loading more details';
   const STATE_FULLY_LOADED = 'fully loaded';
 
-  const { journeyStore, clanMemberStore, uiStore, clanStore, roleStore, storyStore } = useStore();
+  const { journeyStore, clanMemberStore, uiStore, clanStore, roleStore, definedStoryWordStore } = useStore();
   const { id } = useParams(); // check
 
   const [journey, setJourney] = useState(journeyStore.resolveJourney(id));
@@ -39,11 +39,12 @@ const JourneyDetail = () => {
 
     const loadJourneyy = async (id) => {
 
-      try {
+       try {
         console.log(id)
+       
         const journey = await journeyStore.loadJourney(id);
         uiStore.setCurrentJourney(journey);
-
+        const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
         console.log(journey)
         if (!journey) {
           setState(STATE_NOT_FOUND);
@@ -51,16 +52,18 @@ const JourneyDetail = () => {
         }
         setJourney(journey);
         setState(STATE_LOADING_MORE_DETAILS);
+  
+        console.log(lol)
         await clanStore.loadClanMembers(uiStore.currentClan.id);
         await journeyStore.loadWayfarersForJourney(id);
         await journeyStore.loadStoriesForJourney(id);
         setState(STATE_FULLY_LOADED);
-      }
+     }
 
-      catch (error) {
-        console.log("error")
-        setState(STATE_NOT_FOUND);
-      }
+       catch (error) {
+         console.log("error")
+         setState(STATE_NOT_FOUND);
+       }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);

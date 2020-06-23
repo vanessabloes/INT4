@@ -30,8 +30,11 @@ class DefinedStoryWordStore {
   };
 
   loadAllDefinedStoryWords = async () => {
+    console.log("im loading all dfsw")
     const jsonDefinedStoryWords = await this.definedStoryWordsService.getAll();
+    console.log(jsonDefinedStoryWords)
     jsonDefinedStoryWords.forEach(json => this.updateDefinedStoryWordFromServer(json));
+    return jsonDefinedStoryWords
   };
 
 
@@ -56,7 +59,7 @@ class DefinedStoryWordStore {
             isReached: json.isReached,
             storyId: json.storyId,
             definedWordId: json.definedWordId,
-            store: this.rootStore.definedStoryWordStore
+            store: this
         });
 
      }
