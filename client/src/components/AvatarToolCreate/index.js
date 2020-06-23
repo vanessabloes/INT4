@@ -11,28 +11,28 @@ const AvatarToolCreate = () => {
 
     const [nickname, setNickname] = useState("");
     const [age, setAge] = useState("");
- 
 
-   // let error = "";
+
+    // let error = "";
     const handleSubmitForm = ({ e, nickname, age }) => {
         e.preventDefault();
 
         console.log(uiStore.currentClan.id);
 
-        if(clanMemberStore.clanMembers.length < 6){
-        const newClanMember = new ClanMemberModel({
-            store: clanMemberStore,
-            name: nickname,
-            age: age,
-            clanId: uiStore.currentClan.id,
-            topMaskId: (uiStore.topCount + 1).toString(),
-            middleMaskId: (uiStore.middleCount + 1).toString(),
-            bottomMaskId: (uiStore.bottomCount + 1).toString(),
-            
-        });
-        newClanMember.create();
-        }else{
-        uiStore.setError("Max clanmember limit reached");
+        if (clanMemberStore.clanMembers.length < 6) {
+            const newClanMember = new ClanMemberModel({
+                store: clanMemberStore,
+                name: nickname,
+                age: age,
+                clanId: uiStore.currentClan.id,
+                topMaskId: (uiStore.topCount + 1).toString(),
+                middleMaskId: (uiStore.middleCount + 1).toString(),
+                bottomMaskId: (uiStore.bottomCount + 1).toString(),
+
+            });
+            newClanMember.create();
+        } else {
+            uiStore.setError("Max clanmember limit reached");
 
         }
         closeOverlay();
@@ -72,30 +72,30 @@ const AvatarToolCreate = () => {
 
             <button className={styles.closeButton} onClick={closeOverlay}>X</button>
             <PageTitle title={"Make your avatar"} />
-           
-                <div className={styles.avatarImageWrapper}>
-                    <div className={styles.buttonWrapper}>
-                        <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lt;</button>
-                        <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lt;</button>
-                        <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lt;</button>
-                    </div>
 
-                    <div className={styles.maskContainer}>
-                        <img className={styles.maskTop} src={topMaskStore.topMasks[uiStore.topCount].topImage} alt="top mask image" />
-
-                        <img className={styles.maskMiddle} src={middleMaskStore.middleMasks[uiStore.middleCount].middleImage} alt="middle mask image" />
-
-                        <img className={styles.maskBottom} src={bottomMaskStore.bottomMasks[uiStore.bottomCount].bottomImage} alt="bottom mask image" />
-                    </div>
-
-                    <div className={styles.buttonWrapper}>
-                        <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&gt;</button>
-                        <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&gt;</button>
-                        <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&gt;</button>
-                    </div>
-
+            <div className={styles.avatarImageWrapper}>
+                <div className={styles.buttonWrapper}>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("down")}>&lt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("down")}>&lt;</button>
                 </div>
-                <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
+
+                <div className={styles.maskContainer}>
+                    <img className={styles.maskTop} src={topMaskStore.topMasks[uiStore.topCount].topImage} alt="top mask image" />
+
+                    <img className={styles.maskMiddle} src={middleMaskStore.middleMasks[uiStore.middleCount].middleImage} alt="middle mask image" />
+
+                    <img className={styles.maskBottom} src={bottomMaskStore.bottomMasks[uiStore.bottomCount].bottomImage} alt="bottom mask image" />
+                </div>
+
+                <div className={styles.buttonWrapper}>
+                    <button className={styles.buttonLeft} onClick={() => handleTopCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleMiddleCount("up")}>&gt;</button>
+                    <button className={styles.buttonLeft} onClick={() => handleBottomCount("up")}>&gt;</button>
+                </div>
+
+            </div>
+            <form className={styles.form} onSubmit={(e) => handleSubmitForm({ e, nickname, age })}>
                 <div className={styles.inputElements}>
                     <label className={styles.labelWrapper}>
                         <span className={styles.spanNickname}>Nickname</span>
@@ -107,15 +107,22 @@ const AvatarToolCreate = () => {
                     </label>
 
                     <label className={styles.labelWrapper}>
-                       <span className={styles.spanAge} >Age</span>
-                       <input
+                        <span className={styles.spanAge} >Age</span>
+                        <input
                             className={styles.input}
                             value={age}
                             type="number"
                             onChange={e => setAge(e.target.value)} />
                     </label>
                     <p>{uiStore.error}</p>
-                    <input className={styles.buttonSubmitm} type='submit' value="Create avatar" />
+                    <label className={styles.theepot}>
+                        <input
+                            className={styles.button}
+                            type="submit"
+                            value=""
+                        />
+                        <p>Create avatar</p>
+                    </label>
                 </div>
             </form>
         </div>

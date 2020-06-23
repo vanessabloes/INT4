@@ -73,7 +73,7 @@ const NameJourney = () => {
               />
               <p>Name journey</p>
             </label>
-            : <div><p>New journey created!</p> <BackToWorldButton linkTo={ROUTES.home} /> </div>}
+            : <div className={styles.btw}><p>New journey created!</p> <BackToWorldButton linkTo={ROUTES.home} /> </div>}
         </form>
       </div>
 

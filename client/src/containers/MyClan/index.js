@@ -19,7 +19,7 @@ const MyClan = () => {
           <BackToWorldButton />
         </div>
         <div className= {Styles.title}>
-          <PageTitle title={"Your Clan"} subtext={"Click on your mask to edit"} />
+          <PageTitle title={"Your Clan"} subtext={"Add family members to your clan"} />
         </div>
       </div>
       <MyClanCircle />

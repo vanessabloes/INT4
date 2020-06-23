@@ -5,7 +5,6 @@ import MyClanButton from "../buttons/MyClan"
 import AddMemberButton from "../buttons/AddMember/AddMemberButton"
 import { useObserver } from "mobx-react-lite";
 import MaskMedium from "../MaskMedium";
-import AvatarToolCreate from "../AvatarToolCreate";
 
 
 const MyClanCircleTiny = ({ page }) => { //centerButton -> MyClanCircle anders is het addMember

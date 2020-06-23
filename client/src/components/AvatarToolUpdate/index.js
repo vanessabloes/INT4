@@ -130,7 +130,14 @@ const AvatarToolUpdate = () => {
                         />
                     </label>
                     <p>{uiStore.error}</p>
-                    <input className={styles.buttonSubmitm} type="submit" value="update avatar" />
+                    <label className={styles.theepot}>
+                        <input
+                            className={styles.button}
+                            type="submit"
+                            value=""
+                        />
+                        <p>Update avatar</p>
+                    </label>
 
                 </div>
             </form>
