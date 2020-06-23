@@ -21,27 +21,16 @@ const Loading = () => {
     return useObserver(() => (
 
         <div className={styles.loadingWrapper} onLoad={handleLoading}>
-            <div className={styles.gridbox}>
-                <div className={styles.titleBlock}>
-                    <h1 className={styles.hidden}>Prepare to reveal imagination</h1>
-                    <h1 className={styles.hidden}>Prepare to be challanged</h1>
-                </div>
-                <img className={styles.koepel} src="/assets/img/IMAGINATION/koepelRolesKip.svg" />
-                <div className={styles.pictures}>
-                    <img className={styles.boek} src="/assets/img/IMAGINATION/boek.svg" />
-                    <img className={styles.driehoek} src="/assets/img/IMAGINATION/driehoek.svg" />
-
-                    <div className={styles.deur}>
-                        <img className={styles.leftDoor} src="/assets/img/IMAGINATION/loaderLeft.svg" />
-                        <img className={styles.rightDoor} src="/assets/img/IMAGINATION/loaderRight.svg" />
-                        <div className={styles.LoadingWheel}>
-                            <LoadingWheel />
-                        </div>
-                    </div>
-
+            <h1 className={styles.hidden}>Prepare to reveal imagination</h1>
+            <p className={styles.hidden}>Prepare to be challanged</p>   
+            <img className={styles.koepel} src="/assets/img/IMAGINATION/koepelRolesKip.svg" />
+            <div className={styles.deur}>
+                <img className={styles.leftDoor} src="/assets/img/IMAGINATION/loaderLeft.svg" />
+                <img className={styles.rightDoor} src="/assets/img/IMAGINATION/loaderRight.svg" />
+                <div className={styles.LoadingWheel}>
+                    <LoadingWheel />
                 </div>
             </div>
-
         </div>
 
     ));
