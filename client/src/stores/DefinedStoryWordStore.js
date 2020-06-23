@@ -53,7 +53,7 @@ class DefinedStoryWordStore {
         definedStoryWord = new DefinedStoryWordModel({
             id: json.id, 
             content: json.content,
-            isReached: 0,
+            isReached: json.isReached,
             storyId: json.storyId,
             definedWordId: json.definedWordId,
             store: this.rootStore.definedStoryWordStore

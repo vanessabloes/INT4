@@ -21,6 +21,12 @@ class UiStore {
     this.selectedClanMemberId = "";
     this.selectedPowerId = "";
     this.currentStory = undefined;
+    this.pitStopCount = 0;
+  }
+
+
+  setPitStopCount(value){
+    this.pitStopCount = this.pitStopCount + value;
   }
 
   setCurrentStory(story){
@@ -219,7 +225,10 @@ decorate(UiStore, {
   selectedPowerId: observable,
 
   setCurrentStory: action,
-  currentStory: observable
+  currentStory: observable,
+
+  pitStopCount: observable,
+  setPitStopCount: action
 
 });
 

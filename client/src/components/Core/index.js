@@ -16,6 +16,7 @@ import Manual from "../Manual";
 import PageTitle from "../PageTitle/PageTitle";
 import JourneyStore from "../../stores/JourneyStore";
 import { useParams } from "react-router-dom";
+import ProgressFlame from "../ProgressFlames";
 
 
 
@@ -28,11 +29,10 @@ const Core = () => {
     const STATE_NOT_FOUND = 'notFound';
     const STATE_LOADING_MORE_DETAILS = 'loading more details';
     const STATE_FULLY_LOADED = 'fully loaded';
-  
+
     const showOverlay = () => {
 
     }
-
     const [story, setStory] = useState(storyStore.resolveStory(storyId));
     const [state, setState] = useState(STATE_LOADING);
   
@@ -95,14 +95,8 @@ const Core = () => {
         return (
         <>
             <PageTitle title={"story 1"} />
-            <Pitstops />
-            <ul>
-            {uiStore.currentStory.definedStoryWords.map(definedStoryWord => (
-                
-                    <li key={definedStoryWord.id}>{definedStoryWord.content}</li>
-                
-            ))}
-            </ul>
+            <ProgressFlame />
+           
             <ul>
             {uiStore.currentJourney.wayfarers.map(wayfarer => (
               

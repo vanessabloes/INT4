@@ -1,0 +1,83 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
+.line {
+    width: 17rem;
+    height: 2rem;
+    border-top: 0.4rem solid #1B1A1A;
+}
+
+.wave {
+    width: 16rem;
+    height: 2rem;
+    overflow: hidden; 
+}
+
+.wave:before {
+    content: "loaderloader";
+    position: relative;
+    top: -3.5rem;
+    width: calc(100% + 2.7rem);
+    font-size: 4rem;
+    color: #FFFBF1;
+    text-decoration-style: wavy;
+    text-decoration-color: #1B1A1A;
+    text-decoration-line: underline;
+    animation: animate .5s linear infinite;
+}
+
+@keyframes animate {
+    0%{
+        right: 0;
+    }
+
+    100%{
+        right: 2rem;
+    }
+}
+
+.toggle__btn {
+    border: none;
+    background-color: #FFFBF1;
+    width: 6rem;
+    height: 6rem;
+}
+
+.word {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.circle__wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.toggle__icon {
+    width: 6rem;
+    height: 6rem;
+    top: -5rem;
+}
+
+.cirlce__content {
+    z-index: 1;
+    position: absolute;
+    top: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cirlce__img {
+    z-index: 0;
+    position: relative
+}
+
+.title {
+    composes: page_title from "../../styles/typo.module.css"
+  }
+
+.circle__counter {
+    composes: page_title from "../../styles/typo.module.css"
+}
