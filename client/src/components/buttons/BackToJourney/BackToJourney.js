@@ -4,22 +4,20 @@ import { Link } from "react-router-dom";
 import { ROUTES, STATES } from "../../../consts";
 
 import { ReactComponent as BackToJourneyLogo } from './btnBackToJourney.svg';
-import { useStore } from "../../../hooks";
+import { useObserver } from "mobx-react-lite";
 
 
-const BackToJourney = ({linkTo}) => {
-const { launchFlowStore } = useStore()
-const stateChange = () => {
-  launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME);
-}
-  return (
+
+const BackToJourney = ({ id }) => {
+  console.log(id);
+  return useObserver(() => (
     <div className={styles.button}>
-    <Link to={ROUTES.home} onClick={stateChange}>
-      <BackToJourneyLogo/>
-      <p className={styles.button_title}>Back to Journey</p>
-    </Link>
-  </div>
-  );
+      <Link to={ROUTES.journeyDetail.to + `${id}`}>
+        <BackToJourneyLogo />
+        <p className={styles.button_title}>Back to Journey</p>
+      </Link>
+    </div>
+  ));
 };
 
 export default BackToJourney;

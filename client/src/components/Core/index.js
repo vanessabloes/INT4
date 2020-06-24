@@ -20,6 +20,7 @@ import BackToJourney from "../buttons/BackToJourney/BackToJourney";
 
 const Core = () => {
 
+
   const showManual = () => {
     uiStore.setManualVisibility(true);
   }
@@ -31,9 +32,6 @@ const Core = () => {
   const STATE_LOADING_MORE_DETAILS = 'loading more details';
   const STATE_FULLY_LOADED = 'fully loaded';
 
-  const showOverlay = () => {
-
-  }
   const [story, setStory] = useState(storyStore.resolveStory(storyId));
   const [state, setState] = useState(STATE_LOADING);
 
@@ -98,26 +96,26 @@ const Core = () => {
     return (
 
       <div className={styles.coreManualWrapper}>
-      <div className={styles.coreWrapper}>
+        <div className={styles.coreWrapper}>
 
-        <header className={styles.coreHeader}>
-          <button className={styles.headerButton}><BackToJourney /></button>
-          <div className={styles.headerProgressbar}><ProgressFlame /></div>
-        </header>
+          <header className={styles.coreHeader}>
+            <button className={styles.headerButton}><BackToJourney id={id} /></button>
+            <div className={styles.headerProgressbar}><ProgressFlame /></div>
+          </header>
 
-        <div className={styles.wordWheel}>
-          <Wordwheel />
+          <div className={styles.wordWheel}>
+            <Wordwheel />
+          </div>
+
+          <div className={styles.manualWrapper}>
+
+            <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" />{!uiStore.manualVisibility ? <p className={styles.manualButtonText}>How to tell a story?</p> : ""}</button>
+
+          </div>
+
         </div>
 
-        <div className={styles.manualWrapper}>
-
-          <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" />{! uiStore.manualVisibility? <p className={styles.manualButtonText}>How to tell a story?</p> : ""}</button>
-
-        </div>
-
-      </div>
-
-      <div className={styles.overlay}>{uiStore.manualVisibility ? <Manual /> : ""}</div>
+        <div className={styles.overlay}>{uiStore.manualVisibility ? <Manual /> : ""}</div>
 
       </div>
     );
