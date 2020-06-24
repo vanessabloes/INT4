@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import TheePot from "../../components/buttons/Algemeen/TheePotFlow";
-import { ROUTES } from "../../consts";
 import { useStore } from "../../hooks";
 import styles from "./Challenge.module.css"
 import Mask from "../Mask";
 import PageTitle from "../PageTitle/PageTitle";
+import TheePotLink from "../buttons/Algemeen/TheePotLink";
+import { ROUTES } from "../../consts";
+
+
 
 const Challenge = (roleId) => {
     const [state, setState] = useState(false);
     
-    const { challengeStore } = useStore();
-    roleId = "1"
+    const { challengeStore, uiStore, roleStore } = useStore();
+    
     const role = undefined; 
 
-    const challenge = challengeStore.getChallengeByRoleId(roleId)
+    const challenge = challengeStore.getChallengeByRoleId(uiStore.currentJourney.wayfarers[0].roleId)
     console.log(challenge);
     
     const handleIndoorClick = () => {
@@ -30,10 +33,13 @@ const Challenge = (roleId) => {
     return useObserver(() => (
         <div className={styles.challengePage}>
             <div className={styles.pageTitle}>
-                <PageTitle title={"Prepper, lead your clan back on track"}  subtext={"Scurrent story inladen: tory 1: From Wheel to Pan"}/>
+                
+                <PageTitle title={roleStore.resolveRole(uiStore.currentJourney.wayfarers[0].roleId).roleName + " has to lead his clan back on track"}  subtext={"Scurrent story inladen: tory 1: From Wheel to Pan"}/>
+
             </div>
-            {/* <Mask /> */}
-            <p style={{color: "green"}} className={styles.title}>hier het makser van de prepper gebruiker</p>
+            {uiStore.currentJourney.wayfarers[0].name}
+            <Mask clanMember={uiStore.currentJourney.wayfarers[0]}/>
+
             
             <div className={styles.center}>         
                 <div className={styles.buttonWrapper}>
@@ -55,7 +61,7 @@ const Challenge = (roleId) => {
                 </div>
             </div>   
             <div className={styles.button}>
-                <TheePot text="We're back on track" onClick={"ff"} />
+                <TheePotLink text="We're back on track" linkTo={ROUTES.journeyDetail.to + uiStore.currentJourney.id} />
             </div>
         </div>
     ));

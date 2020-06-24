@@ -101,7 +101,7 @@ const RecognitionCircle = () => {
             console.log(definedStoryWords.length);
             
              if(definedStoryWordToCheck.content.toLowerCase() === word.content){
-                 console.log("equals")
+                 console.log("equals");
                  definedStoryWordToCheck.setReached("true");
                  definedStoryWordToCheck.update();
              }
@@ -121,16 +121,24 @@ const RecognitionCircle = () => {
     }
  }
   return useObserver (() => (
-      <div className={styles.RecognitionCircle}>
-        {match === true ? <Match /> : <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>}
 
-        {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
 
-        <button className={styles.toggle__btn} onClick={togglePlay}>
-        {play ? <img className={styles.toggle__icon} alt="play button" src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__icon} alt="pause button" src="/assets/img/GAME/play.svg" />}
+
+
+    <div className={styles.RecognitionCircle}>
+       
+    {match === true ? <Match /> : <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>}
+
+    {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+
+
+    <button className={styles.toggle__btn} onClick={togglePlay}>
+    {play ? <img className={styles.toggle__icon} alt="play button" src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__icon} alt="pause button" src="/assets/img/GAME/play.svg" />}
     </button>
 
-    </div>
+</div>
+
+
   ));
 };
 

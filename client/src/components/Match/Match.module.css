@@ -1,0 +1,8 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font from tokens;
+
+
+.match {
+    font-family: title-font;
+    font-size: 2.8rem;
+}

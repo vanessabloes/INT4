@@ -1,9 +1,17 @@
+@value tokens: "../../styles/tokens.module.css";
+@value title-font, background-color  from tokens;
 .coreManualWrapper {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     position: relative;
+
 }
+
+button {
+    border: none;
+    background-color: background-color;
+  }
 
 .overlay {
     position: absolute;
@@ -21,6 +29,8 @@
 .manualButton p {
     font-size: 1.6rem;
     font-weight: bold;
+    border: none;
+    background-color: background-color;
 }
 
 .coreWrapper {
@@ -59,6 +69,7 @@
     align-items: flex-start;
     justify-content: flex-start;
     padding-bottom: 12rem;
+    composes: button from "../../styles/uiControls.module.css";
 }
 
 .headerProgressbar {

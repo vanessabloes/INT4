@@ -1,18 +1,24 @@
-import React from "react";
-import { useObserver } from "mobx-react-lite";
-import { useStore } from "../../hooks";
-//import styles from "./MaskSmall.module.css";
+import React, { useState } from "react";
 
-const Match = ({ play, onTogglePlay }) => {
+import styles from "./Match.module.css";
 
-    const { topMaskStore, middleMaskStore, bottomMaskStore } = useStore();
 
-    return useObserver(() => (
-        <>
-            <p>It's a match!</p>
-  
-       </>
-    ));
+const Match = () => {
+
+
+
+
+
+
+
+
+    return (
+     
+       
+            <p className={styles.match}>It's a match!</p>
+            
+      
+    );
 };
 
 export default Match;

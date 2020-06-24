@@ -20,13 +20,19 @@ const Wordwheel = () => {
     const arc = 360 / countWayfarers;
     let graden = null;
 
+    const handleChallenge = () => {
+        uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE);
+    }
+
     return useObserver(() => (
 
         <>
         <div className={styles.wheelPowerWrapper}>
             <div className={styles.circle__wrapper}>
                 <div className={styles.recognitionCircle}>
+                    {uiStore.currentJourney.wordCounter !== 0 ?
                     <RecognitionCircle />
+                   :   <TheePotFlow onClick={handleChallenge} text="Find your way back" />  }
                 </div>
                 {/* <img className={styles.cirlce__img} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" /> */}
                 <img className={styles.arrow} src="/assets/img/GAME/pointerVertical.svg" alt={"arrow"}/>
@@ -34,8 +40,8 @@ const Wordwheel = () => {
 
             
 
-            <div className={styles.wordSvg}>
-                <svg style={{ position: "absolute", top: "-15rem" }}  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+            <div >
+                <svg style={{ position: "absolute", top: "15rem", zIndex: "0", pointerEvents: "none" }}  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
                     <defs>
                         <path d="M40,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
                     </defs>
@@ -50,15 +56,7 @@ const Wordwheel = () => {
                 </svg>
             </div>
             
-            <ul>
-                 {uiStore.currentStory.words.length === 0 ? (
-                    <></>
-                ) : (
-                    uiStore.currentStory.words.map(noun => (
-                    <li key={noun.id} className={styles.word} >{noun.content}</li>
-                        ))
-                    )}
-            </ul>
+           
 
             <ul className={styles.wayfarersList}>
                 {uiStore.currentJourney.wayfarers.map(wayfarer => (
@@ -75,9 +73,9 @@ const Wordwheel = () => {
             <button className={styles.button}
                 value="challenge"
                 onClick={e => uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE)}>
-                <TheePotFlow text="Find your way back" />
+             
             </button>
-            <TheePotLink text="Add Story" linkTo={ROUTES.path} />
+           
 
         </>
     ));

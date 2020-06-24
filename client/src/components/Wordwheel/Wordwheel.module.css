@@ -69,6 +69,7 @@
 }
 
 .button {
-    composes: button from "../../styles/uiControls.module.css"
+    composes: button from "../../styles/uiControls.module.css";
+
 
 }

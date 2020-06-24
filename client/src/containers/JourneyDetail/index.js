@@ -97,23 +97,23 @@ const JourneyDetail = () => {
             </div>
           ))}
         </div>
+        <div>
+          <NewStoryButton text={"Start new Story"} id={id} />
+        </div>
 
 
-        <ul>
+        <ul className={styles.grid}>
           {journey.stories.map(story => (
 
-            <li key={story.id}>
-              {/* DEZE LOGICA WERKT OOK AL WEER NIET ALS JE EEN NIEUWE STORY MAAKT {story.definedStoryWords[story.definedStoryWords.length - 1].isReached === "false" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}*/}
+              <li key={story.id}>
+              <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" />
               <p>{"Your story"}</p>
 
             </li>
           ))}
         </ul>
 
-        <div>
-          <NewStoryButton text={"Start new Story"} id={id} />
-        </div>
-
+        
       </div>
 
 

@@ -8,6 +8,8 @@ import ProgressFlame from "../ProgressFlames";
 import styles from "./Core.module.css";
 import BackToJourney from "../buttons/BackToJourney/BackToJourney";
 import Loading from "../Loading";
+import TheePotLink from "../buttons/Algemeen/TheePotLink";
+import { ROUTES } from "../../consts";
 
 
 const Core = () => {
@@ -77,9 +79,15 @@ const Core = () => {
           </header>
 
           <div className={styles.wordWheel}>
-            <Wordwheel />
-          </div>
+            {uiStore.currentStory.definedStoryWords[uiStore.currentStory.definedStoryWords.length - 1].isReached === "true" ?
 
+            <div className={styles.coreWrapper}>
+             <TheePotLink text="Add story to journey" linkTo={ROUTES.journeyDetail.to + uiStore.currentJourney.id} />
+             </div>
+            :<Wordwheel /> }
+        
+          </div>
+      
           <div className={styles.manualWrapper}>
             <button className={styles.manualButton} onClick={showManual}>
               <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" />

@@ -7,7 +7,7 @@ class UiStore {
     this.currentClan = undefined;
     this.currentJourney = undefined;
     this.addJourneyState = STATES.ADDJOURNEY_STATE_ADDWAYFARERS;
-    this.addStoryState = STATES.ADDSTORY_STATE_LOADING;
+    this.addStoryState = undefined;
     this.visibilityCreate = false;
     this.visibilityUpdate = false;
     this.visibilityPower = false;

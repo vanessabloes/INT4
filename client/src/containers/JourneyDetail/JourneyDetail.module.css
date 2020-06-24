@@ -1,6 +1,14 @@
 @value tokens: "../../styles/tokens.module.css";
 @value title-font, bodyCopy-font from tokens;
 
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    width: 100vw;
+    margin: auto;
+
+}
 .wayfarer {
     display: flex;
     flex-direction: column;
