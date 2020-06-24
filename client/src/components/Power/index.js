@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import styles from "./Power.module.css";
-import PowerOverlay from "../PowerOverlay";
 
 const Power = ({ wayfarer }) => {
 
@@ -18,7 +17,8 @@ const Power = ({ wayfarer }) => {
             <button className={styles.power} onClick={showOverlay}>
                 <p className={styles.powerWayfarer}>{wayfarer.name}</p>
                 <img src={roleStore.resolveRole(wayfarer.roleId).image} alt="icon of power" />
-                <p className={styles.powerRole}>{roleStore.resolveRole(wayfarer.roleId).roleName}</p></button>
+                <p className={styles.powerRole}>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
+            </button>
         </>
     ));
 };
