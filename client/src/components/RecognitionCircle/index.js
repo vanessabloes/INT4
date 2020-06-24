@@ -121,17 +121,16 @@ const RecognitionCircle = () => {
     }
  }
   return useObserver (() => (
-      <>
-    {match === true ? <Match /> : <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>
-}
- 
-    {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+      <div className={styles.RecognitionCircle}>
+        {match === true ? <Match /> : <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>}
 
-    <button className={styles.toggle__btn} onClick={togglePlay}>
+        {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
+
+        <button className={styles.toggle__btn} onClick={togglePlay}>
         {play ? <img className={styles.toggle__icon} alt="play button" src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__icon} alt="pause button" src="/assets/img/GAME/play.svg" />}
     </button>
 
-    </>
+    </div>
   ));
 };
 

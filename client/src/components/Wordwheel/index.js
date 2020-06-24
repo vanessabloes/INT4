@@ -23,14 +23,26 @@ const Wordwheel = () => {
     return useObserver(() => (
 
         <>
+        <div className={styles.wheelPowerWrapper}>
             <div className={styles.circle__wrapper}>
-                <div className={styles.cirlce__content}>
+                <div className={styles.recognitionCircle}>
                     <RecognitionCircle />
                 </div>
-                <img className={styles.cirlce__img} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" />
+                {/* <img className={styles.cirlce__img} alt="illustration of wheel with eyes" src="/assets/img/GAME/circle.svg" /> */}
+                <img className={styles.arrow} src="/assets/img/GAME/pointerVertical.svg" alt={"arrow"}/>
             </div>
 
-            <svg style={{ position: "absolute", top: "-15rem" }} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+            <ul className={styles.wayfarersList}>
+                {uiStore.currentJourney.wayfarers.map(wayfarer => (
+                    graden = (0 + (uiStore.currentJourney.wayfarers.indexOf(wayfarer) * arc)),
+                    <li className={styles.wayfarersListItem} style={{ transform: `rotate(${graden}deg) translate(0rem, 30rem)` }}>
+                        <Power wayfarer={wayfarer} />
+                    </li>
+                ))}
+                {uiStore.visibilityPower ? <PowerOverlay id={uiStore.selectedPowerId} /> : ""}
+            </ul>
+
+            {/* <svg className={styles.svg} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
                 <defs>
                     <path d="M40,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
                 </defs>
@@ -42,8 +54,7 @@ const Wordwheel = () => {
                         ))}
                     </textPath>
                 </text>
-            </svg>
-
+            </svg> */}
 
             <ul>
                 {uiStore.currentStory.words.length === 0 ? (
@@ -54,18 +65,8 @@ const Wordwheel = () => {
                         ))
                     )}
             </ul>
-
-            <img src="/assets/img/GAME/pointer.svg" alt={"arrow"}/>
-
-            <ul className={styles.wayfarersList}>
-                {uiStore.currentJourney.wayfarers.map(wayfarer => (
-                    graden = (0 + (uiStore.currentJourney.wayfarers.indexOf(wayfarer) * arc)),
-                    <li className={styles.wayfarersListItem} style={{ transform: `rotate(${graden}deg) translate(0rem, 30rem)` }}>
-                        <Power wayfarer={wayfarer} />
-                    </li>
-                ))}
-                {uiStore.visibilityPower ? <PowerOverlay id={uiStore.selectedPowerId} /> : ""}
-            </ul>
+ 
+        </div>
 
             <button className={styles.button}
                 value="challenge"

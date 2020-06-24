@@ -1,91 +1,46 @@
 @value tokens: "../../styles/tokens.module.css";
 @value title-font from tokens;
 
-.line {
-    width: 17rem;
-    height: 2rem;
-    border-top: 0.4rem solid #1B1A1A;
-}
-
-.svg {
-    position: absolute;
-}
-
-.wave {
-    width: 16rem;
-    height: 2rem;
-    overflow: hidden; 
-}
-
-.wave:before {
-    content: "loaderloader";
-    position: relative;
-    top: -3.5rem;
-    width: calc(100% + 2.7rem);
-    font-size: 4rem;
-    color: #FFFBF1;
-    text-decoration-style: wavy;
-    text-decoration-color: #1B1A1A;
-    text-decoration-line: underline;
-    animation: animate .5s linear infinite;
-}
-
-@keyframes animate {
-    0%{
-        right: 0;
-    }
-
-    100%{
-        right: 2rem;
-    }
-}
-
-.toggle__btn {
-    border: none;
-    background-color: #FFFBF1;
-    width: 6rem;
-    height: 6rem;
-}
-
-.word {
-    font-size: 3rem;
-    font-weight: bold;
+.wheelPowerWrapper {
+    height: 70vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
 }
 
 .circle__wrapper {
-    display: flex;
+    grid-row: 1;
+    grid-column: 1;
+    place-self: center;
+
+    display: grid;
     justify-content: center;
+    background-image: url("/assets/img/GAME/circle.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30rem;
+    width: 30rem;
 }
 
-.toggle__icon {
-    width: 6rem;
-    height: 6rem;
-    top: -5rem;
+.recognitionCircle {
+    grid-row: 1;
+    grid-column: 1;
+    place-self: center;
 }
 
-.cirlce__content {
+.arrow {
+    grid-row: 1;
+    grid-column: 1;
+    place-self: center;
+    margin-top: -37rem;
     z-index: 1;
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.cirlce__img {
-    z-index: 0;
-    position: relative
-}
-
-.title {
-    composes: page_title from "../../styles/typo.module.css"
-  }
-
-.circle__counter {
-    composes: page_title from "../../styles/typo.module.css"
 }
 
 .wayfarersList {
+    grid-row: 1;
+    grid-column: 1;
+    place-self: center;
+
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -97,6 +52,24 @@
     position: absolute;
     z-index: 0;
 }
+
+/* .cirlce__img { afb die in commentaar staat
+    z-index: 0;
+    position: relative
+} */
+
+.svg {
+    position: absolute;
+}
+
+.word {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+
+
+
 
 .button {
     composes: button from "../../styles/uiControls.module.css"
