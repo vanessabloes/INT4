@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import ProgressFlame from "../ProgressFlames";
 
 import styles from "./Core.module.css";
+import BackToJourney from "../buttons/BackToJourney/BackToJourney";
 
 
 
@@ -99,33 +100,23 @@ const Core = () => {
       return <p>Loading"</p>;;
     }
     return (
-      <>
-        <PageTitle title={"Your story"} />
-        <ProgressFlame />
+      <div className={styles.coreWrapper}>
 
-        <ul>
-          {uiStore.currentJourney.wayfarers.map(wayfarer => (
+        <header className={styles.coreHeader}>
+          <button><BackToJourney /></button>
+          <ProgressFlame />
+        </header>
 
-            <li key={wayfarer.id} onClick={showOverlay} >{wayfarer.id}</li>
+        <div className={styles.wordWheel}>
+          <Wordwheel />
+        </div>
 
+        <div className={styles.manualWrapper}>
+          <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" /><p className={styles.manualButtonText}>How to tell a story?</p></button>
+          {manual ? <Manual /> : ""}
+        </div>
 
-
-          ))}
-        </ul>
-
-        <Wordwheel />
-
-        <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" /><p className={styles.manualButtonText}>How to tell a story?</p></button>
-        {manual ? <Manual /> : ""}
-
-        <button
-          value="challenge"
-          onClick={e => uiStore.setAddStoryState(STATES.ADDSTORY_STATE_CHALLENGE)}>
-          <TheePotFlow
-            text="Find your way back" />
-        </button>
-        <TheePotLink text="Add Story" linkTo={ROUTES.path} />
-      </>
+      </div>
     );
   });
 };

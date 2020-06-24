@@ -1,0 +1,41 @@
+.manualButton img {
+    animation: float 4s infinite;
+}
+
+.manualButton p {
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.coreWrapper {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: background-color;
+    z-index: 3;
+    border-radius: 3rem;
+    border: 0.3rem solid highlight-orange;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4rem 4rem;
+}
+
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-20px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
