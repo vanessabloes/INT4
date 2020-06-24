@@ -21,7 +21,7 @@ const PowerOverlay = ({ id }) => {
             </div>
 
             <h1>{wayfarerStore.resolveWayfarer(id).name} used his power!</h1>
-            <p>{roleStore.resolveRole(wayfarerStore.resolveWayfarer(id).roleId).roleDescription} </p>
+            <p>{roleStore.resolveRole(wayfarerStore.resolveWayfarer(id).roleId).powerDescription} </p>
             {/* <p>{roleStore.resolveRole(wayfarerStore.resolveWayfarer(id).roleId).roleName} </p> */}
 
             <TheePotFlow onClick={closeOverlay} text="Accept challenge" />
