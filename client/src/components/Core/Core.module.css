@@ -8,7 +8,30 @@
 }
 
 .coreWrapper {
-    position: relative;
+    height: 100vh;
+    grid-template-rows: 1fr 5fr 1fr;
+}
+
+.coreHeader{
+    grid-row: 1;
+    grid-template-columns: 1fr 5fr 1fr;
+}
+
+.coreWrapper {
+    grid-row: 2;
+}
+
+.manualWrapper {
+    grid-row: 3;
+    display: flex;
+}
+
+.headerButton {
+    grid-column: 1;
+}
+
+.headerProgressbar {
+    grid-column: 2;
 }
 
 .overlay {

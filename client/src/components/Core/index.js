@@ -103,8 +103,8 @@ const Core = () => {
       <div className={styles.coreWrapper}>
 
         <header className={styles.coreHeader}>
-          <button><BackToJourney /></button>
-          <ProgressFlame />
+          <button className={styles.headerButton}><BackToJourney /></button>
+          <div className={styles.headerProgressbar}><ProgressFlame /></div>
         </header>
 
         <div className={styles.wordWheel}>
