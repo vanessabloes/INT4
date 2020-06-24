@@ -100,6 +100,8 @@ const Core = () => {
       return <p>Loading"</p>;;
     }
     return (
+
+      <div className={styles.coreManualWrapper}>
       <div className={styles.coreWrapper}>
 
         <header className={styles.coreHeader}>
@@ -113,8 +115,11 @@ const Core = () => {
 
         <div className={styles.manualWrapper}>
           <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" /><p className={styles.manualButtonText}>How to tell a story?</p></button>
-          {manual ? <Manual /> : ""}
         </div>
+
+      </div>
+
+      <div className={styles.overlay}>{manual ? <Manual /> : ""}</div>
 
       </div>
     );

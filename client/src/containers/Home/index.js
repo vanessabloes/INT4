@@ -15,6 +15,7 @@ import styles from "./Home.module.css"
 import World from "../../components/World/World"
 import { Link } from "react-router-dom";
 import ProgressFlame from "../../components/ProgressFlames";
+import Manual from "../../components/Manual";
 
 
 const Home = ({ page }) => {
@@ -22,9 +23,9 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
-//   useEffect(() =>
-//   localStorage.removeItem("launch_page")
-// );
+  //   useEffect(() =>
+  //   localStorage.removeItem("launch_page")
+  // );
 
   //console.log(uiStore.currentClan)
   // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
@@ -39,7 +40,9 @@ const Home = ({ page }) => {
 
       return <OpeningFamily />
 
+      // <OpeningFamily />
       // return <Challenge /> 
+      // <Manual />
     }
 
 

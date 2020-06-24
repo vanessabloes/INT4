@@ -23,12 +23,12 @@ const ProgressFlame = (words) => {
         <p className={styles.endWord}>wheel</p>
           
         <div className={styles.bluebar}></div>
-        <img className={styles.leftFlam} src="assets/img/game/bar/leftFlam.svg" alt={"leftFlam"} />
-        <img className={styles.rightFlam} src="assets/img/game/bar/rightFlam.svg" alt={"rightFlam"} />
+        <img className={styles.leftFlam} src="/assets/img/game/bar/leftFlam.svg" alt={"leftFlam"} />
+        <img className={styles.rightFlam} src="/assets/img/game/bar/rightFlam.svg" alt={"rightFlam"} />
         <ul className={styles.wordsList}>
           {words.map( word => (
             <li  className={styles.wordListItem} key={word}>
-              <img className={styles} src="assets/img/game/bar/luciferBurnedVertical.svg" alt={word} />
+              <img className={styles} src="/assets/img/game/bar/luciferBurnedVertical.svg" alt={word} />
               <p className={styles.word}>{word}</p>
             </li>
           ))}
