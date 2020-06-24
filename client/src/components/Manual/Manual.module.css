@@ -27,6 +27,8 @@
   composes: page_title from "../../styles/typo.module.css";
   grid-area: title;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
   
 .subtitle {

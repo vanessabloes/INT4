@@ -18,14 +18,10 @@ import styles from "./Core.module.css";
 import BackToJourney from "../buttons/BackToJourney/BackToJourney";
 
 
-
-
 const Core = () => {
 
-  const [manual, setManual] = useState(false);
-
   const showManual = () => {
-    setManual(true);
+    uiStore.setManualVisibility(true);
   }
 
   const { uiStore, journeyStore, storyStore } = useStore();
@@ -114,12 +110,14 @@ const Core = () => {
         </div>
 
         <div className={styles.manualWrapper}>
-          <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" /><p className={styles.manualButtonText}>How to tell a story?</p></button>
+
+          <button className={styles.manualButton} onClick={showManual}> <img className={styles.manualArrow} alt="icon of down arrow" src="/assets/img/BUTTONS/downarr.svg" />{! uiStore.manualVisibility? <p className={styles.manualButtonText}>How to tell a story?</p> : ""}</button>
+
         </div>
 
       </div>
 
-      <div className={styles.overlay}>{manual ? <Manual /> : ""}</div>
+      <div className={styles.overlay}>{uiStore.manualVisibility ? <Manual /> : ""}</div>
 
       </div>
     );
