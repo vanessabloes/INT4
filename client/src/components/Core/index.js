@@ -96,7 +96,7 @@ const Core = () => {
         }
         return (
         <>
-            <PageTitle title={uiStore.currentStory.name} />
+           <PageTitle title={"Your story"}/>
             <ProgressFlame />
            
             <ul>

@@ -1,0 +1,86 @@
+@value tokens: "../../styles/tokens.module.css";
+@value primary-blue from tokens;
+
+.procesBar {
+  display: grid;
+  grid-template-rows: 4fr 2fr 1fr 2fr 6fr;
+  grid-template-columns: 1fr .5rem auto .5rem 1fr;
+  margin: 0 auto;
+}
+
+.story {
+  grid-column: 3;
+  grid-row: 1;
+  place-self: center;
+  composes: page_title from "../../styles/typo.module.css";
+  margin: 0;
+}
+
+.task {
+  grid-column: 3;
+  grid-row: 2;
+  place-self: center;
+  composes: subtext from "../../styles/typo.module.css";
+  padding: 0 2rem;
+  margin: 0;
+  max-width: 50vw;
+}
+
+.starWord {
+  grid-column: 1;
+  grid-row: 5;
+  place-self: start end;
+  composes: subtext from "../../styles/typo.module.css";
+  font-weight: bold;
+}
+
+.endWord {
+  grid-column: 5;
+  grid-row: 5;
+  place-self: start;
+  composes: subtext from "../../styles/typo.module.css";
+  font-weight: bold;
+}
+
+.bluebar {
+  grid-column: 2/5;
+  grid-row: 3;
+  place-self: center ;
+  background-color: primary-blue;
+  border: black 0.2rem solid;
+  width: 100%;
+  height: 1.2rem;
+}
+
+.leftFlam {
+  grid-column: 1/3;
+  grid-row: 1 /5;
+  place-self: center end;
+}
+
+.rightFlam {
+  grid-column: 4/6;
+  grid-row: 1 /5;
+  place-self: center start;
+}
+
+.wordsList {
+  grid-column: 3;
+  grid-row: 3 /7;
+  display: flex;
+  flex-flow: row;
+  align-items: flex-start;
+  max-width: 80vw;
+}
+
+.wordListItem {
+  margin: 0 3rem;
+  
+}
+
+
+.word {
+  composes: bodyCopy from "../../styles/typo.module.css";
+  writing-mode: vertical-lr;
+  padding: 1rem 0;
+}

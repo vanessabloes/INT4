@@ -75,6 +75,16 @@ class JourneyModel {
     return (this.wayfarers.length * 30) - this.store.rootStore.uiStore.currentStory.words.length;
 }
 
+get definedJourneyStoryWords() {
+  let array = [];
+  this.stories.forEach(story => {
+      story.definedStoryWords.forEach(definedStoryWord => {
+        array.push(definedStoryWord);
+      });
+  });
+  return array;
+}
+
   get asJson() {
     return {
       id: this.id,
@@ -97,7 +107,9 @@ decorate(JourneyModel, {
   setJourneyName: action,
   setImage: action,
   setClan: action,
-  wordCounter: computed
+  wordCounter: computed,
+
+  definedJourneyStoryWords: computed
 });
 
 export default JourneyModel;
