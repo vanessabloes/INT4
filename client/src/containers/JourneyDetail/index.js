@@ -91,7 +91,7 @@ const JourneyDetail = () => {
         <div className={styles.wayfarers}>
           {journey.wayfarers.map(wayfarer => (
             <div key={wayfarer.id} className={styles.wayfarer}>
-              <MaskNoName key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
+              <MaskNoName key={wayfarer.id} clanMember={wayfarer} />
               <h1>{wayfarer.name}</h1>
               <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
             </div>
