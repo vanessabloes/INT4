@@ -9,4 +9,5 @@
 
 .button_title {
   composes: button_title from "../../../styles/typo.module.css";
+  margin-top: -1rem;
 }

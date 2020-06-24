@@ -1,0 +1,32 @@
+@value tokens: "../../styles/tokens.module.css";
+@value font-base, highlight-orange, background-color, title-font, bodyCopy-font from tokens;
+
+.roleOverlay {
+    display: flex;
+    flex-direction: column;
+    background-color: background-color;
+    padding: 4rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    border: 0.3rem solid highlight-orange;
+    width: 80vw;
+}
+
+.roleOverlay h1 {
+    font-family: title-font;
+    font-size: 4.5rem;
+}
+
+.roleOverlay p {
+    font-family: Helvetica;
+    font-size: 1.6rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.roleOverlayIcons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
