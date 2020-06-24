@@ -84,3 +84,21 @@
 .circle__counter {
     composes: page_title from "../../styles/typo.module.css"
 }
+
+.wayfarersList {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    height: 20rem;
+}
+
+.wayfarersListItem {
+    position: absolute;
+    z-index: 0;
+}
+
+.button {
+    composes: button from "../../styles/uiControls.module.css"
+
+}

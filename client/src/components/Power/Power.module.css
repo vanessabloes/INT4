@@ -1,12 +1,13 @@
 @value tokens: "../../styles/tokens.module.css";
-@value font-base, background-color, title-font, bodyCopy-font from tokens;
+@value font-base,  title-font from tokens;
 
 .power {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+    composes: button from "../../styles/uiControls.module.css";
+  }
 
 .powerWayfarer {
     font-family: title-font;

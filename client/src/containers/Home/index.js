@@ -87,7 +87,7 @@ const Home = ({ page }) => {
       </div>
 
     );
-        }
+        
   });
 };
 
