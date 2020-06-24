@@ -75,7 +75,7 @@ const Home = ({ page }) => {
       </div>
 
     );
-
+        }
   });
 };
 
