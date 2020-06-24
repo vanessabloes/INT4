@@ -133,7 +133,7 @@ const AddWayfarers = () => {
           <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" alt={"zonnestralen"} />
         </div>
         <div className={styles.buttonNext}>
-          <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+          {uiStore.currentJourney.wayfarers.length > 0 ? <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} /> : ""}
           {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
         </div>
       </div>

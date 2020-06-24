@@ -1,22 +1,24 @@
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
+import styles from "./Power.module.css";
 import PowerOverlay from "../PowerOverlay";
 
 const Power = ({ wayfarer }) => {
 
-    const { clanMemberStore, roleStore, uiStore } = useStore();
+    const { roleStore, uiStore } = useStore();
 
     const showOverlay = () => {
         uiStore.setVisibilityPower(true)
-        uiStore.setSelectedPower(wayfarer.clanMemberId);
+        uiStore.setSelectedPower(wayfarer.id);
     }
 
     return useObserver(() => (
         <>
-            <p>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</p>
-            <button onClick={showOverlay}><img src={wayfarer.roleId.image} alt="icon of power" /></button>
-            <p>{wayfarer.roleId.roleName}</p>
+            <button className={styles.power} onClick={showOverlay}>
+                <p className={styles.powerWayfarer}>{wayfarer.name}</p>
+                <img src={roleStore.resolveRole(wayfarer.roleId).image} alt="icon of power" />
+                <p className={styles.powerRole}>{roleStore.resolveRole(wayfarer.roleId).roleName}</p></button>
         </>
     ));
 };

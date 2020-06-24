@@ -8,12 +8,15 @@ import TheePotLink from "../../components/buttons/Algemeen/TheePotLink";
 import { ROUTES } from "../../consts";
 
 import { STATES } from "../../consts";
+import Power from "../Power";
+import PowerOverlay from "../PowerOverlay";
+import JourneyStore from "../../stores/JourneyStore";
 
 
 
 const Wordwheel = () => {
 
-    const { uiStore } = useStore();
+    const { uiStore, journeyStore } = useStore();
 
 
     return useObserver(() => (
@@ -68,6 +71,13 @@ const Wordwheel = () => {
             </ul>
 
             <img src="/assets/img/GAME/pointer.svg" />
+
+            <div>
+                {uiStore.currentJourney.wayfarers.map(wayfarer => (
+                    <Power wayfarer={wayfarer} />
+                ))}
+                {uiStore.visibilityPower ? <PowerOverlay id={uiStore.selectedPowerId} /> : ""}
+            </div>
 
             <button
                 value="challenge"

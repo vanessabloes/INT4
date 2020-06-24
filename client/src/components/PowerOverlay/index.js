@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
-import Mask from "../Mask";
+import MaskNoName from "../MaskNoName";
 
-const PowerOverlay = ({ wayfarer }) => {
+const PowerOverlay = ({ id }) => {
 
-    const { uiStore, clanMemberStore } = useStore();
+    const { uiStore, clanMemberStore, wayfarerStore, topMaskStore } = useStore();
 
     const closeOverlay = () => {
         uiStore.setVisibilityPower(false);
@@ -14,9 +14,9 @@ const PowerOverlay = ({ wayfarer }) => {
 
     return useObserver(() => (
         <>
-            <h1>{wayfarer.roleId.name} used his power!</h1>
-            <Mask clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-            <p>{wayfarer.roleId.powerDescription} </p>
+            <h1>{wayfarerStore.resolveWayfarer(id).name} used his power!</h1>
+            <MaskNoName clanMember={wayfarerStore.resolveWayfarer(id)} />
+            {/* <p>{wayfarer.roleId.powerDescription} </p> */}
             <button onClick={closeOverlay}>Accept Challenge</button>
         </>
     ));

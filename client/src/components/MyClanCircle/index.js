@@ -23,7 +23,9 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
     uiStore.setTopCount(topMaskId);
     uiStore.setMiddleCount(middleMaskId);
     uiStore.setBottomCount(bottomMaskId);
+    
     uiStore.setVisibilityUpdate(true);
+
     uiStore.setSelectedClanMember(id);
   }
 
