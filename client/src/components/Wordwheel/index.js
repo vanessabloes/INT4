@@ -32,6 +32,34 @@ const Wordwheel = () => {
                 <img className={styles.arrow} src="/assets/img/GAME/pointerVertical.svg" alt={"arrow"}/>
             </div>
 
+            
+
+            <div className={styles.wordSvg}>
+                <svg style={{ position: "absolute", top: "-15rem" }}  xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
+                    <defs>
+                        <path d="M40,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
+                    </defs>
+
+                    <text className={styles.word} dy="50" textLength="1220">
+                        <textPath xlinkHref="#textcircle">
+                            {uiStore.currentStory.words.map(noun => (
+                                noun.content + String.fromCharCode(160) + String.fromCharCode(160)
+                            ))}
+                        </textPath>
+                    </text>
+                </svg>
+            </div>
+            
+            <ul>
+                 {uiStore.currentStory.words.length === 0 ? (
+                    <></>
+                ) : (
+                    uiStore.currentStory.words.map(noun => (
+                    <li key={noun.id} className={styles.word} >{noun.content}</li>
+                        ))
+                    )}
+            </ul>
+
             <ul className={styles.wayfarersList}>
                 {uiStore.currentJourney.wayfarers.map(wayfarer => (
                     graden = (0 + (uiStore.currentJourney.wayfarers.indexOf(wayfarer) * arc)),
@@ -40,30 +68,6 @@ const Wordwheel = () => {
                     </li>
                 ))}
                 {uiStore.visibilityPower ? <PowerOverlay id={uiStore.selectedPowerId} /> : ""}
-            </ul>
-
-            {/* <svg className={styles.svg} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 500 500">
-                <defs>
-                    <path d="M40,250c0-110.5,89.5-200,200-200s200,89.5,200,200s-89.5,200-200,200S50,360.5,50,250" id="textcircle"></path>
-                </defs>
-
-                <text className={styles.word} dy="50" textLength="1220">
-                    <textPath xlinkHref="#textcircle">
-                        {uiStore.currentStory.words.map(noun => (
-                            noun.content + String.fromCharCode(160) + String.fromCharCode(160)
-                        ))}
-                    </textPath>
-                </text>
-            </svg> */}
-
-            <ul>
-                {uiStore.currentStory.words.length === 0 ? (
-                    <></>
-                ) : (
-                    uiStore.currentStory.words.map(noun => (
-                    <li key={noun.id} className={styles.word} >{noun.content}</li>
-                        ))
-                    )}
             </ul>
  
         </div>

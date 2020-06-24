@@ -53,23 +53,20 @@
     z-index: 0;
 }
 
-/* .cirlce__img { afb die in commentaar staat
-    z-index: 0;
-    position: relative
-} */
 
-.svg {
+.wordSvg{
     position: absolute;
+    grid-row: 1;
+    grid-column: 1;
+    place-self: center;
+    background-color: lightcoral;
+
 }
 
 .word {
     font-size: 3rem;
     font-weight: bold;
 }
-
-
-
-
 
 .button {
     composes: button from "../../styles/uiControls.module.css"
