@@ -148,7 +148,6 @@ decorate(DefinedWordStore, {
   addDefinedWord: action,
   updateDefinedWordFromServer: action,
   definedStoryWords: observable,
-  addDefinedWord: action
 });
 
 export default DefinedWordStore;
