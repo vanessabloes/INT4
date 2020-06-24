@@ -103,7 +103,7 @@ const JourneyDetail = () => {
           {journey.stories.map(story => (
 
             <li key={story.id}>
-              {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}
+              {/* DEZE LOGICA WERKT OOK AL WEER NIET ALS JE EEN NIEUWE STORY MAAKT {story.definedStoryWords[story.definedStoryWords.length - 1].isReached === "false" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}*/}
           <p>{"Your story"}</p>
 
             </li>

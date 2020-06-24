@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react-lite";
 
-import Pitstops from "../Pitstops";
-import Power from "../Power";
-import PowerOverlay from "../PowerOverlay";
 import Wordwheel from "../Wordwheel";
 
 import { useStore } from "../../hooks";
@@ -14,7 +11,6 @@ import { ROUTES } from "../../consts";
 import { STATES } from "../../consts";
 import Manual from "../Manual";
 import PageTitle from "../PageTitle/PageTitle";
-import JourneyStore from "../../stores/JourneyStore";
 import { useParams } from "react-router-dom";
 import ProgressFlame from "../ProgressFlames";
 
@@ -23,7 +19,7 @@ import ProgressFlame from "../ProgressFlames";
 
 const Core = () => {
 
-    const { uiStore, journeyStore, definedStoryWordStore, storyStore } = useStore();
+    const { uiStore, journeyStore, storyStore } = useStore();
     const { id, storyId } = useParams();
     const STATE_LOADING = 'loading';
     const STATE_NOT_FOUND = 'notFound';

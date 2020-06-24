@@ -22,6 +22,7 @@ class UiStore {
     this.selectedPowerId = "";
     this.currentStory = undefined;
     this.pitStopCount = 0;
+  
   }
 
 
@@ -228,7 +229,9 @@ decorate(UiStore, {
   currentStory: observable,
 
   pitStopCount: observable,
-  setPitStopCount: action
+  setPitStopCount: action,
+
+
 
 });
 
