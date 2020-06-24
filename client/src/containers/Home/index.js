@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //import { Link } from "react-router-dom";
 //import PropTypes from "prop-types";
 import { useStore } from "../../hooks";
@@ -22,6 +22,10 @@ const Home = ({ page }) => {
 
   const [homeState, setState] = useState();
 
+//   useEffect(() =>
+//   localStorage.removeItem("launch_page")
+// );
+
   //console.log(uiStore.currentClan)
   // const journeysOfClan = clanStore.loadClanJourneys(uiStore.currentClan.id);
 
@@ -32,9 +36,9 @@ const Home = ({ page }) => {
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_FAMILY) {// "Opening Family"
-        return <Challenge />  
-    
-    // return <OpeningFamily />
+      return <OpeningFamily />
+
+      // return <Challenge /> 
     }
 
     if (launchFlowStore.homeState === STATES.HOME_STATE_SURREAL_WORLD) {//"Opening Surreal World",
@@ -57,7 +61,7 @@ const Home = ({ page }) => {
           {
             uiStore.currentClan.journeys.map(journey => (
               <Link to={journey.id} key={journey.id}>
-                <World journey={journey}/>
+                <World journey={journey} />
               </Link>
             ))
           }
