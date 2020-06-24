@@ -1,0 +1,19 @@
+@value tokens: "../../styles/tokens.module.css";
+@value font-base, background-color, title-font, bodyCopy-font from tokens;
+
+.power {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.powerWayfarer {
+    font-family: title-font;
+    font-size: 2.8rem;
+}
+
+.powerRole {
+    font-size: 1.6rem;
+    font-weight: bold;
+}

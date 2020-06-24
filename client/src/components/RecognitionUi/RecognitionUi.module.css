@@ -7,10 +7,6 @@
     border-top: 0.4rem solid #1B1A1A;
 }
 
-.svg {
-    position: absolute;
-}
-
 .wave {
     width: 16rem;
     height: 2rem;
@@ -66,6 +62,7 @@
 .cirlce__content {
     z-index: 1;
     position: absolute;
+    top: 20rem;
     display: flex;
     flex-direction: column;
     justify-content: center;

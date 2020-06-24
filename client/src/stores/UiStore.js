@@ -22,6 +22,7 @@ class UiStore {
     this.selectedPowerId = "";
     this.currentStory = undefined;
     this.pitStopCount = 0;
+    this.manualVisibility = false;
   }
 
 
@@ -54,6 +55,10 @@ class UiStore {
 
   setVisibilityCreate(value) {
     this.visibilityCreate = value;
+  }
+
+  setManualVisibility(value) {
+    this.manualVisibility = value;
   }
 
   setVisibilityUpdate(value) {
@@ -228,7 +233,10 @@ decorate(UiStore, {
   currentStory: observable,
 
   pitStopCount: observable,
-  setPitStopCount: action
+  setPitStopCount: action,
+
+  setManualVisibility: action,
+  manualVisibility: observable
 
 });
 

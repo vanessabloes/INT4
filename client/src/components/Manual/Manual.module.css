@@ -1,8 +1,12 @@
 @value tokens: "../../styles/tokens.module.css";
-@value font-base, title-font, bodyCopy-font from tokens;
+@value font-base, background-color, title-font, bodyCopy-font from tokens;
 
 .hidden {
   display: none;
+}
+
+.overlay {
+  background-color: background-color;
 }
 
 .manual {
@@ -16,13 +20,15 @@
   "narrates narrates"
   "circle circle"
   ;
-  margin: 3rem;
+  padding: 3rem;
 }
 
 .page_title {
   composes: page_title from "../../styles/typo.module.css";
   grid-area: title;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
   
 .subtitle {

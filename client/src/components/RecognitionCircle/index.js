@@ -3,7 +3,7 @@ import { useStore } from "../../hooks";
 import WordModel from "../../models/WordModel";
 import React, { useState } from 'react';
 import styles from "./RecognitionCircle.module.css"
-import JourneyStore from "../../stores/JourneyStore";
+import Match from "../Match";
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -14,8 +14,9 @@ recognition.lang = 'en-US';
 recognition.continuous = true;
 
 const RecognitionCircle = () => {
-    const { wordStore, uiStore, definedStoryWordStore, journeyStore } = useStore();
+    const { wordStore, uiStore, definedStoryWordStore } = useStore();
     const [play, setPlay] = useState(false);
+    const [match, setMatch] = useState(false);
 
    const definedStoryWords = uiStore.currentStory.definedStoryWords;
     console.log(definedStoryWords);
@@ -46,6 +47,7 @@ const RecognitionCircle = () => {
          setPlay(!play);
          if (!play) {
              recognition.start();
+             setMatch(false)
              console.log("is aant recorden");
          } else {
              recognition.stop();
@@ -98,7 +100,7 @@ const RecognitionCircle = () => {
              console.log(definedStoryWordToCheck);
             console.log(definedStoryWords.length);
             
-             if(definedStoryWordToCheck.content === word.content){
+             if(definedStoryWordToCheck.content.toLowerCase() === word.content){
                  console.log("equals")
                  definedStoryWordToCheck.setReached("true");
                  definedStoryWordToCheck.update();
@@ -108,6 +110,10 @@ const RecognitionCircle = () => {
                   uiStore.setPitStopCount(1) ;
                   console.log("pitstop increased");
                   console.log("match");
+                  setMatch(true);
+                  setPlay(!play);
+                  recognition.stop();
+
               }
  
          word.create();
@@ -116,14 +122,15 @@ const RecognitionCircle = () => {
  }
   return useObserver (() => (
       <>
-
-    <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>
-
+    {match === true ? <Match /> : <p className={styles.circle__counter}>{uiStore.currentJourney.wordCounter}</p>
+}
+ 
     {play ? <div className={styles.wave}></div> : <div className={styles.line}></div>}
 
     <button className={styles.toggle__btn} onClick={togglePlay}>
         {play ? <img className={styles.toggle__icon} alt="play button" src="/assets/img/GAME/pause.svg" /> : <img className={styles.toggle__icon} alt="pause button" src="/assets/img/GAME/play.svg" />}
     </button>
+
     </>
   ));
 };

@@ -11,6 +11,13 @@ const OpeningScreen = () => {
 
   const { launchFlowStore, uiStore } = useStore()
 
+  const launch = localStorage.getItem('launch_page');
+
+  const handleClick = () => {
+    launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY);
+  }
+
+
   return useObserver(() => (
     <div className={styles.opening_screen_wrapper}>
 
@@ -19,14 +26,20 @@ const OpeningScreen = () => {
         <p className={styles.subtitle}>Experience travelling with your family as never before</p>
       </div>
 
-  
-        <img className={styles.image_mask} src="assets/img/BOOT/boot1.svg" alt="clandestine mask" />
-        <img className={styles.image_wolkOne} src="assets/img/BOOT/wolkje1.svg" alt="een gele wolk" />
-        <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg" alt="nog een gele wolk" />
-   
+
+      <img className={styles.image_mask} src="assets/img/BOOT/boot1.svg" alt="clandestine mask" />
+      <img className={styles.image_wolkOne} src="assets/img/BOOT/wolkje1.svg" alt="een gele wolk" />
+      <img className={styles.image_wolkTwo} src="assets/img/BOOT/wolkje2.svg" alt="nog een gele wolk" />
+
 
       <div className={styles.button}>
-        {uiStore.loadedAllData === true ? <TheePotFlow text={"Next"} onClick={e => launchFlowStore.setHomeStrate(STATES.HOME_STATE_FAMILY)} /> : <LoadingWheel />}
+        {uiStore.loadedAllData === true ?
+
+          launch === "launched" ? launchFlowStore.setHomeStrate(STATES.HOME_STATE_HOME)
+
+            : <TheePotFlow text={"Next"} onClick={e => handleClick()} />
+
+          : <LoadingWheel />}
       </div>
 
     </div>

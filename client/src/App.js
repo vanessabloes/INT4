@@ -14,8 +14,7 @@ import NameJourney from "./components/NameJourney";
 import { useObserver } from "mobx-react-lite";
 import Loading from "./components/Loading";
 import Styles from "./App.module.css"
-
-
+import OpeningScreen from "./components/OpeningScreen/OpeningScreen";
 
 const App = () => {
   const { journeyStore, uiStore } = useStore() // is nodig om de window.store te kunnen gebruiken om te testen
@@ -26,7 +25,7 @@ const App = () => {
        <Route path={ROUTES.myClan}>
        {uiStore.loadedAllData ? 
            <MyClan />
-           : <Loading/>}
+           : <OpeningScreen/>}
        </Route>
 
        <Route path={ROUTES.addJourney}>

@@ -39,32 +39,32 @@ const JourneyDetail = () => {
 
     const loadJourneyy = async (id) => {
 
-       //try {
-        console.log(id)
-       
-        const journey = await journeyStore.loadJourney(id);
-        uiStore.setCurrentJourney(journey);
-        const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
-       // console.log(lol)
-        console.log(journey)
-        if (!journey) {
-          setState(STATE_NOT_FOUND);
-          return;
-        }
-        setJourney(journey);
-        setState(STATE_LOADING_MORE_DETAILS);
-  
-      
-        await clanStore.loadClanMembers(uiStore.currentClan.id);
-        await journeyStore.loadWayfarersForJourney(id);
-        await journeyStore.loadStoriesForJourney(id);
-        setState(STATE_FULLY_LOADED);
-    //  }
+      //try {
+      console.log(id)
 
-    //    catch (error) {
-    //      console.log("error")
-    //      setState(STATE_NOT_FOUND);
-    //    }
+      const journey = await journeyStore.loadJourney(id);
+      uiStore.setCurrentJourney(journey);
+      const lol = await definedStoryWordStore.loadAllDefinedStoryWords();
+      // console.log(lol)
+      console.log(journey)
+      if (!journey) {
+        setState(STATE_NOT_FOUND);
+        return;
+      }
+      setJourney(journey);
+      setState(STATE_LOADING_MORE_DETAILS);
+
+
+      await clanStore.loadClanMembers(uiStore.currentClan.id);
+      await journeyStore.loadWayfarersForJourney(id);
+      await journeyStore.loadStoriesForJourney(id);
+      setState(STATE_FULLY_LOADED);
+      //  }
+
+      //    catch (error) {
+      //      console.log("error")
+      //      setState(STATE_NOT_FOUND);
+      //    }
     }
     loadJourneyy(id);
   }, [id, journeyStore]);
@@ -91,8 +91,8 @@ const JourneyDetail = () => {
         <div className={styles.wayfarers}>
           {journey.wayfarers.map(wayfarer => (
             <div key={wayfarer.id} className={styles.wayfarer}>
-              <MaskNoName key={wayfarer.id} clanMember={clanMemberStore.resolveClanMember(wayfarer.clanMemberId)} />
-              <h1>{clanMemberStore.resolveClanMember(wayfarer.clanMemberId).name}</h1>
+              <MaskNoName key={wayfarer.id} clanMember={wayfarer} />
+              <h1>{wayfarer.name}</h1>
               <p>{roleStore.resolveRole(wayfarer.roleId).roleName}</p>
             </div>
           ))}
@@ -103,8 +103,8 @@ const JourneyDetail = () => {
           {journey.stories.map(story => (
 
             <li key={story.id}>
-              {story.name === "Your story" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}
-          <p>{"Your story"}</p>
+              {/* DEZE LOGICA WERKT OOK AL WEER NIET ALS JE EEN NIEUWE STORY MAAKT {story.definedStoryWords[story.definedStoryWords.length - 1].isReached === "false" ? <img src="assets/img/BUTTONS/btnRestartStory.svg" alt="" /> : <img src="assets/img/BUTTONS/btnXtotY.svg" alt="" />}*/}
+              <p>{"Your story"}</p>
 
             </li>
           ))}

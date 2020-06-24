@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStore } from "../../hooks";
 import AddMemberButton from "../buttons/AddMember/AddMemberButton";
@@ -24,9 +24,16 @@ const AddWayfarers = () => {
     console.log(uiStore.currentClan);
   }
 
+  const [data, setData] = useState();
   let teller = 1;
 
+  useEffect(() => {
+    localStorage.setItem("wayfarers", data);
+  });
+
   const addWayfarer = (id, mask) => {
+
+    setData({ id: JSON.stringify(id) })
 
     console.log(teller);
     let w = new WayfarerModel({
@@ -96,12 +103,9 @@ const AddWayfarers = () => {
             <p className={styles.explore}>Explore roles</p>
           </div>
           <div className={styles.headerTitle}>
-            <PageTitle title={"Your Roles"} subtext={"select the wayfarers of the journey"} />
+            <PageTitle title={"Your Roles"} subtext={"Click on the wayfarers who will join the journey:"} />
           </div>
         </header>
-
-
-
 
         <div className={styles.membersWrapper}>
           <ul className={styles.membersList}>
@@ -129,7 +133,7 @@ const AddWayfarers = () => {
           <img className={styles.roles} src="assets/img/PREPARING/sun_rollen1.svg" alt={"zonnestralen"} />
         </div>
         <div className={styles.buttonNext}>
-          <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} />
+          {uiStore.currentJourney.wayfarers.length > 0 ? <TheePotFlow text={"Choose roles"} onClick={e => uiStore.setAddJourneyState(STATES.ADDJOURNEY_STATE_CHOOSEROLES)} /> : ""}
           {uiStore.visibilityCreate ? <AvatarToolCreate /> : ""}
         </div>
       </div>

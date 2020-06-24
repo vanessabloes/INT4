@@ -23,7 +23,9 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
     uiStore.setTopCount(topMaskId);
     uiStore.setMiddleCount(middleMaskId);
     uiStore.setBottomCount(bottomMaskId);
+    
     uiStore.setVisibilityUpdate(true);
+
     uiStore.setSelectedClanMember(id);
   }
 
@@ -32,23 +34,23 @@ const MyClanCircle = ({ page }) => { //centerButton -> MyClanCircle anders is he
     clanMemberStore.deleteClanMember(clanMember);
     //clanMember.delete();
   }
-  
+
   return useObserver(() => (
- 
+
     <ul className={styles.circle_wrapper}>
       {
         uiStore.currentClan.clanMembers.map(clanMember => (
 
           graden = (0 + (uiStore.currentClan.clanMembers.indexOf(clanMember) * arc)),
 
-          <li className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 23rem)` }} key={clanMember.id}>
-         
-              <div className={styles.mask_image}>
-                <Mask clanMember={clanMember} />
-              </div>
-  
-              {page === "/" ? "" : <button className={styles.buttonEdit} onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}><span className={styles.hidden}>Edit</span></button>}
-              {page === "/" ? "" : <button className={styles.buttonDelete} onClick={() => handleDeleteAvatar(clanMember)}><span className={styles.hidden}>Delete</span></button>}
+          <li className={styles.mask_element} style={{ transform: `rotate(${graden}deg) translate(0rem, 25rem)` }} key={clanMember.id}>
+
+            <div className={styles.mask_image}>
+              <Mask clanMember={clanMember} />
+            </div>
+
+            {page === "/" ? "" : <button className={styles.buttonEdit} onClick={() => showOverlay(clanMember.topMaskId, clanMember.middleMaskId, clanMember.bottomMaskId, clanMember.name, clanMember.age, clanMember.id)}><span className={styles.hidden}>Edit</span></button>}
+            {page === "/" ? "" : <button className={styles.buttonDelete} onClick={() => handleDeleteAvatar(clanMember)}><span className={styles.hidden}>Delete</span></button>}
 
           </li>
 
