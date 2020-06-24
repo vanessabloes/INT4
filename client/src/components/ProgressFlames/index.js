@@ -6,22 +6,45 @@ import styles from "./ProgressFlame.module.css"
 
 const ProgressFlame = (words) => {
   const { uiStore } = useStore();
+  const definedStoryWords = uiStore.currentStory.definedStoryWords;
   const definedStoryWordsWithoutFirstAndLast = [];
+  let active = undefined;
 
 const checkIndex = () => {
-  const definedStoryWords = uiStore.currentStory.definedStoryWords;
 
   definedStoryWords.forEach(definedStoryWord => {
-
+    console.log(definedStoryWord.isReached)
     if(definedStoryWords.indexOf(definedStoryWord) !== 0 && definedStoryWords.indexOf(definedStoryWord) !== definedStoryWords.length - 1){
       !definedStoryWordsWithoutFirstAndLast.includes(definedStoryWord) && definedStoryWordsWithoutFirstAndLast.push(definedStoryWord);
-      console.log(definedStoryWords.indexOf(definedStoryWord))
     }
+    if(definedStoryWord.isReached === "true" && definedStoryWords[definedStoryWords.indexOf(definedStoryWord)].isReached === "false"){
+      
+      active = definedStoryWords[definedStoryWords.indexOf(definedStoryWord)];
+      console.log(active)
+    }else{
+      console.log("all true")
+    }
+    // if(definedStoryWord.isReached === "true" && definedStoryWords.indexOf(definedStoryWords[definedStoryWord.length].isReached === "false")){
+    //        active = definedStoryWords.indexOf(definedStoryWords[definedStoryWord.length]);
+    //     }else{
+    //        active = definedStoryWords[0];
+    //     }
+    //     console.log(active.content);
   
   });
- 
+  // definedStoryWords.forEach(definedStoryWord => {
+  //   if(definedStoryWord.isReached === "true" && definedStoryWords.indexOf(definedStoryWords[definedStoryWord.length].isReached === "false")){
+  //      active = definedStoryWords.indexOf(definedStoryWords[definedStoryWord.length]);
+  //   }else{
+  //      active = definedStoryWords[0];
+  //   }
+  //   console.log(active.content);
+  // });
 }
+
+
 checkIndex();
+
 console.log(definedStoryWordsWithoutFirstAndLast)
   return useObserver (() => (
     <>
@@ -46,8 +69,10 @@ console.log(definedStoryWordsWithoutFirstAndLast)
             
             
             <li className={styles.wordListItem} key={definedStoryWord.id}>
+              {active !== definedStoryWord ? 
+              <img className={styles} src={definedStoryWord.isReached === "false" ? "/assets/img/game/bar/lucifer_old.svg" : `/assets/img/game/bar/luciferBurnedVertical.svg`} alt={definedStoryWord.content} />
+                :   <img className={styles} src="/assets/img/game/bar/luciferActive.svg" alt={definedStoryWord.content} />   }         
               
-              <img className={styles} src={definedStoryWord.isReached === "false" ? "/assets/img/game/bar/lucifer_old.svg" : "/assets/img/game/bar/luciferBurnedVertical.svg"} alt={definedStoryWord.content} />
               <p className={styles.word}>{definedStoryWord.content}</p>
            
            
